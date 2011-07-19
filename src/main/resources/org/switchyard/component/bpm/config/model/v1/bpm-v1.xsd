@@ -18,10 +18,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 MA  02110-1301, USA.
 -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="urn:switchyard-component-bpm:config:1.0"
-        xmlns:bpm="urn:switchyard-component-bpm:config:1.0"
         xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+        xmlns:swyd="urn:switchyard-config:switchyard:1.0"
+        xmlns:bpm="urn:switchyard-component-bpm:config:1.0"
+        targetNamespace="urn:switchyard-component-bpm:config:1.0"
         elementFormDefault="qualified">
+
+    <import namespace="urn:switchyard-config:switchyard:1.0"
+            schemaLocation="switchyard-v1.xsd"/>
 
     <import namespace="http://docs.oasis-open.org/ns/opencsa/sca/200912"
             schemaLocation="sca-1.1-cd06.xsd"/>
@@ -32,7 +36,7 @@ MA  02110-1301, USA.
             <extension base="sca:Implementation">
                 <sequence>
                     <element ref="bpm:processAction" minOccurs="0" maxOccurs="unbounded"/>
-                    <element ref="bpm:resource" minOccurs="0" maxOccurs="unbounded"/>
+                    <element ref="swyd:resource" minOccurs="0" maxOccurs="unbounded"/>
                     <element ref="bpm:taskHandler" minOccurs="0" maxOccurs="unbounded"/>
                 </sequence>
                 <attribute name="processDefinition" type="string" use="required"/>
@@ -50,16 +54,6 @@ MA  02110-1301, USA.
                 <attribute name="name" type="string" use="required"/>
                 <attribute name="type" type="NCName" use="required"/>
                 <attribute name="eventType" type="string" use="optional"/>
-            </extension>
-        </complexContent>
-    </complexType>
-
-    <element name="resource" type="bpm:ResourceType"/>
-    <complexType name="ResourceType">
-        <complexContent>
-            <extension base="sca:CommonExtensionBase">
-                <attribute name="location" type="string" use="required"/>
-                <attribute name="type" type="NCName" use="required"/>
             </extension>
         </complexContent>
     </complexType>

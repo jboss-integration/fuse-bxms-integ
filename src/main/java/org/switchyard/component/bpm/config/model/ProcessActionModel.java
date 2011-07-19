@@ -48,7 +48,7 @@ public interface ProcessActionModel extends Model {
 
     /**
      * Gets the type of the action.
-     * @return the tyoe of the action
+     * @return the type of the action
      */
     public ProcessActionType getType();
  

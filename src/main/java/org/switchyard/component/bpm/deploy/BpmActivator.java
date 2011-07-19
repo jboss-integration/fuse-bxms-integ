@@ -34,7 +34,7 @@ import org.switchyard.deploy.BaseActivator;
 import org.switchyard.exception.SwitchYardException;
 
 /**
- * Activator for the BPM component..
+ * Activator for the BPM component.
  *
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; (C) 2011 Red Hat Inc.
  */

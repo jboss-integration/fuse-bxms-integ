@@ -34,8 +34,8 @@ import org.custommonkey.xmlunit.XMLUnit;
 import org.junit.Before;
 import org.junit.Test;
 import org.switchyard.common.io.pull.StringPuller;
+import org.switchyard.common.io.resource.ResourceType;
 import org.switchyard.common.type.Classes;
-import org.switchyard.component.bpm.resource.ResourceType;
 import org.switchyard.component.bpm.task.SwitchYardServiceTaskHandler;
 import org.switchyard.config.Configuration;
 import org.switchyard.config.model.ModelPuller;
@@ -45,6 +45,7 @@ import org.switchyard.config.model.ScannerOutput;
 import org.switchyard.config.model.composite.ComponentImplementationModel;
 import org.switchyard.config.model.composite.ComponentModel;
 import org.switchyard.config.model.composite.CompositeModel;
+import org.switchyard.config.model.resource.ResourceModel;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 
 /**
@@ -72,8 +73,8 @@ public class BpmModelTests {
         Assert.assertTrue(implementation instanceof BpmComponentImplementationModel);
         BpmComponentImplementationModel bci = (BpmComponentImplementationModel)implementation;
         Assert.assertEquals("bpm", bci.getType());
-        Assert.assertEquals("foobar.bpmn", bci.getProcessDefinition());
-        Assert.assertEquals("BPMN2", bci.getProcessDefinitionType().name());
+        Assert.assertEquals("foobar.bpmn", bci.getProcessDefinition().getLocation());
+        Assert.assertEquals("BPMN2", bci.getProcessDefinition().getType().name());
         Assert.assertEquals("foobar", bci.getProcessId());
         Configuration config = bci.getModelConfiguration();
         Assert.assertEquals("implementation.bpm", config.getName());
@@ -123,11 +124,11 @@ public class BpmModelTests {
             BpmComponentImplementationModel bci = (BpmComponentImplementationModel)c.getImplementation();
             String processId = bci.getProcessId();
             if ("SimpleProcess".equals(processId)) {
-                Assert.assertEquals("META-INF/SimpleProcess.bpmn", bci.getProcessDefinition());
-                Assert.assertEquals(ResourceType.BPMN2, bci.getProcessDefinitionType());
+                Assert.assertEquals("META-INF/SimpleProcess.bpmn", bci.getProcessDefinition().getLocation());
+                Assert.assertEquals(ResourceType.BPMN2, bci.getProcessDefinition().getType());
             } else if ("ComplexProcess".equals(processId)) {
-                Assert.assertEquals("path/to/my.bpmn", bci.getProcessDefinition());
-                Assert.assertEquals(ResourceType.BPMN2, bci.getProcessDefinitionType());
+                Assert.assertEquals("path/to/my.bpmn", bci.getProcessDefinition().getLocation());
+                Assert.assertEquals(ResourceType.BPMN2, bci.getProcessDefinition().getType());
                 Iterator<ResourceModel> prm_iter = bci.getResources().iterator();
                 ResourceModel prm = prm_iter.next();
                 Assert.assertEquals("path/to/my.dsl", prm.getLocation());

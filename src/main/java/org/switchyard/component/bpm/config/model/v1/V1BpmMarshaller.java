@@ -19,8 +19,8 @@
 package org.switchyard.component.bpm.config.model.v1;
 
 import static org.switchyard.component.bpm.config.model.ProcessActionModel.PROCESS_ACTION;
-import static org.switchyard.component.bpm.config.model.ResourceModel.RESOURCE;
 import static org.switchyard.component.bpm.config.model.TaskHandlerModel.TASK_HANDLER;
+import static org.switchyard.config.model.resource.ResourceModel.RESOURCE;
 
 import org.switchyard.component.bpm.config.model.BpmComponentImplementationModel;
 import org.switchyard.config.Configuration;
@@ -28,6 +28,7 @@ import org.switchyard.config.model.Descriptor;
 import org.switchyard.config.model.Model;
 import org.switchyard.config.model.composite.ComponentImplementationModel;
 import org.switchyard.config.model.composite.v1.V1CompositeMarshaller;
+import org.switchyard.config.model.resource.v1.V1ResourceModel;
 
 /**
  * A CompositeMarshaller which can also create BpmComponentImplementationModels, ResourceModels and TaskHandlerModels.
