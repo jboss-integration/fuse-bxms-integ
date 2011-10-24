@@ -31,8 +31,8 @@ public abstract class BPMExchangeHandlerFactory {
 
     private static final BPMExchangeHandlerFactory INSTANCE;
     static {
-        ServiceLoader<BPMExchangeHandlerFactory> loader = ServiceLoader.load(BPMExchangeHandlerFactory.class);
-        INSTANCE = loader.iterator().next();
+        ServiceLoader<BPMExchangeHandlerFactory> services = ServiceLoader.load(BPMExchangeHandlerFactory.class);
+        INSTANCE = services.iterator().next();
     }
 
     /**
