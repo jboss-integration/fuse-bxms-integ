@@ -16,21 +16,43 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
  * MA  02110-1301, USA.
  */
-package org.switchyard.component.rules;
+package org.switchyard.component.rules.event.drools;
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+import org.drools.runtime.Channel;
+import org.switchyard.ServiceReference;
+import org.switchyard.component.rules.config.model.ChannelModel;
 
 /**
- * ExecuteRules annotation.
+ * A Drools Channel that is configurable via a ChannelModel and ServiceReference.
  *
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; (C) 2011 Red Hat Inc.
  */
-@Target(METHOD)
-@Retention(RUNTIME)
-@Documented
-public @interface ExecuteRules {}
+public interface SwitchYardChannel extends Channel {
+
+    /**
+     * Gets the ChannelModel.
+     * @return the ChannelModel
+     */
+    public ChannelModel getModel();
+
+    /**
+     * Sets the ChannelModel.
+     * @param model the ChannelModel
+     * @return this SwitchYardChannel (useful for chaining)
+     */
+    public SwitchYardChannel setModel(ChannelModel model);
+
+    /**
+     * Gets the ServiceReference.
+     * @return the ServiceReference
+     */
+    public ServiceReference getReference();
+
+    /**
+     * Sets the ServiceReference.
+     * @param reference the ServiceReference
+     * @return this SwitchYardChannel (useful for chaining)
+     */
+    public SwitchYardChannel setReference(ServiceReference reference);
+
+}
