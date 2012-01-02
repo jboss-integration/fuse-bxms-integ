@@ -16,7 +16,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
  * MA  02110-1301, USA.
  */
-package org.switchyard.component.rules.common;
+package org.switchyard.component.rules;
+
 
 /**
  * Represents available rules actions.
