@@ -36,7 +36,9 @@ public class Transformers {
 
     @Transformer(from = "{urn:switchyard-quickstart-demo:helpdesk:1.0}openTicket")
     public Ticket transform(Element from) {
-       return new Ticket().setId(getElementValue(from, "id"));
+        Ticket ticket = new Ticket();
+        ticket.setId(getElementValue(from, "id"));
+        return ticket;
     }
 
     @Transformer(to = "{urn:switchyard-quickstart-demo:helpdesk:1.0}openTicketResponse")
@@ -53,7 +55,9 @@ public class Transformers {
 
     @Transformer
     public Ticket transformToTicket(TicketAck ticketAck) {
-        return new Ticket().setId(ticketAck.getId());
+		Ticket ticket = new Ticket();
+        ticket.setId(ticketAck.getId());
+        return ticket;
     }
 
     private String getElementValue(Element parent, String elementName) {

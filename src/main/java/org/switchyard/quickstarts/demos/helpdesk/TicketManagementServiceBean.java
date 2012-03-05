@@ -18,6 +18,7 @@
  */
 package org.switchyard.quickstarts.demos.helpdesk;
 
+import org.apache.log4j.Logger;
 import org.switchyard.component.bean.Service;
 
 /**
@@ -25,6 +26,8 @@ import org.switchyard.component.bean.Service;
  */
 @Service(TicketManagementService.class)
 public class TicketManagementServiceBean implements TicketManagementService {
+
+    private static final Logger LOGGER = Logger.getLogger(TicketManagementServiceBean.class);
 
     @Override
     public TicketAck openTicket(Ticket ticket) {
@@ -58,7 +61,7 @@ public class TicketManagementServiceBean implements TicketManagementService {
     }
 
     private void log(String msg) {
-        System.err.println("********** " + getClass().getSimpleName() + ": " + msg + " **********");
+        LOGGER.info("********** " + msg + " **********");
     }
 
 }

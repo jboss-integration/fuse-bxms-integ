@@ -33,18 +33,16 @@ public class Ticket implements Serializable {
         return _id;
     }
 
-    public Ticket setId(String id) {
+    public void setId(String id) {
         _id = id;
-        return this;
     }
 
     public String getStatus() {
         return _status;
     }
 
-    public Ticket setStatus(String status) {
+    public void setStatus(String status) {
         _status = status;
-        return this;
     }
 
 }
