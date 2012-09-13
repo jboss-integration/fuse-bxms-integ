@@ -22,6 +22,7 @@ import static org.switchyard.component.bpm.config.model.BPMComponentImplementati
 
 import javax.xml.namespace.QName;
 
+import org.switchyard.common.lang.Strings;
 import org.switchyard.common.type.Classes;
 import org.switchyard.component.bpm.config.model.TaskHandlerModel;
 import org.switchyard.component.bpm.task.work.TaskHandler;
@@ -57,9 +58,9 @@ public class V1TaskHandlerModel extends BaseModel implements TaskHandlerModel {
      */
     @Override
     @SuppressWarnings("unchecked")
-    public Class<? extends TaskHandler> getClazz() {
-        String c = getModelAttribute("class");
-        return c != null ? (Class<? extends TaskHandler>)Classes.forName(c, getClass()) : null;
+    public Class<? extends TaskHandler> getClazz(ClassLoader loader) {
+        String c = Strings.trimToNull(getModelAttribute("class"));
+        return c != null ? (Class<? extends TaskHandler>)Classes.forName(c, loader) : null;
     }
 
     /**
