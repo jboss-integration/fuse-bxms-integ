@@ -14,8 +14,5 @@
 # v.2.1 along with this distribution; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA  02110-1301, USA.
-
-bpm.namespace=urn:switchyard-component-bpm:config:1.0
-bpm.schema=bpm-v1.xsd
-bpm.location=/org/switchyard/component/bpm/config/model/v1/
-bpm.marshaller=org.switchyard.component.bpm.config.model.v1.V1BPMMarshaller
+#
+org.switchyard.component.bpm.task.impl.TaskServiceImpl

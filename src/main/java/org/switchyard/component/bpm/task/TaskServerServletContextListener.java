@@ -16,55 +16,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
  * MA  02110-1301, USA.
  */
-package org.switchyard.component.bpm.deploy;
+package org.switchyard.component.bpm.task;
 
-import org.switchyard.ServiceDomain;
-import org.switchyard.component.common.knowledge.system.ResourceChangeService;
-import org.switchyard.config.Configuration;
-import org.switchyard.deploy.Activator;
-import org.switchyard.deploy.BaseComponent;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 /**
- * An implementation of BPM component.
+ * TaskServerServletContextListener.
  *
- * @author Magesh Kumar B <mageshbk@jboss.com> &copy; 2012 Red Hat Inc.
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public class BPMComponent extends BaseComponent {
+public class TaskServerServletContextListener implements ServletContextListener {
+
+    private TaskServer _server = null;
 
     /**
-     * Default constructor.
+     * {@inheritDoc}
      */
-    public BPMComponent() {
-        super(BPMActivator.BPM_TYPE);
-        setName("BPMComponent");
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        _server = TaskService.instance().newTaskServer();
+        _server.start();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void init(Configuration config) {
-        super.init(config);
-        ResourceChangeService.start(this);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void destroy() {
-        ResourceChangeService.stop(this);
-        super.destroy();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Activator createActivator(ServiceDomain domain) {
-        BPMActivator activator = new BPMActivator();
-        activator.setServiceDomain(domain);
-        return activator;
+    public void contextDestroyed(ServletContextEvent sce) {
+        try {
+            _server.stop();
+        } finally {
+            _server = null;
+        }
     }
 
 }

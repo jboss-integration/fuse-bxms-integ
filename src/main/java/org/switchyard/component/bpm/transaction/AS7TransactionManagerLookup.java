@@ -16,55 +16,48 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
  * MA  02110-1301, USA.
  */
-package org.switchyard.component.bpm.deploy;
+package org.switchyard.component.bpm.transaction;
 
-import org.switchyard.ServiceDomain;
-import org.switchyard.component.common.knowledge.system.ResourceChangeService;
-import org.switchyard.config.Configuration;
-import org.switchyard.deploy.Activator;
-import org.switchyard.deploy.BaseComponent;
+import java.util.Properties;
+
+import javax.transaction.Transaction;
+import javax.transaction.TransactionManager;
+
+import org.hibernate.HibernateException;
+import org.hibernate.transaction.TransactionManagerLookup;
 
 /**
- * An implementation of BPM component.
- *
- * @author Magesh Kumar B <mageshbk@jboss.com> &copy; 2012 Red Hat Inc.
+ * AS7TransactionManagerLookup.
+ * <br/><br/>
+ * See: <a href="http://kverlaen.blogspot.com/2011/07/jbpm5-on-as7-lightning.html">jBPM5 on AS7: Lightning !</a>
+ * @deprecated use AS7JtaPlatform instead
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public class BPMComponent extends BaseComponent {
+@Deprecated
+public class AS7TransactionManagerLookup implements TransactionManagerLookup {
 
     /**
-     * Default constructor.
+     * {@inheritDoc}
+     * @Override
      */
-    public BPMComponent() {
-        super(BPMActivator.BPM_TYPE);
-        setName("BPMComponent");
+    public TransactionManager getTransactionManager(Properties properties) throws HibernateException {
+        return (TransactionManager)AS7TransactionHelper.getTransactionManager(properties);
     }
 
     /**
      * {@inheritDoc}
+     * @Override
      */
-    @Override
-    public void init(Configuration config) {
-        super.init(config);
-        ResourceChangeService.start(this);
+    public String getUserTransactionName() {
+        return AS7TransactionHelper.JNDI_USER_TRANSACTION;
     }
 
     /**
      * {@inheritDoc}
+     * @Override
      */
-    @Override
-    public void destroy() {
-        ResourceChangeService.stop(this);
-        super.destroy();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Activator createActivator(ServiceDomain domain) {
-        BPMActivator activator = new BPMActivator();
-        activator.setServiceDomain(domain);
-        return activator;
+    public Object getTransactionIdentifier(Transaction transaction) {
+        return transaction;
     }
 
 }

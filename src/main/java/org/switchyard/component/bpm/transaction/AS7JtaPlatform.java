@@ -16,55 +16,35 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
  * MA  02110-1301, USA.
  */
-package org.switchyard.component.bpm.deploy;
+package org.switchyard.component.bpm.transaction;
 
-import org.switchyard.ServiceDomain;
-import org.switchyard.component.common.knowledge.system.ResourceChangeService;
-import org.switchyard.config.Configuration;
-import org.switchyard.deploy.Activator;
-import org.switchyard.deploy.BaseComponent;
+import javax.transaction.TransactionManager;
+import javax.transaction.UserTransaction;
+
+import org.hibernate.service.jta.platform.internal.AbstractJtaPlatform;
 
 /**
- * An implementation of BPM component.
- *
- * @author Magesh Kumar B <mageshbk@jboss.com> &copy; 2012 Red Hat Inc.
+ * AS7JtaPlatform.
+ * 
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public class BPMComponent extends BaseComponent {
+@SuppressWarnings("serial")
+public class AS7JtaPlatform extends AbstractJtaPlatform {
 
     /**
-     * Default constructor.
+     * {@inheritDoc}
      */
-    public BPMComponent() {
-        super(BPMActivator.BPM_TYPE);
-        setName("BPMComponent");
+    @Override
+    protected TransactionManager locateTransactionManager() {
+        return (TransactionManager)AS7TransactionHelper.getTransactionManager();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void init(Configuration config) {
-        super.init(config);
-        ResourceChangeService.start(this);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void destroy() {
-        ResourceChangeService.stop(this);
-        super.destroy();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Activator createActivator(ServiceDomain domain) {
-        BPMActivator activator = new BPMActivator();
-        activator.setServiceDomain(domain);
-        return activator;
+    protected UserTransaction locateUserTransaction() {
+        return (UserTransaction)AS7TransactionHelper.getUserTransaction();
     }
 
 }

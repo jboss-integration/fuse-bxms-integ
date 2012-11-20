@@ -16,55 +16,33 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
  * MA  02110-1301, USA.
  */
-package org.switchyard.component.bpm.deploy;
+package org.switchyard.component.bpm.task.impl;
 
-import org.switchyard.ServiceDomain;
-import org.switchyard.component.common.knowledge.system.ResourceChangeService;
-import org.switchyard.config.Configuration;
-import org.switchyard.deploy.Activator;
-import org.switchyard.deploy.BaseComponent;
+import org.switchyard.component.bpm.task.TaskClient;
+import org.switchyard.component.bpm.task.TaskServer;
+import org.switchyard.component.bpm.task.TaskService;
 
 /**
- * An implementation of BPM component.
+ * A jBPM task service.
  *
- * @author Magesh Kumar B <mageshbk@jboss.com> &copy; 2012 Red Hat Inc.
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public class BPMComponent extends BaseComponent {
+public class TaskServiceImpl extends TaskService {
 
     /**
-     * Default constructor.
+     * {@inheritDoc}
      */
-    public BPMComponent() {
-        super(BPMActivator.BPM_TYPE);
-        setName("BPMComponent");
+    @Override
+    public TaskClient newTaskClient() {
+        return new TaskClientImpl();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void init(Configuration config) {
-        super.init(config);
-        ResourceChangeService.start(this);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void destroy() {
-        ResourceChangeService.stop(this);
-        super.destroy();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Activator createActivator(ServiceDomain domain) {
-        BPMActivator activator = new BPMActivator();
-        activator.setServiceDomain(domain);
-        return activator;
+    public TaskServer newTaskServer() {
+        return new TaskServerImpl();
     }
 
 }

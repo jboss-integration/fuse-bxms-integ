@@ -16,55 +16,46 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
  * MA  02110-1301, USA.
  */
-package org.switchyard.component.bpm.deploy;
+package org.switchyard.component.bpm.config.model.v1;
 
-import org.switchyard.ServiceDomain;
-import org.switchyard.component.common.knowledge.system.ResourceChangeService;
+import static org.switchyard.component.bpm.config.model.BPMComponentImplementationModel.DEFAULT_NAMESPACE;
+
+import org.switchyard.component.common.knowledge.ActionType;
+import org.switchyard.component.common.knowledge.config.model.v1.V1ActionModel;
+import org.switchyard.component.bpm.BPMActionType;
 import org.switchyard.config.Configuration;
-import org.switchyard.deploy.Activator;
-import org.switchyard.deploy.BaseComponent;
+import org.switchyard.config.model.Descriptor;
 
 /**
- * An implementation of BPM component.
+ * The 1st version BPMOperationModel.
  *
- * @author Magesh Kumar B <mageshbk@jboss.com> &copy; 2012 Red Hat Inc.
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public class BPMComponent extends BaseComponent {
+public class V1BPMActionModel extends V1ActionModel {
 
     /**
-     * Default constructor.
+     * Creates a new V1BPMActionModel.
      */
-    public BPMComponent() {
-        super(BPMActivator.BPM_TYPE);
-        setName("BPMComponent");
+    public V1BPMActionModel() {
+        super(DEFAULT_NAMESPACE);
+    }
+
+    /**
+     * Creates a new V1BPMActionModel with the specified configuration and descriptor.
+     * @param config the configuration
+     * @param desc the descriptor
+     */
+    public V1BPMActionModel(Configuration config, Descriptor desc) {
+        super(config, desc);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void init(Configuration config) {
-        super.init(config);
-        ResourceChangeService.start(this);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void destroy() {
-        ResourceChangeService.stop(this);
-        super.destroy();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Activator createActivator(ServiceDomain domain) {
-        BPMActivator activator = new BPMActivator();
-        activator.setServiceDomain(domain);
-        return activator;
+    public ActionType getType() {
+        String type = getModelAttribute("type");
+        return type != null ? BPMActionType.valueOf(type) : null;
     }
 
 }
