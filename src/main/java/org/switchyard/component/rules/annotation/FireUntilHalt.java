@@ -1,6 +1,6 @@
 /* 
  * JBoss, Home of Professional Open Source 
- * Copyright 2011 Red Hat Inc. and/or its affiliates and other contributors
+ * Copyright 2012 Red Hat Inc. and/or its affiliates and other contributors
  * as indicated by the @author tags. All rights reserved. 
  * See the copyright.txt in the distribution for a 
  * full listing of individual contributors.
@@ -16,7 +16,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
  * MA  02110-1301, USA.
  */
-package org.switchyard.component.rules;
+package org.switchyard.component.rules.annotation;
 
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -25,12 +25,28 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import org.switchyard.component.common.knowledge.annotation.Mapping;
+
 /**
- * Execute annotation.
+ * FireUntilHalt.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; (C) 2011 Red Hat Inc.
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
 @Target(METHOD)
 @Retention(RUNTIME)
 @Documented
-public @interface Execute {}
+public @interface FireUntilHalt {
+
+    /** Id. */
+    public String id() default "";
+
+    /** Globals. */
+    public Mapping[] globals() default {};
+
+    /** Inputs. */
+    public Mapping[] inputs() default {};
+
+    /** Outputs. */
+    public Mapping[] outputs() default {};
+
+}

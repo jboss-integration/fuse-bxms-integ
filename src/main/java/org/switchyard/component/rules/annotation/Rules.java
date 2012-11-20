@@ -1,6 +1,6 @@
 /* 
  * JBoss, Home of Professional Open Source 
- * Copyright 2011 Red Hat Inc. and/or its affiliates and other contributors
+ * Copyright 2012 Red Hat Inc. and/or its affiliates and other contributors
  * as indicated by the @author tags. All rights reserved. 
  * See the copyright.txt in the distribution for a 
  * full listing of individual contributors.
@@ -16,7 +16,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
  * MA  02110-1301, USA.
  */
-package org.switchyard.component.rules;
+package org.switchyard.component.rules.annotation;
 
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -25,35 +25,44 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import org.switchyard.component.common.knowledge.annotation.Channel;
+import org.switchyard.component.common.knowledge.annotation.Listener;
+import org.switchyard.component.common.knowledge.annotation.Logger;
+import org.switchyard.component.common.knowledge.annotation.Manifest;
+import org.switchyard.component.common.knowledge.annotation.Property;
+
 /**
- * Channel annotation.
+ * Rules.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; (C) 2011 Red Hat Inc.
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
 @Target(TYPE)
 @Retention(RUNTIME)
 @Documented
-public @interface Channel {
+public @interface Rules {
 
-    /** The channel name. */
+    /** Name. */
     public String name() default "";
 
-    /** The channel class. */
-    public Class<? extends org.drools.runtime.Channel> value();
+    /** Interface class. */
+    public Class<?> value() default UndefinedRulesInterface.class;
 
-    /** The service reference QName. */
-    public String reference() default "";
+    /** Channels. */
+    public Channel[] channels() default {};
 
-    /** The service reference operation name. */
-    public String operation() default "";
+    /** Listeners. */
+    public Listener[] listeners() default {};
 
-    /** The service reference operation input name. */
-    public String input() default "";
+    /** Loggers. */
+    public Logger[] loggers() default {};
 
-    /** The service reference interface. */
-    public Class<?> interfaze() default UndefinedInterface.class;
+    /** Manifest. */
+    public Manifest[] manifest() default {};
 
-    /** An undefined service reference interface. */
-    public static interface UndefinedInterface {};
+    /** Properties. */
+    public Property[] properties() default {};
+
+    /** Undefined interface class. */
+    public static interface UndefinedRulesInterface {};
 
 }

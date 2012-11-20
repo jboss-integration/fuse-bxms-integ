@@ -16,36 +16,34 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
  * MA  02110-1301, USA.
  */
-package org.switchyard.component.rules.config.model;
+package org.switchyard.component.rules.annotation;
 
-import java.util.List;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-import org.switchyard.component.common.rules.config.model.MappingModel;
-import org.switchyard.config.model.Model;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import org.switchyard.component.common.knowledge.annotation.Mapping;
 
 /**
- * FactsModel.
+ * Execute.
  *
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public interface FactsModel extends Model {
+@Target(METHOD)
+@Retention(RUNTIME)
+@Documented
+public @interface Execute {
 
-    /**
-     * The facts XML element.
-     */
-    public static final String FACTS = "facts";
+    /** Globals. */
+    public Mapping[] globals() default {};
 
-    /**
-     * Gets the child mapping models.
-     * @return the child mapping models
-     */
-    public List<MappingModel> getMappings();
+    /** Inputs. */
+    public Mapping[] inputs() default {};
 
-    /**
-     * Adds a child mapping model.
-     * @param mapping the child mapping model
-     * @return this FactsModel (useful for chaining)
-     */
-    public FactsModel addMapping(MappingModel mapping);
+    /** Outputs. */
+    public Mapping[] outputs() default {};
 
 }
