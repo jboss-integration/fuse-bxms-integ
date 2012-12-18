@@ -16,35 +16,34 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
  * MA  02110-1301, USA.
  */
-package org.switchyard.component.rules.deploy;
+package org.switchyard.component.rules.annotation;
 
-import org.switchyard.ServiceDomain;
-import org.switchyard.deploy.Activator;
-import org.switchyard.deploy.BaseComponent;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import org.switchyard.component.common.knowledge.annotation.Mapping;
 
 /**
- * An implementation of Rules component.
+ * Insert.
  *
- * @author Magesh Kumar B <mageshbk@jboss.com> &copy; 2012 Red Hat Inc.
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public class RulesComponent extends BaseComponent {
+@Target(METHOD)
+@Retention(RUNTIME)
+@Documented
+public @interface Insert {
 
-    /**
-     * Default constructor.
-     */
-    public RulesComponent() {
-        super(RulesActivator.RULES_TYPE);
-        setName("RulesComponent");
-    }
+    /** Globals. */
+    public Mapping[] globals() default {};
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Activator createActivator(ServiceDomain domain) {
-        RulesActivator activator = new RulesActivator();
-        activator.setServiceDomain(domain);
-        return activator;
-    }
+    /** Inputs. */
+    public Mapping[] inputs() default {};
+
+    /** Outputs. */
+    public Mapping[] outputs() default {};
 
 }
