@@ -28,8 +28,6 @@ public final class KnowledgeConstants {
     /** default. */
     public static final String DEFAULT = "default";
 
-    /** exchange. */
-    public static final String EXCHANGE = "exchange";
     /** context. */
     public static final String CONTEXT = "context";
     /** message. */
