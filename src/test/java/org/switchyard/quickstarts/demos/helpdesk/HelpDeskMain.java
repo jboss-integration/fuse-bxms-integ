@@ -18,37 +18,29 @@
  */
 package org.switchyard.quickstarts.demos.helpdesk;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.switchyard.component.test.mixins.bpm.BPMMixIn;
-import org.switchyard.component.test.mixins.cdi.CDIMixIn;
+import org.apache.log4j.Logger;
+import org.switchyard.common.io.pull.StringPuller;
 import org.switchyard.component.test.mixins.http.HTTPMixIn;
-import org.switchyard.test.SwitchYardRunner;
-import org.switchyard.test.SwitchYardTestCaseConfig;
-import org.switchyard.transform.config.model.TransformSwitchYardScanner;
 
 /**
+ * HelpDeskMain.
+ *
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-@RunWith(SwitchYardRunner.class)
-@SwitchYardTestCaseConfig(
-    config = SwitchYardTestCaseConfig.SWITCHYARD_XML,
-    scanners = TransformSwitchYardScanner.class,
-    mixins = {BPMMixIn.class, CDIMixIn.class, HTTPMixIn.class}
-)
-public class HelpDeskTests {
+public final class HelpDeskMain {
 
-    private BPMMixIn bpm;
-    private HTTPMixIn http;
+    private static final Logger LOGGER = Logger.getLogger(HelpDeskMain.class);
 
-    @Test
-    public void testService() throws Exception {
-        http.postResourceAndTestXML("http://localhost:18001/HelpDeskService", "/xml/soap-request.xml", "/xml/soap-response.xml");
-        bpm.connectTaskClient();
+    public static void main(String... args) throws Exception {
+        final String ticketId = "TCKT-" + System.currentTimeMillis();
+        final String soapRequest = new StringPuller().pull("/xml/soap-request.xml").replaceAll("TICKET_ID", ticketId);
+        final HTTPMixIn http = new HTTPMixIn();
+        http.initialize();
         try {
-            bpm.completeHumanTasks();
+            http.postString("http://localhost:8080/HelpDeskService/HelpDeskService", soapRequest);
+            LOGGER.info("Started helpdesk process with ticket id: " + ticketId);
         } finally {
-            bpm.disconnectTaskClient();
+            http.uninitialize();
         }
     }
 
