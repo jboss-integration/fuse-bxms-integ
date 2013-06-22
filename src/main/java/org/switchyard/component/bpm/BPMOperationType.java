@@ -18,14 +18,14 @@
  */
 package org.switchyard.component.bpm;
 
-import org.switchyard.component.common.knowledge.ActionType;
+import org.switchyard.component.common.knowledge.OperationType;
 
 /**
- * Represents bpm action types.
+ * Represents bpm operation types.
  *
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public enum BPMActionType implements ActionType {
+public enum BPMOperationType implements OperationType {
 
     /** The start process type. */
     START_PROCESS,
