@@ -19,28 +19,16 @@
 package org.switchyard.component.common.knowledge;
 
 /**
- * Rules constants.
+ * Represents operation types.
  *
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public final class KnowledgeConstants {
+public interface OperationType {
 
-    /** default. */
-    public static final String DEFAULT = "default";
-    /** globals. */
-    public static final String GLOBALS = "globals";
-    /** context. */
-    public static final String CONTEXT = "context";
-    /** message. */
-    public static final String MESSAGE = "message";
-
-    /** Parameter. */
-    public static final String PARAMETER = "Parameter";
-    /** Result. */
-    public static final String RESULT = "Result";
-    /** Fault. */
-    public static final String FAULT = "Fault";
-
-    private KnowledgeConstants() {}
+    /**
+     * Gets the name.
+     * @return the name
+     */
+    public String name();
 
 }
