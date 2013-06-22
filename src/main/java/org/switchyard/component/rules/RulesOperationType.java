@@ -18,14 +18,14 @@
  */
 package org.switchyard.component.rules;
 
-import org.switchyard.component.common.knowledge.ActionType;
+import org.switchyard.component.common.knowledge.OperationType;
 
 /**
- * Represents rules action types.
+ * Represents rules operation types.
  *
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public enum RulesActionType implements ActionType {
+public enum RulesOperationType implements OperationType {
 
     /** The execute type. */
     EXECUTE,
