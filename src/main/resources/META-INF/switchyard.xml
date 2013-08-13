@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:rules="urn:switchyard-component-rules:config:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" name="rules-interview-container">
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:rules="urn:switchyard-component-rules:config:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:1.0" name="rules-interview-container">
   <sca:composite name="Interview" targetNamespace="urn:switchyard-quickstart:rules-interview-container:0.1.0">
     <sca:service name="Interview" promote="Interview/Interview">
       <sca:interface.java interface="org.switchyard.quickstarts.rules.interview.Interview"/>
+    </sca:service>
+    <sca:service name="InterviewPortType" promote="Interview/Interview">
+      <sca:interface.wsdl interface="META-INF/Interview.wsdl#wsdl.porttype(InterviewPortType)"/>
+      <soap:binding.soap>
+        <soap:wsdl>META-INF/Interview.wsdl</soap:wsdl>
+        <soap:socketAddr>:18001</soap:socketAddr>
+        <soap:contextPath>rules-interview-container</soap:contextPath>
+      </soap:binding.soap>
     </sca:service>
     <sca:component name="Interview">
       <rules:implementation.rules>
@@ -14,6 +22,12 @@
             <rules:globals>
               <rules:global from="userName" to="userName"/>
             </rules:globals>
+            <rules:inputs>
+              <rules:input from="message.content"/>
+            </rules:inputs>
+            <rules:outputs>
+              <rules:output from="globals.Result" to="message.content"/>
+            </rules:outputs>
           </rules:operation>
         </rules:operations>
       </rules:implementation.rules>
@@ -22,6 +36,10 @@
       </sca:service>
     </sca:component>
   </sca:composite>
+  <transforms>
+    <transform.java xmlns="urn:switchyard-config:transform:1.0" class="org.switchyard.quickstarts.rules.interview.Transformers" from="{urn:switchyard-quickstart:rules-interview-container:0.1.0}verify" to="java:org.switchyard.quickstarts.rules.interview.Applicant"/>
+    <transform.java xmlns="urn:switchyard-config:transform:1.0" class="org.switchyard.quickstarts.rules.interview.Transformers" from="java:boolean" to="{urn:switchyard-quickstart:rules-interview-container:0.1.0}verifyResponse"/>
+  </transforms>
   <domain>
     <properties>
       <property name="userName" value="${user.name}"/>
