@@ -157,24 +157,8 @@
     <complexType name="ResourceType">
         <complexContent>
             <extension base="sca:CommonExtensionBase">
-                <sequence>
-                    <element ref="bpm:resourceDetail" minOccurs="0" maxOccurs="1"/>
-                </sequence>
                 <attribute name="location" type="string" use="required"/>
                 <attribute name="type" type="string" use="required"/>
-            </extension>
-        </complexContent>
-    </complexType>
-
-    <element name="resourceDetail" type="bpm:ResourceDetailType"/>
-    <complexType name="ResourceDetailType">
-        <complexContent>
-            <extension base="sca:CommonExtensionBase">
-                <attribute name="inputType" type="string" use="optional"/>
-                <attribute name="worksheetName" type="string" use="optional"/>
-                <!--  SWITCHYARD-1662
-                <attribute name="usingExternalTypes" type="boolean" use="optional" default="false"/>
-                -->
             </extension>
         </complexContent>
     </complexType>
