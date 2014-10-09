@@ -11,16 +11,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.switchyard.component.rules;
+package org.switchyard.component.rules.operation;
 
-import org.switchyard.component.common.knowledge.OperationType;
+import org.switchyard.component.common.knowledge.operation.KnowledgeOperationType;
 
 /**
  * Represents rules operation types.
  *
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public enum RulesOperationType implements OperationType {
+public enum RulesOperationType implements KnowledgeOperationType {
 
     /** The execute type. */
     EXECUTE,
