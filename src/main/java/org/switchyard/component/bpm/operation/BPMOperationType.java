@@ -11,33 +11,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.switchyard.component.bpm.config.model;
+package org.switchyard.component.bpm.operation;
 
-import java.util.List;
-
-import org.switchyard.config.model.Model;
+import org.switchyard.component.common.knowledge.operation.KnowledgeOperationType;
 
 /**
- * A WorkItemHandlers Model.
+ * Represents bpm operation types.
  *
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public interface WorkItemHandlersModel extends Model {
+public enum BPMOperationType implements KnowledgeOperationType {
 
-    /** The "workItemHandlers" name. */
-    public static final String WORK_ITEM_HANDLERS = "workItemHandlers";
-
-    /**
-     * Gets the child workItemHandler models.
-     * @return the child workItemHandler models
-     */
-    public List<WorkItemHandlerModel> getWorkItemHandlers();
-
-    /**
-     * Adds a child workItemHandler model.
-     * @param workItemHandler the child workItemHandler model
-     * @return this ChannelsModel (useful for chaining)
-     */
-    public WorkItemHandlersModel addWorkItemHandler(WorkItemHandlerModel workItemHandler);
+    /** The start process type. */
+    START_PROCESS,
+    /** The signal event type. */
+    SIGNAL_EVENT,
+    /** The signal event all type. */
+    SIGNAL_EVENT_ALL,
+    /** The abort process instance type. */
+    ABORT_PROCESS_INSTANCE;
 
 }
