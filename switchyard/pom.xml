@@ -1650,5 +1650,6 @@
     </distributionManagement>
     <modules>
         <module>bom</module>
+        <module>components</module>
     </modules>
 </project>
