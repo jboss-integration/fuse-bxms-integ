@@ -1651,5 +1651,6 @@
     <modules>
         <module>bom</module>
         <module>components</module>
+	<module>quickstarts</module>
     </modules>
 </project>
