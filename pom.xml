@@ -8,7 +8,7 @@
     <groupId>org.jboss.integration-platform</groupId>
     <artifactId>jboss-integration-platform-parent</artifactId>
     <!-- Keep in sync with property <version.org.jboss.integration-platform> -->
-    <version>6.0.0.CR17</version>
+    <version>6.0.0.CR22</version>
   </parent>
 
   <groupId>org.kie</groupId>
@@ -30,11 +30,13 @@
     <version.org.jbpm.dashboard-builder>${version.org.kie}</version.org.jbpm.dashboard-builder>
     <version.org.drools.droolsjbpm-integration>${version.org.drools}</version.org.drools.droolsjbpm-integration>
 
-    <version.org.jboss.integration-platform>6.0.0.CR17</version.org.jboss.integration-platform>
+    <version.org.jboss.integration-platform>6.0.0.CR22</version.org.jboss.integration-platform>
 
     <version.org.eclipse.jetty>8.1.14.v20131031</version.org.eclipse.jetty>
     <!-- overrides <version.org.apache.ws.xmlschema>2.0.2 used in jboss-ip-bom 6.0.0.CR13 -->
     <version.org.apache.ws.xmlschema>2.0.3</version.org.apache.ws.xmlschema>
+
+    <version.org.mvel>2.2.4.Final</version.org.mvel>
   </properties>
 
   <repositories>
@@ -147,6 +149,13 @@
         <artifactId>cxf-rt-features-clustering</artifactId>
         <version>${version.org.apache.cxf}</version>
       </dependency>
+
+      <dependency>
+        <groupId>org.mvel</groupId>
+        <artifactId>mvel2</artifactId>
+        <version>${version.org.mvel}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
