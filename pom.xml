@@ -37,6 +37,8 @@
     <version.org.apache.ws.xmlschema>2.0.3</version.org.apache.ws.xmlschema>
 
     <version.org.mvel>2.2.4.Final</version.org.mvel>
+    <version.org.apache.geronimo.specs>1.0</version.org.apache.geronimo.specs>
+    <version.org.ops4j.pax.url>2.2.0</version.org.ops4j.pax.url>
   </properties>
 
   <repositories>
@@ -156,8 +158,31 @@
         <version>${version.org.mvel}</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.apache.geronimo.specs</groupId>
+        <artifactId>geronimo-atinject_1.0_spec</artifactId>
+        <version>${version.org.apache.geronimo.specs}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.ops4j.pax.url</groupId>
+        <artifactId>pax-url-aether</artifactId>
+        <version>${version.org.ops4j.pax.url}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.camel</groupId>
+          <artifactId>camel-maven-plugin</artifactId>
+          <version>2.10.3</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
   <dependencies>
     <dependency>
