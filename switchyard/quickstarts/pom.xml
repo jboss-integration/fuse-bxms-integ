@@ -68,8 +68,8 @@
         <module>rules-interview</module>
         <module>rules-interview-container</module>
         <module>rules-interview-dtable</module>
-        <module>demos/helpdesk</module>
-        <module>demos/library</module>
+        <module>helpdesk</module>
+        <module>library</module>
     </modules>
     <!-- Conditionally include the assembly module.  It's not always present e.g. in the quickstarts distro. -->
     <profiles>
