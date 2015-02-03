@@ -13,7 +13,7 @@
 
   <groupId>org.kie</groupId>
   <artifactId>fuse-bxms-integ</artifactId>
-  <version>6.3.0-SNAPSHOT</version>
+  <version>6.2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Fuse BxMS integration multiproject</name>
@@ -23,7 +23,7 @@
 
   <properties>
     <!-- Internal dependencies -->
-    <version.org.kie>6.3.0-SNAPSHOT</version.org.kie>
+    <version.org.kie>6.2.0-SNAPSHOT</version.org.kie>
     <version.org.drools>${version.org.kie}</version.org.drools>
     <version.org.optaplanner>${version.org.kie}</version.org.optaplanner>
     <version.org.jbpm>${version.org.kie}</version.org.jbpm>
