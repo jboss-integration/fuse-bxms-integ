@@ -10,6 +10,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
+  <groupId>org.drools</groupId>
   <artifactId>drools-osgi</artifactId>
   <packaging>pom</packaging>
 

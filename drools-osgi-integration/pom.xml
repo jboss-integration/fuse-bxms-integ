@@ -9,7 +9,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <!--packaging>bundle</packaging-->
+  <packaging>bundle</packaging>
 
   <groupId>org.drools</groupId>
   <artifactId>drools-osgi-integration</artifactId>

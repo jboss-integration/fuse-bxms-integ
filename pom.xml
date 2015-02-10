@@ -8,7 +8,7 @@
     <groupId>org.jboss.integration-platform</groupId>
     <artifactId>jboss-integration-platform-parent</artifactId>
     <!-- Keep in sync with property <version.org.jboss.integration-platform> -->
-    <version>6.0.0.CR17</version>
+    <version>6.0.0.CR22</version>
   </parent>
 
   <groupId>org.kie</groupId>
@@ -30,11 +30,23 @@
     <version.org.jbpm.dashboard-builder>${version.org.kie}</version.org.jbpm.dashboard-builder>
     <version.org.drools.droolsjbpm-integration>${version.org.drools}</version.org.drools.droolsjbpm-integration>
 
-    <version.org.jboss.integration-platform>6.0.0.CR17</version.org.jboss.integration-platform>
+    <version.org.jboss.integration-platform>6.0.0.CR22</version.org.jboss.integration-platform>
 
     <version.org.eclipse.jetty>8.1.14.v20131031</version.org.eclipse.jetty>
     <!-- overrides <version.org.apache.ws.xmlschema>2.0.2 used in jboss-ip-bom 6.0.0.CR13 -->
     <version.org.apache.ws.xmlschema>2.0.3</version.org.apache.ws.xmlschema>
+
+    <version.org.mvel>2.2.4.Final</version.org.mvel>
+    <version.org.apache.geronimo.specs>1.0</version.org.apache.geronimo.specs>
+    <version.org.ops4j.pax.url>2.2.0</version.org.ops4j.pax.url>
+
+    <!-- Make build platform independent -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+    <!-- Make OSGi happy -->
+    <osgi.snapshot.qualifier>${maven.build.timestamp}</osgi.snapshot.qualifier>
+
   </properties>
 
   <repositories>
@@ -147,8 +159,54 @@
         <artifactId>cxf-rt-features-clustering</artifactId>
         <version>${version.org.apache.cxf}</version>
       </dependency>
+
+      <dependency>
+        <groupId>org.mvel</groupId>
+        <artifactId>mvel2</artifactId>
+        <version>${version.org.mvel}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.geronimo.specs</groupId>
+        <artifactId>geronimo-atinject_1.0_spec</artifactId>
+        <version>${version.org.apache.geronimo.specs}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.ops4j.pax.url</groupId>
+        <artifactId>pax-url-aether</artifactId>
+        <version>${version.org.ops4j.pax.url}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.camel</groupId>
+          <artifactId>camel-maven-plugin</artifactId>
+          <version>2.10.3</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>2.3.7</version>
+          <extensions>true</extensions>
+          <configuration>
+            <!-- Split packages in combination with <Export-Package> causes bloated jars otherwise -->
+            <excludeDependencies>true</excludeDependencies>
+            <instructions>
+              <_removeheaders>Ignore-Package</_removeheaders>
+              <_nouses>true</_nouses>
+              <_snapshot>${osgi.snapshot.qualifier}</_snapshot>
+              <!--Bundle-Version>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${osgi.snapshot.qualifier}</Bundle-Version-->
+            </instructions>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
   <dependencies>
     <dependency>
