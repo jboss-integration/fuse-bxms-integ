@@ -15,9 +15,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>org.switchyard</groupId>
-        <artifactId>switchyard-release</artifactId>
+        <artifactId>switchyard-parent</artifactId>
         <version>2.0.1-SNAPSHOT</version>
-        <relativePath>../</relativePath>
+        <relativePath>../parent</relativePath>
     </parent>
         <groupId>org.switchyard.brms</groupId>
     <modelVersion>4.0.0</modelVersion>
@@ -26,6 +26,39 @@
     <name>SwitchYard BRMS: Distribution</name>
     <description>SwitchYard BRMS Distribution</description>
 
+    <properties>
+        <version.distro>2.0</version.distro>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Maven Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>jboss-deprecated-repository</id>
+            <name>Deprecated JBoss Repository</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/deprecated/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
     <build>
         <plugins>
             <plugin>
@@ -47,14 +80,14 @@
                 <module>jboss-as7</module>
             </modules>
         </profile>
-        <!--profile>
+        <profile>
             <id>karaf</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <modules>
                 <module>karaf</module>
             </modules>
-        </profile-->
+        </profile>
     </profiles>
 </project>
