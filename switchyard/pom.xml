@@ -21,7 +21,7 @@
     </parent>
     <groupId>org.jboss.integration.bxms.switchyard</groupId>
     <artifactId>switchyard-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0.ER1</version>
     <packaging>pom</packaging>
     <name>SwitchYard BRMS</name>
     <description>The parent for SwitchYard modules</description>

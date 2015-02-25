@@ -23,12 +23,12 @@
     <bundle>mvn:commons-codec/commons-codec/${karaf.version.commons-codec}</bundle>
   </feature>
 
-  <feature name="drools-module" version="${version.org.drools}" description="Drools core">
+  <feature name="drools-module" version="${project.version}" description="Drools core">
     <feature version="${version.org.drools}">drools-common</feature>
     <feature version="${version.org.drools}">kie</feature>
     <bundle>mvn:org.drools/drools-core/${version.org.drools}</bundle>
     <bundle>mvn:org.drools/drools-compiler/${version.org.drools}</bundle>
-    <bundle>mvn:org.drools/drools-osgi-integration/${version.org.drools}</bundle>
+    <bundle>mvn:org.drools/drools-osgi-integration/${project.version}</bundle>
   </feature>
 
   <feature name="drools-templates" version="${version.org.drools}" description="Drools Templates">
@@ -41,7 +41,7 @@
   </feature>
 
   <feature name="drools5-camel" version="${version.org.drools}" description="Drools5 Camel">
-    <feature version="${version.org.drools}">drools-module</feature>
+    <feature version="${project.version}">drools-module</feature>
     <feature version="${version.org.drools}">drools5-spring</feature>
     <feature version="${version.org.apache.camel}">camel</feature>
     <feature version="${version.org.apache.camel}">camel-cxf</feature>
@@ -52,7 +52,7 @@
   </feature>
 
   <feature name="drools-decisiontable" description="Drools Decision Tables" version="${version.org.drools}">
-    <feature version="${version.org.drools}">drools-module</feature>
+    <feature version="${project.version}">drools-module</feature>
     <feature version="${version.org.drools}">drools-templates</feature>
     <bundle>mvn:commons-codec/commons-codec/${karaf.version.commons-codec}</bundle>
     <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.poi/${karaf.servicemix.version.org.apache.poi}</bundle>
@@ -101,7 +101,7 @@
     <feature version="[2.6,3.0)">cxf-specs</feature>
     <feature version="[2.6,3.0)">cxf-core</feature>
     <feature version="[2.6,3.0)">cxf-jaxrs</feature>
-    <bundle>mvn:org.kie/kie-camel/${version.org.drools}</bundle>
+    <bundle>mvn:org.kie/kie-camel/${project.version}</bundle>
   </feature>
 
   <feature name="jbpm-commons" version="${version.org.drools}" description="jBPM Commons">
@@ -137,26 +137,26 @@
     <bundle>mvn:org.jbpm/jbpm-persistence-jpa/${version.org.jbpm}</bundle>
   </feature>
 
-  <feature name="drools-decision-table-kie-spring-camel-example" version="${version.org.drools}" description="Drools Decision Table Kie Spring Camel Example">
-    <feature version="${version.org.drools}">drools-module</feature>
+  <feature name="drools-decision-table-kie-spring-camel-example" version="${project.version}" description="Drools Decision Table Kie Spring Camel Example">
+    <feature version="${project.version}">drools-module</feature>
     <feature version="${version.org.drools}">drools-decisiontable</feature>
     <feature version="${version.org.drools}">kie-spring</feature>
     <feature version="${version.org.drools}">kie-camel</feature>
-    <bundle start-level="100">mvn:org.drools/spring-camel-drools-decision-table-example/${version.org.drools}</bundle>
+    <bundle start-level="100">mvn:org.drools/spring-camel-drools-decision-table-example/${project.version}</bundle>
   </feature>
 
-  <feature name="drools-decision-kie-blueprint-camel-example" version="${version.org.drools}"
+  <feature name="drools-decision-kie-blueprint-camel-example" version="${project.version}"
            description="Drools Decision Table Kie Blueprint Camel Example">
-    <feature version="${version.org.drools}">drools-module</feature>
+    <feature version="${project.version}">drools-module</feature>
     <feature version="${version.org.drools}">drools-decisiontable</feature>
     <feature version="${version.org.drools}">kie-aries-blueprint</feature>
     <feature version="${version.org.drools}">kie-camel</feature>
-    <bundle>mvn:org.drools/blueprint-camel-drools-decision-table-example/${version.org.drools}</bundle>
+    <bundle>mvn:org.drools/blueprint-camel-drools-decision-table-example/${project.version}</bundle>
   </feature>
 
-  <feature name="jbpm-example" version="${version.org.drools}" description="jBPM Spring Example">
+  <feature name="jbpm-example" version="${project.version}" description="jBPM Spring Example">
     <feature version="${version.org.drools}">jbpm</feature>
-    <bundle>mvn:org.drools/spring-jbpm-osgi-example/${version.org.drools}</bundle>
+    <bundle>mvn:org.drools/spring-jbpm-osgi-example/${project.version}</bundle>
   </feature>
 
   <!-- This bundle should be removed with next release of Drools 6.1.Beta4 -->

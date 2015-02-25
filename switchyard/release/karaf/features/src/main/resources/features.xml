@@ -25,15 +25,13 @@
 
     <feature name="switchyard-rules" version="${project.version}" resolver="(obr)">
         <feature version="${project.version}">switchyard-common-knowledge</feature>
-        <bundle>mvn:org.switchyard.components/switchyard-component-rules/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.bxms.switchyard.components/switchyard-component-rules/${project.version}</bundle>
     </feature>
 
     <feature name="switchyard-bpm" version="${project.version}" resolver="(obr)">
         <feature version="${project.version}">switchyard-common-knowledge</feature>
-        <bundle>mvn:org.switchyard.components/switchyard-component-bpm/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.bxms.switchyard.components/switchyard-component-bpm/${project.version}</bundle>
     </feature>
-
-
 
     <!-- Switchyard Quickstarts -->
 
@@ -41,58 +39,51 @@
         <feature version="${project.version}">switchyard-bean</feature>
         <feature version="${project.version}">switchyard-soap</feature>
         <feature version="${project.version}">switchyard-bpm</feature>
-        <bundle>mvn:org.switchyard.quickstarts/switchyard-bpm-service/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.bxms.switchyard.quickstarts/switchyard-bpm-service/${project.version}</bundle>
     </feature>
 
-  
-    
     <feature name="switchyard-quickstart-remote-invoker" version="${project.version}" resolver="(obr)">
         <feature version="${project.version}">switchyard-bean</feature>
         <feature version="${project.version}">switchyard-rules</feature>
         <feature version="${project.version}">switchyard-sca</feature>
-        <bundle>mvn:org.switchyard.quickstarts/switchyard-remote-invoker/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.bxms.switchyard.quickstarts/switchyard-remote-invoker/${project.version}</bundle>
     </feature>
     
-
-
     <feature name="switchyard-quickstart-rules-camel-cbr" version="${project.version}" resolver="(obr)">
         <feature version="${project.version}">switchyard-bean</feature>
         <feature version="${project.version}">switchyard-camel</feature>
         <feature version="${project.version}">switchyard-rules</feature>
         <feature version="${project.version}">switchyard-sca</feature>
-        <bundle>mvn:org.switchyard.quickstarts/switchyard-rules-camel-cbr/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.bxms.switchyard.quickstarts/switchyard-rules-camel-cbr/${project.version}</bundle>
     </feature>
 
     <feature name="switchyard-quickstart-rules-interview" version="${project.version}" resolver="(obr)">
         <feature version="${project.version}">switchyard-bean</feature>
         <feature version="${project.version}">switchyard-soap</feature>
         <feature version="${project.version}">switchyard-rules</feature>
-        <bundle>mvn:org.switchyard.quickstarts/switchyard-rules-interview/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.bxms.switchyard.quickstarts/switchyard-rules-interview/${project.version}</bundle>
     </feature>
 
     <feature name="switchyard-quickstart-rules-interview-container" version="${project.version}" resolver="(obr)">
         <feature version="${project.version}">switchyard-bean</feature>
         <feature version="${project.version}">switchyard-soap</feature>
         <feature version="${project.version}">switchyard-rules</feature>
-        <bundle>mvn:org.switchyard.quickstarts/switchyard-rules-interview-container/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.bxms.switchyard.quickstarts/switchyard-rules-interview-container/${project.version}</bundle>
     </feature>
 
     <feature name="switchyard-quickstart-rules-interview-dtable" version="${project.version}" resolver="(obr)">
         <feature version="${project.version}">switchyard-bean</feature>
         <feature version="${project.version}">switchyard-soap</feature>
         <feature version="${project.version}">switchyard-rules</feature>
-        <bundle>mvn:org.switchyard.quickstarts/switchyard-rules-interview-dtable/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.bxms.switchyard.quickstarts/switchyard-rules-interview-dtable/${project.version}</bundle>
     </feature>
-
- 
 
     <feature name="switchyard-demo-library" version="${project.version}" resolver="(obr)">
         <feature version="${project.version}">switchyard-soap</feature>
         <feature version="${project.version}">switchyard-bpm</feature>
         <feature version="${project.version}">switchyard-rules</feature>
-        <bundle>mvn:org.switchyard.quickstarts.demos/switchyard-demo-library/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.bxms.switchyard.quickstarts.demos/switchyard-demo-library/${project.version}</bundle>
     </feature>
-
 
     <!-- XXX: this needs some love -->
     <feature name="switchyard-demo-helpdesk" version="${project.version}" resolver="(obr)">
@@ -122,7 +113,7 @@
         <bundle dependency="true">mvn:org.apache.myfaces.core/myfaces-bundle/${version.org.apache.myfaces.core.myfaces-bundle}</bundle>
         <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-validation_1.0_spec/${version.org.apache.geronimo.specs.geronimo-validation_1.0_spec}</bundle>
         
-        <bundle>mvn:org.switchyard.quickstarts.demos/switchyard-demo-helpdesk/${project.version}/war</bundle>
+        <bundle>mvn:org.jboss.integration.bxms.switchyard.quickstarts.demos/switchyard-demo-helpdesk/${project.version}/war</bundle>
     </feature>
 
 </features>
