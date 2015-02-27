@@ -19,7 +19,7 @@ import org.junit.Test;
 import org.switchyard.component.test.mixins.http.HTTPMixIn;
 
 public class BPMServiceQuickstartTest extends AbstractQuickstartTest {
-    private static String bundleName = "org.switchyard.quickstarts.switchyard.bpm.service";
+    private static String bundleName = "org.jboss.integration.switchyard.bpm.service";
     private static String featureName = "switchyard-quickstart-bpm-service";
 
     @BeforeClass
@@ -35,6 +35,7 @@ public class BPMServiceQuickstartTest extends AbstractQuickstartTest {
         try {
             String port = getSoapClientPort();
             String response = httpMixIn.postString("http://localhost:" + port + "/swydws/ProcessOrder", request);
+	    System.out.println("Response="+response);
             XMLAssert.assertXpathEvaluatesTo(String.valueOf(true), "//accepted", response);
         } finally {
             httpMixIn.uninitialize();

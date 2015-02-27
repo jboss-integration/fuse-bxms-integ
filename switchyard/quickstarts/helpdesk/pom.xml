@@ -14,13 +14,13 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>org.jboss.integration.bxms.switchyard.quickstarts</groupId>
+        <groupId>org.jboss.integration.switchyard.quickstarts</groupId>
         <artifactId>switchyard-quickstart-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.jboss.integration.bxms.switchyard.quickstarts.demos</groupId>
+    <groupId>org.jboss.integration.switchyard.quickstarts.demos</groupId>
     <artifactId>switchyard-demo-helpdesk</artifactId>
     <packaging>war</packaging>
     <name>Quickstart Demo : Help Desk</name>
@@ -124,7 +124,7 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.integration.bxms.switchyard.components</groupId>
+            <groupId>org.jboss.integration.switchyard.components</groupId>
             <artifactId>switchyard-component-bpm</artifactId>
             <scope>provided</scope>
         </dependency>
@@ -228,6 +228,7 @@
                     <supportedProjectTypes>
                         <supportedProjectType>war</supportedProjectType>
                     </supportedProjectTypes>
+                    <excludeDependencies>true</excludeDependencies>
                     <instructions>
                         <Bundle-SymbolicName>${bundle.symbolic.name}</Bundle-SymbolicName>
                         <DynamicImport-Package>${switchyard.osgi.dynamic}</DynamicImport-Package>

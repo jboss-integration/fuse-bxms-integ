@@ -14,7 +14,7 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <groupId>org.jboss.integration.bxms.switchyard.karaf</groupId>
+        <groupId>org.jboss.integration.switchyard.karaf</groupId>
         <artifactId>switchyard-karaf-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -79,7 +79,7 @@
         </dependency>
       
         <dependency>
-            <groupId>org.jboss.integration.bxms.switchyard.karaf</groupId>
+            <groupId>org.jboss.integration.switchyard.karaf</groupId>
             <artifactId>switchyard</artifactId>
             <type>xml</type>
             <classifier>features</classifier>
@@ -186,7 +186,7 @@
                             <descriptors>
                                 <descriptor>mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features</descriptor>
                                 <descriptor>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</descriptor>
-                                <descriptor>mvn:org.jboss.integration.bxms.switchyard.karaf/switchyard/${project.version}/xml/features</descriptor>
+                                <descriptor>mvn:org.jboss.integration.switchyard.karaf/switchyard/${project.version}/xml/features</descriptor>
                             </descriptors>
                             <features>
                                 <feature version="${project.version}">switchyard-bpm</feature>

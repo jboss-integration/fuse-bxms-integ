@@ -14,7 +14,7 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <groupId>org.jboss.integration.bxms.switchyard</groupId>
+        <groupId>org.jboss.integration.switchyard</groupId>
         <artifactId>switchyard-container-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -155,7 +155,7 @@
             <artifactId>switchyard-component-bean</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.integration.bxms.switchyard.components</groupId>
+            <groupId>org.jboss.integration.switchyard.components</groupId>
             <artifactId>switchyard-component-bpm</artifactId>
         </dependency>
         <dependency>
@@ -248,7 +248,7 @@
             <artifactId>switchyard-component-common-camel</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.integration.bxms.switchyard.components</groupId>
+            <groupId>org.jboss.integration.switchyard.components</groupId>
             <artifactId>switchyard-component-common-knowledge</artifactId>
         </dependency>
         <dependency>
@@ -260,7 +260,7 @@
             <artifactId>switchyard-component-sca</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.integration.bxms.switchyard.components</groupId>
+            <groupId>org.jboss.integration.switchyard.components</groupId>
             <artifactId>switchyard-component-rules</artifactId>
         </dependency>
         <dependency>

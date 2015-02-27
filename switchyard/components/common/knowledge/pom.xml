@@ -20,7 +20,7 @@
     <description>The SwitchYard Knowledge Common Component Library.</description>
     <url>http://switchyard.org</url>
     <parent>
-        <groupId>org.jboss.integration.bxms.switchyard.components</groupId>
+        <groupId>org.jboss.integration.switchyard.components</groupId>
         <artifactId>switchyard-component-common-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
