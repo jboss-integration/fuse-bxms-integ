@@ -26,6 +26,7 @@ import org.osgi.framework.ServiceRegistration;
 /**
  * Bundle activator for Knowledge component. We need to register some KIE services in OSGi environments.
  */
+
 public class OSGiKnowledgeBundleActivator implements BundleActivator {
 
     private ServiceRegistration<CorrelationKeyFactory> _correlationKeyFactoryService;
