@@ -19,7 +19,7 @@
         <artifactId>jboss-integration-platform-parent</artifactId>
         <version>6.0.0.CR24</version>
     </parent>
-    <groupId>org.jboss.integration.bxms.switchyard</groupId>
+    <groupId>org.jboss.integration.switchyard</groupId>
     <artifactId>switchyard-bom</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -35,6 +35,24 @@
         <version.org.drools>6.2.0.CR3</version.org.drools>
         <version.org.jbpm>6.2.0.CR3</version.org.jbpm>
     </properties>
+   <repositories>
+        <repository>
+            <id>jboss-enterprise-techpreview-group</id>
+            <name>JBoss Enterprise Technology Preview  Maven Repository Group</name>
+            <url>http://maven.repository.redhat.com/techpreview/all/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

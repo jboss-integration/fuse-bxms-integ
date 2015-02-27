@@ -20,13 +20,14 @@
     <description>The parent for SwitchYard Common Component Libraries.</description>
     <url>http://switchyard.org</url>
     <parent>
-        <groupId>org.jboss.integration.bxms.switchyard.components</groupId>
+        <groupId>org.jboss.integration.switchyard.components</groupId>
         <artifactId>switchyard-components-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modules>
         <module>knowledge</module>
+        <module>knowledge-osgi</module>
     </modules>
     <build>
         <plugins>

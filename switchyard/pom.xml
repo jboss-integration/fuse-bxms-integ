@@ -19,7 +19,7 @@
         <artifactId>jboss-integration-platform-parent</artifactId>
         <version>6.0.0.CR24</version>
     </parent>
-    <groupId>org.jboss.integration.bxms.switchyard</groupId>
+    <groupId>org.jboss.integration.switchyard</groupId>
     <artifactId>switchyard-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -49,6 +49,7 @@
     <!-- Dependency versions - please keep these in alphabetical order -->
     <properties>
          <version.switchyard>2.0.0.CR1</version.switchyard>
+         <version.switchyard.osgi>2.1</version.switchyard.osgi>
         <!-- Explicitly declaring the source encoding eliminates the following message: -->
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
           resources, i.e. build is platform dependent! -->
@@ -83,7 +84,7 @@
         <version.maven.clean.plugin>2.5</version.maven.clean.plugin>
         <version.maven.plugin.plugin>3.1</version.maven.plugin.plugin>
         <!-- OSGi bundles properties -->
-        <switchyard.osgi.import.switchyard.version>version="[$(version;==;${switchyard.osgi.version}),$(version;=+;${switchyard.osgi.version}))"</switchyard.osgi.import.switchyard.version>
+        <switchyard.osgi.import.switchyard.version>version="[$(version;==;${switchyard.osgi.version}),$(version;==;${version.switchyard.osgi}))"</switchyard.osgi.import.switchyard.version>
         <switchyard.osgi.import.default.version>[$(version;==;$(@)),$(version;+;$(@)))</switchyard.osgi.import.default.version>
         <switchyard.osgi.activator/>
         <switchyard.osgi.failok>true</switchyard.osgi.failok>
@@ -127,7 +128,6 @@
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Maven Repository Group</name>
             <url>https://repository.jboss.org/nexus/content/groups/public/</url>
-            <layout>default</layout>
             <releases>
                 <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
@@ -137,6 +137,20 @@
                 <updatePolicy>never</updatePolicy>
             </snapshots>
         </repository>
+
+ <repository>
+                    <id>redhat-m2-proxy</id>
+                    <name>Red Hat M2 Proxy</name>
+                    <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </snapshots>
+                 </repository>
         <repository>
             <id>fusesource-public-release-repository-group</id>
             <url>https://repository.jboss.org/nexus/content/repositories/fs-releases</url>
@@ -155,12 +169,24 @@
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Maven Repository Group</name>
             <url>https://repository.jboss.org/nexus/content/groups/public/</url>
-            <layout>default</layout>
             <releases>
                 <updatePolicy>never</updatePolicy>
             </releases>
             <snapshots>
                 <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>redhat-techpreview-all-repository</id>
+            <name>Red Hat Tech Preview repository (all)</name>
+            <url>http://maven.repository.redhat.com/techpreview/all/</url>
+	    <releases>
+               <enabled>true</enabled>
+               <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+               <enabled>false</enabled>
+               <updatePolicy>never</updatePolicy>
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
@@ -788,13 +814,13 @@
                 <type>zip</type>
             </dependency>
  	   <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard</groupId>
+                <groupId>org.jboss.integration.switchyard</groupId>
                 <artifactId>switchyard-as7-modules</artifactId>
                 <version>${project.version}</version>
                 <type>zip</type>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard</groupId>
+                <groupId>org.jboss.integration.switchyard</groupId>
                 <artifactId>switchyard-as7-standalone-bundle</artifactId>
                 <version>${project.version}</version>
                 <type>zip</type>
@@ -934,7 +960,7 @@
                 <version>${version.switchyard}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard.karaf</groupId>
+                <groupId>org.jboss.integration.switchyard.karaf</groupId>
                 <artifactId>switchyard</artifactId>
                 <type>xml</type>
                 <classifier>features</classifier>
@@ -1042,7 +1068,7 @@
                 <version>${version.switchyard}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard.components</groupId>
+                <groupId>org.jboss.integration.switchyard.components</groupId>
                 <artifactId>switchyard-component-bpm</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -1158,7 +1184,7 @@
                 <version>${version.switchyard}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard.components</groupId>
+                <groupId>org.jboss.integration.switchyard.components</groupId>
                 <artifactId>switchyard-component-common-knowledge</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -1178,7 +1204,7 @@
                 <version>${version.switchyard}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard.components</groupId>
+                <groupId>org.jboss.integration.switchyard.components</groupId>
                 <artifactId>switchyard-component-rules</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -1238,39 +1264,39 @@
                 <version>${version.switchyard}</version>
             </dependency>
            <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard.quickstarts</groupId>
+                <groupId>org.jboss.integration.switchyard.quickstarts</groupId>
                 <artifactId>switchyard-rules-camel-cbr</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard.quickstarts</groupId>
+                <groupId>org.jboss.integration.switchyard.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard.quickstarts</groupId>
+                <groupId>org.jboss.integration.switchyard.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview-container</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard.quickstarts</groupId>
+                <groupId>org.jboss.integration.switchyard.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview-dtable</artifactId>
                 <version>${project.version}</version>
             </dependency>
         
             <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard.quickstarts</groupId>
+                <groupId>org.jboss.integration.switchyard.quickstarts</groupId>
                 <artifactId>switchyard-bpm-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard.quickstarts.demos</groupId>
+                <groupId>org.jboss.integration.switchyard.quickstarts.demos</groupId>
                 <artifactId>switchyard-demo-helpdesk</artifactId>
                 <type>war</type>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.bxms.switchyard.quickstarts.demos</groupId>
+                <groupId>org.jboss.integration.switchyard.quickstarts.demos</groupId>
                 <artifactId>switchyard-demo-library</artifactId>
                 <version>${project.version}</version>
             </dependency>

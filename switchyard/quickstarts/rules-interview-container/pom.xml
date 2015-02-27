@@ -14,7 +14,7 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>org.jboss.integration.bxms.switchyard.quickstarts</groupId>
+        <groupId>org.jboss.integration.switchyard.quickstarts</groupId>
         <artifactId>switchyard-quickstart-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
@@ -68,7 +68,7 @@
             <artifactId>switchyard-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.integration.bxms.switchyard.components</groupId>
+            <groupId>org.jboss.integration.switchyard.components</groupId>
             <artifactId>switchyard-component-rules</artifactId>
         </dependency>
         <dependency>
@@ -125,7 +125,7 @@
                 <version>${version.felix.maven}</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <excludeDependencies>false</excludeDependencies>
+                    <excludeDependencies>true</excludeDependencies>
                     <instructions>
                         <Bundle-SymbolicName>${bundle.symbolic.name}</Bundle-SymbolicName>
                         <DynamicImport-Package>${switchyard.osgi.dynamic}</DynamicImport-Package>

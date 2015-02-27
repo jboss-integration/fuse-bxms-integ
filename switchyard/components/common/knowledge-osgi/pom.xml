@@ -14,10 +14,10 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>switchyard-component-common-knowledge</artifactId>
+    <artifactId>switchyard-component-common-knowledge-osgi</artifactId>
     <packaging>bundle</packaging>
-    <name>SwitchYard: Knowledge Common Component Library</name>
-    <description>The SwitchYard Knowledge Common Component Library.</description>
+    <name>SwitchYard: Knowledge Common Component Library OSGI</name>
+    <description>The SwitchYard Knowledge Common Component Library OSGI.</description>
     <url>http://switchyard.org</url>
     <parent>
         <groupId>org.jboss.integration.switchyard.components</groupId>
@@ -30,10 +30,6 @@
             org.switchyard.component.common.knowledge.*
         </switchyard.osgi.export.pkg>
         <switchyard.osgi.import>
-            org.switchyard.*;${switchyard.osgi.import.switchyard.version},
-            org.switchyard.common.io;${switchyard.osgi.import.switchyard.version},
-            org.switchyard.common.io.resource;${switchyard.osgi.import.switchyard.version}, 
-            org.hibernate.*;resolution:=optional,
             *
         </switchyard.osgi.import>
         <switchyard.osgi.dynamic>
@@ -46,15 +42,6 @@
         </switchyard.osgi.require.bundle>
     </properties>
     <dependencies>
-        <!-- internal dependencies -->
-        <dependency>
-            <groupId>org.switchyard</groupId>
-            <artifactId>switchyard-serial</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.switchyard.components</groupId>
-            <artifactId>switchyard-component-common</artifactId>
-        </dependency>
         <!-- external dependencies -->
         <dependency>
             <groupId>org.drools</groupId>
@@ -63,10 +50,6 @@
         <dependency>
             <groupId>org.drools</groupId>
             <artifactId>drools-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.drools</groupId>
-            <artifactId>drools-decisiontables</artifactId>
         </dependency>
         <dependency>
             <groupId>org.drools</groupId>
