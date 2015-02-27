@@ -111,6 +111,20 @@
     </properties>
     <repositories>
         <repository>
+            <id>jboss-enterprise-techpreview-group</id>
+            <name>JBoss Enterprise Technology Preview  Maven Repository Group</name>
+            <url>http://maven.repository.redhat.com/techpreview/all/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Maven Repository Group</name>
             <url>https://repository.jboss.org/nexus/content/groups/public/</url>
@@ -123,19 +137,7 @@
                 <updatePolicy>never</updatePolicy>
             </snapshots>
         </repository>
-        <repository>
-            <id>jboss-enterprise-techpreview-group</id>
-            <name>JBoss Enterprise Technology Preview  Maven Repository Group</name>
-            <url>http://maven.repository.redhat.com/techpreview/all/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
+
  <repository>
                     <id>redhat-m2-proxy</id>
                     <name>Red Hat M2 Proxy</name>

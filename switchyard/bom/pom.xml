@@ -35,6 +35,24 @@
         <version.org.drools>6.2.0.CR3</version.org.drools>
         <version.org.jbpm>6.2.0.CR3</version.org.jbpm>
     </properties>
+   <repositories>
+        <repository>
+            <id>jboss-enterprise-techpreview-group</id>
+            <name>JBoss Enterprise Technology Preview  Maven Repository Group</name>
+            <url>http://maven.repository.redhat.com/techpreview/all/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
