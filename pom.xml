@@ -222,6 +222,7 @@
   </dependencies>
 
   <modules>
+    <module>switchyard</module>
     <module>kie-camel</module>
     <module>drools-osgi</module>
     <module>drools-osgi-integration</module>
