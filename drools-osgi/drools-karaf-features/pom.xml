@@ -36,7 +36,7 @@
     <!-- Overwrites with a different Maven version -->
     <karaf.version.commons-codec>1.7</karaf.version.commons-codec>
     <karaf.version.javax.inject>1.0</karaf.version.javax.inject>
-    <karaf.version.org.codehaus.janino>2.6.1</karaf.version.org.codehaus.janino>
+    <karaf.version.org.codehaus.janino>${version.org.codehaus.janino}</karaf.version.org.codehaus.janino>
     <!-- Overwrites with a servicemix version -->
     <karaf.servicemix.version.com.google.protobuf>2.4.1_1</karaf.servicemix.version.com.google.protobuf>
     <karaf.servicemix.version.com.sun.xml.bind.jaxb>2.2.1.1_2</karaf.servicemix.version.com.sun.xml.bind.jaxb>
