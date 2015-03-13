@@ -21,7 +21,6 @@ import static org.switchyard.karaf.test.quickstarts.PhaseListener.Phase.BUILD_PR
 import static org.switchyard.karaf.test.quickstarts.PhaseListener.Phase.CREATE_CONTAINER;
 import static org.switchyard.karaf.test.quickstarts.PhaseListener.Phase.CREATE_PROBE;
 import static org.switchyard.karaf.test.quickstarts.PhaseListener.Phase.CREATE_SYSTEM;
-import static org.switchyard.karaf.test.quickstarts.PhaseListener.Phase.EXECUTE_PROBE;
 import static org.switchyard.karaf.test.quickstarts.PhaseListener.Phase.INSTALL_PROBE;
 import static org.switchyard.karaf.test.quickstarts.PhaseListener.Phase.START_CONTAINER;
 
@@ -36,6 +35,7 @@ import org.ops4j.pax.exam.TestAddress;
 import org.ops4j.pax.exam.TestContainer;
 import org.ops4j.pax.exam.TestProbeBuilder;
 import org.ops4j.pax.exam.TestProbeProvider;
+import org.ops4j.pax.exam.karaf.options.KarafFeaturesOption;
 import org.ops4j.pax.exam.karaf.options.LogLevelOption.LogLevel;
 import org.ops4j.pax.exam.spi.PaxExamRuntime;
 import org.osgi.framework.Constants;
@@ -100,7 +100,7 @@ public abstract class AbstractQuickstartTest {
             time = post(phaseListener, INSTALL_PROBE, time);
             // wait for SwitchYard application activation
             executeProbe("testBundleActivation");
-            time = post(phaseListener, EXECUTE_PROBE, time);
+            time = post(phaseListener, Phase.EXECUTE_PROBE, time);
         } catch (Exception e) {
             // cleanup
             after();
@@ -136,6 +136,9 @@ public abstract class AbstractQuickstartTest {
 
     private static Option[] config(String featureName, String bundleName) throws Exception {
         final String localMavenRepo = System.getProperty("maven.repo.local", "");
+
+        KarafFeaturesOption ey = features(maven().groupId("org.jboss.integration.switchyard.karaf").artifactId("switchyard").type("xml").classifier("features")
+                .versionAsInProject().getURL(), featureName);
         return options(
                 // karafDistributionConfiguration().frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").type("tar.gz").versionAsInProject())
                 karafDistributionConfiguration()
@@ -144,7 +147,7 @@ public abstract class AbstractQuickstartTest {
                         .name("Apache Karaf").unpackDirectory(new File("target/karaf/" + featureName))
                         .useDeployFolder(false),
                 //keepRuntimeFolder(), // this could leave behind lots of cruft
-                logLevel(LogLevel.INFO),
+                logLevel(LogLevel.DEBUG),
                 configureConsole().ignoreLocalConsole().ignoreRemoteShell(),
                 editConfigurationFileExtend("etc/config.properties", "org.osgi.framework.system.packages.extra",
                         "sun.misc"),
@@ -168,12 +171,12 @@ public abstract class AbstractQuickstartTest {
                         "etc/org.ops4j.pax.url.mvn.cfg",
                         "org.ops4j.pax.url.mvn.repositories",
                         "https://repository.jboss.org/nexus/content/groups/public@id=jboss-public-repository-group,http://repo1.maven.org/maven2@id=central, http://svn.apache.org/repos/asf/servicemix/m2-repo@id=servicemix, http://repository.springsource.com/maven/bundles/release@id=springsource.release, http://repository.springsource.com/maven/bundles/external@id=springsource.external, https://repository.jboss.org/nexus/content/repositories/snapshots@snapshots@noreleases@id=jboss-snapshot, https://repository.jboss.org/nexus/content/repositories/fs-releases@id=fusesource.release"),
-                features(maven().groupId("org.switchyard.karaf").artifactId("switchyard").type("xml").classifier("features").versionAsInProject().getURL(), featureName),
+                features(maven().groupId("org.jboss.integration.switchyard.karaf").artifactId("switchyard").type("xml").classifier("features").versionAsInProject().getURL(), featureName),
                 systemProperty(DeploymentProbe.BUNDLE_NAME_KEY).value(bundleName),
                 vmOptions("-Xmx1G", "-XX:MaxPermSize=256M"),
                 when(localMavenRepo.length() > 0).useOptions(systemProperty("org.ops4j.pax.url.mvn.localRepository").value(localMavenRepo)));
     }
-    
+
     private static Option[] mergeOptions(Option[] defaultOptions, Option[] additionalOptions) {
         if (additionalOptions != null) {
             return options(composite(defaultOptions), composite(additionalOptions));

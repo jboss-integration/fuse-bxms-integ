@@ -27,8 +27,17 @@ public class DeploymentProbe {
     public void testBundleActivation() {
         Assert.assertNotNull(_bundleContext);
         String bundleName = System.getProperty(BUNDLE_NAME_KEY);
+
+        System.out.println("bundleyeah=" + bundleName);
         Bundle bundle = null;
+        if(_bundleContext.getBundles() != null) {
+            System.out.println("BundlesXXNumber=" + _bundleContext.getBundles());
+        } else {
+            System.out.println("BundlesXX is null");
+        }
+
         for (Bundle aux : _bundleContext.getBundles()) {
+            System.out.println("Bundle=" + aux.getSymbolicName() + " version" + aux.getVersion());
             if (bundleName.equals(aux.getSymbolicName())) {
                 bundle = aux;
                 break;
