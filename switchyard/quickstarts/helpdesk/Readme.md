@@ -53,6 +53,57 @@ JBoss AS 7
     Continue toggling back and forth as the users until all tasks are completed.
     You can view the application server output in its console window to see the progression of the progress.
 
+   Check the expected output below.
+
+6. Undeploy the quickstart:
+        mvn clean -Pdeploy
+
+Karaf
+----------
+1. Start the Karaf server :
+
+${KARAF_HOME}/bin/karaf
+
+2. Add the features URL for the respective version of SwitchYard.   Replace {BXMS-SWITCHYARD-VERSION}
+with the version of SwitchYard that you are using (ex. 2.0.0): 
+
+karaf@root> features:addurl mvn:org.jboss.integration.switchyard.karaf/switchyard/{BXMS-SWITCHYARD-VERSION}/xml/features
+
+3. Install the feature for the Rules Camel CBR quickstart :
+
+karaf@root> features:install switchyard-demo-helpdesk
+
+4. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
+<br/>
+```
+mvn exec:java -Pkaraf
+
+    You can do this as many times as you wish, starting as many processes as you wish.
+
+<br/>
+
+5. Going back to your web browser window:
+    As krisv (a developer), click the Submit button to get the list of tasks.
+    As krisv, review the tasks you want to perform and click the Submit button again.
+    As david (a user), click the Submit button to get the list of tasks. He will only have tasks if more details were required.
+    If there were user tasks, check the tasks you want to complete and click the Submit button again.
+    Continue toggling back and forth as the users until all tasks are completed.
+    You can view the application server output in its console window to see the progression of the progress.
+
+   Check the expected output below.
+
+6. Undeploy the quickstart:
+
+karaf@root> features:uninstall switchyard-demo-helpdesk
+
+```
+
+
+
+Expected Output
+-------------------
+
+
 Expected Output:
 ================
 (Note: Your outcome might be different from below based on the result of the ticket review.)
@@ -61,10 +112,6 @@ INFO  [org.switchyard.quickstarts.demos.helpdesk.TicketManagementServiceBean] (h
 INFO  [org.switchyard.quickstarts.demos.helpdesk.TicketManagementServiceBean] (http-/127.0.0.1:8080-1) ********** requesting details **********
 INFO  [org.switchyard.quickstarts.demos.helpdesk.TicketManagementServiceBean] (http-/127.0.0.1:8080-1) ********** approving ticket **********
 INFO  [org.switchyard.quickstarts.demos.helpdesk.TicketManagementServiceBean] (http-/127.0.0.1:8080-1) ********** closing ticket **********
-```
-
-6. Undeploy the quickstart:
-        mvn clean -Pdeploy
 
 ## Further Reading
 
