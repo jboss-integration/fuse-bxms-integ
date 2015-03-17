@@ -33,6 +33,27 @@
     <karaf.version.org.mvel>${version.org.mvel}</karaf.version.org.mvel>
     <karaf.version.javax.enterprise.cdi>${version.javax.enterprise}</karaf.version.javax.enterprise.cdi>
     <karaf.version.org.eclipse.jdt.core.compiler>${version.org.eclipse.jdt.core.compiler}</karaf.version.org.eclipse.jdt.core.compiler>
+
+    <!-- used by jbpm-commons -->
+    <karaf.version.org.jboss.spec.javax.security.jacc>1.0.0.Final</karaf.version.org.jboss.spec.javax.security.jacc>
+    <karaf.version.org.jboss.spec.javax.interceptor>1.0.0.Final</karaf.version.org.jboss.spec.javax.interceptor>
+    <karaf.version.org.apache.geronimo.specs.servlet>1.0</karaf.version.org.apache.geronimo.specs.servlet>
+    <karaf.version.org.apache.geronimo.specs.jms>1.1.1</karaf.version.org.apache.geronimo.specs.jms>
+    <karaf.version.org.apache.geronimo.specs.jpa>1.1</karaf.version.org.apache.geronimo.specs.jpa>
+    <karaf.version.org.apache.geronimo.specs.jta>1.1.1</karaf.version.org.apache.geronimo.specs.jta>
+
+    <!-- used by droolsjbpm-hibernate -->
+    <karaf.version.org.apache.servicemix.bundles.antlr>2.7.7_5</karaf.version.org.apache.servicemix.bundles.antlr>
+    <karaf.version.org.apache.servicemix.bundles.ant>1.8.2_2</karaf.version.org.apache.servicemix.bundles.ant>
+    <karaf.version.org.apache.servicemix.bundles.dom4j>1.6.1_5</karaf.version.org.apache.servicemix.bundles.dom4j>
+    <karaf.version.org.apache.servicemix.bundles.serp>1.14.1_1</karaf.version.org.apache.servicemix.bundles.serp>
+    <karaf.version.com.fasterxml.classmate>0.9.0</karaf.version.com.fasterxml.classmate>
+    <karaf.version.org.jboss.jandex>1.1.0.Final</karaf.version.org.jboss.jandex>
+    <karaf.version.javax.validation>1.1.0.Final</karaf.version.javax.validation>
+
+    <!-- used by hibernate-validator -->
+    <karaf.version.org.apache.servicemix.specs.jsr303-api>2.4.0</karaf.version.org.apache.servicemix.specs.jsr303-api>
+
     <!-- Overwrites with a different Maven version -->
     <karaf.version.commons-codec>1.7</karaf.version.commons-codec>
     <karaf.version.javax.inject>1.0</karaf.version.javax.inject>
