@@ -1,3 +1,1 @@
-This is the SwitchYard parent POM for BRMS Switchyard components.
-
-If it is required to install the release subproject, use the profile -Prelease.
+Repository for components which can be used with SwitchYard core.

@@ -11,9 +11,9 @@
     <version>6.0.0.CR26</version>
   </parent>
 
-  <groupId>org.kie</groupId>
+  <groupId>org.jboss.integration</groupId>
   <artifactId>fuse-bxms-integ</artifactId>
-  <version>6.3.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Fuse BxMS integration multiproject</name>
@@ -21,31 +21,125 @@
     Fuse BxMS integration
   </description>
 
+  <organization>
+        <name>JBoss by Red Hat</name>
+        <url>http://jboss.org</url>
+  </organization>
+  <issueManagement>
+        <system>jira</system>
+        <url>http://jira.jboss.org/browse/SWITCHYARD</url>
+  </issueManagement>
+  <developers>
+        <developer>
+            <name>SwitchYard committers</name>
+        </developer>
+  </developers>
+
   <properties>
-    <!-- Internal dependencies -->
-    <version.org.kie>6.3.0-SNAPSHOT</version.org.kie>
-    <version.org.drools>${version.org.kie}</version.org.drools>
-    <version.org.optaplanner>${version.org.kie}</version.org.optaplanner>
-    <version.org.jbpm>${version.org.kie}</version.org.jbpm>
-    <version.org.jbpm.dashboard-builder>${version.org.kie}</version.org.jbpm.dashboard-builder>
-    <version.org.drools.droolsjbpm-integration>${version.org.drools}</version.org.drools.droolsjbpm-integration>
+        <!-- Internal dependencies -->
+        <version.org.kie>6.2.0.Final</version.org.kie>
+        <version.org.drools>${version.org.kie}</version.org.drools>
+        <version.org.optaplanner>${version.org.kie}</version.org.optaplanner>
+        <version.org.jbpm>${version.org.kie}</version.org.jbpm>
+        <version.org.jbpm.dashboard-builder>${version.org.kie}</version.org.jbpm.dashboard-builder>
+        <version.org.drools.droolsjbpm-integration>${version.org.kie}</version.org.drools.droolsjbpm-integration>
 
-    <version.org.jboss.integration-platform>6.0.0.CR26</version.org.jboss.integration-platform>
+        <version.org.jboss.integration-platform>6.0.0.CR26</version.org.jboss.integration-platform>
 
-    <version.org.eclipse.jetty>8.1.14.v20131031</version.org.eclipse.jetty>
-    <!-- overrides <version.org.apache.ws.xmlschema>2.0.2 used in jboss-ip-bom 6.0.0.CR13 -->
-    <version.org.apache.ws.xmlschema>2.0.3</version.org.apache.ws.xmlschema>
+        <version.org.eclipse.jetty>8.1.14.v20131031</version.org.eclipse.jetty>
+        <!-- overrides <version.org.apache.ws.xmlschema>2.0.2 used in jboss-ip-bom 6.0.0.CR13 -->
+        <version.org.apache.ws.xmlschema>2.0.3</version.org.apache.ws.xmlschema>
 
-    <version.org.mvel>2.2.4.Final</version.org.mvel>
-    <version.org.apache.geronimo.specs>1.0</version.org.apache.geronimo.specs>
-    <version.org.ops4j.pax.url>2.2.0</version.org.ops4j.pax.url>
+        <version.org.mvel>2.2.4.Final</version.org.mvel>
+        <version.org.apache.geronimo.specs>1.0</version.org.apache.geronimo.specs>
+        <version.org.ops4j.pax.url>2.2.0</version.org.ops4j.pax.url>
 
-    <!-- Make build platform independent -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
-    <!-- Make OSGi happy -->
-    <osgi.snapshot.qualifier>${maven.build.timestamp}</osgi.snapshot.qualifier>
+        <!-- Make build platform independent -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+        <!-- Make OSGi happy -->
+        <osgi.snapshot.qualifier>${maven.build.timestamp}</osgi.snapshot.qualifier>
+
+        <!-- used by jbpm-commons -->
+        <karaf.version.org.jboss.spec.javax.security.jacc>1.0.0.Final</karaf.version.org.jboss.spec.javax.security.jacc>
+        <karaf.version.org.jboss.spec.javax.interceptor>1.0.0.Final</karaf.version.org.jboss.spec.javax.interceptor>
+        <karaf.version.org.apache.geronimo.specs.servlet>1.0</karaf.version.org.apache.geronimo.specs.servlet>
+        <karaf.version.org.apache.geronimo.specs.jms>1.1.1</karaf.version.org.apache.geronimo.specs.jms>
+        <karaf.version.org.apache.geronimo.specs.jpa>1.1</karaf.version.org.apache.geronimo.specs.jpa>
+        <karaf.version.org.apache.geronimo.specs.jta>1.1.1</karaf.version.org.apache.geronimo.specs.jta>
+
+        <!-- used by droolsjbpm-hibernate -->
+        <karaf.version.org.apache.servicemix.bundles.antlr>2.7.7_5</karaf.version.org.apache.servicemix.bundles.antlr>
+        <karaf.version.org.apache.servicemix.bundles.ant>1.8.2_2</karaf.version.org.apache.servicemix.bundles.ant>
+        <karaf.version.org.apache.servicemix.bundles.dom4j>1.6.1_5</karaf.version.org.apache.servicemix.bundles.dom4j>
+        <karaf.version.org.apache.servicemix.bundles.serp>1.14.1_1</karaf.version.org.apache.servicemix.bundles.serp>
+        <karaf.version.com.fasterxml.classmate>0.9.0</karaf.version.com.fasterxml.classmate>
+        <karaf.version.org.jboss.jandex>1.1.0.Final</karaf.version.org.jboss.jandex>
+        <karaf.version.javax.validation>1.1.0.Final</karaf.version.javax.validation>
+
+        <!-- used by hibernate-validator -->
+        <karaf.version.org.apache.servicemix.specs.jsr303-api>2.4.0</karaf.version.org.apache.servicemix.specs.jsr303-api>
+
+
+
+        
+         <version.switchyard>2.0.0.CR1</version.switchyard>
+         <version.switchyard.osgi>2.1</version.switchyard.osgi>
+        <!-- Explicitly declaring the source encoding eliminates the following message: -->
+        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
+          resources, i.e. build is platform dependent! -->
+        <version.org.jboss.as.console>1.5.4.Final</version.org.jboss.as.console>
+        <version.org.jboss.as>7.2.0.Final</version.org.jboss.as>
+        <version.redhat.eap6.bom>6.3.0.GA</version.redhat.eap6.bom>
+        <!-- This version is only used as a prefix for a jar included in release modules -->
+        <version.redhat.eap6>6.3</version.redhat.eap6>
+        <version.redhat.eap6.minor>0.GA</version.redhat.eap6.minor>
+        <version.org.fusesource.hawtdispatch>1.18</version.org.fusesource.hawtdispatch>
+        <version.org.fusesource.hawtbuf>1.9</version.org.fusesource.hawtbuf>
+        <!-- consider moving to integration platform bom -->
+        <version.camelsap>1.0.0.redhat-379</version.camelsap>
+        <version.org.fusesource.mqtt-client>1.6</version.org.fusesource.mqtt-client>
+        <!--  RiftSaw -->
+        <version.activity.monitor.model>1.2.2.Final</version.activity.monitor.model>
+        <version.overlord-commons>2.0.2.Final</version.overlord-commons>
+        <version.riftsaw.ode>3.2.0.Final</version.riftsaw.ode>
+        <version.riftsaw.engine>3.2.0.Final</version.riftsaw.engine>
+        <version.riftsaw.console>2.4.6.Final</version.riftsaw.console>
+        <!-- Remove when RiftSaw upgrades to net.sf.saxon:Saxon-HE:9.5.1-2  -->
+        <version.net.sourceforge.saxon>9.2.1.5</version.net.sourceforge.saxon>
+        <!-- Require investigation and/or will be removed  -->
+        <version.jbossws.jboss720.server.integration>4.2.0.Final</version.jbossws.jboss720.server.integration>
+        <!-- Plugin versions -->
+        <version.felix.maven>2.4.0</version.felix.maven>
+        <version.maven.clean.plugin>2.5</version.maven.clean.plugin>
+        <version.maven.plugin.plugin>3.1</version.maven.plugin.plugin>
+        <!-- OSGi bundles properties -->
+        <switchyard.osgi.import.switchyard.version>version="[$(version;==;${switchyard.osgi.version}),$(version;==;${version.switchyard.osgi}))"</switchyard.osgi.import.switchyard.version>
+        <switchyard.osgi.import.default.version>[$(version;==;$(@)),$(version;+;$(@)))</switchyard.osgi.import.default.version>
+        <switchyard.osgi.activator/>
+        <switchyard.osgi.failok>true</switchyard.osgi.failok>
+        <switchyard.osgi.import>
+            org.switchyard.*;${switchyard.osgi.import.switchyard.version},
+            *
+        </switchyard.osgi.import>
+        <switchyard.osgi.export.pkg>org.switchyard.*</switchyard.osgi.export.pkg>
+        <switchyard.osgi.export>
+            ${switchyard.osgi.export.pkg};version="${switchyard.osgi.version}";-noimport:=true
+        </switchyard.osgi.export>
+        <switchyard.osgi.private/>
+        <switchyard.osgi.dynamic/>
+        <switchyard.osgi.bundle.name>${project.name}</switchyard.osgi.bundle.name>
+        <switchyard.osgi.symbolic.name>${project.groupId}.${project.artifactId}</switchyard.osgi.symbolic.name>
+        <switchyard.osgi.exclude.dependencies>false</switchyard.osgi.exclude.dependencies>
+        <switchyard.osgi.resource>{maven-resources}</switchyard.osgi.resource>
+        <switchyard.osgi.services.export/>
+        <switchyard.osgi.embed.dependency>!*</switchyard.osgi.embed.dependency>
+        <switchyard.osgi.require.bundle/>
+        <switchyard.osgi.fragment.host/>
+        <switchyard.osgi.provide.capability/>
+        <switchyard.osgi.require.capability/>
+
 
   </properties>
 
@@ -69,8 +163,72 @@
         <id>jboss-thirdparty-uploads</id>
         <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-uploads</url>
     </repository>
+    <repository>
+      <id>jboss-enterprise-techpreview-group</id>
+      <name>JBoss Enterprise Technology Preview  Maven Repository Group</name>
+      <url>http://maven.repository.redhat.com/techpreview/all/</url>
+       <layout>default</layout>
+       <releases>
+           <enabled>true</enabled>
+           <updatePolicy>never</updatePolicy>
+       </releases>
+       <snapshots>
+           <enabled>true</enabled>
+           <updatePolicy>never</updatePolicy>
+       </snapshots>
+    </repository>
+    <repository>
+      <id>redhat-m2-proxy</id>
+      <name>Red Hat M2 Proxy</name>
+      <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
+      <releases>
+          <enabled>true</enabled>
+          <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+          <enabled>false</enabled>
+          <updatePolicy>never</updatePolicy>
+      </snapshots>
+    </repository>
+    <repository>
+       <id>fusesource-public-release-repository-group</id>
+       <url>https://repository.jboss.org/nexus/content/repositories/fs-releases</url>
+       <releases>
+           <enabled>true</enabled>
+           <updatePolicy>never</updatePolicy>
+       </releases>
+       <snapshots>
+           <enabled>true</enabled>
+           <updatePolicy>never</updatePolicy>
+       </snapshots>
+    </repository>
   </repositories>
-
+  <pluginRepositories>
+        <pluginRepository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Maven Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>redhat-techpreview-all-repository</id>
+            <name>Red Hat Tech Preview repository (all)</name>
+            <url>http://maven.repository.redhat.com/techpreview/all/</url>
+	    <releases>
+               <enabled>true</enabled>
+               <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+               <enabled>false</enabled>
+               <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+  </pluginRepositories>
   <scm>
     <connection>scm:git:git@github.com:jboss-integration/fuse-bxms-integ.git</connection>
     <developerConnection>scm:git:git@github.com:jboss-integration/fuse-bxms-integ.git</developerConnection>
@@ -92,52 +250,39 @@
 
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.kie</groupId>
-        <artifactId>kie-bom</artifactId>
-        <type>pom</type>
-        <version>${version.org.kie}</version>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.drools</groupId>
-        <artifactId>drools-bom</artifactId>
-        <type>pom</type>
-        <version>${version.org.drools}</version>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.drools</groupId>
-        <artifactId>guvnor-api</artifactId>
-        <version>${version.org.drools.guvnor-api}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.optaplanner</groupId>
-        <artifactId>optaplanner-bom</artifactId>
-        <type>pom</type>
-        <version>${version.org.optaplanner}</version>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-bom</artifactId>
-        <type>pom</type>
-        <version>${version.org.jbpm}</version>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.jboss.integration-platform</groupId>
-        <artifactId>jboss-integration-platform-bom</artifactId>
-        <type>pom</type>
-        <version>${version.org.jboss.integration-platform}</version>
-        <scope>import</scope>
-      </dependency>
-
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-bom</artifactId>
+                <version>${version.switchyard}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-util</artifactId>
         <version>${version.org.eclipse.jetty}</version>
       </dependency>
+       <dependency>
+                <groupId>org.kie</groupId>
+                <artifactId>kie-bom</artifactId>
+                <version>${version.org.kie}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-bom</artifactId>
+                <version>${version.org.drools}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jbpm</groupId>
+                <artifactId>jbpm-bom</artifactId>
+                <version>${version.org.jbpm}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
       <dependency>
         <groupId>org.apache.ws.xmlschema</groupId>
         <artifactId>xmlschema-core</artifactId>
@@ -159,6 +304,63 @@
         <artifactId>cxf-rt-features-clustering</artifactId>
         <version>${version.org.apache.cxf}</version>
       </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-core</artifactId>
+        <version>${version.org.apache.cxf}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-frontend-simple</artifactId>
+        <version>${version.org.apache.cxf}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.codehaus.woodstox</groupId>
+        <artifactId>stax2-api</artifactId>
+        <version>3.1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        <version>${version.org.apache.cxf}</version>
+	<exclusions>
+           <exclusion>
+        <groupId>asm</groupId>
+        <artifactId>asm</artifactId>          
+           </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-bindings-xml</artifactId>
+        <version>${version.org.apache.cxf}</version>
+      </dependency>
+      <!--dependency>
+        <groupId>org.eclipse.jdt.core.compiler</groupId>
+        <artifactId>ecj</artifactId>
+        <version>4.4.2</version>
+      </dependency-->
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-transports-http</artifactId>
+        <version>${version.org.apache.cxf}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-transports-http-jetty</artifactId>
+        <version>${version.org.apache.cxf}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-ws-addr</artifactId>
+        <version>${version.org.apache.cxf}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-ws-policy</artifactId>
+        <version>${version.org.apache.cxf}</version>
+      </dependency>
 
       <dependency>
         <groupId>org.mvel</groupId>
@@ -177,6 +379,262 @@
         <version>${version.org.ops4j.pax.url}</version>
       </dependency>
 
+            <!--  ###################################################################
+      ##           Dependencies Not Present in Integration BOM         ##
+      ################################################################### -->
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${version.maven.plugin.plugin}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugin-tools</groupId>
+                <artifactId>maven-plugin-annotations</artifactId>
+                <version>${version.maven.plugin.plugin}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.fusesource</groupId>
+                <artifactId>camel-sap</artifactId>
+                <version>${version.camelsap}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.sap.conn.jco</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.fusesource.mqtt-client</groupId>
+                <artifactId>mqtt-client</artifactId>
+                <version>${version.org.fusesource.mqtt-client}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.ws</groupId>
+                <artifactId>jbossws-jboss720-server-integration</artifactId>
+                <version>${version.jbossws.jboss720.server.integration}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sourceforge.saxon</groupId>
+                <artifactId>saxonhe</artifactId>
+                <version>${version.net.sourceforge.saxon}</version>
+            </dependency>
+
+            <!--  ###################################################################
+      ##                       Project Artifacts                       ##
+      ################################################################### -->
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-as7-modules</artifactId>
+                <version>${version.switchyard}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-as7-standalone-bundle</artifactId>
+                <version>${version.switchyard}</version>
+                <type>zip</type>
+            </dependency>
+ 	   <dependency>
+                <groupId>org.jboss.integration.release</groupId>
+                <artifactId>fuse-bxms-as7-modules</artifactId>
+                <version>${project.version}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.release</groupId>
+                <artifactId>fuse-bxms-as7-bundle</artifactId>
+                <version>${project.version}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-build</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-common</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-config</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-deploy</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-deploy-cdi</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-deploy-jboss-as7</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-deploy-osgi</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-deploy-wildfly</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-wildfly-bundle</artifactId>
+                <type>zip</type>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard.karaf</groupId>
+                <artifactId>switchyard-karaf-deploy</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard.karaf</groupId>
+                <artifactId>switchyard</artifactId>
+                <type>xml</type>
+                <classifier>features</classifier>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.karaf</groupId>
+                <artifactId>fuse-bxms-integration</artifactId>
+                <type>xml</type>
+                <classifier>features</classifier>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-deploy-webapp</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-extensions-java</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-extensions-wsdl</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-plugin</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-release-testutil</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-release-distribution</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-runtime</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-runtime</artifactId>
+                <type>test-jar</type>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-serial</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard.components</groupId>
+                <artifactId>switchyard-component-common</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.switchyard</groupId>
+                <artifactId>switchyard-component-bpm</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.switchyard</groupId>
+                <artifactId>switchyard-component-common-knowledge</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.switchyard</groupId>
+                <artifactId>switchyard-component-rules</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+           <dependency>
+                <groupId>org.jboss.integration.quickstarts</groupId>
+                <artifactId>switchyard-rules-camel-cbr</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.quickstarts</groupId>
+                <artifactId>switchyard-rules-interview</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.quickstarts</groupId>
+                <artifactId>switchyard-rules-interview-container</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.quickstarts</groupId>
+                <artifactId>switchyard-rules-interview-dtable</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        
+            <dependency>
+                <groupId>org.jboss.integration.quickstarts</groupId>
+                <artifactId>switchyard-bpm-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.quickstarts</groupId>
+                <artifactId>switchyard-demo-helpdesk</artifactId>
+                <type>war</type>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.quickstarts</groupId>
+                <artifactId>switchyard-demo-library</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+
+            <dependency>
+                <groupId>org.jboss.as</groupId>
+                <artifactId>jboss-as-controller</artifactId>
+                <version>${version.org.jboss.as}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.as</groupId>
+                <artifactId>jboss-as-server</artifactId>
+                <version>${version.org.jboss.as}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.as</groupId>
+                <artifactId>jboss-as-naming</artifactId>
+                <version>${version.org.jboss.as}</version>
+                <scope>test</scope>
+            </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -188,26 +646,452 @@
           <artifactId>camel-maven-plugin</artifactId>
           <version>2.10.3</version>
         </plugin>
-        <plugin>
-          <groupId>org.apache.felix</groupId>
-          <artifactId>maven-bundle-plugin</artifactId>
-          <version>2.3.7</version>
-          <extensions>true</extensions>
-          <configuration>
-            <!-- Split packages in combination with <Export-Package> causes bloated jars otherwise -->
-            <excludeDependencies>true</excludeDependencies>
-            <instructions>
-              <_removeheaders>Ignore-Package</_removeheaders>
-              <_nouses>true</_nouses>
-              <_snapshot>${osgi.snapshot.qualifier}</_snapshot>
-              <!--Bundle-Version>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${osgi.snapshot.qualifier}</Bundle-Version-->
-            </instructions>
-          </configuration>
-        </plugin>
+       
+
+                <plugin>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>enforce-plugin-versions</id>
+                            <phase>none</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- address "quirks" in m2e 1.0 -->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-dependency-plugin</artifactId>
+                                        <versionRange>[2.3,)</versionRange>
+                                        <goals>
+                                            <goal>unpack</goal>
+                                            <goal>unpack-dependencies</goal>
+                                            <goal>copy-dependencies</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <execute/>
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-enforcer-plugin</artifactId>
+                                        <versionRange>[1.0,)</versionRange>
+                                        <goals>
+                                            <goal>enforce</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <execute/>
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.codehaus.mojo</groupId>
+                                        <artifactId>build-helper-maven-plugin</artifactId>
+                                        <versionRange>[1.0,)</versionRange>
+                                        <goals>
+                                            <goal>add-resource</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <execute/>
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.codehaus.mojo</groupId>
+                                        <artifactId>exec-maven-plugin</artifactId>
+                                        <versionRange>[1.0,)</versionRange>
+                                        <goals>
+                                            <goal>java</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <execute/>
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.felix</groupId>
+                                        <artifactId>maven-bundle-plugin</artifactId>
+                                        <versionRange>[1.0,)</versionRange>
+                                        <goals>
+                                            <goal>cleanVersions</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore/>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>xml-maven-plugin</artifactId>
+                    <version>1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.switchyard</groupId>
+                    <artifactId>switchyard-plugin</artifactId>
+                    <version>${project.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${version.felix.maven}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <excludeDependencies>${switchyard.osgi.exclude.dependencies}</excludeDependencies>
+                        <instructions>
+                            <Bundle-Name>${switchyard.osgi.bundle.name}</Bundle-Name>
+                            <Bundle-SymbolicName>${switchyard.osgi.symbolic.name}</Bundle-SymbolicName>
+                            <Bundle-DocURL>http://switchyard.org</Bundle-DocURL>
+                            <Bundle-Activator>${switchyard.osgi.activator}</Bundle-Activator>
+                            <Export-Package>${switchyard.osgi.export}</Export-Package>
+                            <Import-Package>${switchyard.osgi.import}</Import-Package>
+                            <DynamicImport-Package>${switchyard.osgi.dynamic}</DynamicImport-Package>
+                            <Private-Package>${switchyard.osgi.private}</Private-Package>
+                            <Implementation-Title>JBoss SwitchYard</Implementation-Title>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Include-Resource>${switchyard.osgi.resource}</Include-Resource>
+                            <_versionpolicy>${switchyard.osgi.import.default.version}</_versionpolicy>
+                            <_failok>${switchyard.osgi.failok}</_failok>
+                            <Export-Service>${switchyard.osgi.services.export}</Export-Service>
+                            <Embed-Dependency>${switchyard.osgi.embed.dependency}</Embed-Dependency>
+                            <Require-Bundle>${switchyard.osgi.require.bundle}</Require-Bundle>
+                            <Fragment-Host>${switchyard.osgi.fragment.host}</Fragment-Host>
+                            <Provide-Capability>${switchyard.osgi.provide.capability}</Provide-Capability>
+                            <Require-Capability>${switchyard.osgi.require.capability}</Require-Capability>
+                        </instructions>
+                        <archive>
+                            <manifestEntries>
+                                <Project-Artifact-Id>${project.artifactId}</Project-Artifact-Id>
+                                <Project-Group-Id>${project.groupId}</Project-Group-Id>
+                                <Project-Version>${project.version}</Project-Version>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.servicemix.tooling</groupId>
+                    <artifactId>depends-maven-plugin</artifactId>
+                    <version>1.2</version>
+                </plugin>
+
       </plugins>
     </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <siteDirectory>build/src/site</siteDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>commons-lang</groupId>
+                        <artifactId>commons-lang</artifactId>
+                        <version>2.4</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>true</addMavenDescriptor>
+                        <manifest>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Project-Group-Id>${project.groupId}</Project-Group-Id>
+                            <Project-Artifact-Id>${project.artifactId}</Project-Artifact-Id>
+                            <Project-Packaging>${project.packaging}</Project-Packaging>
+                            <Project-Name>${project.name}</Project-Name>
+                            <Project-Description>${project.description}</Project-Description>
+                            <Project-URL>${project.url}</Project-URL>
+                            <Project-Version>${project.version}</Project-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <debug>true</debug>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <java.awt.headless>true</java.awt.headless>
+                    </systemPropertyVariables>
+                    <environmentVariables>
+                        <SWITCHYARD_VERSION>${project.version}</SWITCHYARD_VERSION>
+                    </environmentVariables>
+                    <includes>
+                        <include>**/*Test*.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/Abstract*.java</exclude>
+                        <exclude>**/*$*</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.8</version>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <!--
+                    A true value would hardcode the user's home dir rather than
+                    using the cross-user-compatible M2_REPO classpath var!
+                    -->
+                    <downloadJavadocs>false</downloadJavadocs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.8</version>
+                <configuration>
+                    <configLocation>checkstyle/checkstyle.xml</configLocation>
+                    <consoleOutput>false</consoleOutput>
+                    <suppressionsLocation>checkstyle/suppressions.xml</suppressionsLocation>
+                    <failsOnError>true</failsOnError>
+                    <useFile/>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.switchyard</groupId>
+                        <artifactId>switchyard-build</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>check-style</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>checkstyle</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>2.5.2</version>
+                <configuration>
+                    <excludeFilterFile>findbugs/findbugs-exclude.xml</excludeFilterFile>
+                    <threshold>Normal</threshold>
+                    <effort>Max</effort>
+                    <xmlOutput>true</xmlOutput>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.switchyard</groupId>
+                        <artifactId>switchyard-build</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>find-bugs</id>
+                        <goals>
+                            <goal>findbugs</goal>
+                        </goals>
+                        <phase>site</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-java-version</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>1.7</version>
+                                    <message>To build this project JDK 1.7 (or greater) is required. Please install it.</message>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Attach sources -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${version.maven.clean.plugin}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+            <!-- OSGi -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <inherited>true</inherited>
+                <executions>
+                    <execution>
+                        <id>cleanVersions</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>cleanVersions</goal>
+                        </goals>
+                        <configuration>
+                            <versions>
+                                <switchyard.osgi.version>${project.version}</switchyard.osgi.version>
+                            </versions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
   </build>
+    <profiles>
+        <profile>
+            <!-- https://cwiki.apache.org/confluence/display/MAVEN/Maven+3.x+and+site+plugin -->
+            <id>maven-3</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>maven-site-plugin</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <version>3.0-beta-3</version>
+                        <configuration>
+                            <siteDirectory>build/src/site</siteDirectory>
+                            <reportPlugins>
+                                <!-- The Dependencies report takes an obscene amount of time to run. Leaving it out of the reportSet -->
+                                <plugin>
+                                    <groupId>org.apache.maven.plugins</groupId>
+                                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                                    <version>2.4</version>
+                                    <reportSets>
+                                        <reportSet>
+                                            <reports>
+                                                <report>cim</report>
+                                                <!--
+                                                   <report>dependency-management</report>
+                                                   <report>dependency-convergence</report>
+                                                -->
+                                                <report>help</report>
+                                                <report>index</report>
+                                                <report>issue-tracking</report>
+                                                <report>license</report>
+                                                <report>mailing-list</report>
+                                                <report>modules</report>
+                                                <report>plugin-management</report>
+                                                <report>plugins</report>
+                                                <report>project-team</report>
+                                                <report>scm</report>
+                                                <report>summary</report>
+                                            </reports>
+                                        </reportSet>
+                                    </reportSets>
+                                </plugin>
+                            </reportPlugins>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-descriptor</id>
+                                <goals>
+                                    <goal>attach-descriptor</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+	    <id>release</id>
+            <modules>
 
+             </modules>
+        </profile>
+    </profiles>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -219,15 +1103,16 @@
       <artifactId>mockito-all</artifactId>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
 
   <modules>
+    <module>bom</module>
+    <module>camel</module>
     <module>switchyard</module>
-    <module>kie-camel</module>
-    <module>drools-osgi</module>
-    <module>drools-osgi-integration</module>
-    <module>drools-camel-server-example</module>
-    <module>jbpm-workitems-camel</module>
+    <module>quickstarts</module>
+    <module>karaf</module>
+    <module>release</module>
   </modules>
 
 </project>
