@@ -36,9 +36,10 @@
     </properties>
 
     <modules>
-        <module>common</module>
-        <module>rules</module>
-        <module>bpm</module>
+        <module>switchyard-component-common-knowledge</module>
+        <module>switchyard-component-common-knowledge-osgi</module>
+        <module>switchyard-component-rules</module>
+        <module>switchyard-component-bpm</module>
     </modules>
 
     <dependencies>
