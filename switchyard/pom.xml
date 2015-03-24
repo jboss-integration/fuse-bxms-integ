@@ -15,21 +15,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.jboss.integration</groupId>
-        <artifactId>fuse-bxms-integ</artifactId>
+        <groupId>org.jboss.integration.fuse</groupId>
+        <artifactId>fuse-integration-project</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
-    <groupId>org.jboss.integration.switchyard</groupId>
+
     <artifactId>switchyard-parent</artifactId>
-    <name>Fuse BXMS Integration: SwitchYard: Parent</name>
-    <description>Fuse BXMS Integration SwitchYard Parent</description>
-    <url>http://switchyard.org</url>
     <packaging>pom</packaging>
-    <organization>
-        <name>JBoss by Red Hat</name>
-        <url>http://jboss.org</url>
-    </organization>
+    
+    <name>Fuse Integration: SwitchYard: Parent</name>
+    <description>Fuse BXMS Integration SwitchYard Parent</description>
+    
     <properties>
         <org.switchyard.test.soap.host>localhost</org.switchyard.test.soap.host>
         <org.switchyard.test.soap.port>48080</org.switchyard.test.soap.port>

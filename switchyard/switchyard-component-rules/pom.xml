@@ -15,15 +15,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.jboss.integration.switchyard</groupId>
+        <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>switchyard-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+
     <artifactId>switchyard-component-rules</artifactId>
     <packaging>bundle</packaging>
-    <name>Fuse BXMS Integration: SwitchYard: Rules Component</name>
-    <url>http://switchyard.org</url>
+    
+    <name>Fuse Integration: SwitchYard: Rules Component</name>
+    
     <properties>
         <switchyard.osgi.export.pkg>
             org.switchyard.component.rules.*
@@ -64,7 +66,7 @@
             <artifactId>switchyard-extensions-java</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.integration.switchyard</groupId>
+            <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>switchyard-component-common-knowledge</artifactId>
         </dependency>
         <!-- external dependencies -->

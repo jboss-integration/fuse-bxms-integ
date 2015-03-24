@@ -4,16 +4,15 @@
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.jboss.integration.camel</groupId>
+    <groupId>org.jboss.integration.fuse</groupId>
     <artifactId>camel-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.kie</groupId>
   <artifactId>kie-camel</artifactId>
   <packaging>bundle</packaging>
 
-  <name>Fuse BXMS Integration: Camel: Kie</name>
+  <name>Fuse Integration: Camel: Kie</name>
   <description>Drools integration for Camel that provides an integration framework  based on known Enterprise Integration Pattern.</description>
 
   <dependencies>

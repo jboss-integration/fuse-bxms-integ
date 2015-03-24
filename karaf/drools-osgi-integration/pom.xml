@@ -2,18 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>org.jboss.integration.karaf</groupId>
-        <artifactId>karaf-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.drools</groupId>
-  <packaging>bundle</packaging>
+  <parent>
+      <groupId>org.jboss.integration.fuse</groupId>
+      <artifactId>karaf-parent</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <relativePath>../</relativePath>
+  </parent>
 
   <artifactId>drools-osgi-integration</artifactId>
-  <name>Fuse BXMS Integration: Drools :: OSGi Integration</name>
+  <packaging>bundle</packaging>
+
+  <name>Fuse Integration: Drools :: OSGi Integration</name>
 
   <dependencies>
     <dependency>

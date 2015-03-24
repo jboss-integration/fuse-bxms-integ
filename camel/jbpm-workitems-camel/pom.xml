@@ -5,14 +5,14 @@
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.jboss.integration.camel</groupId>
+    <groupId>org.jboss.integration.fuse</groupId>
     <artifactId>camel-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>jbpm-workitems-camel</artifactId>
-
-  <name>Fuse BXMS Integration: Camel: jBPM : WorkItems - Camel</name>
+  
+  <name>Fuse Integration: Camel: jBPM : WorkItems - Camel</name>
 
   <dependencies>
     <dependency>

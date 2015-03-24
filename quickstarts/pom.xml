@@ -14,35 +14,26 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
-        <groupId>org.jboss.integration</groupId>
-        <artifactId>fuse-bxms-integ</artifactId>
+        <groupId>org.jboss.integration.fuse</groupId>
+        <artifactId>fuse-integration-project</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
-    <groupId>org.jboss.integration.quickstarts</groupId>
+
+    <groupId>org.jboss.integration.fuse.quickstarts</groupId>
     <artifactId>quickstarts-parent</artifactId>
     <packaging>pom</packaging>
-    <name>Fuse BXMS Integration: Quickstarts: Parent</name>
-    <description>Fuse BXMS Integration: Quickstarts repository</description>
-    <url>http://switchyard.org</url>
-    <organization>
-        <name>JBoss by Red Hat</name>
-        <url>http://jboss.org</url>
-    </organization>
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <distribution>repo</distribution>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-        </license>
-    </licenses>
-
+    
+    <name>Fuse Integration: Quickstarts: Parent</name>
+    <description>Fuse Integration: Quickstarts repository</description>
 
     <properties>
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.source>1.6</maven.compiler.source>
     </properties>
+    
     <modules>
         <module>switchyard-bpm-service</module>
         <module>switchyard-rules-camel-cbr</module>
@@ -56,6 +47,7 @@
         <module>spring-camel-drools-decision-table-example</module>
         <module>spring-jbpm-osgi-example</module>
     </modules>
+
     <!-- Conditionally include the assembly module.  It's not always present e.g. in the quickstarts distro. -->
     <profiles>
         <profile>

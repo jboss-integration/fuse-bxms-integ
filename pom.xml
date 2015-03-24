@@ -11,14 +11,15 @@
     <version>6.0.0.CR26</version>
   </parent>
 
-  <groupId>org.jboss.integration</groupId>
-  <artifactId>fuse-bxms-integ</artifactId>
+  <groupId>org.jboss.integration.fuse</groupId>
+  <artifactId>fuse-integration-project</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+
   <packaging>pom</packaging>
 
-  <name>Fuse BxMS integration multiproject</name>
+  <name>Fuse Integration Project</name>
   <description>
-    Fuse BxMS integration
+    Used to house JBoss Fuse integration glue with other JBoss projects like BxMS.
   </description>
 
   <organization>
@@ -26,14 +27,16 @@
         <url>http://jboss.org</url>
   </organization>
   <issueManagement>
-        <system>jira</system>
-        <url>http://jira.jboss.org/browse/SWITCHYARD</url>
+        <system>github</system>
+        <url>https://github.com/jboss-integration/fuse-bxms-integ/issues</url>
   </issueManagement>
-  <developers>
-        <developer>
-            <name>SwitchYard committers</name>
-        </developer>
-  </developers>
+  <licenses>
+      <license>
+          <name>Apache License, Version 2.0</name>
+          <distribution>repo</distribution>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      </license>
+  </licenses>
 
   <properties>
         <!-- Internal dependencies -->
@@ -435,14 +438,14 @@
                 <version>${version.switchyard}</version>
                 <type>zip</type>
             </dependency>
- 	   <dependency>
-                <groupId>org.jboss.integration.release</groupId>
+ 	          <dependency>
+                <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>fuse-bxms-as7-modules</artifactId>
                 <version>${project.version}</version>
                 <type>zip</type>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.release</groupId>
+                <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>fuse-bxms-as7-bundle</artifactId>
                 <version>${project.version}</version>
                 <type>zip</type>
@@ -506,7 +509,7 @@
                 <version>${version.switchyard}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.karaf</groupId>
+                <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>fuse-bxms-integration</artifactId>
                 <type>xml</type>
                 <classifier>features</classifier>
@@ -564,54 +567,54 @@
                 <version>${version.switchyard}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.switchyard</groupId>
+                <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>switchyard-component-bpm</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.switchyard</groupId>
+                <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>switchyard-component-common-knowledge</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.switchyard</groupId>
+                <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>switchyard-component-rules</artifactId>
                 <version>${project.version}</version>
             </dependency>
            <dependency>
-                <groupId>org.jboss.integration.quickstarts</groupId>
+                <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-camel-cbr</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.quickstarts</groupId>
+                <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.quickstarts</groupId>
+                <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview-container</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.quickstarts</groupId>
+                <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview-dtable</artifactId>
                 <version>${project.version}</version>
             </dependency>
         
             <dependency>
-                <groupId>org.jboss.integration.quickstarts</groupId>
+                <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-bpm-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.quickstarts</groupId>
+                <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-demo-helpdesk</artifactId>
                 <type>war</type>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.integration.quickstarts</groupId>
+                <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-demo-library</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -1107,7 +1110,7 @@
   </dependencies>
 
   <modules>
-    <module>bom</module>
+    <module>fuse-integration-bom</module>
     <module>camel</module>
     <module>switchyard</module>
     <module>quickstarts</module>

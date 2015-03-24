@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <groupId>org.jboss.integration.karaf</groupId>
-        <artifactId>fuse-bxms-karaf-tests</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>drools-karaf-tests</artifactId>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+      <groupId>org.jboss.integration.fuse</groupId>
+      <artifactId>fuse-bxms-karaf-tests</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <relativePath>../</relativePath>
+  </parent>
 
-  <name>Fuse BXMS Integration: Drools Karaf Test</name>
+  <artifactId>drools-karaf-tests</artifactId>
 
+  <name>Fuse Integration: Drools Karaf Test</name>
 
   <dependencies>
     <dependency>
@@ -50,7 +50,7 @@
     </dependency>
 
     <dependency>
-      <groupId>org.jboss.integration.karaf</groupId>
+      <groupId>org.jboss.integration.fuse</groupId>
       <artifactId>fuse-bxms-integration</artifactId>
       <type>xml</type>
       <classifier>features</classifier>

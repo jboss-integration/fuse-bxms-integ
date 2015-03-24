@@ -15,16 +15,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.jboss.integration.karaf</groupId>
+        <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>karaf-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
+
     <artifactId>fuse-bxms-integration</artifactId>
     <packaging>pom</packaging>
-    <name>Fuse BXMS Integration: Karaf Features</name>
+    
+    <name>Fuse Integration: Karaf Features</name>
     <description>Feature descriptions for running Fuse BXMS Integration on Karaf</description>
-    <url>http://switchyard.org</url>
+    
     <properties>
         <!-- These versions align with the Karaf container. -->
         <version.commons-beanutils>1.9.2</version.commons-beanutils>

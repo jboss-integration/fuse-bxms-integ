@@ -3,17 +3,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.jboss.integration.quickstarts</groupId>
-        <artifactId>quickstarts-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent> 
+  <parent>
+      <groupId>org.jboss.integration.fuse.quickstarts</groupId>
+      <artifactId>quickstarts-parent</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <relativePath>../</relativePath>
+  </parent> 
 
   <artifactId>blueprint-camel-drools-decision-table-example</artifactId>
   <packaging>bundle</packaging>
 
-  <name>Fuse BXMS Quickstarts: Drools &amp; Decision Table :: OSGi Kie Blueprint Camel Example</name>
+  <name>Fuse Integration: Quickstarts: Drools &amp; Decision Table :: OSGi Kie Blueprint Camel Example</name>
 
   <dependencies>
 

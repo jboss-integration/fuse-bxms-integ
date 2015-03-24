@@ -13,34 +13,20 @@
 - limitations under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.jboss.integration.quickstarts</groupId>
+        <groupId>org.jboss.integration.fuse.quickstarts</groupId>
         <artifactId>quickstarts-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
+
     <artifactId>switchyard-rules-interview-container</artifactId>
     <packaging>bundle</packaging>
-    <name>Fuse BXMS Quickstarts: SwitchYard Quickstart: rules-interview-container</name>
-    <description>Fuse BXMS Quickstarts: Switchyard Quickstart : Rules Interview (Container)</description>
-    <url>http://switchyard.org</url>
-    <organization>
-        <name>JBoss by Red Hat</name>
-        <url>http://jboss.org</url>
-    </organization>
-    <developers>
-        <developer>
-            <name>SwitchYard committers</name>
-        </developer>
-    </developers>
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <distribution>repo</distribution>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-        </license>
-    </licenses>
+
+    <name>Fuse Integration: Quickstarts: SwitchYard: rules-interview-container</name>
+    <description>Fuse Integration: Quickstarts: Switchyard Quickstart : Rules Interview (Container)</description>
+
     <properties>
         <!-- Bundle symbolic name may not contain dashes -->
         <bundle.symbolic.name>${project.groupId}.switchyard.rules.interview.container</bundle.symbolic.name>
@@ -68,7 +54,7 @@
             <artifactId>switchyard-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.integration.switchyard</groupId>
+            <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>switchyard-component-rules</artifactId>
         </dependency>
         <dependency>
