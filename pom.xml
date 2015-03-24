@@ -1115,6 +1115,7 @@
     <module>switchyard</module>
     <module>quickstarts</module>
     <module>karaf</module>
+    <module>wildfly</module>
     <module>release</module>
   </modules>
 
