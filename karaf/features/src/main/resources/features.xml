@@ -230,18 +230,18 @@
         <bundle>wrap:mvn:org.kie.remote/kie-remote-common/${version.org.kie}</bundle>
         <bundle>wrap:mvn:org.kie.remote/kie-remote-jaxb/${version.org.kie}</bundle>
         <bundle>mvn:org.switchyard.components/switchyard-component-common/${version.switchyard}</bundle>
-        <bundle>mvn:org.jboss.integration.switchyard/switchyard-component-common-knowledge/${project.version}</bundle>
-        <bundle>mvn:org.jboss.integration.switchyard/switchyard-component-common-knowledge-osgi/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse/switchyard-component-common-knowledge/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse/switchyard-component-common-knowledge-osgi/${project.version}</bundle>
     </feature>
 
     <feature name="fuse-bxms-switchyard-rules" version="${project.version}" resolver="(obr)">
         <feature version="${project.version}">fuse-bxms-switchyard-common-knowledge</feature>
-        <bundle>mvn:org.jboss.integration.switchyard/switchyard-component-rules/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse/switchyard-component-rules/${project.version}</bundle>
     </feature>
 
     <feature name="fuse-bxms-switchyard-bpm" version="${project.version}" resolver="(obr)">
         <feature version="${project.version}">fuse-bxms-switchyard-common-knowledge</feature>
-        <bundle>mvn:org.jboss.integration.switchyard/switchyard-component-bpm/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse/switchyard-component-bpm/${project.version}</bundle>
     </feature>
 
 
@@ -252,7 +252,7 @@
         <feature version="${version.switchyard}">switchyard-bean</feature>
         <feature version="${version.switchyard}">switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
-        <bundle>mvn:org.jboss.integration.quickstarts/switchyard-bpm-service/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-bpm-service/${project.version}</bundle>
     </feature>
 
   
@@ -261,7 +261,7 @@
         <feature version="${version.switchyard}">switchyard-bean</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
         <feature version="${version.switchyard}">switchyard-sca</feature>
-        <bundle>mvn:org.jboss.integration.quickstarts/switchyard-remote-invoker/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-remote-invoker/${project.version}</bundle>
     </feature>
     
 
@@ -271,28 +271,28 @@
         <feature version="${version.switchyard}">switchyard-camel</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
         <feature version="${version.switchyard}">switchyard-sca</feature>
-        <bundle>mvn:org.jboss.integration.quickstarts/switchyard-rules-camel-cbr/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-camel-cbr/${project.version}</bundle>
     </feature>
 
     <feature name="fuse-bxms-switchyard-quickstart-rules-interview" version="${project.version}" resolver="(obr)">
         <feature version="${version.switchyard}">switchyard-bean</feature>
         <feature version="${version.switchyard}">switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
-        <bundle>mvn:org.jboss.integration.quickstarts/switchyard-rules-interview/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-interview/${project.version}</bundle>
     </feature>
 
     <feature name="fuse-bxms-switchyard-quickstart-rules-interview-container" version="${project.version}" resolver="(obr)">
         <feature version="${version.switchyard}">switchyard-bean</feature>
         <feature version="${version.switchyard}">switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
-        <bundle>mvn:org.jboss.integration.quickstarts/switchyard-rules-interview-container/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-interview-container/${project.version}</bundle>
     </feature>
 
     <feature name="fuse-bxms-switchyard-quickstart-rules-interview-dtable" version="${project.version}" resolver="(obr)">
         <feature version="${version.switchyard}">switchyard-bean</feature>
         <feature version="${version.switchyard}">switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
-        <bundle>mvn:org.jboss.integration.quickstarts/switchyard-rules-interview-dtable/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-interview-dtable/${project.version}</bundle>
     </feature>
 
  
@@ -301,7 +301,7 @@
         <feature version="${version.switchyard}">switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
-        <bundle>mvn:org.jboss.integration.quickstarts/switchyard-demo-library/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-demo-library/${project.version}</bundle>
     </feature>
 
 
@@ -333,7 +333,7 @@
         <bundle dependency="true">mvn:org.apache.myfaces.core/myfaces-bundle/${version.org.apache.myfaces.core.myfaces-bundle}</bundle>
         <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-validation_1.0_spec/${version.org.apache.geronimo.specs.geronimo-validation_1.0_spec}</bundle>
         
-        <bundle>mvn:org.jboss.integration.quickstarts/switchyard-demo-helpdesk/${project.version}/war</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-demo-helpdesk/${project.version}/war</bundle>
     </feature>
 
 </features>

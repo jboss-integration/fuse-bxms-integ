@@ -21,7 +21,7 @@ import org.switchyard.component.test.mixins.http.HTTPMixIn;
 import org.switchyard.karaf.test.quickstarts.AbstractQuickstartTest;
 
 public class LibraryDemoQuickstartTest extends AbstractQuickstartTest {
-    private static String bundleName = "org.jboss.integration.quickstarts.switchyard.demo.library";
+    private static String bundleName = "org.jboss.integration.fuse.quickstarts.switchyard.demo.library";
     private static String featureName = "fuse-bxms-switchyard-demo-library";
 
     @BeforeClass

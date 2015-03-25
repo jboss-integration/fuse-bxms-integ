@@ -16,7 +16,7 @@ package org.switchyard.karaf.test.quickstarts;
 import org.junit.BeforeClass;
 
 public class RulesCamelCBRQuickstartTest extends AbstractQuickstartTest {
-    private static String bundleName = "org.jboss.integration.quickstarts.switchyard.rules.camel.cbr";
+    private static String bundleName = "org.jboss.integration.fuse.quickstarts.switchyard.rules.camel.cbr";
     private static String featureName = "fuse-bxms-switchyard-quickstart-rules-camel-cbr";
 
     @BeforeClass

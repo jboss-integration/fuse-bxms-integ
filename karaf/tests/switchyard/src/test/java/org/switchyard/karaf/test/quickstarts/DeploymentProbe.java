@@ -28,7 +28,6 @@ public class DeploymentProbe {
         Assert.assertNotNull(_bundleContext);
         String bundleName = System.getProperty(BUNDLE_NAME_KEY);
 
-        System.out.println("bundleyeah=" + bundleName);
         Bundle bundle = null;
         if(_bundleContext.getBundles() != null) {
             System.out.println("BundlesXXNumber=" + _bundleContext.getBundles());
@@ -37,7 +36,7 @@ public class DeploymentProbe {
         }
 
         for (Bundle aux : _bundleContext.getBundles()) {
-            System.out.println("Bundle=" + aux.getSymbolicName() + " version" + aux.getVersion());
+            System.out.println("Bundle=" + aux.getSymbolicName() + " version" + aux.getVersion() + " state=" + aux.getState());
             if (bundleName.equals(aux.getSymbolicName())) {
                 bundle = aux;
                 break;
