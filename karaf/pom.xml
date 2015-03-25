@@ -32,7 +32,7 @@
         <module>switchyard-component-common-knowledge-osgi</module>
         <module>drools-osgi-integration</module>
         <module>features</module>
-        <!--module>tests</module-->
+        <module>tests</module>
     </modules>
     <build>
         <plugins>

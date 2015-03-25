@@ -38,7 +38,7 @@ import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
 
-public class KarafIntegrationTestSupport extends CamelTestSupport {
+abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
 
     protected static final transient Logger LOG = LoggerFactory.getLogger(KarafIntegrationTestSupport.class);
 

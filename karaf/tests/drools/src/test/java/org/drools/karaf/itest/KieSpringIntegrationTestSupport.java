@@ -32,7 +32,7 @@ import java.util.Properties;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
 
-public class KieSpringIntegrationTestSupport {
+abstract public class KieSpringIntegrationTestSupport {
 
     protected static final transient Logger LOG = LoggerFactory.getLogger(KieSpringIntegrationTestSupport.class);
     protected static final String DroolsVersion;
