@@ -34,7 +34,6 @@
 
     <modules>
         <module>switchyard-component-common-knowledge</module>
-        <module>switchyard-component-common-knowledge-osgi</module>
         <module>switchyard-component-rules</module>
         <module>switchyard-component-bpm</module>
     </modules>

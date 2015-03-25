@@ -29,6 +29,7 @@
     <description>Fuse BXMS Integration Modules Karaf Parent</description>
 
     <modules>
+        <module>switchyard-component-common-knowledge-osgi</module>
         <module>drools-osgi-integration</module>
         <module>features</module>
         <!--module>tests</module-->
