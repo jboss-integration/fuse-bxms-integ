@@ -119,10 +119,11 @@
     </dependency>
 
     <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
 
   <build>
@@ -165,20 +166,6 @@
           </instructions>
         </configuration>
       </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <excludes>
-            <exclude>**/DroolsOnCommandCamelKarafIntegrationTest.java</exclude>
-            <exclude>**/KieSpringOnKarafIntegrationTest.java</exclude>
-            <exclude>**/DroolsOnBodyCamelKarafIntegrationTest.java</exclude>
-            <exclude>**/KieSpringjBPMPersistenceOnKarafIntegrationTest.java</exclude>
-          </excludes>
-        </configuration>
-      </plugin>
-
 
     </plugins>
   </build>

@@ -21,7 +21,7 @@ Start JBoss Fuse or Apache Karaf
 
 In the console, use the following commands
 
-    features:addurl mvn:org.jboss.integration.karaf/fuse-bxms-integration/${FUSE_BXMS_VERSION}/xml/features
+    features:addurl mvn:org.jboss.integration.fuse/fuse-bxms-integration/${FUSE_BXMS_VERSION}/xml/features
     features:install spring
     features:install spring-dm
     features:install spring-tx

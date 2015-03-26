@@ -1104,12 +1104,6 @@
                 </plugins>
             </build>
         </profile>
-        <profile>
-	    <id>release</id>
-            <modules>
-
-             </modules>
-        </profile>
     </profiles>
   <dependencies>
     <dependency>
@@ -1129,6 +1123,7 @@
     <module>fuse-integration-bom</module>
     <module>camel</module>
     <module>switchyard</module>
+    <module>backward-compat</module>
     <module>quickstarts</module>
     <module>karaf</module>
     <module>wildfly</module>

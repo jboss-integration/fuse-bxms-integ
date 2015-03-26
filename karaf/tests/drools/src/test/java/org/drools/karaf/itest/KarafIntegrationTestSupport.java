@@ -110,7 +110,7 @@ abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
         for (String feature : features) {
             result.add(feature);
         }
-        return features(getFeatureUrl("org.jboss.integration.karaf", "fuse-bxms-integration").type("xml").classifier("features").versionAsInProject(), result.toArray(new String[4 + features.length]));
+        return features(getFeatureUrl("org.jboss.integration.fuse", "fuse-bxms-integration").type("xml").classifier("features").versionAsInProject(), result.toArray(new String[4 + features.length]));
     }
 
     private static String getKarafVersion() {

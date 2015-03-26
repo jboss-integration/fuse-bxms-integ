@@ -55,7 +55,7 @@ ${KARAF_HOME}/bin/karaf
 2. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
 with the version of Fuse BXMS Integration that you are using (ex. 1.0.0): 
 
-karaf@root> features:addurl mvn:org.jboss.integration.karaf/fuse-bxms-integration/${FUSE_BXMS_VERSION}/xml/features
+karaf@root> features:addurl mvn:org.jboss.integration.fuse/fuse-bxms-integration/${FUSE_BXMS_VERSION}/xml/features
 
 3. Install the feature for the Rules Camel CBR quickstart :
 
@@ -68,7 +68,12 @@ mvn exec:java -Pkaraf
 ```
 <br/>
 
-5. Undeploy the quickstart:
+5. Check the log for the expected results :
+
+karaf@root> log:display 
+
+
+6. Undeploy the quickstart:
 
 karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-rules-camel-cbr
 
