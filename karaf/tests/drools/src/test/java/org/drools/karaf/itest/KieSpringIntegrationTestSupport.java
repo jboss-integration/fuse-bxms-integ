@@ -85,7 +85,7 @@ abstract public class KieSpringIntegrationTestSupport {
             result.add(feature);
         }
 
-        MavenArtifactProvisionOption featuresUrl = getFeaturesUrl("org.jboss.integration.fuse", "fuse-bxms-integration", DroolsVersion);
+        MavenArtifactProvisionOption featuresUrl = getFeaturesUrl("org.jboss.integration.fuse", "karaf-features", DroolsVersion);
         return features(featuresUrl, result.toArray(new String[1 + features.length]));
     }
 

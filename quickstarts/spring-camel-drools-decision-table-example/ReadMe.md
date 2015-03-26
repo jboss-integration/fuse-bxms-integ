@@ -22,7 +22,7 @@ Start JBoss Fuse or Apache Karaf
 
 In the console, use the following commands
 
-    features:addurl mvn:org.jboss.integration.fuse/fuse-bxms-integration/${FUSE_BXMS_VERSION}/xml/features
+    features:addurl mvn:org.jboss.integration.fuse/karaf-features/${FUSE_BXMS_VERSION}/xml/features
     features:install drools-module
     features:install drools-decisiontable
     features:install kie-spring
