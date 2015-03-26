@@ -28,9 +28,7 @@
     <description>Fuse BXMS Integration Karaf Tests</description>
 
     <modules>
-       <!--
        <module>switchyard</module>
-       -->
        <module>drools</module>
     </modules>
 </project>
