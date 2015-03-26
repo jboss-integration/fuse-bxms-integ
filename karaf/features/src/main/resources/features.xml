@@ -31,7 +31,7 @@
     <feature version="${version.org.drools}">kie</feature>
     <bundle>mvn:org.drools/drools-core/${version.org.drools}</bundle>
     <bundle>mvn:org.drools/drools-compiler/${version.org.drools}</bundle>
-    <bundle>mvn:org.drools/drools-osgi-integration/${project.version}</bundle>
+    <bundle>mvn:org.jboss.integration.fuse/drools-osgi-integration/${project.version}</bundle>
   </feature>
 
   <feature name="drools-templates" version="${version.org.drools}" description="Drools Templates">
