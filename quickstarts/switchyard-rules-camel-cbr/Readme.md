@@ -68,7 +68,12 @@ mvn exec:java -Pkaraf
 ```
 <br/>
 
-5. Undeploy the quickstart:
+5. Check the log for the expected results :
+
+karaf@root> log:display 
+
+
+6. Undeploy the quickstart:
 
 karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-rules-camel-cbr
 
