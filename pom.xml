@@ -184,6 +184,12 @@
     <pluginManagement>
       <plugins>
         <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>findbugs-maven-plugin</artifactId>
+          <!-- Downgrade version coming from parent (3.0) as that one is not supported on JDK6 anymore -->
+          <version>2.5.5</version>
+        </plugin>
+        <plugin>
           <groupId>org.apache.camel</groupId>
           <artifactId>camel-maven-plugin</artifactId>
           <version>2.10.3</version>
