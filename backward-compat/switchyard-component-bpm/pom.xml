@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.switchyard.components</groupId>
         <artifactId>backwards-compat-parent</artifactId>
-        <version>1.0.0.redhat-SNAPSHOT</version>
+        <version>1.0.0.redhat-620001</version>
         <relativePath>../</relativePath>
     </parent>
 
