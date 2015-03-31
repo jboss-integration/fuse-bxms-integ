@@ -3,13 +3,32 @@
     <parent>
         <groupId>org.switchyard.components</groupId>
         <artifactId>backwards-compat-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>2.0.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
     <artifactId>switchyard-component-common-knowledge</artifactId>
     <packaging>bundle</packaging>
-    
+    <properties>
+        <switchyard.osgi.export.pkg>
+            org.switchyard.component.common.knowledge.*
+        </switchyard.osgi.export.pkg>
+        <switchyard.osgi.import>
+            org.switchyard.*;${switchyard.osgi.import.switchyard.version},
+            org.switchyard.common.io;${switchyard.osgi.import.switchyard.version},
+            org.switchyard.common.io.resource;${switchyard.osgi.import.switchyard.version}, 
+            org.hibernate.*;resolution:=optional,
+            *
+        </switchyard.osgi.import>
+        <switchyard.osgi.dynamic>
+            org.jbpm.*,
+            org.drools.*,
+            org.kie.*
+        </switchyard.osgi.dynamic>
+        <switchyard.osgi.require.bundle>
+            org.kie.api
+        </switchyard.osgi.require.bundle>
+    </properties>    
     <name>Fuse Integration: Backwards Compat: Switchyard: Common Knowledge</name>
     <description>Fuse BXMS Integration Backwards Compat Switchyard Common Knowledge</description>
     
