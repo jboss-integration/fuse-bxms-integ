@@ -8,20 +8,11 @@
     </parent>
 
     <artifactId>switchyard-component-rules</artifactId>
-    <packaging>bundle</packaging>
+    <packaging>jar</packaging>
     
     <name>Fuse Integration: Backwards Compat: Switchyard: Rules</name>
     <description>Fuse BXMS Integration Backwards Compat Switchyard Rules</description>
-    <properties>
-        <switchyard.osgi.export.pkg>
-            org.switchyard.component.rules.*
-        </switchyard.osgi.export.pkg>
-        <switchyard.osgi.import>
-            org.switchyard.*;${switchyard.osgi.import.switchyard.version},
-            org.switchyard.config.model;${switchyard.osgi.import.switchyard.version},
-            *
-        </switchyard.osgi.import>
-    </properties>    
+ 
     <dependencies>
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
