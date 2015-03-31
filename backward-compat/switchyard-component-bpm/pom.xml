@@ -8,29 +8,8 @@
     </parent>
 
     <artifactId>switchyard-component-bpm</artifactId>
-    <packaging>bundle</packaging>
-    <properties>
-        <switchyard.osgi.activator>org.switchyard.component.common.knowledge.deploy.OSGiKnowledgeBundleActivator</switchyard.osgi.activator>
-        <switchyard.osgi.export.pkg>
-            org.switchyard.component.bpm.*
-        </switchyard.osgi.export.pkg>
-        <switchyard.osgi.import>
-            org.switchyard.*;${switchyard.osgi.import.switchyard.version},
-            org.switchyard.config.model;${switchyard.osgi.import.switchyard.version},
-            *
-        </switchyard.osgi.import>
-        <switchyard.osgi.require.bundle>
-            org.jbpm.bpmn2,
-            org.jbpm.flow.core,
-            org.jbpm.persistence.jpa,
-            org.jbpm.services.task.jpa
-        </switchyard.osgi.require.bundle>
-        <switchyard.osgi.dynamic>
-            org.jbpm.*,
-            org.drools.*,
-            org.kie.*
-        </switchyard.osgi.dynamic>
-    </properties>
+    <packaging>jar</packaging>
+   
     <name>Fuse Integration: Backwards Compat: Switchyard: BPM Component</name>
     <description>Fuse BXMS Integration Backwards Compat Switchyard BPM Component</description>
     
