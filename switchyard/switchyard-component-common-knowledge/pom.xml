@@ -34,8 +34,7 @@
         </switchyard.osgi.export.pkg>
         <switchyard.osgi.import>
             org.switchyard.*;${switchyard.osgi.import.switchyard.version},
-            org.switchyard.common.io;${switchyard.osgi.import.switchyard.version},
-            org.switchyard.common.io.resource;${switchyard.osgi.import.switchyard.version}, 
+            org.switchyard.common.io;${switchyard.osgi.import.switchyard.version}
             org.hibernate.*;resolution:=optional,
             *
         </switchyard.osgi.import>
