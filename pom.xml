@@ -39,6 +39,8 @@
   </licenses>
 
   <properties>
+        <version.jboss.integration>1.0.0-SNAPSHOT</version.jboss.integration>
+
         <!-- Internal dependencies -->
         <version.org.kie>6.2.0.Final</version.org.kie>
         <version.org.drools>${version.org.kie}</version.org.drools>
@@ -526,7 +528,7 @@
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>fuse-bxms-integration</artifactId>
+                <artifactId>karaf-features</artifactId>
                 <type>xml</type>
                 <classifier>features</classifier>
                 <version>${project.version}</version>

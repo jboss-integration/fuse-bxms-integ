@@ -21,7 +21,7 @@
         <relativePath>../</relativePath>
     </parent>
 
-    <artifactId>fuse-bxms-integration</artifactId>
+    <artifactId>karaf-features</artifactId>
     <packaging>pom</packaging>
     
     <name>Fuse Integration: Karaf Features</name>
