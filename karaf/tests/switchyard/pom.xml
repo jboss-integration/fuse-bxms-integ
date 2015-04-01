@@ -300,8 +300,8 @@
                                 <descriptor>mvn:org.jboss.integration.fuse/karaf-features/${project.version}/xml/features</descriptor>
                             </descriptors>
                             <features>
-                                <feature version="${project.version}">switchyard-bpm</feature>
-                                <feature version="${project.version}">switchyard-rules</feature>
+                                <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
+                                <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
 
                             </features>
                             <repository>target/dependencies/apache-karaf-${version.org.apache.karaf}/system</repository>
