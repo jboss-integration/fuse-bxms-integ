@@ -89,7 +89,7 @@
 
 
         
-         <version.switchyard>2.0.0.CR1</version.switchyard>
+         <version.switchyard>2.0.1.redhat-620019</version.switchyard>
          <version.switchyard.osgi>2.1</version.switchyard.osgi>
         <!-- Explicitly declaring the source encoding eliminates the following message: -->
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
@@ -149,6 +149,19 @@
   </properties>
 
   <repositories>
+    <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
+    <repository>
+        <id>fusesource.ea</id>
+        <name>JBoss Community Early Access Release Repository</name>
+        <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+        </releases>
+    </repository>
     <!-- Bootstrap repository to locate the parent pom when the parent pom has not been build locally. -->
     <repository>
       <id>jboss-public-repository-group</id>
@@ -211,6 +224,18 @@
     </repository>
   </repositories>
   <pluginRepositories>
+        <pluginRepository>
+            <id>fusesource.ea</id>
+            <name>FuseSource Community Early Access Release Repository</name>
+            <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </pluginRepository>
         <pluginRepository>
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Maven Repository Group</name>
