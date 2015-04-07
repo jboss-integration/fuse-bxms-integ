@@ -13,7 +13,7 @@
 
   <groupId>org.jboss.integration.fuse</groupId>
   <artifactId>fuse-integration-project</artifactId>
-  <version>1.0.0.redhat-SNAPSHOT</version>
+  <version>1.0.0.redhat-620004</version>
 
   <packaging>pom</packaging>
 
@@ -39,7 +39,7 @@
   </licenses>
 
   <properties>
-        <version.jboss.integration>1.0.0-SNAPSHOT</version.jboss.integration>
+        <version.jboss.integration>1.0.0.redhat-620004</version.jboss.integration>
 
         <!-- Internal dependencies -->
         <version.org.kie>6.2.0.Final</version.org.kie>
@@ -89,7 +89,7 @@
 
 
         
-         <version.switchyard>2.0.1.redhat-620019</version.switchyard>
+         <version.switchyard>2.0.1.redhat-620028</version.switchyard>
          <version.switchyard.osgi>2.1</version.switchyard.osgi>
         <!-- Explicitly declaring the source encoding eliminates the following message: -->
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
@@ -103,7 +103,7 @@
         <version.org.fusesource.hawtdispatch>1.18</version.org.fusesource.hawtdispatch>
         <version.org.fusesource.hawtbuf>1.9</version.org.fusesource.hawtbuf>
         <!-- consider moving to integration platform bom -->
-        <version.camelsap>1.0.0.redhat-379</version.camelsap>
+        <version.camelsap>6.2.0.redhat-099</version.camelsap>
         <version.org.fusesource.mqtt-client>1.6</version.org.fusesource.mqtt-client>
         <!--  RiftSaw -->
         <version.activity.monitor.model>1.2.2.Final</version.activity.monitor.model>

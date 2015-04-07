@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.jboss.integration.fuse</groupId>
     <artifactId>camel-parent</artifactId>
-    <version>1.0.0.redhat-SNAPSHOT</version>
+    <version>1.0.0.redhat-620004</version>
   </parent>
 
   <artifactId>jbpm-workitems-camel</artifactId>
