@@ -27,25 +27,6 @@
     
     <name>Fuse Integration: Backwards Compat: Parent</name>
     <description>Fuse BXMS Integration Backwards Compat Parent</description>
-  <dependencyManagement>
-    <dependencies>
-            <dependency>
-                <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>switchyard-component-bpm</artifactId>
-                <version>${version.jboss.integration}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>switchyard-component-common-knowledge</artifactId>
-                <version>${version.jboss.integration}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>switchyard-component-rules</artifactId>
-                <version>${version.jboss.integration}</version>
-            </dependency>
-    </dependencies>
-  </dependencyManagement>    
     
     <modules>
         <module>switchyard-component-common-knowledge</module>
