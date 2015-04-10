@@ -149,6 +149,19 @@
   </properties>
 
   <repositories>
+    <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
+    <repository>
+        <id>fusesource.ea</id>
+        <name>JBoss Community Early Access Release Repository</name>
+        <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+        </releases>
+    </repository>
     <!-- Bootstrap repository to locate the parent pom when the parent pom has not been build locally. -->
     <repository>
       <id>jboss-public-repository-group</id>
@@ -211,6 +224,18 @@
     </repository>
   </repositories>
   <pluginRepositories>
+        <pluginRepository>
+            <id>fusesource.ea</id>
+            <name>FuseSource Community Early Access Release Repository</name>
+            <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </pluginRepository>
         <pluginRepository>
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Maven Repository Group</name>
