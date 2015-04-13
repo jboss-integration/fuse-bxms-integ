@@ -27,20 +27,22 @@
         <fileSet>
             <directory>../../</directory>
             <includes>
-                <include>**/bpm-service</include>
-                <include>**/bpm-service/**/*</include>
-                <include>**/rules-camel-cbr</include>
-                <include>**/rules-camel-cbr/**/*</include>
-                <include>**/rules-interview</include>
-                <include>**/rules-interview/**/*</include>
-                <include>**/rules-interview-container</include>
-                <include>**/rules-interview-container/**/*</include>
-                <include>**/rules-interview-dtable</include>
-                <include>**/rules-interview-dtable/**/*</include>
-                <include>**/demos/helpdesk</include>
-                <include>**/demos/helpdesk/**/*</include>
-                <include>**/demos/library</include>
-                <include>**/demos/library/**/*</include>                
+                <include>quickstarts/pom.xml</include>
+                <include>quickstarts/README.md</include>
+                <include>**/switchyard-bpm-service</include>
+                <include>**/switchyard-bpm-service/**/*</include>
+                <include>**/switchyard-rules-camel-cbr</include>
+                <include>**/switchyard-rules-camel-cbr/**/*</include>
+                <include>**/switchyard-rules-interview</include>
+                <include>**/switchyard-rules-interview/**/*</include>
+                <include>**/switchyard-rules-interview-container</include>
+                <include>**/switchyard-rules-interview-container/**/*</include>
+                <include>**/switchyard-rules-interview-dtable</include>
+                <include>**/switchyard-rules-interview-dtable/**/*</include>
+                <include>**/demos/*helpdesk</include>
+                <include>**/demos/*helpdesk/**/*</include>
+                <include>**/demos/*library</include>
+                <include>**/demos/*library/**/*</include>                
             </includes>
             <excludes>
                 <exclude>**/.git</exclude>
@@ -60,6 +62,12 @@
             </excludes>
             <fileMode>644</fileMode>
             <directoryMode>755</directoryMode>
+        </fileSet>
+        <fileSet>
+            <directory>./</directory>
+            <includes>
+                <include>Readme.md</include>
+            </includes>
         </fileSet>
     </fileSets>
 

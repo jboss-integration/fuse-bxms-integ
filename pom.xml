@@ -146,6 +146,9 @@
         <switchyard.osgi.require.capability/>
 
 
+        <eap.download.url>http://porkchop.redhat.com</eap.download.url>
+	<eap.download.url.path>released/JBEAP-6/6.4.0-Beta/jboss-eap-6.4.0.Beta.zip</eap.download.url.path>
+        <version.org.wildfly.camel>2.2.0.redhat-620013</version.org.wildfly.camel>
   </properties>
 
   <repositories>
@@ -483,13 +486,13 @@
             </dependency>
  	          <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>fuse-bxms-as7-modules</artifactId>
+                <artifactId>fuse-integration-eap-package</artifactId>
                 <version>${project.version}</version>
                 <type>zip</type>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>fuse-bxms-as7-bundle</artifactId>
+                <artifactId>fuse-integration-eap-modules</artifactId>
                 <version>${project.version}</version>
                 <type>zip</type>
             </dependency>
