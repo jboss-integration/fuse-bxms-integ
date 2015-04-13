@@ -104,8 +104,7 @@ public class DroolsOnCommandCamelKarafIntegrationTest extends OSGiIntegrationSpr
 
     @Configuration
     public static Option[] configure() {
-        return OptionUtils.combine(
-                CommonKarafOptions.get(),
+        return OptionUtils.combine(new Option[]{
                 getKarafDistributionOption(),
 
                 keepRuntimeFolder(),
@@ -116,7 +115,7 @@ public class DroolsOnCommandCamelKarafIntegrationTest extends OSGiIntegrationSpr
 
                 // Load drools-module (= core + compiler + knowledge), kie-camel & kie-spring
                 loadDroolsFeatures("kie-spring", "kie-camel")
-        );
+        });
     }
 
 }

@@ -36,6 +36,8 @@ import org.slf4j.LoggerFactory;
 
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+import static org.ops4j.pax.exam.CoreOptions.when;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.editConfigurationFilePut;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
 
 abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
@@ -125,6 +127,11 @@ abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
     public static Option getKarafDistributionOption() {
         String karafVersion = getKarafVersion();
         LOG.info("*** The karaf version is " + karafVersion + " ***");
+        String localRepo = System.getProperty("maven.repo.local", "");
+        if (localRepo.length() > 0) {
+            LOG.info("Using alternative local Maven repository in {}.", new File(localRepo).getAbsolutePath());
+            localRepo = new File(localRepo).getAbsolutePath().toString()+"@id=local,";
+        }
         return new DefaultCompositeOption(KarafDistributionOption.karafDistributionConfiguration()
                                       .frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").type("tar.gz").versionAsInProject())
                                       .karafVersion(karafVersion)
@@ -132,11 +139,12 @@ abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
                                       .useDeployFolder(false).unpackDirectory(new File("target/paxexam/unpack/"))
             ,
             KarafDistributionOption.editConfigurationFilePut("etc/org.ops4j.pax.url.mvn.cfg", "org.ops4j.pax.url.mvn.repositories",
+                    localRepo+
                     "http://repo1.maven.org/maven2@id=central," +
                             "    http://svn.apache.org/repos/asf/servicemix/m2-repo@id=servicemix," +
                             "    http://repository.springsource.com/maven/bundles/release@id=springsource.release," +
                             "    http://repository.springsource.com/maven/bundles/external@id=springsource.external," +
-                            "    https://oss.sonatype.org/content/repositories/releases/@id=sonatype, "+
+                            "    https://oss.sonatype.org/content/repositories/releases/@id=sonatype, " +
                             "    https://repository.jboss.org/nexus/content/groups/ea@id=ea"
             ));
 
