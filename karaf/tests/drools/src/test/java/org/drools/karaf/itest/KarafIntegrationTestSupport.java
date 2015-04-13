@@ -16,23 +16,23 @@
 
 package org.drools.karaf.itest;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
+
 import org.apache.camel.CamelContext;
 import org.apache.camel.osgi.CamelContextFactory;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.drools.core.util.Drools;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.karaf.options.KarafDistributionOption;
+import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
 import org.ops4j.pax.exam.options.UrlReference;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.inject.Inject;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
@@ -125,11 +125,21 @@ abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
     public static Option getKarafDistributionOption() {
         String karafVersion = getKarafVersion();
         LOG.info("*** The karaf version is " + karafVersion + " ***");
-        return KarafDistributionOption.karafDistributionConfiguration()
+        return new DefaultCompositeOption(KarafDistributionOption.karafDistributionConfiguration()
                                       .frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").type("tar.gz").versionAsInProject())
                                       .karafVersion(karafVersion)
                                       .name("Apache Karaf")
-                                      .useDeployFolder(false).unpackDirectory(new File("target/paxexam/unpack/"));
+                                      .useDeployFolder(false).unpackDirectory(new File("target/paxexam/unpack/"))
+            ,
+            KarafDistributionOption.editConfigurationFilePut("etc/org.ops4j.pax.url.mvn.cfg", "org.ops4j.pax.url.mvn.repositories",
+                    "http://repo1.maven.org/maven2@id=central," +
+                            "    http://svn.apache.org/repos/asf/servicemix/m2-repo@id=servicemix," +
+                            "    http://repository.springsource.com/maven/bundles/release@id=springsource.release," +
+                            "    http://repository.springsource.com/maven/bundles/external@id=springsource.external," +
+                            "    https://oss.sonatype.org/content/repositories/releases/@id=sonatype, "+
+                            "    https://repository.jboss.org/nexus/content/groups/ea@id=ea"
+            ));
+
     }
 
 }
