@@ -89,7 +89,7 @@
 
 
         
-         <version.switchyard>2.0.1.redhat-620031</version.switchyard>
+         <version.switchyard>2.0.1.redhat-620037</version.switchyard>
          <version.switchyard.osgi>2.1</version.switchyard.osgi>
         <!-- Explicitly declaring the source encoding eliminates the following message: -->
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
