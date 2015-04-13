@@ -22,6 +22,7 @@ import org.apache.karaf.features.FeaturesService;
 import org.drools.camel.example.Person;
 import org.drools.compiler.kproject.ReleaseIdImpl;
 import org.drools.core.runtime.impl.ExecutionResultImpl;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Option;
@@ -41,6 +42,7 @@ import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.*;
 
 @RunWith(PaxExam.class)
+@Ignore
 public class DroolsOnCommandCamelKarafIntegrationTest extends OSGiIntegrationSpringTestSupport {
 
     protected static final transient Logger LOG = LoggerFactory.getLogger(DroolsOnCommandCamelKarafIntegrationTest.class);
