@@ -89,7 +89,7 @@
 
 
         
-         <version.switchyard>2.0.1.redhat-620019</version.switchyard>
+         <version.switchyard>2.0.1.redhat-620037</version.switchyard>
          <version.switchyard.osgi>2.1</version.switchyard.osgi>
         <!-- Explicitly declaring the source encoding eliminates the following message: -->
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
@@ -103,7 +103,7 @@
         <version.org.fusesource.hawtdispatch>1.18</version.org.fusesource.hawtdispatch>
         <version.org.fusesource.hawtbuf>1.9</version.org.fusesource.hawtbuf>
         <!-- consider moving to integration platform bom -->
-        <version.camelsap>1.0.0.redhat-379</version.camelsap>
+        <version.camelsap>6.2.0.redhat-099</version.camelsap>
         <version.org.fusesource.mqtt-client>1.6</version.org.fusesource.mqtt-client>
         <!--  RiftSaw -->
         <version.activity.monitor.model>1.2.2.Final</version.activity.monitor.model>
@@ -146,6 +146,9 @@
         <switchyard.osgi.require.capability/>
 
 
+        <eap.download.url>http://porkchop.redhat.com</eap.download.url>
+	<eap.download.url.path>released/JBEAP-6/6.4.0-Beta/jboss-eap-6.4.0.Beta.zip</eap.download.url.path>
+        <version.org.wildfly.camel>2.2.0.redhat-620013</version.org.wildfly.camel>
   </properties>
 
   <repositories>
@@ -483,14 +486,14 @@
             </dependency>
  	          <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>fuse-bxms-as7-modules</artifactId>
-                <version>${version.jboss.integration}</version>
+                <artifactId>fuse-integration-eap-package</artifactId>
+                <version>${project.version}</version>
                 <type>zip</type>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>fuse-bxms-as7-bundle</artifactId>
-                <version>${version.jboss.integration}</version>
+                <artifactId>fuse-integration-eap-modules</artifactId>
+                <version>${project.version}</version>
                 <type>zip</type>
             </dependency>
             <dependency>

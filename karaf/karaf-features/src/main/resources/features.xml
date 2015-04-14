@@ -4,8 +4,7 @@
     <repository>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</repository>
 
 
-  <repository>mvn:org.apache.camel.karaf/apache-camel/${version.org.apache.camel}/xml/features</repository>
-  <repository>mvn:org.apache.cxf.karaf/apache-cxf/${version.org.apache.cxf}/xml/features</repository>
+
 
 
   <!--Drools Features -->

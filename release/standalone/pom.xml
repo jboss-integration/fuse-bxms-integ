@@ -17,31 +17,30 @@
 
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
-        <artifactId>fuse-integration-project</artifactId>
+        <artifactId>release-parent</artifactId>
         <version>1.0.0.redhat-SNAPSHOT</version>
-        <relativePath>../</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>release-parent</artifactId>
+    <artifactId>release-standalone-parent</artifactId>
     <packaging>pom</packaging>
 
-    <name>Fuse Integration: Release: Parent</name>
-    <description>Fuse BXMS Integration Release Parent</description>
+    <name>Fuse Integration: Release: Standalone Parent</name>
+    <description>Fuse BXMS Integration Standalone Release Parent</description>
 
-    <properties>
-        <version.distro>2.0</version.distro>
-    </properties>
-   
-    <profiles>
-        <profile>
-            <id>eap</id>
-            <modules>
-                <module>jboss-as7</module>
-            </modules>
-        </profile>
-    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <modules>
-      <module>standalone</module>
-      <module>eap</module>
+      <module>kie-standalone-package</module>
     </modules>
 </project>
