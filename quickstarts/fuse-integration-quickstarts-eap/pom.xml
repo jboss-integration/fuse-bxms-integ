@@ -21,11 +21,11 @@
         <relativePath>../</relativePath>
     </parent>
 
-    <artifactId>switchyard-quickstart-distro-brms</artifactId>
+    <artifactId>fuse-integration-quickstarts-eap</artifactId>
     <packaging>jar</packaging>
     
-    <name>Fuse Integration: Quickstarts: SwitchYard : Quickstarts Distribution Assembly BRMS</name>
-    <description>Fuse Integration: Quickstarts: SwitchYard Quickstarts Distribution Assembly BRMS</description>
+    <name>Fuse Integration: Quickstarts: EAP: Assembly Distro</name>
+    <description>Fuse Integration: Quickstarts: EAP: Assembly Distro</description>
     
     <build>
         <plugins>
@@ -41,7 +41,7 @@
                         </goals>
                         <configuration>
                             <appendAssemblyId>false</appendAssemblyId>
-                            <finalName>SwitchYard-Quickstarts-BRMS</finalName>
+                            <finalName>fuse-integration-quickstarts-eap</finalName>
                             <descriptors>
                                 <descriptor>${basedir}/assembly.xml</descriptor>
                             </descriptors>

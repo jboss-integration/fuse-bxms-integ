@@ -16,19 +16,20 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
-        <artifactId>karaf-parent</artifactId>
+        <artifactId>release-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>fuse-bxms-karaf-tests</artifactId>
+    <artifactId>karaf-release-parent</artifactId>
     <packaging>pom</packaging>
 
-    <name>Fuse Integration: Karaf Tests</name>
-    <description>Fuse BXMS Integration Karaf Tests</description>
+    <name>Fuse Integration: Karaf Parent</name>
+    <description>Fuse BXMS Integration Release Karaf Container Parent</description>
 
     <modules>
-       <module>switchyard</module>
-       <module>drools</module>
+        <module>fuse-integration-karaf-distro</module>
+        <module>fuse-integration-karaf-tests</module>
     </modules>
+
 </project>
