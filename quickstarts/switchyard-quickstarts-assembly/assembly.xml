@@ -27,7 +27,6 @@
         <fileSet>
             <directory>../../</directory>
             <includes>
-                <include>quickstarts/pom.xml</include>
                 <include>quickstarts/README.md</include>
                 <include>**/switchyard-bpm-service</include>
                 <include>**/switchyard-bpm-service/**/*</include>
@@ -39,10 +38,10 @@
                 <include>**/switchyard-rules-interview-container/**/*</include>
                 <include>**/switchyard-rules-interview-dtable</include>
                 <include>**/switchyard-rules-interview-dtable/**/*</include>
-                <include>**/demos/*helpdesk</include>
-                <include>**/demos/*helpdesk/**/*</include>
-                <include>**/demos/*library</include>
-                <include>**/demos/*library/**/*</include>                
+                <include>**/switchyard-demo-helpdesk</include>
+                <include>**/switchyard-demo-helpdesk/**/*</include>
+                <include>**/switchyard-demo-library</include>
+                <include>**/switchyard-demo-library/**/*</include>                
             </includes>
             <excludes>
                 <exclude>**/.git</exclude>
@@ -68,6 +67,13 @@
             <includes>
                 <include>Readme.md</include>
             </includes>
+        </fileSet>
+        <fileSet>
+            <directory>./src/main/resources</directory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+	    <outputDirectory>/quickstarts</outputDirectory>
         </fileSet>
     </fileSets>
 
