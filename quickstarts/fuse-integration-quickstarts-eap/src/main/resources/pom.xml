@@ -118,18 +118,4 @@
        </snapshots>
     </repository>
   </repositories>
-
-    <!-- Conditionally include the assembly module.  It's not always present e.g. in the quickstarts distro. -->
-    <profiles>
-        <profile>
-            <activation>
-                <file>
-                    <exists>switchyard-quickstarts-assembly</exists>
-                </file>
-            </activation>
-            <modules>
-                <module>switchyard-quickstarts-assembly</module>
-            </modules>
-        </profile>
-    </profiles>
 </project>

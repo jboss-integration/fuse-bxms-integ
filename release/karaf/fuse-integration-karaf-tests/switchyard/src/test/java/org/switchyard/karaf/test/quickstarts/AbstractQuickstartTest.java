@@ -138,7 +138,7 @@ public abstract class AbstractQuickstartTest {
 
         return options(
                 // karafDistributionConfiguration().frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").type("tar.gz").versionAsInProject())
-                karafDistributionConfiguration().frameworkUrl(new File("target/fuse-bxms-switchyard-karaf-tests-bin.tar.gz").toURI().toURL().toString())
+                karafDistributionConfiguration().frameworkUrl(new File("target/fuse-integration-karaf-tests-switchyard-bin.tar.gz").toURI().toURL().toString())
                         .karafVersion(MavenUtils.getArtifactVersion("org.apache.karaf", "apache-karaf"))
                         .name("Apache Karaf").unpackDirectory(new File("target/karaf/" + featureName))
                         .useDeployFolder(false),

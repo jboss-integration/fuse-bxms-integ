@@ -17,16 +17,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
-        <artifactId>fuse-bxms-karaf-tests</artifactId>
+        <artifactId>fuse-integration-karaf-tests</artifactId>
         <version>1.0.0.redhat-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
-    <artifactId>fuse-bxms-switchyard-karaf-tests</artifactId>
+    <artifactId>fuse-integration-karaf-tests-switchyard</artifactId>
     <packaging>jar</packaging>
 
-    <name>Fuse Integration: Switchyard Karaf Tests</name>
-    <description>Fuse BXMS Integration Switchyard Karaf Tests</description>
+    <name>Fuse Integration: Release: Karaf: Tests: Switchyard </name>
+    <description>Fuse Integration: Release: Switchyard Karaf Tests</description>
     
     <properties>
         <!-- Align with Fuse 6.2 -->

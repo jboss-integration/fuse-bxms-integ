@@ -14,35 +14,22 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
-        <artifactId>fuse-integration-project</artifactId>
+        <artifactId>release-parent</artifactId>
         <version>1.0.0.redhat-SNAPSHOT</version>
-        <relativePath>../</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>karaf-parent</artifactId>
+    <artifactId>karaf-release-parent</artifactId>
     <packaging>pom</packaging>
 
-    <name>Fuse Integration: Karaf: Parent</name>
-    <description>Fuse BXMS Integration Modules Karaf Parent</description>
+    <name>Fuse Integration: Karaf Parent</name>
+    <description>Fuse BXMS Integration Release Karaf Container Parent</description>
 
     <modules>
-        <module>switchyard-component-common-knowledge-osgi</module>
-        <module>drools-osgi-integration</module>
-        <module>karaf-features</module>
+        <module>fuse-integration-karaf-distro</module>
+        <module>fuse-integration-karaf-tests</module>
     </modules>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>false</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
- 
+
 </project>

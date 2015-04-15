@@ -46,19 +46,8 @@
         <module>blueprint-camel-drools-decision-table-example</module>
         <module>spring-camel-drools-decision-table-example</module>
         <module>spring-jbpm-osgi-example</module>
+        <module>fuse-integration-quickstarts-eap</module>
+        <module>fuse-integration-quickstarts-karaf</module>
     </modules>
 
-    <!-- Conditionally include the assembly module.  It's not always present e.g. in the quickstarts distro. -->
-    <profiles>
-        <profile>
-            <activation>
-                <file>
-                    <exists>switchyard-quickstarts-assembly</exists>
-                </file>
-            </activation>
-            <modules>
-                <module>switchyard-quickstarts-assembly</module>
-            </modules>
-        </profile>
-    </profiles>
 </project>
