@@ -32,14 +32,6 @@
         <version.distro>2.0</version.distro>
     </properties>
    
-    <profiles>
-        <profile>
-            <id>eap</id>
-            <modules>
-                <module>jboss-as7</module>
-            </modules>
-        </profile>
-    </profiles>
     <modules>
       <module>standalone</module>
       <module>eap</module>
