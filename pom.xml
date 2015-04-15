@@ -13,7 +13,7 @@
 
   <groupId>org.jboss.integration.fuse</groupId>
   <artifactId>fuse-integration-project</artifactId>
-  <version>1.0.0.redhat-SNAPSHOT</version>
+  <version>1.0.0.redhat-620012</version>
 
   <packaging>pom</packaging>
 
@@ -39,7 +39,7 @@
   </licenses>
 
   <properties>
-        <version.jboss.integration>1.0.0-SNAPSHOT</version.jboss.integration>
+        <version.jboss.integration>1.0.0.redhat-620012</version.jboss.integration>
 
         <!-- Internal dependencies -->
         <version.org.kie>6.2.0.Final</version.org.kie>
@@ -89,7 +89,7 @@
 
 
         
-         <version.switchyard>2.0.1.redhat-620037</version.switchyard>
+         <version.switchyard>2.0.1.redhat-620039</version.switchyard>
          <version.switchyard.osgi>2.1</version.switchyard.osgi>
         <!-- Explicitly declaring the source encoding eliminates the following message: -->
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
@@ -148,7 +148,7 @@
 
         <eap.download.url>http://porkchop.redhat.com</eap.download.url>
 	<eap.download.url.path>released/JBEAP-6/6.4.0-Beta/jboss-eap-6.4.0.Beta.zip</eap.download.url.path>
-        <version.org.wildfly.camel>2.2.0.redhat-620013</version.org.wildfly.camel>
+        <version.org.wildfly.camel>2.2.0.redhat-620034</version.org.wildfly.camel>
   </properties>
 
   <repositories>
