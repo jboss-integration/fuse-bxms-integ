@@ -23,9 +23,13 @@
 
     <artifactId>fuse-integration-eap-tests</artifactId>
     <packaging>jar</packaging>
-
     <name>Fuse Integration: AS7 Release Distribution Tests</name>
     <description>Fuse BXMS Integration AS7 Release Distribution Tests</description>   
+
+    <properties>
+       <temp.switchyard.unpack>${project.build.directory}/temp/switchyard-distro</temp.switchyard.unpack>
+       <temp.fuse.integration.unpack>${project.build.directory}/temp/fuse-integration</temp.fuse.integration.unpack>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.switchyard</groupId>
@@ -261,7 +265,7 @@
                                     <version>${version.switchyard}</version>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${eap.home}</outputDirectory>
+                            <outputDirectory>${temp.switchyard.unpack}</outputDirectory>
                         </configuration>
 		   </execution>
 
@@ -280,12 +284,37 @@
                                     <version>${project.version}</version>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${eap.home}</outputDirectory>
+                            <outputDirectory>${temp.fuse.integration.unpack}</outputDirectory>
                         </configuration>
 		   </execution>
 	       </executions>
             </plugin>
-
+	   <plugin>
+	      <groupId>org.apache.maven.plugins</groupId>
+	      <artifactId>maven-antrun-plugin</artifactId>
+	      <version>1.6</version>
+	      <executions>
+		  <execution>
+		      <id>prepare</id>
+		      <phase>generate-sources</phase>
+		      <configuration>
+		          <tasks>
+		              <echo message="Copying Switchyard files to EAP" />
+                              <copy todir="${eap.home}" overwrite="true">  
+                                 <fileset dir="${temp.switchyard.unpack}" includes="**" />  
+                               </copy>
+		              <echo message="Copying Fuse Integration files to EAP" />
+                              <copy todir="${eap.home}" overwrite="true">  
+                                 <fileset dir="${temp.fuse.integration.unpack}" includes="**" />  
+                               </copy>
+		          </tasks>
+		      </configuration>
+		      <goals>
+		          <goal>run</goal>
+		      </goals>
+		  </execution>
+	      </executions>
+	   </plugin>    
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>xml-maven-plugin</artifactId>
@@ -357,7 +386,6 @@
                     <forkMode>always</forkMode>
                     <excludes>
                        <exclude>**/*$*</exclude>
-                       <exclude>**/*</exclude>
                     </excludes>
                 </configuration>
             </plugin>

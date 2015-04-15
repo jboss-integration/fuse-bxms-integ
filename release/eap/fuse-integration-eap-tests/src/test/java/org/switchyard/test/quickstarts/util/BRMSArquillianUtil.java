@@ -7,8 +7,8 @@ import org.switchyard.test.ShrinkwrapUtil;
 
 public abstract class BRMSArquillianUtil {
 
-    public static final String QS_GID = "org.jboss.integration.bxms.switchyard.quickstarts";
-    public static final String QS_DEMO_GID = "org.jboss.integration.bxms.switchyard.quickstarts.demos";
+    public static final String QS_GID = "org.jboss.integration.fuse.quickstarts";
+    public static final String QS_DEMO_GID = "org.jboss.integration.fuse.quickstarts";
 
     /**
      * Create a SwitchYard Quickstart Demo Deployment.
