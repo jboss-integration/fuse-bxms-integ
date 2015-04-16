@@ -51,7 +51,7 @@
 
     <dependency>
       <groupId>org.jboss.integration.fuse</groupId>
-      <artifactId>fuse-bxms-integration</artifactId>
+      <artifactId>karaf-features</artifactId>
       <type>xml</type>
       <classifier>features</classifier>
       <scope>test</scope>
