@@ -16,7 +16,18 @@
 
 package org.kie.camel.component;
 
-import com.thoughtworks.xstream.XStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.naming.Context;
+
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.custommonkey.xmlunit.Diff;
@@ -59,21 +70,13 @@ import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.runtime.helper.BatchExecutionHelper;
 import org.xml.sax.SAXException;
 
-import javax.naming.Context;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import com.thoughtworks.xstream.XStream;
+@Ignore
 public class XStreamBatchExecutionTest extends CamelTestSupport {
     protected CommandExecutor exec;
     protected CommandExecutor exec2;
 
+    @Override
     protected Context createJndiContext() throws Exception {
         Context context = super.createJndiContext();
         if ( exec != null ) {
@@ -88,6 +91,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
         return new RouteBuilder() {
+            @Override
             public void configure() throws Exception {
                 from( "direct:exec" ).policy( new KiePolicy() ).unmarshal( "xstream" ).to( "kie://ksession1" ).marshal( "xstream" );
                 from( "direct:execWithLookup" ).policy( new KiePolicy() ).unmarshal( "xstream" ).to( "kie://dynamic" ).marshal( "xstream" );
@@ -114,6 +118,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         }
     }
 
+    @Override
     @Before
     public void setUp() throws Exception {
         XMLUnit.setIgnoreComments( true );
@@ -1769,11 +1774,13 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         WorkItemHandler {
         private WorkItem workItem;
 
+        @Override
         public void executeWorkItem(WorkItem workItem,
                                     WorkItemManager manager) {
             this.workItem = workItem;
         }
 
+        @Override
         public void abortWorkItem(WorkItem workItem,
                                   WorkItemManager manager) {
         }
@@ -1907,7 +1914,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
                 + "   price : int\n"
                 + "   oldPrice : int\n"
                 + "end \n";
-        
+
         str += "rule rule1 \n";
         str += "  when \n";
         str += "    $c : Cheese1() \n";
@@ -1942,7 +1949,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  </insert>";
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
-        
+
         String inXml2 = "";
         inXml2 += "<batch-execution lookup=\"ksession2\" >";
         inXml2 += "  <insert out-identifier='outStilton'>";
@@ -1957,9 +1964,9 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
 
         KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
         setExec( ksession );
-        
+
         KieSession ksession2 = getKieSession( ResourceFactory.newByteArrayResource( str2.getBytes() ) );
-        
+
         setExec2( ksession2 );
 
         String outXml = template.requestBody( "direct:execWithLookup",
@@ -1972,16 +1979,16 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
                                                         outXml,
                                                         ExecutionResults.class );
         org.kie.api.definition.type.FactType fT = ksession.getKieBase().getFactType("org.kie.camel.testdomain","Cheese1");
-        
+
         int price = (Integer)fT.get(result.getValue( "outStilton" ), "price");
-        assertEquals( 30, 
+        assertEquals( 30,
                       price );
 
         FactHandle factHandle = (FactHandle) result.getFactHandle( "outStilton" );
 //        stilton = (Cheese) ksession.getObject( factHandle );
 //        assertEquals( 30,
 //                      stilton.getPrice() );
-        
+
         String outXml2 = template.requestBody( "direct:execWithLookup",
                                               inXml2,
                                               String.class );
@@ -1991,12 +1998,12 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         ExecutionResults result2 = template.requestBody( "direct:unmarshal",
                                                         outXml2,
                                                         ExecutionResults.class );
-        
+
         org.kie.api.definition.type.FactType fT2 = ksession2.getKieBase().getFactType("org.kie.camel.testdomain","Cheese2");
-        
+
         int price2 = (Integer)fT2.get(result2.getValue( "outStilton" ), "price");
         assertEquals( 35, price2 );
-        
+
 //        Cheese2 stilton2 = (Cheese2) result2.getValue( "outStilton" );
 //        assertEquals( 35,
 //                      stilton2.getPrice() );
@@ -2020,7 +2027,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "  </result>\n";
         expectedXml += "  <fact-handle identifier=\"outStilton\" external-form=\"" + ((InternalFactHandle) result.getFactHandle( "outStilton" )).toExternalForm() + "\" /> \n";
         expectedXml += "</execution-results>\n";
-        
+
         String expectedXml2 = "";
         expectedXml2 += "<execution-results>\n";
         expectedXml2 += "  <result identifier=\"outStilton\">\n";
@@ -2035,7 +2042,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
 
         assertXMLEqual( expectedXml,
                         outXml );
-        
+
         assertXMLEqual( expectedXml2,
                         outXml2 );
     }

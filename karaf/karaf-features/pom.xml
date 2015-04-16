@@ -59,7 +59,7 @@
         <version.org.apache.activemq.features>[5.9,6.0)</version.org.apache.activemq.features>
         <version.org.apache.camel.features>[2.14,3)</version.org.apache.camel.features>
         <version.org.apache.cxf.features>[3,4)</version.org.apache.cxf.features>
-        <version.org.hibernate.features>[4.2,4.3)</version.org.hibernate.features>
+        <version.org.hibernate.features>[4.2,4.4)</version.org.hibernate.features>
         <version.org.springframework.features>[3.2,4)</version.org.springframework.features>
 
 

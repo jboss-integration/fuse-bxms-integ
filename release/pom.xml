@@ -32,26 +32,9 @@
         <version.distro>2.0</version.distro>
     </properties>
    
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    <profiles>
-        <profile>
-            <id>eap</id>
-            <modules>
-                <module>jboss-as7</module>
-            </modules>
-        </profile>
-    </profiles>
     <modules>
-      <module>fuse-integration-package</module>
+      <module>standalone</module>
+      <module>eap</module>
+      <module>karaf</module>
     </modules>
 </project>

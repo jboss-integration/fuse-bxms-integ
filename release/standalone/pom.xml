@@ -17,32 +17,30 @@
 
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
-        <artifactId>fuse-integration-project</artifactId>
+        <artifactId>release-parent</artifactId>
         <version>1.0.0.redhat-SNAPSHOT</version>
-        <relativePath>../</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>karaf-parent</artifactId>
+    <artifactId>release-standalone-parent</artifactId>
     <packaging>pom</packaging>
 
-    <name>Fuse Integration: Karaf: Parent</name>
-    <description>Fuse BXMS Integration Modules Karaf Parent</description>
+    <name>Fuse Integration: Release: Standalone Parent</name>
+    <description>Fuse BXMS Integration Standalone Release Parent</description>
 
-    <modules>
-        <module>switchyard-component-common-knowledge-osgi</module>
-        <module>drools-osgi-integration</module>
-        <module>karaf-features</module>
-    </modules>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <configuration>
-                    <skip>false</skip>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
     </build>
- 
+    <modules>
+      <module>kie-standalone-package</module>
+    </modules>
 </project>
