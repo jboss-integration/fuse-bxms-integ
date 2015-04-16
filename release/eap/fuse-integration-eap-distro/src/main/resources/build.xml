@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Install S-RAMP from distro" default="install">
+<project name="Install Fuse Integration from distro" default="install">
 
   <property name="fuse-integration-distro.tempdir" location=".temp" />
 
   <target name="extract-packages">
     <mkdir dir="${fuse-integration-distro.tempdir}"/>
-    <!-- Unpack the s-ramp installer into the temp directory -->
+    <!-- Unpack the fuse integration into the temp directory -->
     <unzip src="lib/fuse-integration-eap-package.zip" dest="${fuse-integration-distro.tempdir}" overwrite="false" />
   </target>
 
 
- <!-- Install S-RAMP -->
+ <!-- Install Fuse Integration over EAP -->
   <target name="install">
      
     <echo message=" " />
