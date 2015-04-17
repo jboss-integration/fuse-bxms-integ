@@ -6,7 +6,7 @@
   <parent>
       <groupId>org.jboss.integration.fuse</groupId>
       <artifactId>release-standalone-parent</artifactId>
-      <version>1.0.0.redhat-SNAPSHOT</version>
+      <version>1.0.0.redhat-620018</version>
       <relativePath>../pom.xml</relativePath>
   </parent>
 
