@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Install Fuse Integration on FUSE" default="install">
+
+
+
+  <property name="fuse-integration-distro.tempdir" location=".temp" />
+
+
+
+ <!-- Install Fuse Integration over Fuse/karaf -->
+  <target name="install">
+     
+    <echo message=" " />
+    <echo message="#######################################################" />
+    <echo message="# Installing Fuse Integration over Fuse or Karaf      #" />
+    <echo message="#                                                     #" />
+    <echo message="#######################################################" />
+    <echo message=" " />
+   
+    <echo message=" Please tell us where Fuse 6.2 or Apache Karaf 2.4.0 is located (full path)." />
+    <echo message=" " />
+    <input message="Path to Fuse or Karaf: " addproperty="platform.karaf.path" />
+    
+    <antcall target="install-karaf" />  
+  </target>
+
+
+<target name="checkIsKarafPath">
+    <condition property="platform.karaf.path.valid">
+      <available file="karaf" filepath="${platform.karaf.path}/bin" />
+    </condition>
+</target>
+
+<target name="install-karaf" depends="checkIsKarafPath">
+
+    <fail message="Failed to find Fuse 6.2 or Apache Karaf at: ${platform.karaf.path}" 
+              unless="platform.karaf.path.valid" />
+
+
+    <echo message="Installing into: ${platform.karaf.path} " />
+  
+   <echo message="Copying quickstarts to the Karaf instance..." />
+  
+   <copy todir="${platform.karaf.path}/quickstarts" overwrite="true">  
+        <fileset dir="./quickstarts" includes="**"/>  
+   </copy>
+
+   <echo message="Copying libraries to the Karaf instance..." />
+   <copy todir="${platform.karaf.path}/system" overwrite="true">  
+        <fileset dir="./libraries" includes="**"/>  
+   </copy>
+
+  </target>
+
+
+
+
+
+</project>
