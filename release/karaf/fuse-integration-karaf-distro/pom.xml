@@ -33,13 +33,7 @@
         <distro.root.dir>/</distro.root.dir>
         <switchyard.jboss.home>${project.build.directory}${distro.root.dir}</switchyard.jboss.home>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.jboss.integration.fuse</groupId>
-            <artifactId>fuse-integration-eap-modules</artifactId>
-            <type>zip</type>
-        </dependency>
-    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -84,6 +78,65 @@
                     </execution>
                 </executions>
             </plugin>
+               <plugin>
+                   <groupId>org.apache.karaf.tooling</groupId>
+                   <artifactId>features-maven-plugin</artifactId>
+                   <version>2.4.0</version>
+                   <executions>
+                       <execution>
+                           <id>add-features-to-repo</id>
+                           <phase>generate-resources</phase>
+                           <goals>
+                               <goal>add-features-to-repo</goal>
+                           </goals>
+                           <configuration>
+                               <descriptors>
+                                <descriptor>mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features</descriptor>
+                                <descriptor>mvn:org.jboss.integration.fuse/karaf-features/${project.version}/xml/features</descriptor>
+                               </descriptors>
+                               <features>
+                                  <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
+                                  <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
+                                  <feature version="${project.version}">fuse-bxms-switchyard-quickstart-bpm-service</feature>
+                                  <feature version="${project.version}">fuse-bxms-switchyard-quickstart-rules-camel-cbr</feature>
+                                  <feature version="${project.version}">fuse-bxms-switchyard-quickstart-rules-interview</feature>
+                                  <feature version="${project.version}">fuse-bxms-switchyard-quickstart-rules-interview-container</feature>
+                                  <feature version="${project.version}">fuse-bxms-switchyard-quickstart-rules-interview-dtable</feature>
+                                  <feature version="${project.version}">fuse-bxms-switchyard-demo-library</feature>
+                                  <feature version="${project.version}">fuse-bxms-switchyard-demo-helpdesk</feature>
+                                  <!--feature version="${project.version}">drools5-camel</feature-->
+                                  <feature version="${project.version}">drools-decisiontable</feature>
+                                  <feature version="${project.version}">drools-jpa</feature>
+                                  <feature version="${project.version}">kie</feature>
+                                  <feature version="${project.version}">kie-ci</feature>
+                                  <feature version="${project.version}">kie-spring</feature>
+                                  <feature version="${project.version}">kie-aries-blueprint</feature>
+                                  <feature version="${project.version}">kie-camel</feature>
+                                  <feature version="${project.version}">jbpm-commons</feature>
+                                  <feature version="${project.version}">jbpm-human-task</feature>
+                                  <feature version="${project.version}">jbpm</feature>
+                                  <feature version="${project.version}">jbpm-example</feature>
+                                  <feature version="${project.version}">drools-decision-kie-blueprint-camel-example</feature>
+                                  <feature version="${project.version}">drools-decision-table-kie-spring-camel-example</feature>
+                                  <feature version="${project.version}">jbpm-spring-persistent</feature>
+                                  <feature version="${project.version}">droolsjbpm-hibernate</feature>
+                                  <feature version="${project.version}">hibernate-validator</feature>
+                                  <feature version="${project.version}">h2</feature>
+                               </features>
+                               <includeMvnBasedDescriptors>true</includeMvnBasedDescriptors>
+                               <repository>target/features-repo</repository>
+                           </configuration>
+                       </execution>
+                   </executions>
+                   <dependencies>
+                       <dependency>
+                           <groupId>org.apache.maven.wagon</groupId>
+                           <artifactId>wagon-http</artifactId>
+                           <version>2.8</version>
+                       </dependency>
+                   </dependencies>
+               </plugin>
+
         </plugins>
     </build>
 </project>

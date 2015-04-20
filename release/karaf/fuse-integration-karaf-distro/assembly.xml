@@ -28,7 +28,18 @@
             <outputDirectory>${distro.root.dir}</outputDirectory>
             <fileMode>644</fileMode>
             <directoryMode>755</directoryMode>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>fuse-integration</outputDirectory>
+            <filtered>true</filtered>
         </fileSet>	
+        <fileSet>
+            <directory>${project.build.directory}/features-repo</directory>
+            <outputDirectory>fuse-integration/libraries</outputDirectory>
+            <fileMode>644</fileMode>
+            <directoryMode>755</directoryMode>
+        </fileSet>
     </fileSets>
 
 </assembly>

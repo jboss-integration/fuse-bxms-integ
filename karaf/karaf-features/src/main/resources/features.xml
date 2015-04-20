@@ -37,7 +37,7 @@
     <bundle>mvn:org.drools/drools-templates/${version.org.drools}</bundle>
   </feature>
 
-  <feature name="drools5-spring" version="${version.org.drools}" description="Drools5 Spring">
+  <!--feature name="drools5-spring" version="${version.org.drools}" description="Drools5 Spring">
     <feature version="[3.0,4.0)">spring</feature>
     <bundle>mvn:org.drools/drools-spring-legacy5/${version.org.drools}</bundle>
   </feature>
@@ -47,11 +47,11 @@
     <feature version="${version.org.drools}">drools5-spring</feature>
     <feature version="${version.org.apache.camel}">camel</feature>
     <feature version="${version.org.apache.camel}">camel-cxf</feature>
-    <feature version="[2.6,3.0)">cxf-specs</feature>
-    <feature version="[2.6,3.0)">cxf-core</feature>
-    <feature version="[2.6,3.0)">cxf-jaxrs</feature>
+    <feature version="[2.6,3.2)">cxf-specs</feature>
+    <feature version="[2.6,3.2)">cxf-core</feature>
+    <feature version="[2.6,3.2)">cxf-jaxrs</feature>
     <bundle>mvn:org.drools/drools-camel-legacy5/${version.org.drools}</bundle>
-  </feature>
+  </feature-->
 
   <feature name="drools-decisiontable" description="Drools Decision Tables" version="${version.org.drools}">
     <feature version="${version.org.drools}">drools-module</feature>
@@ -100,9 +100,9 @@
     <feature version="${version.org.apache.camel}">camel-core</feature>
     <feature version="${version.org.apache.camel}">camel-spring</feature>
     <feature version="${version.org.apache.camel}">camel-cxf</feature>
-    <feature version="[2.6,3.0)">cxf-specs</feature>
-    <feature version="[2.6,3.0)">cxf-core</feature>
-    <feature version="[2.6,3.0)">cxf-jaxrs</feature>
+    <feature version="[2.6,3.2)">cxf-specs</feature>
+    <feature version="[2.6,3.2)">cxf-core</feature>
+    <feature version="[2.6,3.2)">cxf-jaxrs</feature>
     <bundle>mvn:org.kie/kie-camel/${version.org.drools}</bundle>
   </feature>
 
