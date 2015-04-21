@@ -21,22 +21,16 @@
         <format>zip</format>
     </formats>
 
-    <!-- We are not ready for domain config yet -->
     <fileSets>
         <fileSet>
-            <directory>${staging.jboss.dir}</directory>
-            <outputDirectory>${distro.root.dir}</outputDirectory>
+            <directory>${project.build.directory}/fuse-integration</directory>
+            <outputDirectory>/</outputDirectory>
             <fileMode>644</fileMode>
             <directoryMode>755</directoryMode>
         </fileSet>
         <fileSet>
-            <directory>src/main/resources</directory>
-            <outputDirectory>fuse-integration</outputDirectory>
-            <filtered>true</filtered>
-        </fileSet>	
-        <fileSet>
             <directory>${project.build.directory}/features-repo</directory>
-            <outputDirectory>fuse-integration/libraries</outputDirectory>
+            <outputDirectory>system</outputDirectory>
             <fileMode>644</fileMode>
             <directoryMode>755</directoryMode>
         </fileSet>

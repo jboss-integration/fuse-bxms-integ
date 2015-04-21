@@ -27,13 +27,6 @@
     <name>Fuse Integration: Release: Karaf Distro</name>
     <description>Fuse Integration: Release: Karaf Distro</description>
     
-    <properties>
-        <staging.dir>${project.build.directory}/jboss-switchyard</staging.dir>
-        <staging.jboss.dir>${staging.dir}/jboss-as-${version.org.jboss.as}</staging.jboss.dir>
-        <distro.root.dir>/</distro.root.dir>
-        <switchyard.jboss.home>${project.build.directory}${distro.root.dir}</switchyard.jboss.home>
-    </properties>
-
     <build>
         <plugins>
             <plugin>
@@ -54,7 +47,7 @@
                                     <version>${project.version}</version>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${staging.jboss.dir}/fuse-integration</outputDirectory>
+                            <outputDirectory>${project.build.directory}/fuse-integration</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -81,7 +74,7 @@
                <plugin>
                    <groupId>org.apache.karaf.tooling</groupId>
                    <artifactId>features-maven-plugin</artifactId>
-                   <version>2.4.0</version>
+                   <version>2.4.0.redhat-620106</version>
                    <executions>
                        <execution>
                            <id>add-features-to-repo</id>
@@ -91,39 +84,30 @@
                            </goals>
                            <configuration>
                                <descriptors>
-                                <descriptor>mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features</descriptor>
                                 <descriptor>mvn:org.jboss.integration.fuse/karaf-features/${project.version}/xml/features</descriptor>
+                                <descriptor>mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features</descriptor>
+                                <descriptor>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</descriptor>
+                                <descriptor>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features</descriptor>
                                </descriptors>
                                <features>
-                                  <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
-                                  <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
-                                  <feature version="${project.version}">fuse-bxms-switchyard-quickstart-bpm-service</feature>
-                                  <feature version="${project.version}">fuse-bxms-switchyard-quickstart-rules-camel-cbr</feature>
-                                  <feature version="${project.version}">fuse-bxms-switchyard-quickstart-rules-interview</feature>
-                                  <feature version="${project.version}">fuse-bxms-switchyard-quickstart-rules-interview-container</feature>
-                                  <feature version="${project.version}">fuse-bxms-switchyard-quickstart-rules-interview-dtable</feature>
-                                  <feature version="${project.version}">fuse-bxms-switchyard-demo-library</feature>
-                                  <feature version="${project.version}">fuse-bxms-switchyard-demo-helpdesk</feature>
-                                  <!--feature version="${project.version}">drools5-camel</feature-->
-                                  <feature version="${project.version}">drools-decisiontable</feature>
-                                  <feature version="${project.version}">drools-jpa</feature>
-                                  <feature version="${project.version}">kie</feature>
-                                  <feature version="${project.version}">kie-ci</feature>
-                                  <feature version="${project.version}">kie-spring</feature>
-                                  <feature version="${project.version}">kie-aries-blueprint</feature>
-                                  <feature version="${project.version}">kie-camel</feature>
-                                  <feature version="${project.version}">jbpm-commons</feature>
-                                  <feature version="${project.version}">jbpm-human-task</feature>
-                                  <feature version="${project.version}">jbpm</feature>
-                                  <feature version="${project.version}">jbpm-example</feature>
-                                  <feature version="${project.version}">drools-decision-kie-blueprint-camel-example</feature>
-                                  <feature version="${project.version}">drools-decision-table-kie-spring-camel-example</feature>
-                                  <feature version="${project.version}">jbpm-spring-persistent</feature>
-                                  <feature version="${project.version}">droolsjbpm-hibernate</feature>
-                                  <feature version="${project.version}">hibernate-validator</feature>
-                                  <feature version="${project.version}">h2</feature>
+                                   
+                                  <feature>fuse-bxms-switchyard-common-knowledge/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-rules/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-bpm/${project.version}</feature>
+                                  
+                                  <!--
+                                  <feature>fuse-bxms-switchyard-quickstart-bpm-service/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-quickstart-rules-camel-cbr/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-quickstart-rules-interview/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-quickstart-rules-interview-container/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-quickstart-rules-interview-dtable/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-demo-library/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-demo-helpdesk/${project.version}</feature>
+                                  -->
+                                  
                                </features>
-                               <includeMvnBasedDescriptors>true</includeMvnBasedDescriptors>
+                               <blackList></blackList>
+                               <addTransitiveFeatures>false</addTransitiveFeatures>
                                <repository>target/features-repo</repository>
                            </configuration>
                        </execution>
