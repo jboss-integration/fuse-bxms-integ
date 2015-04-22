@@ -33,6 +33,8 @@
 </xsl:template>
 
 
+
+
 <xsl:template match="//*[local-name()='subsystem' and contains(namespace-uri(),'urn:jboss:domain:switchyard')]/*[local-name()='modules']">
     <xsl:choose>
       <xsl:when test="not(sy:module[@identifier='org.switchyard.component.bpm']) and not(sy:module[@identifier='org.switchyard.component.rules'])">

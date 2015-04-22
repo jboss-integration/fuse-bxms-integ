@@ -39,7 +39,7 @@
 	            <index>true</index>
 	            <manifest>
 	                <addClasspath>true</addClasspath>
-	                <mainClass>org.jboss.integration.fuse.xslt.XSLTransformerMain</mainClass>
+	                <mainClass>org.jboss.integration.fuse.xslt.ConfigMain</mainClass>
 	            </manifest>
 	        </archive>
 	    </configuration>

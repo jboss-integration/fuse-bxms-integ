@@ -32,32 +32,10 @@
     </xsl:copy>
 </xsl:template>
 
+<xsl:template match="//*[local-name()='subsystem' and contains(namespace-uri(),'urn:jboss:domain:switchyard')]/*[local-name()='modules']/sy:module[@identifier='org.switchyard.component.bpm']">
+</xsl:template>
 
-<xsl:template match="//*[local-name()='subsystem' and contains(namespace-uri(),'urn:jboss:domain:switchyard')]/*[local-name()='modules']">
-    <xsl:choose>
-      <xsl:when test="sy:module[@identifier='org.switchyard.component.bpm'] and sy:module[@identifier='org.switchyard.component.rules']">
-         <xsl:copy>
-		<xsl:apply-templates select="@*|node()"/>
-        </xsl:copy> 
-      </xsl:when>
-       <xsl:when test="sy:module[@identifier='org.switchyard.component.bpm']">
-         <xsl:copy>
-		<xsl:apply-templates select="@*|node()"/>
-        </xsl:copy> 
-      </xsl:when>
-      <xsl:when test="sy:module[@identifier='org.switchyard.component.rules']">
-         <xsl:copy>
-		<xsl:apply-templates select="@*|node()"/>
-        </xsl:copy>      
-
-      </xsl:when>
-      <!-- Otherwise, we need to insert the jacc api dependency -->
-      <xsl:otherwise>
-        <xsl:copy>
-          <xsl:apply-templates select="@*|node()|text()" />
-        </xsl:copy>       
-      </xsl:otherwise>
-    </xsl:choose>
+<xsl:template match="//*[local-name()='subsystem' and contains(namespace-uri(),'urn:jboss:domain:switchyard')]/*[local-name()='modules']/sy:module[@identifier='org.switchyard.component.rules']">
 </xsl:template>
 
 </xsl:stylesheet>
