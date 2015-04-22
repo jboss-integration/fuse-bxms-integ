@@ -287,6 +287,24 @@
                             <outputDirectory>${temp.fuse.integration.unpack}</outputDirectory>
                         </configuration>
 		   </execution>
+		   <execution>
+                        <id>unpack-xslt-templates</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.jboss.integration.fuse</groupId>
+                                    <artifactId>fuse-integration-eap-xslt</artifactId>
+                                    <type>jar</type>
+                                    <version>${project.version}</version>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${temp.fuse.integration.unpack}</outputDirectory>
+                        </configuration>
+		   </execution>
 	       </executions>
             </plugin>
 	   <plugin>
@@ -339,7 +357,7 @@
                                 <include>standalone-full.xml</include>
                             </includes>
                             <outputDir>${eap.home}/standalone/configuration</outputDir>
-                            <stylesheet>${eap.home}/xsl/standalone.xsl</stylesheet>
+                            <stylesheet>${eap.home}/xsl/standalone_enable.xsl</stylesheet>
                         </transformationSet>
                         <transformationSet>
                             <dir>${eap.home}/domain/configuration</dir>
@@ -347,7 +365,7 @@
                                 <include>domain.xml</include>
                             </includes>
                             <outputDir>${eap.home}/domain/configuration</outputDir>
-                            <stylesheet>${eap.home}/xsl/domain.xsl</stylesheet>
+                            <stylesheet>${eap.home}/xsl/domain_enable.xsl</stylesheet>
                         </transformationSet>
                     </transformationSets>
                 </configuration>

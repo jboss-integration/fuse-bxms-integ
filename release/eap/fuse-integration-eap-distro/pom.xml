@@ -36,6 +36,10 @@
             <artifactId>fuse-integration-eap-package</artifactId>
             <type>zip</type>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.integration.fuse</groupId>
+            <artifactId>fuse-integration-eap-xslt</artifactId>
+        </dependency>
     </dependencies>
     <build>
        <resources>

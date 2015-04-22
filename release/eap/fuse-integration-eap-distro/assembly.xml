@@ -21,30 +21,35 @@
         <format>zip</format>
     </formats>
 
-    <!-- We are not ready for domain config yet -->
-    <fileSets>
-        <fileSet>
-            <directory>src/main/resources</directory>
-            <outputDirectory>fuse-integration-eap-distro-${project.version}/</outputDirectory>
-            <filtered>true</filtered>
-        </fileSet>
-    </fileSets>
 
  <dependencySets>
-  	<dependencySet>
-      <outputDirectory>fuse-integration-eap-distro-${project.version}/lib</outputDirectory>
+    <dependencySet>
+      <outputDirectory>/</outputDirectory>
       <includes>
         <include>org.jboss.integration.fuse:fuse-integration-eap-package:zip</include>      
       </includes>
-      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <useProjectArtifact>false</useProjectArtifact>
       <useProjectAttachments>false</useProjectAttachments>
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <useTransitiveFiltering>false</useTransitiveFiltering>
       <directoryMode>0755</directoryMode>
       <fileMode>0755</fileMode>
-    </dependencySet>
-  
+      <unpack>true</unpack>
+   </dependencySet>
+    <dependencySet>
+      <outputDirectory>/bin</outputDirectory>
+      <includes>
+        <include>org.jboss.integration.fuse:fuse-integration-eap-xslt:jar</include>      
+      </includes>
+      <outputFileNameMapping>integration-package-config.${artifact.extension}</outputFileNameMapping>
+      <useProjectArtifact>false</useProjectArtifact>
+      <useProjectAttachments>false</useProjectAttachments>
+      <useTransitiveDependencies>false</useTransitiveDependencies>
+      <useTransitiveFiltering>false</useTransitiveFiltering>
+      <directoryMode>0755</directoryMode>
+      <fileMode>0755</fileMode>
+   </dependencySet>
+
   </dependencySets>
 
 </assembly>
