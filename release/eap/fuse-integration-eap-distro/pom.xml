@@ -33,9 +33,15 @@
     <dependencies>
         <dependency>
             <groupId>org.jboss.integration.fuse</groupId>
-            <artifactId>fuse-integration-eap-package</artifactId>
+            <artifactId>fuse-integration-eap-modules</artifactId>
             <type>zip</type>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.integration.fuse.quickstarts</groupId>
+            <artifactId>fuse-integration-quickstarts-eap</artifactId>
+            <type>zip</type>
+        </dependency>
+
         <dependency>
             <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>fuse-integration-eap-xslt</artifactId>

@@ -24,9 +24,25 @@
 
  <dependencySets>
     <dependencySet>
-      <outputDirectory>/</outputDirectory>
+      <outputDirectory>/modules</outputDirectory>
       <includes>
-        <include>org.jboss.integration.fuse:fuse-integration-eap-package:zip</include>      
+        <include>org.jboss.integration.fuse:fuse-integration-eap-modules:zip</include>      
+      </includes>
+      <useProjectArtifact>false</useProjectArtifact>
+      <useProjectAttachments>false</useProjectAttachments>
+      <useTransitiveDependencies>false</useTransitiveDependencies>
+      <useTransitiveFiltering>false</useTransitiveFiltering>
+      <directoryMode>0755</directoryMode>
+      <fileMode>0755</fileMode>
+      <unpack>true</unpack>
+      <excludes>
+          <exclude>META-INF/*</exclude>
+       </excludes>
+   </dependencySet>
+    <dependencySet>
+      <outputDirectory>/quickstarts/fuse-integration</outputDirectory>
+      <includes>
+        <include>org.jboss.integration.fuse.quickstarts:fuse-integration-quickstarts-eap:zip</include>      
       </includes>
       <useProjectArtifact>false</useProjectArtifact>
       <useProjectAttachments>false</useProjectAttachments>

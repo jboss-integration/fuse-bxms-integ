@@ -51,7 +51,6 @@
                         </goals>
                         <configuration>
                             <appendAssemblyId>false</appendAssemblyId>
-                            <finalName>switchyard.deployer</finalName>
                             <descriptors>
                                 <descriptor>${basedir}/assembly.xml</descriptor>
                             </descriptors>

@@ -479,15 +479,15 @@
                 <type>zip</type>
             </dependency>
             <dependency>
+                <groupId>org.jboss.integration.fuse.quickstarts</groupId>
+                <artifactId>fuse-integration-quickstarts-eap</artifactId>
+                <version>${project.version}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
                 <groupId>org.switchyard</groupId>
                 <artifactId>switchyard-as7-standalone-bundle</artifactId>
                 <version>${version.switchyard}</version>
-                <type>zip</type>
-            </dependency>
- 	          <dependency>
-                <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>fuse-integration-eap-package</artifactId>
-                <version>${project.version}</version>
                 <type>zip</type>
             </dependency>
  	    <dependency>
