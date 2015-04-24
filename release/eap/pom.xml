@@ -29,7 +29,7 @@
 
     <modules>
         <module>fuse-integration-eap-modules</module>
-        <module>fuse-integration-eap-xslt</module>
+        <module>fuse-integration-config</module>
         <module>fuse-integration-eap-distro</module>
         <module>fuse-integration-eap-tests</module>
     </modules>

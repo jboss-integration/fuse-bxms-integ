@@ -24,7 +24,7 @@
 
  <dependencySets>
     <dependencySet>
-      <outputDirectory>/modules</outputDirectory>
+      <outputDirectory>/</outputDirectory>
       <includes>
         <include>org.jboss.integration.fuse:fuse-integration-eap-modules:zip</include>      
       </includes>
@@ -55,9 +55,9 @@
     <dependencySet>
       <outputDirectory>/bin</outputDirectory>
       <includes>
-        <include>org.jboss.integration.fuse:fuse-integration-eap-xslt:jar</include>      
+        <include>org.jboss.integration.fuse:fuse-integration-config:jar</include>
       </includes>
-      <outputFileNameMapping>integration-package-config.${artifact.extension}</outputFileNameMapping>
+      <outputFileNameMapping>fuse-integration-config.jar</outputFileNameMapping>
       <useProjectArtifact>false</useProjectArtifact>
       <useProjectAttachments>false</useProjectAttachments>
       <useTransitiveDependencies>false</useTransitiveDependencies>

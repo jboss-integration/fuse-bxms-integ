@@ -41,10 +41,9 @@
             <artifactId>fuse-integration-quickstarts-eap</artifactId>
             <type>zip</type>
         </dependency>
-
         <dependency>
             <groupId>org.jboss.integration.fuse</groupId>
-            <artifactId>fuse-integration-eap-xslt</artifactId>
+            <artifactId>fuse-integration-config</artifactId>
         </dependency>
     </dependencies>
     <build>

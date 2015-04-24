@@ -40,6 +40,7 @@
 
   <properties>
         <version.jboss.integration>1.0.0-SNAPSHOT</version.jboss.integration>
+        <version.fuse.eap>6.2.0-SNAPSHOT</version.fuse.eap>
 
         <!-- Internal dependencies -->
         <version.org.kie>6.2.0.Final</version.org.kie>
@@ -411,6 +412,12 @@
         <version>${version.org.apache.cxf}</version>
       </dependency>
 
+       <dependency>
+         <groupId>com.redhat.fuse</groupId>
+         <artifactId>fuse-eap-config</artifactId>
+         <version>${version.fuse.eap}</version>
+       </dependency>
+
       <dependency>
         <groupId>org.mvel</groupId>
         <artifactId>mvel2</artifactId>
@@ -484,16 +491,18 @@
                 <version>${project.version}</version>
                 <type>zip</type>
             </dependency>
+
+            <dependency>
+               <groupId>org.jboss.integration.fuse</groupId>
+               <artifactId>fuse-integration-config</artifactId>
+               <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.switchyard</groupId>
                 <artifactId>switchyard-as7-standalone-bundle</artifactId>
                 <version>${version.switchyard}</version>
                 <type>zip</type>
-            </dependency>
- 	    <dependency>
-                <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>fuse-integration-eap-xslt</artifactId>
-                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
