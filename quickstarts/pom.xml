@@ -48,6 +48,6 @@
         <module>spring-jbpm-osgi-example</module>
         <module>fuse-integration-quickstarts-eap</module>
         <module>fuse-integration-quickstarts-karaf</module>
+        <module>karaf-features</module>
     </modules>
-
 </project>

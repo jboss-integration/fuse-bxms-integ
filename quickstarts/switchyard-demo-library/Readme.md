@@ -50,7 +50,7 @@ ${KARAF_HOME}/bin/karaf
 2. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
 with the version of Fuse BXMS Integration that you are using (ex. 1.0.0): 
 
-karaf@root> features:addurl mvn:org.jboss.integration.fuse/karaf-features/${FUSE_BXMS_VERSION}/xml/features
+karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
 
 
 3. Install the feature for the Switchyard library Demo quickstart :

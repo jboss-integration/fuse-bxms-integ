@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<features name="karaf-features-karaf-${project.version}">
+
+    <repository>mvn:org.jboss.integration.fuse/karaf-features/${project.version}/xml/features</repository>
+
+
+
+    <!-- Switchyard Quickstarts -->
+    <feature name="fuse-bxms-switchyard-quickstart-bpm-service" version="${project.version}" resolver="(obr)">
+        <feature version="${version.switchyard}">switchyard-bean</feature>
+        <feature version="${version.switchyard}">switchyard-soap</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-bpm-service/${project.version}</bundle>
+    </feature>
+    <feature name="fuse-bxms-switchyard-quickstart-remote-invoker" version="${project.version}" resolver="(obr)">
+        <feature version="${version.switchyard}">switchyard-bean</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
+        <feature version="${version.switchyard}">switchyard-sca</feature>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-remote-invoker/${project.version}</bundle>
+    </feature>
+    <feature name="fuse-bxms-switchyard-quickstart-rules-camel-cbr" version="${project.version}" resolver="(obr)">
+        <feature version="${version.switchyard}">switchyard-bean</feature>
+        <feature version="${version.switchyard}">switchyard-camel</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
+        <feature version="${version.switchyard}">switchyard-sca</feature>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-camel-cbr/${project.version}</bundle>
+    </feature>
+    <feature name="fuse-bxms-switchyard-quickstart-rules-interview" version="${project.version}" resolver="(obr)">
+        <feature version="${version.switchyard}">switchyard-bean</feature>
+        <feature version="${version.switchyard}">switchyard-soap</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-interview/${project.version}</bundle>
+    </feature>
+    <feature name="fuse-bxms-switchyard-quickstart-rules-interview-container" version="${project.version}" resolver="(obr)">
+        <feature version="${version.switchyard}">switchyard-bean</feature>
+        <feature version="${version.switchyard}">switchyard-soap</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-interview-container/${project.version}</bundle>
+    </feature>
+    <feature name="fuse-bxms-switchyard-quickstart-rules-interview-dtable" version="${project.version}" resolver="(obr)">
+        <feature version="${version.switchyard}">switchyard-bean</feature>
+        <feature version="${version.switchyard}">switchyard-soap</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-interview-dtable/${project.version}</bundle>
+    </feature>
+    <feature name="fuse-bxms-switchyard-demo-library" version="${project.version}" resolver="(obr)">
+        <feature version="${version.switchyard}">switchyard-soap</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-demo-library/${project.version}</bundle>
+    </feature>
+    <!-- XXX: this needs some love -->
+    <feature name="fuse-bxms-switchyard-demo-helpdesk" version="${project.version}" resolver="(obr)">
+        <!-- hibernate must be before bpm -->
+        <feature version="${version.switchyard}">switchyard-bean</feature>
+        <feature version="${version.switchyard}">switchyard-soap</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
+
+        <!-- jbpm-kie-services needs to export org.jbpm.kie.services.impl.model for Serviceorm.xml...
+        <bundle dependency="true">mvn:org.jbpm/jbpm-shared-services/${version.org.jbpm}</bundle>
+        <bundle dependency="true">mvn:org.jbpm/jbpm-services-api/${version.org.jbpm}</bundle>
+        <bundle dependency="true">wrap:mvn:org.scannotation/scannotation/${version.org.scannotation}</bundle>
+        <bundle dependency="true">mvn:org.jbpm/jbpm-kie-services/${version.org.jbpm}</bundle>
+         -->
+
+        <!-- cdi web support -->
+        <feature version="${version.org.ops4j.pax.cdi}">pax-cdi-1.2-web-weld</feature>
+
+        <!-- Database support -->        
+        <bundle>mvn:com.h2database/h2/${version.com.h2database}</bundle>
+
+        <!-- JSF Dependencies -->
+        <bundle dependency="true">mvn:commons-collections/commons-collections/${version.commons-collections}</bundle>
+        <bundle dependency="true">mvn:commons-codec/commons-codec/${version.commons-codec}</bundle>
+        <bundle dependency="true">mvn:commons-beanutils/commons-beanutils/${version.commons-beanutils}</bundle>
+        <bundle dependency="true">mvn:commons-digester/commons-digester/${version.commons-digester}</bundle>
+        <bundle dependency="true">mvn:org.apache.myfaces.core/myfaces-bundle/${version.org.apache.myfaces.core.myfaces-bundle}</bundle>
+        <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-validation_1.0_spec/${version.org.apache.geronimo.specs.geronimo-validation_1.0_spec}</bundle>
+        
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-demo-helpdesk/${project.version}/war</bundle>
+    </feature>
+
+</features>

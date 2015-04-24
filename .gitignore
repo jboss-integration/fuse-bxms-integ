@@ -1,6 +1,7 @@
 /target
 /local
 *.tlog
+dependency-reduced-pom.xml
 
 # Eclipse, Netbeans and IntelliJ files
 /nbproject
@@ -16,3 +17,4 @@
 .DS_Store
 target/
 bin/
+

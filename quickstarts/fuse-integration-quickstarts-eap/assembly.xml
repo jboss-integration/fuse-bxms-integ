@@ -74,6 +74,7 @@
                 <include>pom.xml</include>
             </includes>
 	    <outputDirectory>/quickstarts</outputDirectory>
+            <filtered>true</filtered>
         </fileSet>
     </fileSets>
 
