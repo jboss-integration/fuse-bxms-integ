@@ -18,7 +18,7 @@
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>fuse-integration-karaf-tests</artifactId>
-        <version>1.0.0.redhat-SNAPSHOT</version>
+        <version>1.0.0.redhat-620117</version>
         <relativePath>../</relativePath>
     </parent>
 
