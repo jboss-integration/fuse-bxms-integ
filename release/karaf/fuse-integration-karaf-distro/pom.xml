@@ -74,7 +74,7 @@
                <plugin>
                    <groupId>org.apache.karaf.tooling</groupId>
                    <artifactId>features-maven-plugin</artifactId>
-                   <version>2.4.0.redhat-620106</version>
+                   <version>2.4.0.redhat-620099</version>
                    <executions>
                        <execution>
                            <id>add-features-to-repo</id>
