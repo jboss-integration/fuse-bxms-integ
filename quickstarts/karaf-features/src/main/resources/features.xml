@@ -2,9 +2,7 @@
 <features name="karaf-features-karaf-${project.version}">
 
     <repository>mvn:org.jboss.integration.fuse/karaf-features/${project.version}/xml/features</repository>
-
-
-
+    
     <!-- Switchyard Quickstarts -->
     <feature name="fuse-bxms-switchyard-quickstart-bpm-service" version="${project.version}" resolver="(obr)">
         <feature version="${version.switchyard}">switchyard-bean</feature>
@@ -78,6 +76,14 @@
         <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-validation_1.0_spec/${version.org.apache.geronimo.specs.geronimo-validation_1.0_spec}</bundle>
         
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-demo-helpdesk/${project.version}/war</bundle>
+    </feature>
+    
+    <feature name="drools-decision-table-kie-blueprint-camel-example" version="${project.version}" resolver="(obr)">
+        <feature version="${version.org.drools}">drools-module</feature>
+        <feature version="${version.org.drools}">drools-decisiontable</feature>
+        <feature version="${version.org.drools}">kie-aries-blueprint</feature>
+        <feature version="${version.org.drools}">kie-camel</feature>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/blueprint-camel-drools-decision-table-example/${project.version}</bundle>
     </feature>
 
 </features>
