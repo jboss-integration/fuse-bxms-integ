@@ -13,7 +13,7 @@
     <artifactId>blueprint-camel-drools-decision-table</artifactId>
     <packaging>bundle</packaging>
 
-    <name>Fuse Integration: Quickstarts: Drools &amp; Decision Table :: OSGi Kie Blueprint Camel</name>
+    <name>Fuse Integration: Quickstarts: Drools &amp; Decision Table using Kie Aries Blueprint</name>
 
     <dependencies>
         <dependency>

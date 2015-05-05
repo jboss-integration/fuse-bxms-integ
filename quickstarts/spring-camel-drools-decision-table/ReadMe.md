@@ -18,7 +18,7 @@ In the console, use the following commands
     features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
     features:install fuse-bxms-camel-spring-drools-decision-table-camel
 
-To see the results tail the Fuse ESB log
+To see the results tail the JBoss Fuse log
 
     tail -f <JBoss Fuse Home> 
     
