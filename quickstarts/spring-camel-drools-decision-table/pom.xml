@@ -9,10 +9,10 @@
       <relativePath>../</relativePath>
   </parent> 
   
-  <artifactId>spring-camel-drools-decision-table-example</artifactId>
+  <artifactId>spring-camel-drools-decision-table</artifactId>
   <packaging>bundle</packaging>
 
-  <name>Fuse Integration: Quickstarts: Drools &amp; Decision Table :: OSGi Kie Spring Camel Example</name>
+  <name>Fuse Integration: Quickstarts: Drools &amp; Decision Table :: OSGi Kie Spring Camel</name>
 
   <dependencies>
 

@@ -1,5 +1,5 @@
-Drools-Blueprint-Camel Example
-==============================
+Drools-Blueprint-Camel Quickstart
+=================================
 
 To build this project use
 
@@ -16,7 +16,7 @@ Start JBoss Fuse
 In the console, use the following commands
 
     features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
-    features:install drools-decision-table-kie-blueprint-camel-example
+    features:install fuse-bxms-camel-blueprint-drools-decision-table
 
 To see the results tail the Fuse ESB log
 
