@@ -78,12 +78,12 @@
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-demo-helpdesk/${project.version}/war</bundle>
     </feature>
     
-    <feature name="drools-decision-table-kie-blueprint-camel-example" version="${project.version}" resolver="(obr)">
+    <feature name="drools-decision-table-kie-blueprint-camel" version="${project.version}" resolver="(obr)">
         <feature version="${version.org.drools}">drools-module</feature>
         <feature version="${version.org.drools}">drools-decisiontable</feature>
         <feature version="${version.org.drools}">kie-aries-blueprint</feature>
         <feature version="${version.org.drools}">kie-camel</feature>
-        <bundle>mvn:org.jboss.integration.fuse.quickstarts/blueprint-camel-drools-decision-table-example/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/blueprint-camel-drools-decision-table/${project.version}</bundle>
     </feature>
 
 </features>
