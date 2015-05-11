@@ -4,6 +4,18 @@
     <repository>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</repository>
     <repository>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features</repository>
 
+    <feature name="kie-camel" version="${version.org.drools}">
+        <feature version="${version.org.drools}">kie-spring</feature>
+        <feature version="${version.org.drools}">jbpm</feature>
+        <feature>camel-core</feature>
+        <feature>camel-spring</feature>
+        <feature>camel-cxf</feature>
+        <feature version="[2.6,3.0)">cxf-specs</feature>
+        <feature version="[2.6,3.0)">cxf-core</feature>
+        <feature version="[2.6,3.0)">cxf-jaxrs</feature>
+        <bundle>mvn:org.kie/kie-camel/${version.org.drools}</bundle>
+    </feature>
+
     <feature name="fuse-bxms-switchyard-common-knowledge" version="${project.version}" resolver="(obr)">
         <feature>jndi</feature>
         <feature version="${version.org.hibernate.features}">hibernate</feature>
