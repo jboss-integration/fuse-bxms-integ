@@ -13,17 +13,6 @@
  */
 package org.switchyard.component.common.knowledge.config.builder;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Properties;
-import java.util.Set;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
 import org.drools.core.command.runtime.BatchExecutionCommandImpl;
 import org.kie.api.runtime.manager.RuntimeEngine;
 import org.kie.remote.client.api.RemoteJmsRuntimeEngineBuilder;
@@ -40,6 +29,16 @@ import org.switchyard.component.common.knowledge.config.model.ExtraJaxbClassesMo
 import org.switchyard.component.common.knowledge.config.model.RemoteJmsModel;
 import org.switchyard.component.common.knowledge.config.model.RemoteModel;
 import org.switchyard.component.common.knowledge.config.model.RemoteRestModel;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Properties;
+import java.util.Set;
 
 /**
  * RemoteConfigurationBuilder.
@@ -172,7 +171,6 @@ public class RemoteConfigurationBuilder extends KnowledgeBuilder {
         } catch (MalformedURLException mue) {
             throw new RuntimeException(mue);
         }
-        builder.useFormBasedAuth(model.isUseFormBasedAuth());
     }
 
     private void configRemote(RemoteRuntimeEngineBuilder<?, ?> builder, RemoteModel model) {
