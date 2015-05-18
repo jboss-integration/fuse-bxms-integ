@@ -40,7 +40,6 @@
 
   <properties>
         <version.jboss.integration>1.0.0.redhat-SNAPSHOT</version.jboss.integration>
-        <version.jboss.integration>1.0.0-SNAPSHOT</version.jboss.integration>
         <version.fuse.eap>6.2.0-SNAPSHOT</version.fuse.eap>
 
         <!-- Internal dependencies -->
