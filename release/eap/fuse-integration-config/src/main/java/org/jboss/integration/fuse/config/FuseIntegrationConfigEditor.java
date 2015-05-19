@@ -15,13 +15,18 @@
  */
 package org.jboss.integration.fuse.config;
 
+import java.util.Arrays;
 import java.util.List;
 
 import de.pdark.decentxml.Document;
 import de.pdark.decentxml.Element;
 import de.pdark.decentxml.Text;
 import org.jboss.fuse.eap.config.ConfigEditor;
+import org.jboss.fuse.eap.config.LayerConfig;
+
 import static org.jboss.fuse.eap.config.ConfigSupport.*;
+import static org.jboss.fuse.eap.config.LayerConfig.Type.INSTALLING;
+import static org.jboss.fuse.eap.config.LayerConfig.Type.REQUIRED;
 
 /**
  */
@@ -74,5 +79,12 @@ public class FuseIntegrationConfigEditor implements ConfigEditor
       }
    }
 
-
+    @Override
+    public List<LayerConfig> getLayerConfigs() {
+        return Arrays.asList(
+            new LayerConfig("fuse", REQUIRED, -10),
+            new LayerConfig("bpms", INSTALLING, -9),
+            new LayerConfig("soa", REQUIRED, -8)
+        );
+    }
 }

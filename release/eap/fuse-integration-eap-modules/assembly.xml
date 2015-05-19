@@ -22,14 +22,6 @@
         <format>zip</format>
     </formats>
 
-    <files>
-        <file>
-            <source>src/main/resources/layers.conf</source>
-            <outputDirectory>/modules</outputDirectory>
-            <filtered>false</filtered>
-        </file>
-    </files>
-
     <componentDescriptors>
 
       <!-- FROM: src/main/resources/switchyard/components/assembly.xml -->
