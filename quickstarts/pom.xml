@@ -38,6 +38,7 @@
         <module>switchyard-bpm-service</module>
         <module>switchyard-rules-camel-cbr</module>
         <module>switchyard-rules-interview</module>
+        <module>switchyard-rules-multithreaded</module>
         <module>switchyard-rules-interview-container</module>
         <module>switchyard-rules-interview-dtable</module>
         <module>switchyard-demo-helpdesk</module>

@@ -47,6 +47,13 @@
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-demo-library/${project.version}</bundle>
     </feature>
+
+    <feature name="fuse-bxms-switchyard-quickstart-rules-multithread" version="${project.version}" resolver="(obr)">
+        <feature version="${version.switchyard}">switchyard-rest</feature>
+        <feature version="${version.switchyard}">switchyard-bean</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-multithreaded/${project.version}</bundle>
+    </feature>
     <!-- XXX: this needs some love -->
     <feature name="fuse-bxms-switchyard-demo-helpdesk" version="${project.version}" resolver="(obr)">
         <!-- hibernate must be before bpm -->
