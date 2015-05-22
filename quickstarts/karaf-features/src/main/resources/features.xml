@@ -5,60 +5,60 @@
     
     <!-- Switchyard Quickstarts -->
     <feature name="fuse-bxms-switchyard-quickstart-bpm-service" version="${project.version}" resolver="(obr)">
-        <feature version="${version.switchyard}">switchyard-bean</feature>
-        <feature version="${version.switchyard}">switchyard-soap</feature>
+        <feature>switchyard-bean</feature>
+        <feature>switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-bpm-service/${project.version}</bundle>
     </feature>
     <feature name="fuse-bxms-switchyard-quickstart-remote-invoker" version="${project.version}" resolver="(obr)">
-        <feature version="${version.switchyard}">switchyard-bean</feature>
+        <feature>switchyard-bean</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
-        <feature version="${version.switchyard}">switchyard-sca</feature>
+        <feature>switchyard-sca</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-remote-invoker/${project.version}</bundle>
     </feature>
     <feature name="fuse-bxms-switchyard-quickstart-rules-camel-cbr" version="${project.version}" resolver="(obr)">
-        <feature version="${version.switchyard}">switchyard-bean</feature>
-        <feature version="${version.switchyard}">switchyard-camel</feature>
+        <feature>switchyard-bean</feature>
+        <feature>switchyard-camel</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
-        <feature version="${version.switchyard}">switchyard-sca</feature>
+        <feature>switchyard-sca</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-camel-cbr/${project.version}</bundle>
     </feature>
     <feature name="fuse-bxms-switchyard-quickstart-rules-interview" version="${project.version}" resolver="(obr)">
-        <feature version="${version.switchyard}">switchyard-bean</feature>
-        <feature version="${version.switchyard}">switchyard-soap</feature>
+        <feature>switchyard-bean</feature>
+        <feature>switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-interview/${project.version}</bundle>
     </feature>
     <feature name="fuse-bxms-switchyard-quickstart-rules-interview-container" version="${project.version}" resolver="(obr)">
-        <feature version="${version.switchyard}">switchyard-bean</feature>
-        <feature version="${version.switchyard}">switchyard-soap</feature>
+        <feature>switchyard-bean</feature>
+        <feature>switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-interview-container/${project.version}</bundle>
     </feature>
     <feature name="fuse-bxms-switchyard-quickstart-rules-interview-dtable" version="${project.version}" resolver="(obr)">
-        <feature version="${version.switchyard}">switchyard-bean</feature>
-        <feature version="${version.switchyard}">switchyard-soap</feature>
+        <feature>switchyard-bean</feature>
+        <feature>switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-interview-dtable/${project.version}</bundle>
     </feature>
     <feature name="fuse-bxms-switchyard-demo-library" version="${project.version}" resolver="(obr)">
-        <feature version="${version.switchyard}">switchyard-soap</feature>
+        <feature>switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-demo-library/${project.version}</bundle>
     </feature>
 
     <feature name="fuse-bxms-switchyard-quickstart-rules-multithread" version="${project.version}" resolver="(obr)">
-        <feature version="${version.switchyard}">switchyard-rest</feature>
-        <feature version="${version.switchyard}">switchyard-bean</feature>
+        <feature>switchyard-rest</feature>
+        <feature>switchyard-bean</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-multithreaded/${project.version}</bundle>
     </feature>
     <!-- XXX: this needs some love -->
     <feature name="fuse-bxms-switchyard-demo-helpdesk" version="${project.version}" resolver="(obr)">
         <!-- hibernate must be before bpm -->
-        <feature version="${version.switchyard}">switchyard-bean</feature>
-        <feature version="${version.switchyard}">switchyard-soap</feature>
+        <feature>switchyard-bean</feature>
+        <feature>switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
 
         <!-- jbpm-kie-services needs to export org.jbpm.kie.services.impl.model for Serviceorm.xml...

@@ -1,9 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <features name="karaf-features-karaf-${project.version}">
 
-    <repository>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</repository>
-    <repository>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features</repository>
-
     <feature name="kie-camel" version="${version.org.drools}">
         <feature version="${version.org.drools}">kie-spring</feature>
         <feature version="${version.org.drools}">jbpm</feature>
@@ -19,7 +16,7 @@
     <feature name="fuse-bxms-switchyard-common-knowledge" version="${project.version}" resolver="(obr)">
         <feature>jndi</feature>
         <feature version="${version.org.hibernate.features}">hibernate</feature>
-        <feature version="${version.switchyard}">switchyard</feature>
+        <feature>switchyard</feature>
         <feature version="${version.org.drools}">drools-decisiontable</feature>
         <feature version="${version.org.jbpm}">jbpm</feature>
         <bundle>wrap:mvn:org.eclipse.aether/aether-api/${version.org.eclipse.aether.aether-api}</bundle><!-- ${version.org.eclipse.aether} -->
