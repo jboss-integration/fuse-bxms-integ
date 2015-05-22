@@ -199,13 +199,19 @@
         </dependency>
       
         <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-karaf-features</artifactId>
+            <type>xml</type>
+            <classifier>features</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.jboss.integration.fuse.quickstarts</groupId>
             <artifactId>karaf-features</artifactId>
             <type>xml</type>
             <classifier>features</classifier>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.fusesource.mqtt-client</groupId>
             <artifactId>mqtt-client</artifactId>
@@ -305,6 +311,8 @@
                             <karafVersion>${version.org.apache.karaf}</karafVersion>
                             <descriptors>
                                 <descriptor>mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features</descriptor>
+                                <descriptor>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</descriptor>
+                                <descriptor>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features</descriptor>
                                 <descriptor>mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features</descriptor>
                             </descriptors>
                             <features>

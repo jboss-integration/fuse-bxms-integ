@@ -569,6 +569,14 @@
                 <version>${version.switchyard}</version>
             </dependency>
             <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-karaf-features</artifactId>
+                <type>xml</type>
+                <classifier>features</classifier>
+                <version>${version.org.kie}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>karaf-features</artifactId>
                 <type>xml</type>
