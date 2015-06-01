@@ -30,7 +30,7 @@ import javax.ws.rs.core.MediaType;
 public interface OrderResource {
     @GET
     @Path("/bestOption")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_XML)
     public Item getOrder();
 
     @GET
