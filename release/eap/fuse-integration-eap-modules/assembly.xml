@@ -25,11 +25,9 @@
     <componentDescriptors>
 
       <!-- FROM: src/main/resources/switchyard/components/assembly.xml -->
-      <componentDescriptor>src/main/resources/switchyard/components/bpm/assembly-component.xml</componentDescriptor>
-      <componentDescriptor>src/main/resources/switchyard/components/rules/assembly-component.xml</componentDescriptor>
-
-      <!-- FROM: src/main/resources/switchyard/components/common/assembly.xml -->
-      <componentDescriptor>src/main/resources/switchyard/components/common/knowledge/assembly-component.xml</componentDescriptor>
+      <componentDescriptor>src/main/resources/org/fuse/integration/switchyard/components/bpm/assembly-component.xml</componentDescriptor>
+      <componentDescriptor>src/main/resources/org/fuse/integration/switchyard/components/rules/assembly-component.xml</componentDescriptor>
+      <componentDescriptor>src/main/resources/org/fuse/integration/switchyard/components/common/knowledge/assembly-component.xml</componentDescriptor>
     </componentDescriptors>
 
 </assembly>

@@ -12,7 +12,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<module xmlns="urn:jboss:module:1.0" name="org.switchyard.component.common.knowledge">
+<module xmlns="urn:jboss:module:1.0" name="org.fuse.integration.switchyard.component.common.knowledge">
     <resources>
         <resource-root path="switchyard-component-common-knowledge-${project.version}.jar"/>
     </resources>

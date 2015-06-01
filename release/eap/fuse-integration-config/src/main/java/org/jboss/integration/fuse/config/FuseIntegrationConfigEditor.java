@@ -15,18 +15,22 @@
  */
 package org.jboss.integration.fuse.config;
 
+import static org.jboss.fuse.eap.config.ConfigSupport.assertExists;
+import static org.jboss.fuse.eap.config.ConfigSupport.findElementWithAttributeValue;
+import static org.jboss.fuse.eap.config.ConfigSupport.findElementWithStartingAttributeValue;
+import static org.jboss.fuse.eap.config.ConfigSupport.findProfileElements;
+import static org.jboss.fuse.eap.config.LayerConfig.Type.INSTALLING;
+import static org.jboss.fuse.eap.config.LayerConfig.Type.REQUIRED;
+
 import java.util.Arrays;
 import java.util.List;
+
+import org.jboss.fuse.eap.config.ConfigEditor;
+import org.jboss.fuse.eap.config.LayerConfig;
 
 import de.pdark.decentxml.Document;
 import de.pdark.decentxml.Element;
 import de.pdark.decentxml.Text;
-import org.jboss.fuse.eap.config.ConfigEditor;
-import org.jboss.fuse.eap.config.LayerConfig;
-
-import static org.jboss.fuse.eap.config.ConfigSupport.*;
-import static org.jboss.fuse.eap.config.LayerConfig.Type.INSTALLING;
-import static org.jboss.fuse.eap.config.LayerConfig.Type.REQUIRED;
 
 /**
  */
@@ -55,8 +59,8 @@ public class FuseIntegrationConfigEditor implements ConfigEditor
          Element modules = switchyard.getChild("modules");
          assertExists(modules, "Did not find the <modules> element");
 
-         updateSwitchyardModule(enable, modules, "org.switchyard.component.bpm", "org.switchyard.component.bpm.deploy.BPMComponent");
-         updateSwitchyardModule(enable, modules, "org.switchyard.component.rules", "org.switchyard.component.rules.deploy.RulesComponent");
+         updateSwitchyardModule(enable, modules, "org.fuse.integration.switchyard.component.bpm", "org.switchyard.component.bpm.deploy.BPMComponent");
+         updateSwitchyardModule(enable, modules, "org.fuse.integration.switchyard.component.rules", "org.switchyard.component.rules.deploy.RulesComponent");
       }
    }
 
@@ -84,7 +88,9 @@ public class FuseIntegrationConfigEditor implements ConfigEditor
         return Arrays.asList(
             new LayerConfig("fuse", REQUIRED, -10),
             new LayerConfig("bpms", INSTALLING, -9),
-            new LayerConfig("soa", REQUIRED, -8)
+            new LayerConfig("soa", REQUIRED, -8),
+                new LayerConfig("fuse-integration", INSTALLING, -7)
+
         );
     }
 }
