@@ -16,8 +16,8 @@
 
     <files>
         <file>
-            <source>src/main/resources/switchyard/components/rules/resources/module.xml</source>
-            <outputDirectory>/modules/system/layers/soa/org/switchyard/component/rules/main</outputDirectory>
+            <source>src/main/resources/org/fuse/integration/switchyard/components/common/knowledge/resources/module.xml</source>
+            <outputDirectory>/modules/system/layers/fuse-integration/org/fuse/integration/switchyard/component/common/knowledge/main</outputDirectory>
             <filtered>true</filtered>
         </file>
     </files>
@@ -25,9 +25,9 @@
         <dependencySet>
             <useTransitiveDependencies>false</useTransitiveDependencies>
             <includes>
-                <include>org.jboss.integration.fuse:switchyard-component-rules</include>
+                <include>org.jboss.integration.fuse:switchyard-component-common-knowledge</include>
             </includes>
-            <outputDirectory>/modules/system/layers/soa/org/switchyard/component/rules/main</outputDirectory>
+            <outputDirectory>/modules/system/layers/fuse-integration/org/fuse/integration/switchyard/component/common/knowledge/main</outputDirectory>
             <outputFileNameMapping>${artifact.artifactId}-${project.version}.${artifact.extension}</outputFileNameMapping>
         </dependencySet>
     </dependencySets>
