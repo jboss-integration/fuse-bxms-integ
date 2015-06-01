@@ -20,7 +20,7 @@ rule "Is of valid age"
     when
         $a : Applicant( age > 17 )
     then
-        globals.put("Result", Boolean.TRUE);
+        globals.put("resultado", Boolean.TRUE);
         System.out.println("**** " + $a.getName() + " is an old enough applicant, " + userName + ". ****");
 end
 
@@ -28,6 +28,6 @@ rule "Is not of valid age"
     when
         $a : Applicant( age < 18 )
     then
-        globals.put("Result", Boolean.FALSE);
+        globals.put("resultado", Boolean.FALSE);
         System.err.println("**** " + $a.getName() + " is too young of an applicant, " + userName + ". ****");
 end

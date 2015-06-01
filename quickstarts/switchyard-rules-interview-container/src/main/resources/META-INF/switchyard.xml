@@ -15,7 +15,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:rules="urn:switchyard-component-rules:config:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:1.0" name="rules-interview-container">
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:_1="urn:switchyard-config:transform:1.0" xmlns:rules="urn:switchyard-component-rules:config:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:1.0" name="rules-interview-container">
   <sca:composite name="Interview" targetNamespace="urn:switchyard-quickstart:rules-interview-container:0.1.0">
     <sca:service name="Interview" promote="Interview/Interview">
       <sca:interface.java interface="org.switchyard.quickstarts.rules.interview.Interview"/>
@@ -42,7 +42,7 @@
               <rules:input from="message.content"/>
             </rules:inputs>
             <rules:outputs>
-              <rules:output from="globals.Result" to="message.content"/>
+              <rules:output from="resultado" to="message.content"/>
             </rules:outputs>
           </rules:operation>
         </rules:operations>
@@ -53,8 +53,8 @@
     </sca:component>
   </sca:composite>
   <transforms>
-    <transform.java xmlns="urn:switchyard-config:transform:1.0" class="org.switchyard.quickstarts.rules.interview.Transformers" from="{urn:switchyard-quickstart:rules-interview-container:0.1.0}verify" to="java:org.switchyard.quickstarts.rules.interview.Applicant"/>
-    <transform.java xmlns="urn:switchyard-config:transform:1.0" class="org.switchyard.quickstarts.rules.interview.Transformers" from="java:boolean" to="{urn:switchyard-quickstart:rules-interview-container:0.1.0}verifyResponse"/>
+    <_1:transform.java from="{urn:switchyard-quickstart:rules-interview-container:0.1.0}verify" to="java:org.switchyard.quickstarts.rules.interview.Applicant" class="org.switchyard.quickstarts.rules.interview.Transformers"/>
+    <_1:transform.java from="java:boolean" to="{urn:switchyard-quickstart:rules-interview-container:0.1.0}verifyResponse" class="org.switchyard.quickstarts.rules.interview.Transformers"/>
   </transforms>
   <domain>
     <properties>
