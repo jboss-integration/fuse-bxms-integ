@@ -50,42 +50,52 @@ EAP
 
         mvn clean -Pdeploy
 
-Wildfly
+
+FUSE
 ----------
-1. Start Wildfly in standalone mode:
+1. Start FUSE:
 
-        ${AS}/bin/standalone.sh
+${FUSE_HOME}/bin/karaf
 
-2. Build and deploy the Quickstart : 
 
-        mvn install -Pdeploy -Pwildfly
+2. Ensure that the drools and switchyard compatible features URL files have been added to your Fuse instance. 
+   In case they are not added then:
 
-3. Submit a webservice request to invoke the SOAP gateway.  There are a number of ways to do this :
-- Submit a request with your preferred SOAP client - src/test/resources/xml contains sample 
-requests and the responses that you should see
-- Use the simple bundled SOAP client and the sample request XML e.g.
+    features:addurl mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
+    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
+
+
+3. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
+with the version of Fuse BXMS Integration that you are using (ex. 1.0.0): 
+
+JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
+
+
+4. Install the feature for the bpm-service quickstart :
+
+JBossFuse:karaf@root> features:install fuse-bxms-switchyard-quickstart-bpm-service
+
+5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
 <br/>
 ```
-        mvn exec:java
+mvn exec:java -Pkaraf
 ```
 <br/>
-- SOAP-UI : Use the wsdl for this projects (src/main/resources/wsdl/) to create a soap-ui 
-project.  Use the sample request (src/test/resources/xml/soap-request.xml) as an example 
-of a sample request.   See the "Expected Output" section for the expected results.
 
-4. Undeploy the quickstart:
+6. Undeploy the quickstart:
 
-        mvn clean -Pdeploy -Pwildfly
+JBossFuse:karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-bpm-service
 
 
-Karaf
+
+KARAF
 ----------
 1. Start the Karaf server :
 
 ${KARAF_HOME}/bin/karaf
 
 
-2. Ensure that the drools and switchyard compatible features URL files have been added to your Fuse Karaf instance. 
+2. Ensure that the drools and switchyard compatible features URL files have been added to your Karaf instance. 
    In case they are not added then:
 
     features:addurl mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
