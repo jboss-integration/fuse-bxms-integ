@@ -44,6 +44,7 @@ import org.switchyard.component.bpm.BPMMessages;
 import org.switchyard.component.bpm.config.model.BPMComponentImplementationModel;
 import org.switchyard.component.bpm.operation.BPMOperationType;
 import org.switchyard.component.common.knowledge.exchange.KnowledgeExchangeHandler;
+import org.switchyard.component.common.knowledge.expression.ExpressionMapping;
 import org.switchyard.component.common.knowledge.operation.KnowledgeOperation;
 import org.switchyard.component.common.knowledge.runtime.KnowledgeRuntimeEngine;
 import org.switchyard.component.common.knowledge.runtime.KnowledgeRuntimeManager;
@@ -237,6 +238,7 @@ public class BPMExchangeHandler extends KnowledgeExchangeHandler {
             if (processInstanceId != null) {
                 outputContext.setProperty(BPMConstants.PROCESSS_INSTANCE_ID_PROPERTY, processInstanceId);
             }
+            addFaultToExpressionVariables(expressionVariables, operation.getFaultExpressionMappings());
             setFaults(outputMessage, operation, expressionVariables);
             if (outputMessage.getContent() != null) {
                 exchange.sendFault(outputMessage);
@@ -249,6 +251,14 @@ public class BPMExchangeHandler extends KnowledgeExchangeHandler {
 
     private KnowledgeRuntimeEngine getRuntimeEngine() {
         return (KnowledgeRuntimeEngine)_runtimeManager.getRuntimeEngine();
+    }
+    private void addFaultToExpressionVariables(Map<String, Object> expressionVars, List<ExpressionMapping> faultExpressions) {
+        if (faultExpressions != null && !faultExpressions.isEmpty()) {
+            for (ExpressionMapping expression : faultExpressions) {
+                expressionVars.put(expression.getFrom(), null);
+            }
+        }
+
     }
 
     private KnowledgeRuntimeEngine getRuntimeEngine(Exchange exchange, Message message) throws HandlerException {

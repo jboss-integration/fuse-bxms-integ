@@ -58,23 +58,31 @@ JBoss AS 7
 6. Undeploy the quickstart:
         mvn clean -Pdeploy
 
-Karaf
+
+FUSE
 ----------
-1. Start the Karaf server :
+1. Start FUSE:
 
-${KARAF_HOME}/bin/karaf
+${FUSE_HOME}/bin/karaf
 
-2. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
+
+2. Ensure that the drools and switchyard compatible features URL files have been added to your Fuse instance. 
+   In case they are not added then:
+
+    features:addurl mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
+    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
+
+3. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
 with the version of Fuse BXMS Integration that you are using (ex. 1.0.0): 
 
-karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
+JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
 
 
-3. Install the feature for the Switchyard HelpDesk Demo quickstart :
+4. Install the feature for the Switchyard HelpDesk Demo quickstart :
 
-karaf@root> features:install fuse-bxms-switchyard-demo-helpdesk
+JBossFuse:karaf@root> features:install fuse-bxms-switchyard-demo-helpdesk
 
-4. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
+5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
 <br/>
 ```
 mvn exec:java -Pkaraf
@@ -84,7 +92,7 @@ mvn exec:java -Pkaraf
 
 <br/>
 
-5. Going back to your web browser window:
+6. Going back to your web browser window:
     As krisv (a developer), click the Submit button to get the list of tasks.
     As krisv, review the tasks you want to perform and click the Submit button again.
     As david (a user), click the Submit button to get the list of tasks. He will only have tasks if more details were required.
@@ -94,7 +102,56 @@ mvn exec:java -Pkaraf
 
    Check the expected output below.
 
-6. Undeploy the quickstart:
+7. Undeploy the quickstart:
+
+JBossFuse:karaf@root> features:uninstall fuse-bxms-switchyard-demo-helpdesk
+
+
+
+KARAF
+----------
+1. Start the Karaf server :
+
+${KARAF_HOME}/bin/karaf
+
+
+2. Ensure that the drools and switchyard compatible features URL files have been added to your Karaf instance. 
+   In case they are not added then:
+
+    features:addurl mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
+    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
+
+3. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
+with the version of Fuse BXMS Integration that you are using (ex. 1.0.0): 
+
+karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
+
+
+4. Install the feature for the Switchyard HelpDesk Demo quickstart :
+
+karaf@root> features:install fuse-bxms-switchyard-demo-helpdesk
+
+5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
+<br/>
+```
+mvn exec:java -Pkaraf
+
+
+    You can do this as many times as you wish, starting as many processes as you wish.
+
+<br/>
+
+6. Going back to your web browser window:
+    As krisv (a developer), click the Submit button to get the list of tasks.
+    As krisv, review the tasks you want to perform and click the Submit button again.
+    As david (a user), click the Submit button to get the list of tasks. He will only have tasks if more details were required.
+    If there were user tasks, check the tasks you want to complete and click the Submit button again.
+    Continue toggling back and forth as the users until all tasks are completed.
+    You can view the application server output in its console window to see the progression of the progress.
+
+   Check the expected output below.
+
+7. Undeploy the quickstart:
 
 karaf@root> features:uninstall fuse-bxms-switchyard-demo-helpdesk
 

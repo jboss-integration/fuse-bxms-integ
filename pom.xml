@@ -41,7 +41,7 @@
   <properties>
         <version.jboss.integration>1.0.0.redhat-SNAPSHOT</version.jboss.integration>
         <version.fuse.eap>6.2.0-SNAPSHOT</version.fuse.eap>
-        <karaf-version>2.4.0.redhat-121</karaf-version>
+        <karaf-version>2.4.0.redhat-620123</karaf-version>
 
         <!-- Internal dependencies -->
         <version.org.kie>6.2.0.Final</version.org.kie>
@@ -570,11 +570,19 @@
                 <version>${version.switchyard}</version>
             </dependency>
             <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-karaf-features</artifactId>
+                <type>xml</type>
+                <classifier>features</classifier>
+                <version>${version.org.kie}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>karaf-features</artifactId>
                 <type>xml</type>
                 <classifier>features</classifier>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
@@ -637,54 +645,54 @@
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>switchyard-component-bpm</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>switchyard-component-common-knowledge</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>switchyard-component-rules</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
            <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-camel-cbr</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview-container</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview-dtable</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
         
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-bpm-service</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-demo-helpdesk</artifactId>
                 <type>war</type>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-demo-library</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
 
 

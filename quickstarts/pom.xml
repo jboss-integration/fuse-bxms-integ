@@ -38,13 +38,14 @@
         <module>switchyard-bpm-service</module>
         <module>switchyard-rules-camel-cbr</module>
         <module>switchyard-rules-interview</module>
+        <module>switchyard-rules-multithreaded</module>
         <module>switchyard-rules-interview-container</module>
         <module>switchyard-rules-interview-dtable</module>
         <module>switchyard-demo-helpdesk</module>
         <module>switchyard-demo-library</module>
         <module>drools-camel-server-example</module>
-        <module>blueprint-camel-drools-decision-table-example</module>
-        <module>spring-camel-drools-decision-table-example</module>
+        <module>blueprint-camel-drools-decision-table</module>
+        <module>spring-camel-drools-decision-table</module>
         <module>spring-jbpm-osgi-example</module>
         <module>fuse-integration-quickstarts-eap</module>
         <module>fuse-integration-quickstarts-karaf</module>

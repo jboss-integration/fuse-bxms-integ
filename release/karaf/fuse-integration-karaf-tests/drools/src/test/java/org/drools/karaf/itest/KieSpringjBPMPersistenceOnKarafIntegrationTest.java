@@ -16,6 +16,20 @@
 
 package org.drools.karaf.itest;
 
+import static org.drools.karaf.itest.KarafIntegrationTestSupport.getKarafDistributionOption;
+import static org.drools.karaf.itest.KarafIntegrationTestSupport.loadCamelFeatures;
+import static org.junit.Assert.assertNotNull;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.configureConsole;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.keepRuntimeFolder;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.logLevel;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
+import javax.persistence.EntityManagerFactory;
+
 import org.h2.tools.Server;
 import org.jbpm.process.instance.impl.demo.SystemOutWorkItemHandler;
 import org.jbpm.services.task.identity.JBossUserGroupCallbackImpl;
@@ -38,26 +52,14 @@ import org.kie.internal.runtime.manager.context.EmptyContext;
 import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.OptionUtils;
-import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.karaf.options.LogLevelOption;
+import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.osgi.context.support.OsgiBundleXmlApplicationContext;
 import org.springframework.transaction.PlatformTransactionManager;
-
-import javax.persistence.EntityManagerFactory;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
-import static org.drools.karaf.itest.KarafIntegrationTestSupport.getKarafDistributionOption;
-import static org.drools.karaf.itest.KarafIntegrationTestSupport.loadCamelFeatures;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.*;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerMethod.class)
@@ -131,13 +133,13 @@ public class KieSpringjBPMPersistenceOnKarafIntegrationTest extends KieSpringInt
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("employee", "krisv");
 		params.put("reason", "Yearly performance evaluation");
-		ProcessInstance processInstance = 
+		ProcessInstance processInstance =
 			ksession.startProcess("com.sample.evaluation", params);
 		System.out.println("Process instance " + processInstance.getId() + " started ...");
 
         ProcessInstance pi = ksession.getProcessInstance(processInstance.getId());
         System.out.println(pi);
-		
+
 		// complete Self Evaluation
 		List<TaskSummary> tasks = taskService.getTasksAssignedAsPotentialOwner("krisv", "en-UK");
 		TaskSummary task = tasks.get(0);
@@ -171,10 +173,10 @@ public class KieSpringjBPMPersistenceOnKarafIntegrationTest extends KieSpringInt
 		taskService.complete(task.getId(), "mary", results);
 
 		System.out.println("Process instance completed");
-		
+
 		runtimeManager.disposeRuntimeEngine(runtimeEngine);
 		runtimeManager.close();
-		
+
 		server.shutdown();
     }
 
@@ -188,7 +190,7 @@ public class KieSpringjBPMPersistenceOnKarafIntegrationTest extends KieSpringInt
             throw new RuntimeException("Could not start H2 server", t);
         }
     }
-    
+
     @Configuration
     public static Option[] configure() {
         return OptionUtils.combine(
@@ -209,7 +211,7 @@ public class KieSpringjBPMPersistenceOnKarafIntegrationTest extends KieSpringInt
                 //  debugConfiguration("5005", true),
 
                 // Load camel-test as it is required by pax-exam
-                loadCamelFeatures(),
+                loadCamelFeatures(), loadDroolsRepo(),
 
                 // Load Kie-Spring
                 loadDroolsKieFeatures("jbpm-spring-persistent")

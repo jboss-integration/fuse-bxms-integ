@@ -20,7 +20,17 @@
     <formats>
         <format>zip</format>
     </formats>
+    <fileSets>
+        <fileSet>
+            <directory>./</directory>
+            <includes>
+                <include>README_FUSE_INTEGRATION.md</include>      
+            </includes>
 
+            <fileMode>644</fileMode>
+            <directoryMode>755</directoryMode>
+        </fileSet>
+    </fileSets>
 
  <dependencySets>
     <dependencySet>

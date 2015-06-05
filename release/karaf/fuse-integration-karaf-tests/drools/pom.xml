@@ -56,6 +56,13 @@
       <classifier>features</classifier>
       <scope>test</scope>
     </dependency>
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-karaf-features</artifactId>
+            <type>xml</type>
+            <classifier>features</classifier>
+            <scope>test</scope>
+        </dependency>
     <dependency>
       <groupId>org.apache.karaf.assemblies.features</groupId>
       <artifactId>standard</artifactId>

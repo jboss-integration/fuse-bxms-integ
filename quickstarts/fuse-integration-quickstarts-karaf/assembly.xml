@@ -49,7 +49,9 @@
                 <include>**/spring-camel-drools-decision-table-example</include>
                 <include>**/spring-camel-drools-decision-table-example/**/*</include>    
                 <include>**/spring-jbpm-osgi-example</include>
-                <include>**/spring-jbpm-osgi-example/**/*</include>         
+                <include>**/spring-jbpm-osgi-example/**/*</include>  
+                <include>**/switchyard-rules-multithreaded</include>
+                <include>**/switchyard-rules-multithreaded/**/*</include>          
             </includes>
             <excludes>
                 <exclude>**/.git</exclude>

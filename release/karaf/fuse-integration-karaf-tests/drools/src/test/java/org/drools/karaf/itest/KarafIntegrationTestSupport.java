@@ -16,9 +16,14 @@
 
 package org.drools.karaf.itest;
 
+import static org.ops4j.pax.exam.CoreOptions.maven;
+import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.camel.CamelContext;
@@ -33,12 +38,6 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static org.ops4j.pax.exam.CoreOptions.maven;
-import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
-import static org.ops4j.pax.exam.CoreOptions.when;
-import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.editConfigurationFilePut;
-import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
 
 abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
 
@@ -59,6 +58,7 @@ abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
         throw new RuntimeException("Bundle " + symbolicName + " does not exist");
     }
 
+    @Override
     protected CamelContext createCamelContext() throws Exception {
         LOG.info("Get the bundleContext is " + bundleContext);
         LOG.info("Application installed as bundle id: " + bundleContext.getBundle().getBundleId());
@@ -113,6 +113,10 @@ abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
             result.add(feature);
         }
         return features(getFeatureUrl("org.jboss.integration.fuse", "karaf-features").type("xml").classifier("features").versionAsInProject(), result.toArray(new String[4 + features.length]));
+    }
+
+    public static Option loadDroolsRepo() {
+        return features(maven().groupId("org.drools").artifactId("drools-karaf-features").type("xml").classifier("features").versionAsInProject().getURL());
     }
 
     private static String getKarafVersion() {

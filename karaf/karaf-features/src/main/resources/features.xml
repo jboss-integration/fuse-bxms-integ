@@ -1,14 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <features name="karaf-features-karaf-${project.version}">
 
-    <repository>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</repository>
-    <repository>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features</repository>
+
+    <feature name="kie-camel" version="${project.version}">
+        <feature version="[6.2.0,7.0)">kie-spring</feature>
+        <feature version="[6.2.0,7.0)">jbpm</feature>
+        <feature>camel-core</feature>
+        <feature>camel-spring</feature>
+        <feature>camel-cxf</feature>
+        <feature version="[2.6,3.0)">cxf-specs</feature>
+        <feature version="[2.6,3.0)">cxf-core</feature>
+        <feature version="[2.6,3.0)">cxf-jaxrs</feature>
+        <bundle>mvn:org.kie/kie-camel/${version.org.drools}</bundle>
+    </feature>
 
     <feature name="fuse-bxms-switchyard-common-knowledge" version="${project.version}" resolver="(obr)">
         <feature>jndi</feature>
         <feature version="${version.org.hibernate.features}">hibernate</feature>
-        <feature version="${version.switchyard}">switchyard</feature>
-        <feature version="${version.org.drools}">drools-decisiontable</feature>
+        <feature version="[2.0.1,3.0)">switchyard</feature>
+        <feature version="[6.2.0,7.0)">drools-decisiontable</feature>
         <feature version="${version.org.jbpm}">jbpm</feature>
         <bundle>wrap:mvn:org.eclipse.aether/aether-api/${version.org.eclipse.aether.aether-api}</bundle><!-- ${version.org.eclipse.aether} -->
         <bundle>wrap:mvn:org.jbpm/jbpm-executor/${version.org.jbpm}$DynamicImport-Package=org.hibernate.*,javassist.*</bundle>
@@ -33,3 +43,4 @@
 
 
 </features>
+

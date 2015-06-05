@@ -206,20 +206,21 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
                 originalRE.setMapper(mapper);
                 Environment environmentTemplate = originalRE.getEnvironmentTemplate();
                 // set the patched LocalTaskServiceFactory
-                environmentTemplate.set(TaskServiceFactory.class.getName(), new PatchedLocalTaskServiceFactory(originalRE));
+            originalRE.addToEnvironment(TaskServiceFactory.class.getName(), new PatchedLocalTaskServiceFactory(originalRE));
                 // TODO: why, when no persistence, do we have to do all this?
                 DeploymentDescriptor deploymentDescriptor = (DeploymentDescriptor)environmentTemplate.get("KieDeploymentDescriptor");
                 if (deploymentDescriptor == null) {
                     deploymentDescriptor = new DeploymentDescriptorManager().getDefaultDescriptor();
-                    environmentTemplate.set("KieDeploymentDescriptor", deploymentDescriptor);
+                originalRE.addToEnvironment("KieDeploymentDescriptor", deploymentDescriptor);
                 }
+            originalRE.addToEnvironment(manifest.getClass().getName(), manifest);
                 ((DeploymentDescriptorImpl)deploymentDescriptor).setAuditMode(auditMode);
             }
         /*
         }
         */
         RuntimeEnvironment runtimeEnvironment = jbpmRuntimeEnvironmentBuilder.get();
-        Environment environment = runtimeEnvironment.getEnvironment();
+        Environment environment = originalRE.getEnvironmentTemplate();
         // our ObjectMarshallingStrategy can be added to the Environment after the jBPM RuntimeEnvironmentBuilder is built (get->init)
         List<ObjectMarshallingStrategy> new_oms = new ArrayList<ObjectMarshallingStrategy>();
         new_oms.add(new SerializerObjectMarshallingStrategy(SerializerFactory.create(FormatType.JSON, null, true)));
@@ -231,7 +232,7 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
                 }
             }
         }
-        environment.set(EnvironmentName.OBJECT_MARSHALLING_STRATEGIES, new_oms.toArray(new ObjectMarshallingStrategy[new_oms.size()]));
+        originalRE.addToEnvironment(EnvironmentName.OBJECT_MARSHALLING_STRATEGIES, new_oms.toArray(new ObjectMarshallingStrategy[new_oms.size()]));
         return runtimeEnvironment;
     }
 

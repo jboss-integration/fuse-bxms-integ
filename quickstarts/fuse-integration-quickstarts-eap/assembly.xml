@@ -41,7 +41,9 @@
                 <include>**/switchyard-demo-helpdesk</include>
                 <include>**/switchyard-demo-helpdesk/**/*</include>
                 <include>**/switchyard-demo-library</include>
-                <include>**/switchyard-demo-library/**/*</include>                
+                <include>**/switchyard-demo-library/**/*</include>    
+                <include>**/switchyard-rules-multithreaded</include>
+                <include>**/switchyard-rules-multithreaded/**/*</include>            
             </includes>
             <excludes>
                 <exclude>**/.git</exclude>

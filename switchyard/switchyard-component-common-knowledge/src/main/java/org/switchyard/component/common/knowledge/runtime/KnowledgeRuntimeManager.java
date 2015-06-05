@@ -237,25 +237,29 @@ public class KnowledgeRuntimeManager implements RuntimeManager {
                         if (containerManifest != null && containerManifest.isScan()) {
                             KieContainer kieContainer = containerManifest.getKieContainer();
                             final ReleaseId releaseId = containerManifest.getReleaseId();
-                            final KieScanner scanner = _kieServices.newKieScanner(kieContainer);
-                            //final KieScanner scanner = new KnowledgeScanner(kieContainer);
-                            disposable.addDisposeListener(new DisposeListener() {
-                                @Override
-                                public void onDispose(RuntimeEngine runtime) {
-                                    try {
-                                        scanner.stop();
-                                        scanner.shutdown();
-                                    } catch (Throwable t) {
-                                        CommonKnowledgeLogger.ROOT_LOGGER.problemStopppingKieScanner(t.getMessage());
-                                    } finally {
-                                        if (releaseId != null) {
-                                            // fix for SWITCHYARD-2241
-                                            _kieServices.getRepository().removeKieModule(releaseId);
+                            if (releaseId != null) {
+                                final KieScanner scanner = _kieServices.newKieScanner(kieContainer);
+                                // final KieScanner scanner = new
+                                // KnowledgeScanner(kieContainer);
+                                disposable.addDisposeListener(new DisposeListener() {
+                                    @Override
+                                    public void onDispose(RuntimeEngine runtime) {
+                                        try {
+                                            scanner.stop();
+                                            scanner.shutdown();
+                                        } catch (Throwable t) {
+                                            CommonKnowledgeLogger.ROOT_LOGGER.problemStopppingKieScanner(t.getMessage());
+                                        } finally {
+                                            if (releaseId != null) {
+                                                // fix for SWITCHYARD-2241
+                                                _kieServices.getRepository().removeKieModule(releaseId);
+                                            }
                                         }
                                     }
-                                }
-                            });
-                            scanner.start(containerManifest.getScanInterval().longValue());
+                                });
+                                scanner.start(containerManifest.getScanInterval().longValue());
+                            }
+
                         }
                     }
                 }
