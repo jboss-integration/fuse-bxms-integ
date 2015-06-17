@@ -43,11 +43,6 @@
       <groupId>org.kie</groupId>
       <artifactId>kie-spring</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.drools</groupId>
-      <artifactId>named-kiesession</artifactId>
-      <scope>test</scope>
-    </dependency>
 
     <!-- Camel -->
     <dependency>

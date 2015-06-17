@@ -45,7 +45,6 @@
         <module>drools-camel-server-example</module>
         <module>blueprint-camel-drools-decision-table-example</module>
         <module>spring-camel-drools-decision-table-example</module>
-        <module>spring-jbpm-osgi-example</module>
     </modules>
 
 <repositories>

@@ -10,12 +10,6 @@
         <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-bpm-service/${project.version}</bundle>
     </feature>
-    <feature name="fuse-bxms-switchyard-quickstart-remote-invoker" version="${project.version}" resolver="(obr)">
-        <feature version="${karaf.version.org.switchyard}">switchyard-bean</feature>
-        <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
-        <feature version="${karaf.version.org.switchyard}">switchyard-sca</feature>
-        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-remote-invoker/${project.version}</bundle>
-    </feature>
     <feature name="fuse-bxms-switchyard-quickstart-rules-camel-cbr" version="${project.version}" resolver="(obr)">
         <feature version="${karaf.version.org.switchyard}">switchyard-bean</feature>
         <feature version="${karaf.version.org.switchyard}">switchyard-camel</feature>
