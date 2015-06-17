@@ -45,7 +45,7 @@
             <artifactId>drools-decisiontables</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.integration.fuse	</groupId>
+            <groupId>org.drools</groupId>
             <artifactId>drools-osgi-integration</artifactId>
         </dependency>
 
