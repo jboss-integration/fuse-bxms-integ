@@ -20,7 +20,6 @@
     <formats>
         <format>zip</format>
     </formats>
-
     <fileSets>
         <fileSet>
             <directory>${project.build.directory}/fuse-integration</directory>
@@ -31,6 +30,15 @@
         <fileSet>
             <directory>${project.build.directory}/features-repo</directory>
             <outputDirectory>system</outputDirectory>
+            <fileMode>644</fileMode>
+            <directoryMode>755</directoryMode>
+        </fileSet>
+        <fileSet>
+            <directory>./</directory>
+            <includes>
+                <include>README_FUSE_INTEGRATION.md</include>      
+            </includes>
+
             <fileMode>644</fileMode>
             <directoryMode>755</directoryMode>
         </fileSet>

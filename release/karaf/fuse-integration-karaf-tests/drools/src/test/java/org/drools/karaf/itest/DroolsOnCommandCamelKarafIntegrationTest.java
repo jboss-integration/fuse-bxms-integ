@@ -16,30 +16,28 @@
 
 package org.drools.karaf.itest;
 
+import static org.drools.osgi.spring.OsgiApplicationContextFactory.getOsgiSpringContext;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.keepRuntimeFolder;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.logLevel;
+
+import java.util.Collection;
+
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
-import org.apache.karaf.features.FeaturesService;
 import org.drools.camel.example.Person;
 import org.drools.compiler.kproject.ReleaseIdImpl;
 import org.drools.core.runtime.impl.ExecutionResultImpl;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.Configuration;
+import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.OptionUtils;
 import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.karaf.options.LogLevelOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.osgi.context.support.OsgiBundleXmlApplicationContext;
-
-import javax.inject.Inject;
-import java.util.Collection;
-
-import static org.drools.osgi.spring.OsgiApplicationContextFactory.getOsgiSpringContext;
-import static org.ops4j.pax.exam.CoreOptions.maven;
-import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.*;
 
 @RunWith(PaxExam.class)
 @Ignore
@@ -113,7 +111,7 @@ public class DroolsOnCommandCamelKarafIntegrationTest extends OSGiIntegrationSpr
                 logLevel(LogLevelOption.LogLevel.INFO),
 
                 // Load camel-core, camel-spring, camel-test & camel-cxf Features
-                loadCamelFeatures("camel-cxf"),
+                loadCamelFeatures("camel-cxf"), loadDroolsRepo(),
 
                 // Load drools-module (= core + compiler + knowledge), kie-camel & kie-spring
                 loadDroolsFeatures("kie-spring", "kie-camel")

@@ -16,23 +16,22 @@
 
 package org.drools.karaf.itest;
 
-import org.h2.tools.Server;
-import org.jbpm.process.instance.impl.demo.SystemOutWorkItemHandler;
-import org.jbpm.services.task.identity.JBossUserGroupCallbackImpl;
+import static org.drools.karaf.itest.KarafIntegrationTestSupport.getKarafDistributionOption;
+import static org.drools.karaf.itest.KarafIntegrationTestSupport.loadCamelFeatures;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.configureConsole;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.keepRuntimeFolder;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.logLevel;
+
+import java.util.Properties;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kie.api.KieBase;
-import org.kie.api.KieServices;
-import org.kie.api.io.ResourceType;
-import org.kie.api.runtime.EnvironmentName;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.StatelessKieSession;
-import org.kie.api.runtime.manager.*;
-import org.kie.api.runtime.process.ProcessInstance;
-import org.kie.api.task.TaskService;
-import org.kie.api.task.model.TaskSummary;
-import org.kie.internal.runtime.manager.context.EmptyContext;
 import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.OptionUtils;
@@ -43,19 +42,6 @@ import org.ops4j.pax.exam.spi.reactors.PerMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.osgi.context.support.OsgiBundleXmlApplicationContext;
-import org.springframework.transaction.PlatformTransactionManager;
-
-import javax.persistence.EntityManagerFactory;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
-import static org.drools.karaf.itest.KarafIntegrationTestSupport.getKarafDistributionOption;
-import static org.drools.karaf.itest.KarafIntegrationTestSupport.loadCamelFeatures;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.*;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerMethod.class)
@@ -103,7 +89,7 @@ public class KieSpringOnKarafIntegrationTest extends KieSpringIntegrationTestSup
         assertTrue(obj instanceof KieSession);
     }
 
-    
+
     @Configuration
     public static Option[] configure() {
         return OptionUtils.combine(
@@ -123,7 +109,7 @@ public class KieSpringOnKarafIntegrationTest extends KieSpringIntegrationTestSup
                 //  debugConfiguration("5005", true),
 
                 // Load camel-test as it is required by pax-exam
-                loadCamelFeatures(),
+                loadCamelFeatures(), loadDroolsRepo(),
 
                 // Load Kie-Spring
                 loadDroolsKieFeatures("kie-spring")

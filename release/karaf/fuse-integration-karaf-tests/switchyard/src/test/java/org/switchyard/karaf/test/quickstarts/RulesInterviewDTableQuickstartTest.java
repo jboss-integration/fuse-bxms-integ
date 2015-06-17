@@ -14,8 +14,9 @@
 package org.switchyard.karaf.test.quickstarts;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
-
+@Ignore
 public class RulesInterviewDTableQuickstartTest extends AbstractQuickstartTest {
     private static String bundleName = "org.jboss.integration.fuse.quickstarts.switchyard.rules.interview.dtable";
     private static String featureName = "fuse-bxms-switchyard-quickstart-rules-interview-dtable";

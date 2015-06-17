@@ -41,10 +41,9 @@
   <properties>
         <version.jboss.integration>1.0.0.redhat-SNAPSHOT</version.jboss.integration>
         <version.fuse.eap>6.2.0-SNAPSHOT</version.fuse.eap>
-        <karaf-version>2.4.0.redhat-121</karaf-version>
 
         <!-- Internal dependencies -->
-        <version.org.kie>6.2.0.Final</version.org.kie>
+        <version.org.kie>6.2.0.Final-redhat-6</version.org.kie>
         <version.org.drools>${version.org.kie}</version.org.drools>
         <version.org.optaplanner>${version.org.kie}</version.org.optaplanner>
         <version.org.jbpm>${version.org.kie}</version.org.jbpm>
@@ -87,9 +86,10 @@
 
         <!-- used by hibernate-validator -->
         <karaf.version.org.apache.servicemix.specs.jsr303-api>2.4.0</karaf.version.org.apache.servicemix.specs.jsr303-api>
+ 	<karaf.version.org.switchyard>[2.0.1,3.0)</karaf.version.org.switchyard>
+        <karaf.version.org.kie>[6.2.0,7.0)</karaf.version.org.kie>
 
-
-
+        <version.org.apache.karaf.tooling>2.4.0</version.org.apache.karaf.tooling>
         
          <version.switchyard>2.0.1.redhat-620037</version.switchyard>
          <version.switchyard.osgi>2.1</version.switchyard.osgi>
@@ -340,78 +340,7 @@
         <version>${version.org.apache.ws.xmlschema}</version>
       </dependency>
 
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-api</artifactId>
-        <version>${version.org.apache.cxf}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-rs-security-oauth</artifactId>
-        <version>${version.org.apache.cxf}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-features-clustering</artifactId>
-        <version>${version.org.apache.cxf}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-core</artifactId>
-        <version>${version.org.apache.cxf}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-frontend-simple</artifactId>
-        <version>${version.org.apache.cxf}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.codehaus.woodstox</groupId>
-        <artifactId>stax2-api</artifactId>
-        <version>3.1.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-frontend-jaxws</artifactId>
-        <version>${version.org.apache.cxf}</version>
-	<exclusions>
-           <exclusion>
-        <groupId>asm</groupId>
-        <artifactId>asm</artifactId>          
-           </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-bindings-xml</artifactId>
-        <version>${version.org.apache.cxf}</version>
-      </dependency>
-      <!--dependency>
-        <groupId>org.eclipse.jdt.core.compiler</groupId>
-        <artifactId>ecj</artifactId>
-        <version>4.4.2</version>
-      </dependency-->
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-transports-http</artifactId>
-        <version>${version.org.apache.cxf}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-transports-http-jetty</artifactId>
-        <version>${version.org.apache.cxf}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-ws-addr</artifactId>
-        <version>${version.org.apache.cxf}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-ws-policy</artifactId>
-        <version>${version.org.apache.cxf}</version>
-      </dependency>
+   
 
        <dependency>
          <groupId>com.redhat.fuse</groupId>
@@ -570,11 +499,19 @@
                 <version>${version.switchyard}</version>
             </dependency>
             <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-karaf-features</artifactId>
+                <type>xml</type>
+                <classifier>features</classifier>
+                <version>${version.org.kie}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>karaf-features</artifactId>
                 <type>xml</type>
                 <classifier>features</classifier>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
@@ -637,54 +574,64 @@
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>switchyard-component-bpm</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>switchyard-component-common-knowledge</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>switchyard-component-rules</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.fuse</groupId>
+                <artifactId>kie-camel</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.fuse</groupId>
+                <artifactId>drools-osgi-integration</artifactId>
+                <version>${project.version}</version>
             </dependency>
            <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-camel-cbr</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview-container</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview-dtable</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
         
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-bpm-service</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-demo-helpdesk</artifactId>
                 <type>war</type>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-demo-library</artifactId>
-                <version>${version.jboss.integration}</version>
+                <version>${project.version}</version>
             </dependency>
 
 

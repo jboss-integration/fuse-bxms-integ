@@ -16,6 +16,16 @@
 
 package org.drools.karaf.itest;
 
+import static org.ops4j.pax.exam.CoreOptions.maven;
+import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import javax.inject.Inject;
+
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
 import org.ops4j.pax.exam.options.UrlReference;
@@ -24,19 +34,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.osgi.context.support.OsgiBundleXmlApplicationContext;
 
-import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
-import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
-import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
-
 abstract public class KieSpringIntegrationTestSupport {
 
     protected static final transient Logger LOG = LoggerFactory.getLogger(KieSpringIntegrationTestSupport.class);
     protected static final String DroolsVersion;
-    static { 
+    static {
         Properties testProps = new Properties();
         try {
             testProps.load(KieSpringIntegrationTestSupport.class.getResourceAsStream("/test.properties"));
@@ -77,7 +79,9 @@ abstract public class KieSpringIntegrationTestSupport {
         MavenArtifactProvisionOption mapo = getFeaturesUrl("org.apache.camel.karaf", "apache-camel", version);
         return mapo;
     }
-
+    public static Option loadDroolsRepo() {
+        return features(maven().groupId("org.drools").artifactId("drools-karaf-features").type("xml").classifier("features").versionAsInProject().getURL());
+    }
     public static Option loadDroolsKieFeatures(String... features) {
         List<String> result = new ArrayList<String>();
         result.add("drools-module");

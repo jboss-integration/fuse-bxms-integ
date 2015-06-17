@@ -16,6 +16,10 @@
 
 package org.drools.karaf.itest;
 
+import static org.drools.osgi.spring.OsgiApplicationContextFactory.getOsgiSpringContext;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.keepRuntimeFolder;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.logLevel;
+
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
 import org.drools.camel.example.Person;
@@ -31,9 +35,6 @@ import org.ops4j.pax.exam.karaf.options.LogLevelOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.osgi.context.support.OsgiBundleXmlApplicationContext;
-
-import static org.drools.osgi.spring.OsgiApplicationContextFactory.getOsgiSpringContext;
-import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.*;
 
 @RunWith(PaxExam.class)
 @Ignore
@@ -85,8 +86,7 @@ public class DroolsOnBodyCamelKarafIntegrationTest extends OSGiIntegrationSpring
                 //debugConfiguration("5005", true),
 
                 // Load camel-core, camel-spring, camel-test & camel-cxf Features
-                loadCamelFeatures("camel-cxf"),
-
+                loadCamelFeatures("camel-cxf"), loadDroolsRepo(),
                 // Load drools-module (= core + compiler + knowledge), kie-camel & kie-spring
                 loadDroolsFeatures("kie-spring", "kie-camel")
         );

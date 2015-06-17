@@ -1,15 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <features name="karaf-features-karaf-${project.version}">
 
-    <repository>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</repository>
-    <repository>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features</repository>
 
     <feature name="fuse-bxms-switchyard-common-knowledge" version="${project.version}" resolver="(obr)">
         <feature>jndi</feature>
         <feature version="${version.org.hibernate.features}">hibernate</feature>
-        <feature version="${version.switchyard}">switchyard</feature>
-        <feature version="${version.org.drools}">drools-decisiontable</feature>
-        <feature version="${version.org.jbpm}">jbpm</feature>
+        <feature version="${karaf.version.org.switchyard}">switchyard</feature>
+        <feature version="${karaf.version.org.kie}">drools-decisiontable</feature>
+        <feature version="${karaf.version.org.kie}">jbpm</feature>
         <bundle>wrap:mvn:org.eclipse.aether/aether-api/${version.org.eclipse.aether.aether-api}</bundle><!-- ${version.org.eclipse.aether} -->
         <bundle>wrap:mvn:org.jbpm/jbpm-executor/${version.org.jbpm}$DynamicImport-Package=org.hibernate.*,javassist.*</bundle>
         <bundle>wrap:mvn:org.jbpm/jbpm-workitems/${version.org.jbpm}</bundle>
@@ -31,5 +29,27 @@
         <bundle>mvn:org.jboss.integration.fuse/switchyard-component-bpm/${project.version}</bundle>
     </feature>
 
+    <feature name="fuse-bxms-kie-camel" version="${project.version}">
+        <feature>kie-spring</feature>
+        <feature version="${karaf.version.org.kie}">jbpm</feature>
+        <feature version="${version.org.apache.camel.features}">camel-core</feature>
+        <feature version="${version.org.apache.camel.features}">camel-spring</feature>
+        <feature version="${version.org.apache.camel.features}">camel-cxf</feature>
+        <feature version="${version.org.apache.cxf.features}">cxf-specs</feature>
+        <feature version="${version.org.apache.cxf.features}">cxf-core</feature>
+        <feature version="${version.org.apache.cxf.features}">cxf-jaxrs</feature>
+        <bundle>mvn:org.jboss.integration.fuse/kie-camel/${project.version}</bundle>
+    </feature>
+    <feature name="fuse-bxms-jbpm-workitems-camel" version="${project.version}">
+        <feature version="${karaf.version.org.kie}">jbpm</feature>
+        <feature version="${version.org.apache.camel.features}">camel-core</feature>
+        <bundle>wrap:mvn:org.jbpm/jbpm-workitems/${version.org.kie}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse/jbpm-workitems-camel/${project.version}</bundle>
+    </feature>
 
+
+    <feature name="fuse-bxms-drools-osgi-integration" version="${project.version}">
+        <bundle>mvn:org.jboss.integration.fuse/drools-osgi-integration/${project.version}</bundle>
+    </feature>
 </features>
+
