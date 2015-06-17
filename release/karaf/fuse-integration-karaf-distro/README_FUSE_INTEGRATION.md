@@ -11,6 +11,9 @@ Camel components used in kie:  kie-camel and  jbpm-workitem-camel components
 
 REQUIREMENTS
 
+SWITHYARD_VERSION --> 2.0.0-redhat or upper version
+DROOLS_VERSION --> 6.2.0.Final or upper version
+
 1º Download the Fuse distribution that is aligned with the version of fuse-integration:
 
    This is important. If you want to use the 6.2.0.redhat-117 (for instance) version, you need to install the fuse-integration features on top of fuse-6.2.0.redhat-117
