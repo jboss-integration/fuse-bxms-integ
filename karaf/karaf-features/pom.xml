@@ -64,12 +64,10 @@
 
 
         <!-- Align with Fuse 6.2 -->
-        <version.org.apache.cxf>3.0.2</version.org.apache.cxf>
         <version.org.apache.activemq>5.9.0</version.org.apache.activemq>
 
 
     <karaf.version.org.apache.camel>${version.org.apache.camel}</karaf.version.org.apache.camel>
-    <karaf.version.org.apache.cxf>${version.org.apache.cxf}</karaf.version.org.apache.cxf>
     <karaf.version.org.apache.helix>${version.org.apache.helix}</karaf.version.org.apache.helix>
     <karaf.version.com.google.protobuf>${version.com.google.protobuf}</karaf.version.com.google.protobuf>
     <karaf.version.joda-time>${version.joda-time}</karaf.version.joda-time>

@@ -41,7 +41,7 @@
       <artifactId>kie-spring</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.kie</groupId>
+      <groupId>org.jboss.integration.fuse</groupId>
       <artifactId>kie-camel</artifactId>
     </dependency>
     <dependency>
@@ -163,7 +163,7 @@
               org.kie.api.runtime.rule;version="[6.0,7)",
               org.kie.internal;version="[6.0,7)",
               org.kie.spring;version="[6.0,7)",
-              org.kie.camel.component;version="[6.0,7)",
+              org.kie.camel.component;version="[1.0,2)",
               org.eclipse.jdt.internal.compiler,
               org.drools.osgi.spring,
               org.drools.osgi.compiler

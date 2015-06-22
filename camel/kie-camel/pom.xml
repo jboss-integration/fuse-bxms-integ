@@ -14,7 +14,9 @@
 
   <name>Fuse Integration: Camel: Kie</name>
   <description>Drools integration for Camel that provides an integration framework  based on known Enterprise Integration Pattern.</description>
-
+  <properties>
+    <enforcer.skip>true</enforcer.skip>
+  </properties>
   <dependencies>
     <!-- Drools -->
     <dependency>
@@ -40,11 +42,6 @@
     <dependency>
       <groupId>org.kie</groupId>
       <artifactId>kie-spring</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.drools</groupId>
-      <artifactId>named-kiesession</artifactId>
-      <scope>test</scope>
     </dependency>
 
     <!-- Camel -->
@@ -180,8 +177,7 @@
             <Bundle-Name>Kie :: Camel</Bundle-Name>
             <Import-Package>
               !org.kie.camel.component,
-              !org.kie.jax*,
-              *
+              !org.kie.jax*,*
             </Import-Package>
             <Export-Package>
               org.kie.camel.component,

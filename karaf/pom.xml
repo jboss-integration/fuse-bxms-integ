@@ -30,7 +30,6 @@
 
     <modules>
         <module>switchyard-component-common-knowledge-osgi</module>
-        <module>drools-osgi-integration</module>
         <module>karaf-features</module>
     </modules>
     <build>

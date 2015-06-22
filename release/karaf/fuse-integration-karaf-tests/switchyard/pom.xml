@@ -299,7 +299,7 @@
             <plugin>
                 <groupId>org.apache.karaf.tooling</groupId>
                 <artifactId>features-maven-plugin</artifactId>
-                <version>2.4.0</version>
+                <version>${version.org.apache.karaf.tooling}</version>
                 <executions>
                     <execution>
                         <id>add-features-to-repo</id>
