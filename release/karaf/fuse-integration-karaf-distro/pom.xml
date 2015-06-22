@@ -71,8 +71,55 @@
                     </execution>
                 </executions>
             </plugin>
-
-
+               <plugin>
+                   <groupId>org.apache.karaf.tooling</groupId>
+                   <artifactId>features-maven-plugin</artifactId>
+                   <version>${karaf-version}</version>
+                   <executions>
+                       <execution>
+                           <id>add-features-to-repo</id>
+                           <phase>generate-resources</phase>
+                           <goals>
+                               <goal>add-features-to-repo</goal>
+                           </goals>
+                           <configuration>
+                               <descriptors>
+                                <descriptor>mvn:org.jboss.integration.fuse/karaf-features/${project.version}/xml/features</descriptor>
+                                <descriptor>mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features</descriptor>
+                                <descriptor>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</descriptor>
+                                <descriptor>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features</descriptor>
+                               </descriptors>
+                               <features>
+                                   
+                                  <feature>fuse-bxms-switchyard-common-knowledge/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-rules/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-bpm/${project.version}</feature>
+                                  
+                                  <!--
+                                  <feature>fuse-bxms-switchyard-quickstart-bpm-service/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-quickstart-rules-camel-cbr/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-quickstart-rules-interview/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-quickstart-rules-interview-container/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-quickstart-rules-interview-dtable/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-demo-library/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-demo-helpdesk/${project.version}</feature>
+                                  -->
+                                  
+                               </features>
+                               <blackList></blackList>
+                               <addTransitiveFeatures>false</addTransitiveFeatures>
+                               <repository>target/features-repo</repository>
+                           </configuration>
+                       </execution>
+                   </executions>
+                   <dependencies>
+                       <dependency>
+                           <groupId>org.apache.maven.wagon</groupId>
+                           <artifactId>wagon-http</artifactId>
+                           <version>2.8</version>
+                       </dependency>
+                   </dependencies>
+               </plugin>
         </plugins>
     </build>
 </project>
