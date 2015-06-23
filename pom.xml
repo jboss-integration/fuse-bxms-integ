@@ -41,6 +41,7 @@
   <properties>
         <version.jboss.integration>1.0.0.redhat-620130</version.jboss.integration>
         <version.fuse.eap>6.2.0.redhat-129</version.fuse.eap>
+        <karaf-version>2.4.0.redhat-620123</karaf-version>
 
         <!-- Internal dependencies -->
         <version.org.kie>6.2.0.Final-redhat-6</version.org.kie>
@@ -152,6 +153,9 @@
         <eap.download.url>http://porkchop.redhat.com</eap.download.url>
 	<eap.download.url.path>released/JBEAP-6/6.4.0-Beta/jboss-eap-6.4.0.Beta.zip</eap.download.url.path>
         <version.org.wildfly.camel>2.2.0.redhat-620129</version.org.wildfly.camel>
+
+        <version.org.apache.camel.features>[2.12,3)</version.org.apache.camel.features>
+        <version.org.apache.cxf.features>[2.7,4)</version.org.apache.cxf.features>
   </properties>
 
   <repositories>
