@@ -29,7 +29,7 @@
         <bundle>mvn:org.jboss.integration.fuse/switchyard-component-bpm/${project.version}</bundle>
     </feature>
 
-    <feature name="fuse-bxms-kie-camel" version="${project.version}">
+    <feature name="kie-camel" version="${project.version}">
         <feature>kie-spring</feature>
         <feature version="${karaf.version.org.kie}">jbpm</feature>
         <feature version="${version.org.apache.camel.features}">camel-core</feature>
@@ -40,7 +40,7 @@
         <feature version="${version.org.apache.cxf.features}">cxf-jaxrs</feature>
         <bundle>mvn:org.jboss.integration.fuse/kie-camel/${project.version}</bundle>
     </feature>
-    <feature name="fuse-bxms-jbpm-workitems-camel" version="${project.version}">
+    <feature name="jbpm-workitems-camel" version="${project.version}">
         <feature version="${karaf.version.org.kie}">jbpm</feature>
         <feature version="${version.org.apache.camel.features}">camel-core</feature>
         <bundle>wrap:mvn:org.jbpm/jbpm-workitems/${version.org.kie}</bundle>

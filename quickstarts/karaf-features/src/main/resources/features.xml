@@ -83,7 +83,7 @@
         <feature version="${karaf.version.org.kie}">drools-module</feature>
         <feature version="${karaf.version.org.kie}">drools-decisiontable</feature>
         <feature version="${karaf.version.org.kie}">kie-aries-blueprint</feature>
-        <feature version="${project.version}">fuse-bxms-kie-camel</feature>
+        <feature version="${project.version}">kie-camel</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/blueprint-camel-drools-decision-table/${project.version}</bundle>
     </feature>
 
@@ -91,7 +91,7 @@
         <feature version="${karaf.version.org.kie}">drools-module</feature>
         <feature version="${karaf.version.org.kie}">drools-decisiontable</feature>
         <feature version="${karaf.version.org.kie}">kie-spring</feature>
-        <feature version="${project.version}">fuse-bxms-kie-camel</feature>
+        <feature version="${project.version}">kie-camel</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/spring-camel-drools-decision-table/${project.version}</bundle>
     </feature>
 
