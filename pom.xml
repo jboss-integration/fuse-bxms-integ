@@ -13,7 +13,7 @@
 
   <groupId>org.jboss.integration.fuse</groupId>
   <artifactId>fuse-integration-project</artifactId>
-  <version>1.0.0.redhat-620130</version>
+  <version>1.0.0.redhat-620136</version>
 
   <packaging>pom</packaging>
 
@@ -39,7 +39,7 @@
   </licenses>
 
   <properties>
-        <version.jboss.integration>1.0.0.redhat-620130</version.jboss.integration>
+        <version.jboss.integration>1.0.0.redhat-620136</version.jboss.integration>
         <version.fuse.eap>6.2.0.redhat-133</version.fuse.eap>
         <karaf-version>2.4.0.redhat-620133</karaf-version>
 
