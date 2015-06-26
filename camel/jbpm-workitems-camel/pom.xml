@@ -87,7 +87,7 @@
             <Bundle-SymbolicName>org.camel.jbpm</Bundle-SymbolicName>
             <Bundle-Name>jbpm-workitems-camel</Bundle-Name>
             <Import-Package>
-              org.apache.camel*;version="${version.org.apache.camel.features}",
+              org.apache.camel*;version="${version.org.apache.camel.features}",*
             </Import-Package>
             <Export-Package>
                 org.jbpm.process.workitem.camel.*
