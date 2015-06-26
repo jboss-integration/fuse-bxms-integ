@@ -22,16 +22,21 @@
     </formats>
     <fileSets>
         <fileSet>
-            <directory>${project.build.directory}/fuse-integration</directory>
-            <outputDirectory>/</outputDirectory>
+            <directory>${project.build.directory}/fuse-integration/quickstarts</directory>
             <fileMode>644</fileMode>
             <directoryMode>755</directoryMode>
+            <outputDirectory>quickstarts/fuse-integration</outputDirectory>
         </fileSet>
         <fileSet>
             <directory>${project.build.directory}/features-repo</directory>
             <outputDirectory>system</outputDirectory>
             <fileMode>644</fileMode>
             <directoryMode>755</directoryMode>
+            <excludes>
+                <exclude>org/drools/**</exclude>
+                <exclude>org/kie/**</exclude>
+                <exclude>org/jbpm/**</exclude>
+            </excludes>
         </fileSet>
         <fileSet>
             <directory>./</directory>

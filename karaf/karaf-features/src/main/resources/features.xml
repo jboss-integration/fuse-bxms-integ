@@ -46,10 +46,5 @@
         <bundle>wrap:mvn:org.jbpm/jbpm-workitems/${version.org.kie}</bundle>
         <bundle>mvn:org.jboss.integration.fuse/jbpm-workitems-camel/${project.version}</bundle>
     </feature>
-
-
-    <feature name="fuse-bxms-drools-osgi-integration" version="${project.version}">
-        <bundle>mvn:org.jboss.integration.fuse/drools-osgi-integration/${project.version}</bundle>
-    </feature>
 </features>
 
