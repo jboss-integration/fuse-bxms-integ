@@ -221,6 +221,11 @@
       </snapshots>
     </repository>
     <repository>
+      <id>jb-eap-6.4-rhel-6-build</id>
+      <name>jboss staging</name>
+      <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-eap-6.4-rhel-6-build/latest/maven</url>
+    </repository>
+    <repository>
        <id>fusesource-public-release-repository-group</id>
        <url>https://repository.jboss.org/nexus/content/repositories/fs-releases</url>
        <releases>
