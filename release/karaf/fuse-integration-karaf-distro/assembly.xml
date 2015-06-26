@@ -32,6 +32,11 @@
             <outputDirectory>system</outputDirectory>
             <fileMode>644</fileMode>
             <directoryMode>755</directoryMode>
+            <excludes>
+                <exclude>org/drools/**</exclude>
+                <exclude>org/kie/**</exclude>
+                <exclude>org/jbpm/**</exclude>
+            </excludes>
         </fileSet>
         <fileSet>
             <directory>./</directory>
