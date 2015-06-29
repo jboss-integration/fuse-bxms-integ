@@ -15,14 +15,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
+   
    <parent>
       <groupId>org.jboss.integration.fuse</groupId>
       <artifactId>eap-release-parent</artifactId>
       <version>1.0.0.redhat-SNAPSHOT</version>
-      <relativePath>../pom.xml</relativePath>
    </parent>
 
-   <artifactId>fuse-integration-eap-tests</artifactId>
+   <artifactId>fuse-integration-eap-itests</artifactId>
    <packaging>jar</packaging>
    <name>Fuse Integration: AS7 Release Distribution Tests</name>
    <description>Fuse BXMS Integration AS7 Release Distribution Tests</description>
@@ -31,6 +31,7 @@
       <temp.switchyard.unpack>${project.build.directory}/temp/switchyard-distro</temp.switchyard.unpack>
       <temp.fuse.integration.unpack>${project.build.directory}/temp/fuse-integration</temp.fuse.integration.unpack>
    </properties>
+   
    <dependencies>
       <dependency>
          <groupId>org.switchyard</groupId>
@@ -63,6 +64,14 @@
       <dependency>
          <groupId>org.switchyard</groupId>
          <artifactId>switchyard-release-testutil</artifactId>
+      </dependency>
+
+      <!-- Test Dependencies -->
+      <dependency>
+         <groupId>org.jboss.integration.fuse</groupId>
+         <artifactId>fuse-integration-eap-installer</artifactId>
+         <version>${project.version}</version>
+         <scope>test</scope>
       </dependency>
       <dependency>
          <groupId>org.jboss.arquillian.junit</groupId>
@@ -175,51 +184,35 @@
          </properties>
          <build>
             <plugins>
-               <plugin>
-                  <groupId>org.codehaus.mojo</groupId>
-                  <artifactId>wagon-maven-plugin</artifactId>
-                  <version>1.0-beta-3</version>
-                  <executions>
-                     <execution>
-                        <id>download-eap</id>
-                        <phase>generate-sources</phase>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                       <id>unpack-wildfly</id>
+                       <phase>generate-resources</phase>
                         <goals>
-                           <goal>download-single</goal>
+                            <goal>unpack</goal>
                         </goals>
                         <configuration>
-                           <url>${eap.download.url}</url>
-                           <fromFile>${eap.download.url.path}</fromFile>
-                           <toDir>${project.build.directory}</toDir>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.jboss.as</groupId>
+                                    <artifactId>jboss-as-dist</artifactId>
+                                    <version>${version.eap}</version>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
                         </configuration>
-                     </execution>
-                  </executions>
-               </plugin>
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-antrun-plugin</artifactId>
-                  <version>1.6</version>
-                  <executions>
-                     <execution>
-                        <id>prepare</id>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                           <tasks>
-                              <echo message="Unzipping EAP"/>
-                              <unzip src="${project.build.directory}/jboss-eap-6.4.0.Beta.zip"
-                                     dest="${project.build.directory}"/>
-                           </tasks>
-                        </configuration>
-                        <goals>
-                           <goal>run</goal>
-                        </goals>
-                     </execution>
-                  </executions>
-               </plugin>
+                    </execution>
+                </executions>
+            </plugin>
             </plugins>
          </build>
       </profile>
    </profiles>
-
 
    <build>
       <testResources>
@@ -229,107 +222,82 @@
          </testResource>
       </testResources>
       <plugins>
-
+         <!-- [#28] Disable managed version checking -->
+         <plugin>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <configuration>
+               <fail>false</fail>
+            </configuration>
+         </plugin>
          <plugin>
             <artifactId>maven-dependency-plugin</artifactId>
             <executions>
                <execution>
-                  <id>unpack-fuse-eap</id>
-                  <phase>process-sources</phase>
+                  <id>copy-eap-installer</id>
+                  <phase>generate-resources</phase>
                   <goals>
-                     <goal>unpack</goal>
+                     <goal>copy</goal>
                   </goals>
                   <configuration>
                      <artifactItems>
                         <artifactItem>
-                           <groupId>com.redhat.fuse</groupId>
-                           <artifactId>fuse-eap-distro</artifactId>
-                           <type>zip</type>
+                           <groupId>com.redhat.fuse.eap</groupId>
+                           <artifactId>fuse-eap-installer</artifactId>
                            <version>${version.fuse.eap}</version>
+                           <outputDirectory>${eap.home}</outputDirectory>
+                           <destFileName>fuse-eap-installer.jar</destFileName>
                         </artifactItem>
-                     </artifactItems>
-                     <outputDirectory>${eap.home}</outputDirectory>
-                  </configuration>
-               </execution>
-               <execution>
-                  <id>install-as7-bpms-layer</id>
-                  <phase>process-sources</phase>
-                  <goals>
-                     <goal>unpack</goal>
-                  </goals>
-                  <configuration>
-                     <artifactItems>
-                        <artifactItem>
-                           <groupId>org.kie</groupId>
-                           <artifactId>kie-eap-distributions-bpms-layer</artifactId>
-                           <version>${version.org.kie}</version>
-                           <type>zip</type>
-                        </artifactItem>
-                     </artifactItems>
-                     <excludes>modules/layers.conf</excludes>
-                     <outputDirectory>${eap.home}</outputDirectory>
-                  </configuration>
-               </execution>
-               <execution>
-                  <id>unpack-bundle</id>
-                  <phase>process-sources</phase>
-                  <goals>
-                     <goal>unpack</goal>
-                  </goals>
-                  <configuration>
-                     <artifactItems>
                         <artifactItem>
                            <groupId>org.jboss.integration.fuse</groupId>
-                           <artifactId>fuse-integration-eap-distro</artifactId>
-                           <type>zip</type>
+                           <artifactId>fuse-integration-eap-installer</artifactId>
                            <version>${project.version}</version>
+                           <outputDirectory>${eap.home}</outputDirectory>
+                           <destFileName>fuse-integration-eap-installer.jar</destFileName>
                         </artifactItem>
                      </artifactItems>
-                     <outputDirectory>${eap.home}</outputDirectory>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>install-fuse-eap</id>
+                  <phase>generate-resources</phase>
+                  <goals>
+                     <goal>exec</goal>
+                  </goals>
+                  <configuration>
+                     <executable>java</executable>
+                     <arguments>
+                        <argument>-jar</argument>
+                        <argument>${eap.home}/fuse-eap-installer.jar</argument>
+                        <argument>${eap.home}</argument>
+                     </arguments>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>install-fuse-integration</id>
+                  <phase>generate-resources</phase>
+                  <goals>
+                     <goal>exec</goal>
+                  </goals>
+                  <configuration>
+                     <executable>java</executable>
+                     <arguments>
+                        <argument>-jar</argument>
+                        <argument>${eap.home}/fuse-integration-eap-installer.jar</argument>
+                        <argument>${eap.home}</argument>
+                     </arguments>
                   </configuration>
                </execution>
             </executions>
          </plugin>
 
-         <plugin>
-           <groupId>org.codehaus.mojo</groupId>
-           <artifactId>exec-maven-plugin</artifactId>
-           <version>1.4.0</version>
-           <executions>
-             <execution>
-               <id>enabled-fuse-config</id>
-               <phase>generate-resources</phase>
-               <goals>
-                 <goal>exec</goal>
-               </goals>
-               <configuration>
-                 <executable>java</executable>
-                 <arguments>
-                   <argument>-jar</argument>
-                   <argument>${eap.home}/bin/fuse-eap-config.jar</argument>
-                   <argument>enable</argument>
-                 </arguments>
-               </configuration>
-             </execution>
-              <execution>
-                <id>enabled-fuse-integration-config</id>
-                <phase>generate-resources</phase>
-                <goals>
-                  <goal>exec</goal>
-                </goals>
-                <configuration>
-                  <executable>java</executable>
-                  <arguments>
-                    <argument>-jar</argument>
-                    <argument>${eap.home}/bin/fuse-integration-config.jar</argument>
-                    <argument>enable</argument>
-                  </arguments>
-                </configuration>
-              </execution>
-           </executions>
-         </plugin>
-
-         <!-- Configure the Surefire plugin for running the tests.  Be sure to make these same setting if running in your IDE... -->
+         <!-- Configure the Surefire plugin for running the tests. Be sure 
+            to make these same setting if running in your IDE... -->
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>

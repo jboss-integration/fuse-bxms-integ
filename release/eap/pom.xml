@@ -18,20 +18,20 @@
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>release-parent</artifactId>
         <version>1.0.0.redhat-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>eap-release-parent</artifactId>
     <packaging>pom</packaging>
 
     <name>Fuse Integration: AS7 Parent</name>
-    <description>Fuse BXMS Integration Release JbossAS7 Container Parent</description>
+    <description>Fuse BXMS Integration Release JBossAS7 Container Parent</description>
 
     <modules>
-        <module>fuse-integration-eap-modules</module>
-        <module>fuse-integration-config</module>
-        <module>fuse-integration-eap-distro</module>
-        <module>fuse-integration-eap-tests</module>
+        <module>config</module>
+        <module>modules</module>
+        <module>distro</module>
+        <module>installer</module>
+        <module>itests</module>
     </modules>
     
     <dependencies>
@@ -153,7 +153,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-  
         <dependency>
             <groupId>org.jboss.integration.fuse.quickstarts</groupId>
             <artifactId>switchyard-demo-helpdesk</artifactId>
