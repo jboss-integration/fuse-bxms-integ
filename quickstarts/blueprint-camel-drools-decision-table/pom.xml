@@ -25,7 +25,7 @@
             <artifactId>kie-internal</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.kie</groupId>
+            <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>kie-camel</artifactId>
         </dependency>
         <dependency>
@@ -129,7 +129,7 @@
                             org.kie.internal;version="[6.0,7)",
                             org.kie.aries.blueprint;version="[6.0,7)",
                             org.kie.aries.blueprint.factorybeans;version="[6.0,7)",
-                            org.kie.camel.component;version="[6.0,7)",
+                            org.kie.camel.component;version="[1.0,2)",
                             org.eclipse.jdt.internal.compiler
                         </Import-Package>
                         <Private-Package>

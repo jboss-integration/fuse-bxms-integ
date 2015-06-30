@@ -43,7 +43,7 @@
         <module>switchyard-rules-interview-dtable</module>
         <module>switchyard-demo-helpdesk</module>
         <module>switchyard-demo-library</module>
-        <module>drools-camel-server-example</module>
+        <!--module>drools-camel-server-example</module-->
         <module>blueprint-camel-drools-decision-table</module>
         <module>spring-camel-drools-decision-table</module>
         <module>spring-jbpm-osgi-example</module>

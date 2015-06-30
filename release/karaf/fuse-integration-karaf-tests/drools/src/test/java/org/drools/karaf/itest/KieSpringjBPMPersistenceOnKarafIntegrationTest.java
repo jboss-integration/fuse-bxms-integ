@@ -34,6 +34,7 @@ import org.h2.tools.Server;
 import org.jbpm.process.instance.impl.demo.SystemOutWorkItemHandler;
 import org.jbpm.services.task.identity.JBossUserGroupCallbackImpl;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kie.api.KieServices;
@@ -63,6 +64,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerMethod.class)
+@Ignore
 public class KieSpringjBPMPersistenceOnKarafIntegrationTest extends KieSpringIntegrationTestSupport {
 
     protected static final transient Logger LOG = LoggerFactory.getLogger(KieSpringjBPMPersistenceOnKarafIntegrationTest.class);
