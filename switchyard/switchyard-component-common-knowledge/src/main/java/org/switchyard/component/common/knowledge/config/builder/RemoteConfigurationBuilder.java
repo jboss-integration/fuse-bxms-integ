@@ -172,7 +172,6 @@ public class RemoteConfigurationBuilder extends KnowledgeBuilder {
         } catch (MalformedURLException mue) {
             throw new RuntimeException(mue);
         }
-        builder.useFormBasedAuth(model.isUseFormBasedAuth());
     }
 
     private void configRemote(RemoteRuntimeEngineBuilder<?, ?> builder, RemoteModel model) {

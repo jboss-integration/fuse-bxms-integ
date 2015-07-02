@@ -101,6 +101,7 @@
                            <version>${version.org.kie}</version>
                            <type>zip</type>
                            <overWrite>true</overWrite>
+                           <destFileName>kie-eap-distributions-bpms-layer-${version.org.kie}.zip</destFileName>
                         </artifactItem>
                      </artifactItems>
                   </configuration>

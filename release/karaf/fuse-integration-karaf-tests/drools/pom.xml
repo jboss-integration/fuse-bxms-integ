@@ -30,7 +30,7 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.kie</groupId>
+      <groupId>org.jboss.integration.fuse</groupId>
       <artifactId>kie-camel</artifactId>
       <scope>test</scope>
     </dependency>

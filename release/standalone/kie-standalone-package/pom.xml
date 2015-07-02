@@ -44,13 +44,8 @@
   <dependencies>
     <!-- Binaries and sources -->
     <dependency>
-      <groupId>org.kie</groupId>
+      <groupId>org.jboss.integration.fuse</groupId>
       <artifactId>kie-camel</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.kie</groupId>
-      <artifactId>kie-camel</artifactId>
-      <classifier>sources</classifier>
     </dependency>
 
     <!-- These deps (together with all others in this project) should be declared in a different bom -->

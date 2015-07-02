@@ -286,6 +286,12 @@ public class KnowledgeRuntimeManager implements RuntimeManager {
         _runtimeManager.close();
     }
 
+    @Override
+    public void signalEvent(String arg0, Object arg1) {
+        // TODO Auto-generated method stub
+
+    }
+
     /* attempt at fixing SWITCHYARD-2240
     private static final class KnowledgeScanner extends KieRepositoryScannerImpl {
         private ReleaseId _originalReleaseId = null;
