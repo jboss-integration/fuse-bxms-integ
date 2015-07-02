@@ -49,11 +49,12 @@
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-multithreaded/${project.version}</bundle>
     </feature>
     <!-- XXX: this needs some love -->
-    <feature name="fuse-bxms-switchyard-demo-helpdesk" version="${project.version}" resolver="(obr)">
+    <!--feature name="fuse-bxms-switchyard-demo-helpdesk" version="${project.version}" resolver="(obr)"-->
         <!-- hibernate must be before bpm -->
-        <feature version="${karaf.version.org.switchyard}">switchyard-bean</feature>
+        <!--TO REMOVE -COMMENT-->
+        <!--feature version="${karaf.version.org.switchyard}">switchyard-bean</feature>
         <feature version="${karaf.version.org.switchyard}">switchyard-soap</feature>
-        <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature-->
 
         <!-- jbpm-kie-services needs to export org.jbpm.kie.services.impl.model for Serviceorm.xml...
         <bundle dependency="true">mvn:org.jbpm/jbpm-shared-services/${version.org.jbpm}</bundle>
@@ -63,13 +64,16 @@
          -->
 
         <!-- cdi web support -->
-        <feature version="${version.org.ops4j.pax.cdi}">pax-cdi-1.2-web-weld</feature>
+        <!--TO REMOVE -COMMENT-->
+        <!--feature version="${version.org.ops4j.pax.cdi}">pax-cdi-1.2-web-weld</feature-->
 
         <!-- Database support -->        
-        <bundle>mvn:com.h2database/h2/${version.com.h2database}</bundle>
+        <!--TO REMOVE -COMMENT-->
+        <!--bundle>mvn:com.h2database/h2/${version.com.h2database}</bundle-->
 
         <!-- JSF Dependencies -->
-        <bundle dependency="true">mvn:commons-collections/commons-collections/${version.commons-collections}</bundle>
+        <!--TO REMOVE -COMMENT-->
+        <!--bundle dependency="true">mvn:commons-collections/commons-collections/${version.commons-collections}</bundle>
         <bundle dependency="true">mvn:commons-codec/commons-codec/${version.commons-codec}</bundle>
         <bundle dependency="true">mvn:commons-beanutils/commons-beanutils/${version.commons-beanutils}</bundle>
         <bundle dependency="true">mvn:commons-digester/commons-digester/${version.commons-digester}</bundle>
@@ -77,7 +81,7 @@
         <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-validation_1.0_spec/${version.org.apache.geronimo.specs.geronimo-validation_1.0_spec}</bundle>
         
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-demo-helpdesk/${project.version}/war</bundle>
-    </feature>
+    </feature-->
 
     <feature name="fuse-bxms-camel-blueprint-drools-decision-table" version="${project.version}" resolver="(obr)">
         <feature version="${karaf.version.org.kie}">drools-module</feature>
