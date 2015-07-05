@@ -16,7 +16,7 @@
     <parent>
         <groupId>org.jboss.integration.fuse.quickstarts</groupId>
         <artifactId>quickstarts-parent</artifactId>
-        <version>1.0.0.redhat-620136</version>
+        <version>1.0.0.redhat-620139</version>
         <relativePath>../</relativePath>
     </parent>
 
