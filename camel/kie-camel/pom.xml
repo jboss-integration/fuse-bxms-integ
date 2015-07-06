@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.jboss.integration.fuse</groupId>
     <artifactId>camel-parent</artifactId>
-    <version>1.0.0.redhat-620136</version>
+    <version>1.0.0.redhat-620140</version>
   </parent>
 
   <artifactId>kie-camel</artifactId>
