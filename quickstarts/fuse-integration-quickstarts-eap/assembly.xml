@@ -38,8 +38,8 @@
                 <include>**/switchyard-rules-interview-container/**/*</include>
                 <include>**/switchyard-rules-interview-dtable</include>
                 <include>**/switchyard-rules-interview-dtable/**/*</include>
-                <!--include>**/switchyard-demo-helpdesk</include>
-                <include>**/switchyard-demo-helpdesk/**/*</include-->
+                <include>**/switchyard-demo-helpdesk</include>
+                <include>**/switchyard-demo-helpdesk/**/*</include>
                 <include>**/switchyard-demo-library</include>
                 <include>**/switchyard-demo-library/**/*</include>    
                 <include>**/switchyard-rules-multithreaded</include>

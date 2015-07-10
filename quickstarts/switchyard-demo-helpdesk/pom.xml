@@ -217,7 +217,9 @@
                         <Bundle-SymbolicName>${bundle.symbolic.name}</Bundle-SymbolicName>
                         <DynamicImport-Package>${switchyard.osgi.dynamic}</DynamicImport-Package>
                         <Embed-Dependency>!*</Embed-Dependency>
-                        <Import-Package>${switchyard.osgi.import}</Import-Package>
+                        <Import-Package>${switchyard.osgi.import},
+                                        org.eclipse.jetty.jndi 
+                        </Import-Package>
                         <Include-Resource>{maven-resources}, WEB-INF/switchyard.xml=target/classes/META-INF/switchyard.xml</Include-Resource>
                         <Require-Capability>${switchyard.osgi.require.capability}</Require-Capability>
                         <Require-Bundle>${switchyard.osgi.require.bundle}</Require-Bundle>
@@ -243,8 +245,7 @@
                         WEB-INF/lib/*.jar,
                         WEB-INF/classes/META-INF/switchyard.xml,
                         WEB-INF/classes/META-INF/MANIFEST.MF,
-                        WEB-INF/classes/META-INF/beans.xml,
-                        WEB-INF/classes/OSGI-INF/**
+                        WEB-INF/classes/META-INF/beans.xml
                     </packagingExcludes>
                     <webResources>
                         <resource>
@@ -260,10 +261,6 @@
                             <includes>
                                 <include>beans.xml</include>
                             </includes>
-                        </resource>
-                        <resource>
-                            <directory>target/classes/OSGI-INF</directory>
-                            <targetPath>OSGI-INF</targetPath>
                         </resource>
                     </webResources>
                     <archive>
