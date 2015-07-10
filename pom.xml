@@ -46,6 +46,7 @@
         
         <!-- Perfectus managed versions -->
         <version.fuse.eap>6.2.1.redhat-001b</version.fuse.eap>
+        <version.fuse.patch>1.4.0</version.fuse.patch>
         <karaf-version>2.4.0.redhat-621002</karaf-version>
         <version.camelsap>6.2.1.redhat-002</version.camelsap>
         <version.switchyard>2.0.1.redhat-621002</version.switchyard>
@@ -316,23 +317,19 @@
    <dependencyManagement>
       <dependencies>
          <dependency>
-            <groupId>org.switchyard</groupId>
-            <artifactId>switchyard-bom</artifactId>
-            <version>${version.switchyard}</version>
-            <type>pom</type>
-            <scope>import</scope>
+            <groupId>com.redhat.fuse.eap</groupId>
+            <artifactId>fuse-eap-config</artifactId>
+            <version>${version.fuse.eap}</version>
          </dependency>
          <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-util</artifactId>
-            <version>${version.org.eclipse.jetty}</version>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-atinject_1.0_spec</artifactId>
+            <version>${version.org.apache.geronimo.specs}</version>
          </dependency>
          <dependency>
-            <groupId>org.kie</groupId>
-            <artifactId>kie-bom</artifactId>
-            <version>${version.org.kie}</version>
-            <type>pom</type>
-            <scope>import</scope>
+            <groupId>org.apache.ws.xmlschema</groupId>
+            <artifactId>xmlschema-core</artifactId>
+            <version>${version.org.apache.ws.xmlschema}</version>
          </dependency>
          <dependency>
             <groupId>org.drools</groupId>
@@ -342,6 +339,11 @@
             <scope>import</scope>
          </dependency>
          <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-util</artifactId>
+            <version>${version.org.eclipse.jetty}</version>
+         </dependency>
+         <dependency>
             <groupId>org.jbpm</groupId>
             <artifactId>jbpm-bom</artifactId>
             <version>${version.org.jbpm}</version>
@@ -349,38 +351,36 @@
             <scope>import</scope>
          </dependency>
          <dependency>
-            <groupId>org.apache.ws.xmlschema</groupId>
-            <artifactId>xmlschema-core</artifactId>
-            <version>${version.org.apache.ws.xmlschema}</version>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-bom</artifactId>
+            <version>${version.org.kie}</version>
+            <type>pom</type>
+            <scope>import</scope>
          </dependency>
-
-
-
-         <dependency>
-            <groupId>com.redhat.fuse.eap</groupId>
-            <artifactId>fuse-eap-config</artifactId>
-            <version>${version.fuse.eap}</version>
-         </dependency>
-
          <dependency>
             <groupId>org.mvel</groupId>
             <artifactId>mvel2</artifactId>
             <version>${version.org.mvel}</version>
-         </dependency>
-
-         <dependency>
-            <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-atinject_1.0_spec</artifactId>
-            <version>${version.org.apache.geronimo.specs}</version>
          </dependency>
          <dependency>
             <groupId>org.ops4j.pax.url</groupId>
             <artifactId>pax-url-aether</artifactId>
             <version>${version.org.ops4j.pax.url}</version>
          </dependency>
-
-         <!-- ################################################################### 
-            ## Dependencies Not Present in Integration BOM ## ################################################################### -->
+         <dependency>
+            <groupId>org.switchyard</groupId>
+            <artifactId>switchyard-bom</artifactId>
+            <version>${version.switchyard}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.wildfly.extras.patch</groupId>
+            <artifactId>fuse-patch-installer</artifactId>
+            <version>${version.fuse.patch}</version>
+         </dependency>
+            
+         <!-- Dependencies Not Present in Integration BOM  -->
          <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-plugin-plugin</artifactId>
@@ -419,8 +419,7 @@
             <version>${version.net.sourceforge.saxon}</version>
          </dependency>
 
-         <!-- ################################################################### 
-            ## Project Artifacts ## ################################################################### -->
+         <!-- Project Artifacts  -->
          <dependency>
             <groupId>org.switchyard</groupId>
             <artifactId>switchyard-as7-modules</artifactId>

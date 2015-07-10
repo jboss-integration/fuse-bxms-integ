@@ -55,9 +55,8 @@
          <type>zip</type>
       </dependency>
       <dependency>
-         <groupId>com.redhat.fuse.eap</groupId>
-         <artifactId>fuse-eap-installer</artifactId>
-         <version>${version.fuse.eap}</version>
+         <groupId>org.wildfly.extras.patch</groupId>
+         <artifactId>fuse-patch-installer</artifactId>
       </dependency>
    </dependencies>
 
@@ -112,12 +111,12 @@
                   </goals>
                   <configuration>
                      <outputDirectory>${project.build.directory}/classes</outputDirectory>
-                     <includes>org/jboss/fuse/eap/installer/*.class</includes>
+                     <includes>org/wildfly/extras/patch/installer/*.class</includes>
                      <artifactItems>
                         <artifactItem>
-                           <groupId>com.redhat.fuse.eap</groupId>
-                           <artifactId>fuse-eap-installer</artifactId>
-                           <version>${version.fuse.eap}</version>
+                           <groupId>org.wildfly.extras.patch</groupId>
+                           <artifactId>fuse-patch-installer</artifactId>
+                           <version>${version.fuse.patch}</version>
                            <overWrite>true</overWrite>
                            <type>jar</type>
                         </artifactItem>
