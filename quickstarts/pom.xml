@@ -44,6 +44,7 @@
         <module>switchyard-demo-helpdesk-ds</module>
         <module>switchyard-demo-helpdesk</module>
         <module>switchyard-demo-library</module>
+        <module>switchyard-drools-channels</module>
         <!--module>drools-camel-server-example</module-->
         <module>blueprint-camel-drools-decision-table</module>
         <module>spring-camel-drools-decision-table</module>

@@ -1,0 +1,10 @@
+package com.example.switchyard.drools.channels
+import org.switchyard.Message
+global Message message
+
+rule "RulesComponentB"
+    when
+        $s : String()
+    then
+        System.out.println("service: WorkerB, payload: " + $s +".B");
+end

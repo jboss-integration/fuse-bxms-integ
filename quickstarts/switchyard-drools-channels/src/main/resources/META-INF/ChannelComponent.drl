@@ -1,0 +1,12 @@
+package com.example.switchyard.drools.channels
+import org.switchyard.Message
+global Message message
+
+rule "Channel"
+    when
+        $input : String()
+    then
+    	System.out.println("service: Channel, payload: " + message.getContent());
+    	channels["WorkerA"].send($input);
+    	channels["WorkerB"].send($input);
+end
