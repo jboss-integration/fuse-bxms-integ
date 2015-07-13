@@ -40,7 +40,7 @@ public class RuntimeManagerBuilder extends KnowledgeBuilder {
      */
     public RuntimeManagerBuilder(ClassLoader classLoader, ServiceDomain serviceDomain, KnowledgeComponentImplementationModel implementationModel) {
         super(classLoader, serviceDomain);
-        _runtimeManagerFactory = RuntimeManagerFactory.Factory.get();
+        _runtimeManagerFactory = RuntimeManagerFactory.Factory.get(classLoader);
         _runtimeEnvironmentBuilder = new RuntimeEnvironmentBuilder(getClassLoader(), serviceDomain, implementationModel);
     }
 
