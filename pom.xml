@@ -46,10 +46,11 @@
 
         <!-- Perfectus managed versions -->
         <version.fuse.eap>6.2.1.redhat-001b</version.fuse.eap>
+        <version.fuse.patch>1.4.0</version.fuse.patch>
         <karaf-version>2.4.0</karaf-version>
         <version.camelsap>6.2.1.redhat-002</version.camelsap>
         <version.switchyard>2.0.1.redhat-621002</version.switchyard>
-        <version.wildfly.camel>2.3.0.redhat-621005b</version.wildfly.camel>
+        <version.wildfly.camel>2.3.0.redhat-621012</version.wildfly.camel>
 
         <!-- Internal dependencies -->
         <version.org.kie>6.3.0-SNAPSHOT</version.org.kie>
@@ -128,6 +129,8 @@
         <version.felix.maven>2.4.0</version.felix.maven>
         <version.maven.clean.plugin>2.5</version.maven.clean.plugin>
         <version.maven.plugin.plugin>3.1</version.maven.plugin.plugin>
+        <version.shrinkwrap.resolver.plugin>2.1.1</version.shrinkwrap.resolver.plugin>
+        
         <!-- OSGi bundles properties -->
         <switchyard.osgi.import.switchyard.version>version="[$(version;==;${switchyard.osgi.version}),$(version;==;${version.switchyard.osgi}))"</switchyard.osgi.import.switchyard.version>
         <switchyard.osgi.import.default.version>[$(version;==;$(@)),$(version;+;$(@)))</switchyard.osgi.import.default.version>
@@ -329,6 +332,11 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+         <dependency>
+            <groupId>org.wildfly.extras.patch</groupId>
+            <artifactId>fuse-patch-installer</artifactId>
+            <version>${version.fuse.patch}</version>
+         </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-util</artifactId>

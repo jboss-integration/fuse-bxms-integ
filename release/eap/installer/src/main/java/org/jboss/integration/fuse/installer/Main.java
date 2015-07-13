@@ -23,7 +23,7 @@ package org.jboss.integration.fuse.installer;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import org.jboss.fuse.eap.installer.AbstractInstaller;
+import org.wildfly.extras.patch.installer.AbstractInstaller;
 
 /**
  * Main class that installs fuse-integration-eap.

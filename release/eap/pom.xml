@@ -24,7 +24,7 @@
     <packaging>pom</packaging>
 
     <name>Fuse Integration: AS7 Parent</name>
-    <description>Fuse BXMS Integration Release JbossAS7 Container Parent</description>
+    <description>Fuse BXMS Integration Release JBossAS7 Container Parent</description>
 
     <modules>
         <module>config</module>
