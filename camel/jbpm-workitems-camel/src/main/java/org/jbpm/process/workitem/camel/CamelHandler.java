@@ -14,7 +14,6 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.util.URISupport;
-import org.jbpm.process.workitem.AbstractLogOrThrowWorkItemHandler;
 import org.jbpm.process.workitem.camel.request.RequestMapper;
 import org.jbpm.process.workitem.camel.request.RequestPayloadMapper;
 import org.jbpm.process.workitem.camel.response.ResponseMapper;

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Install Fuse Integration from distro" default="install">
+
+  <property name="fuse-integration-distro.tempdir" location=".temp" />
+
+  <target name="extract-packages">
+    <mkdir dir="${fuse-integration-distro.tempdir}"/>
+    <!-- Unpack the fuse integration into the temp directory -->
+    <unzip src="lib/fuse-integration-eap-package.zip" dest="${fuse-integration-distro.tempdir}" overwrite="false" />
+  </target>
+
+
+ <!-- Install Fuse Integration over EAP -->
+  <target name="install">
+     
+    <echo message=" " />
+    <echo message="#######################################################" />
+    <echo message="# Installing Fuse Integration over EAP.               #" />
+    <echo message="#                                                     #" />
+    <echo message="#######################################################" />
+    <echo message=" " />
+   
+    <echo message=" Please tell us where JBoss EAP 6.4 is located (full path)." />
+    <echo message=" Make sure this EAP instance contains installed Switchyard version ${version.switchyard}" />
+    <echo message=" " />
+    <input message="Path to EAP 6.4: " addproperty="platform.jboss-eap-6.path" />
+    
+    <antcall target="install-jboss-eap-6" />  
+  </target>
+
+<target name="checkSwitchyardInstalled">
+    <condition property="platform.jboss-eap-6.path.contains.switchyard">
+      <available file="${platform.jboss-eap-6.path}/modules/system/layers/soa/org/switchyard/" type="dir"/>
+    </condition>
+</target>
+
+<target name="checkIsEAPPath">
+    <condition property="platform.jboss-eap-6.path.valid">
+      <available file="jboss-modules.jar" filepath="${platform.jboss-eap-6.path}" />
+    </condition>
+</target>
+
+<target name="install-jboss-eap-6" depends="extract-packages , checkIsEAPPath ,checkSwitchyardInstalled">
+
+    <fail message="Failed to find JBoss EAP 6 at: ${platform.jboss-eap-6.path}" 
+              unless="platform.jboss-eap-6.path.valid" />
+
+    <fail message="Failed to find Switchyard installed on JBoss EAP 6 at: ${platform.jboss-eap-6.path}" 
+              unless="platform.jboss-eap-6.path.contains.switchyard" />
+
+    <echo message="Installing into: ${platform.jboss-eap-6.path} " />
+  
+   <echo message="Copying binaries to the EAP instance..." />
+  
+   <copy todir="${platform.jboss-eap-6.path}/modules" overwrite="true">  
+        <fileset dir="${fuse-integration-distro.tempdir}/modules" includes="**"/>  
+   </copy>
+   <copy todir="${platform.jboss-eap-6.path}/quickstarts/fuse-integration" overwrite="true">  
+        <fileset dir="${fuse-integration-distro.tempdir}/fuse-integration/quickstarts" includes="**" />  
+   </copy>
+    <transformConfigStandalone config="${platform.jboss-eap-6.path}/standalone/configuration/standalone.xml" />
+    <transformConfigStandalone config="${platform.jboss-eap-6.path}/standalone/configuration/standalone-full.xml" />
+    <transformConfigStandalone config="${platform.jboss-eap-6.path}/standalone/configuration/standalone-full-ha.xml" />
+    <transformConfigStandalone config="${platform.jboss-eap-6.path}/standalone/configuration/standalone-ha.xml" />
+    <transformConfigDomain config="${platform.jboss-eap-6.path}/domain/configuration/domain.xml" />
+
+
+
+    <delete includeemptydirs="true">
+      <fileset dir="${fuse-integration-distro.tempdir}">
+          <include name="**/*" />
+        </fileset>
+    </delete>
+  </target>
+
+
+<macrodef name="transformConfigStandalone">
+    <attribute name="config"/>
+    <sequential>
+      <xslt
+        style="${fuse-integration-distro.tempdir}/xsl/standalone.xsl"
+        in="@{config}"
+        out="${fuse-integration-distro.tempdir}/_tmp_standalone.xml" />
+      <copy file="${fuse-integration-distro.tempdir}/_tmp_standalone.xml" tofile="@{config}" overwrite="true" />
+      <delete file="${fuse-integration-distro.tempdir}/_tmp_standalone.xml" />
+    </sequential>
+  </macrodef>
+
+<macrodef name="transformConfigDomain">
+    <attribute name="config"/>
+    <sequential>
+      <xslt
+        style="${fuse-integration-distro.tempdir}/xsl/domain.xsl"
+        in="@{config}"
+        out="${fuse-integration-distro.tempdir}/_tmp_domain.xml" />
+      <copy file="${fuse-integration-distro.tempdir}/_tmp_domain.xml" tofile="@{config}" overwrite="true" />
+      <delete file="${fuse-integration-distro.tempdir}/_tmp_domain.xml" />
+    </sequential>
+  </macrodef>
+
+</project>

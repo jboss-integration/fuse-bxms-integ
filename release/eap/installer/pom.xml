@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  Fuse EAP :: Config
+  %%
+  Copyright (C) 2015 RedHat
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<!--
+- Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
+-
+- Licensed under the Apache License, Version 2.0 (the "License")
+- you may not use this file except in compliance with the License.
+- You may obtain a copy of the License at
+- http://www.apache.org/licenses/LICENSE-2.0
+- Unless required by applicable law or agreed to in writing, software
+- distributed under the License is distributed on an "AS IS" BASIS,
+- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- See the License for the specific language governing permissions and
+- limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <groupId>org.jboss.integration.fuse</groupId>
+      <artifactId>eap-release-parent</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+   </parent>
+
+   <artifactId>fuse-integration-eap-installer</artifactId>
+
+   <name>Fuse Integration: EAP Installer</name>
+   <description>Fuse BXMS Integration EAP Installer</description>
+
+   <dependencies>
+      <dependency>
+         <groupId>org.jboss.integration.fuse</groupId>
+         <artifactId>fuse-integration-eap-distro</artifactId>
+         <version>${project.version}</version>
+         <type>zip</type>
+      </dependency>
+      <dependency>
+         <groupId>org.wildfly.extras.patch</groupId>
+         <artifactId>fuse-patch-installer</artifactId>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <resources>
+         <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+         </resource>
+      </resources>
+      <plugins>
+         <!-- [#28] Disable managed version checking -->
+         <plugin>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <configuration>
+               <fail>false</fail>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>copy-distros</id>
+                  <goals>
+                     <goal>copy</goal>
+                  </goals>
+                  <configuration>
+                     <outputDirectory>${project.build.directory}/classes/META-INF/repository</outputDirectory>
+                     <artifactItems>
+                        <artifactItem>
+                           <groupId>org.jboss.integration.fuse</groupId>
+                           <artifactId>fuse-integration-eap-distro</artifactId>
+                           <version>${project.version}</version>
+                           <type>zip</type>
+                           <overWrite>true</overWrite>
+                        </artifactItem>
+                        <artifactItem>
+                           <groupId>org.kie</groupId>
+                           <artifactId>kie-eap-distributions-bpms-layer</artifactId>
+                           <version>${version.org.kie}</version>
+                           <type>zip</type>
+                           <overWrite>true</overWrite>
+                           <destFileName>kie-eap-distributions-bpms-layer-${version.org.kie}.zip</destFileName>
+                        </artifactItem>
+                     </artifactItems>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>unpack-eap-installer</id>
+                  <goals>
+                     <goal>unpack</goal>
+                  </goals>
+                  <configuration>
+                     <outputDirectory>${project.build.directory}/classes</outputDirectory>
+                     <includes>org/wildfly/extras/patch/installer/*.class</includes>
+                     <artifactItems>
+                        <artifactItem>
+                           <groupId>org.wildfly.extras.patch</groupId>
+                           <artifactId>fuse-patch-installer</artifactId>
+                           <version>${version.fuse.patch}</version>
+                           <overWrite>true</overWrite>
+                           <type>jar</type>
+                        </artifactItem>
+                     </artifactItems>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+               <archive>
+                  <manifest>
+                     <mainClass>org.jboss.integration.fuse.installer.Main</mainClass>
+                  </manifest>
+               </archive>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+</project>

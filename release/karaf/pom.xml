@@ -28,8 +28,8 @@
     <description>Fuse BXMS Integration Release Karaf Container Parent</description>
 
     <modules>
-        <module>fuse-integration-karaf-distro</module>
-        <module>fuse-integration-karaf-tests</module>
+        <module>distro</module>
+        <module>itests</module>
     </modules>
 
 </project>
