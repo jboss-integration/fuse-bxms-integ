@@ -31,6 +31,7 @@
     <modules>
         <module>switchyard-component-common-knowledge-osgi</module>
         <module>karaf-features</module>
+        <module>karaf-itest</module>
     </modules>
     <build>
         <plugins>
