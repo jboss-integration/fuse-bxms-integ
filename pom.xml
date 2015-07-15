@@ -439,6 +439,12 @@
       ##                       Project Artifacts                       ##
       ################################################################### -->
             <dependency>
+                <groupId>org.jboss.integration.fuse</groupId>
+                <artifactId>jbpm-workitems-camel</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.switchyard</groupId>
                 <artifactId>switchyard-as7-modules</artifactId>
                 <version>${version.switchyard}</version>
