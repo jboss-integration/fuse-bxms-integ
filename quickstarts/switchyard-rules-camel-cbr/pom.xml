@@ -72,7 +72,7 @@
             <artifactId>switchyard-component-camel</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.integration.fuse</groupId>
+            <groupId>org.switchyard.components</groupId>
             <artifactId>switchyard-component-rules</artifactId>
         </dependency>
         <dependency>
@@ -139,7 +139,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${version.enforcer.maven}</version>
+                <version>${version.enforcer.maven}</version><!--$NO-MVN-MAN-VER$-->
                 <executions>
                     <execution>
                         <id>enforce-versions</id>

@@ -54,7 +54,7 @@
             <artifactId>switchyard-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.integration.fuse</groupId>
+            <groupId>org.switchyard.components</groupId>
             <artifactId>switchyard-component-rules</artifactId>
         </dependency>
         <dependency>
@@ -108,7 +108,6 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>${version.felix.maven}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <excludeDependencies>true</excludeDependencies>
