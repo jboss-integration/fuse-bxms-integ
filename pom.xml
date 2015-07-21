@@ -811,7 +811,7 @@
                 <plugin>
                     <groupId>org.switchyard</groupId>
                     <artifactId>switchyard-plugin</artifactId>
-                    <version>${project.version}</version>
+                    <version>${version.switchyard}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.felix</groupId>

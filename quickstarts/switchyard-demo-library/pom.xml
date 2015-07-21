@@ -14,16 +14,12 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-        <artifactId>quickstarts-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>
+
 
     <artifactId>switchyard-demo-library</artifactId>
     <packaging>bundle</packaging>
-    
+    <groupId>org.jboss.integration.fuse</groupId>
+    <version>1.0.0-SNAPSHOT</version>
     <name>Fuse Integration: Quickstarts: Switchyard Quickstart Demo : Library</name>
     <description>Fuse Integration: Quickstarts: Quickstart Demo : Library</description>
 
@@ -41,7 +37,17 @@
         <version.felix.maven>2.4.0</version.felix.maven>
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
     </properties>
-   
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.integration.fuse</groupId>
+                <artifactId>fuse-integration-bom</artifactId>
+                <version>${project.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>   
     <dependencies>
         <dependency>
             <groupId>org.switchyard</groupId>
@@ -77,6 +83,11 @@
             <groupId>org.switchyard</groupId>
             <artifactId>switchyard-validate</artifactId>
         </dependency>
+        <dependency>
+	    <groupId>org.jboss.spec.javax.servlet</groupId>
+	    <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -84,7 +95,6 @@
             <plugin>
                 <groupId>org.switchyard</groupId>
                 <artifactId>switchyard-plugin</artifactId>
-                <version>${version.switchyard}</version>
                 <executions>
                     <execution>
                         <goals>

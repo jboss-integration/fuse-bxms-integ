@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-		 xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-        <artifactId>quickstarts-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>
-	<artifactId>switchyard-rules-csv</artifactId>
-	<packaging>bundle</packaging>
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.jboss.integration.fuse</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>switchyard-rules-csv</artifactId>
+    <packaging>bundle</packaging>
     
-        <name>Fuse Integration: Quickstarts: SwitchYard: Rules CSV</name>
-        <description>Fuse Integration: Quickstarts: Switchyard Quickstart : Rules CSV</description>
+    <name>Fuse Integration: Quickstarts: SwitchYard: Rules CSV</name>
+    <description>Fuse Integration: Quickstarts: Switchyard Quickstart : Rules CSV</description>
     <properties>
         <!-- Bundle symbolic name may not contain dashes -->
         <bundle.symbolic.name>${project.groupId}.switchyard.rules.csv</bundle.symbolic.name>
@@ -34,77 +30,92 @@
         <version.felix.maven>2.4.0</version.felix.maven>
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
     </properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.switchyard.components</groupId>
-			<artifactId>switchyard-component-rules</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.switchyard</groupId>
-			<artifactId>switchyard-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.switchyard</groupId>
-			<artifactId>switchyard-transform</artifactId>
-		</dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.integration.fuse</groupId>
+                <artifactId>fuse-integration-bom</artifactId>
+                <version>${project.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.switchyard.components</groupId>
+            <artifactId>switchyard-component-rules</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.switchyard</groupId>
+            <artifactId>switchyard-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.switchyard</groupId>
+            <artifactId>switchyard-transform</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.switchyard.components</groupId>
             <artifactId>switchyard-component-bean</artifactId>
         </dependency>
-		<dependency>
-			<groupId>org.switchyard</groupId>
-			<artifactId>switchyard-validate</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.switchyard</groupId>
-			<artifactId>switchyard-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.switchyard.components</groupId>
-			<artifactId>switchyard-component-test-mixin-cdi</artifactId>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.switchyard</groupId>
+            <artifactId>switchyard-validate</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.switchyard</groupId>
+            <artifactId>switchyard-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.switchyard.components</groupId>
+            <artifactId>switchyard-component-test-mixin-cdi</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.switchyard.components</groupId>
             <artifactId>switchyard-component-sca</artifactId>
-        </dependency>		
-	</dependencies>
-	<build>
-		<resources>
-			<resource>
-				<filtering>true</filtering>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>features.xml</include>
-				</includes>
-			</resource>
-			<resource>
-				<filtering>false</filtering>
-				<directory>src/main/resources</directory>
-				<excludes>
-					<exclude>features.xml</exclude>
-				</excludes>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<groupId>org.switchyard</groupId>
-				<artifactId>switchyard-plugin</artifactId>
-				<version>${version.switchyard}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>configure</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<scannerClassNames>
-						<param>org.switchyard.transform.config.model.TransformSwitchYardScanner</param>
-					</scannerClassNames>
-				</configuration>
-			</plugin>
+        </dependency> 
+        <dependency>
+	    <groupId>org.jboss.spec.javax.servlet</groupId>
+	    <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+            <scope>test</scope>
+        </dependency>       
+    </dependencies>
+    <build>
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>features.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>features.xml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>configure</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <scannerClassNames>
+                        <param>org.switchyard.transform.config.model.TransformSwitchYardScanner</param>
+                    </scannerClassNames>
+                </configuration>
+            </plugin>
               <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
@@ -201,8 +212,8 @@
                     </execution>
                 </executions>
             </plugin>
-		</plugins>
-	</build>
+        </plugins>
+    </build>
    <profiles>
         <profile>
             <id>deploy</id>
