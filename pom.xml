@@ -616,6 +616,21 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.switchyard.components</groupId>
+                <artifactId>switchyard-component-bpm</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard.components</groupId>
+                <artifactId>switchyard-component-common-knowledge</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard.components</groupId>
+                <artifactId>switchyard-component-rules</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>kie-camel</artifactId>
                 <version>${project.version}</version>
@@ -796,7 +811,7 @@
                 <plugin>
                     <groupId>org.switchyard</groupId>
                     <artifactId>switchyard-plugin</artifactId>
-                    <version>${project.version}</version>
+                    <version>${version.switchyard}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.felix</groupId>

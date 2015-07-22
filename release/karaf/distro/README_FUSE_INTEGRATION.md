@@ -47,6 +47,8 @@ JBossFuse:karaf@root> features:install
         fuse-bxms-jbpm-workitems-camel
         fuse-bxms-camel-spring-drools-decision-table
         fuse-bxms-camel-blueprint-drools-decision-table
+        fuse-bxms-switchyard-quickstart-rules-csv
+        fuse-bxms-switchyard-quickstart-rules-multithread
 ```
 
 Quickstarts

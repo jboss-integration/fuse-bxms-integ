@@ -3,18 +3,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-        <artifactId>quickstarts-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>
 
     <artifactId>blueprint-camel-drools-decision-table</artifactId>
     <packaging>bundle</packaging>
-
+    <groupId>org.jboss.integration.fuse</groupId>
+    <version>1.0.0-SNAPSHOT</version>
     <name>Fuse Integration: Quickstarts: Drools &amp; Decision Table using Kie Aries Blueprint</name>
-
+    <properties>
+        <version.felix.maven>2.4.0</version.felix.maven>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.integration.fuse</groupId>
+                <artifactId>fuse-integration-bom</artifactId>
+                <version>${project.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.kie</groupId>
@@ -99,6 +107,7 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
+                <version>${version.felix.maven}</version><!--$NO-MVN-MAN-VER$-->
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>

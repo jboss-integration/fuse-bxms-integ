@@ -48,6 +48,15 @@
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-multithreaded/${project.version}</bundle>
     </feature>
+
+    <feature name="fuse-bxms-switchyard-quickstart-rules-csv" version="${project.version}" resolver="(obr)">
+        <feature version="${karaf.version.org.switchyard}">switchyard-sca</feature>
+        <feature version="${karaf.version.org.switchyard}">switchyard-bean</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
+        <bundle>wrap:mvn:org.apache.xmlbeans/xmlbeans/${version.org.apache.xmlbeans}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-csv/${project.version}</bundle>
+    </feature>
+
     <!-- XXX: this needs some love -->
   <feature name="fuse-bxms-switchyard-demo-helpdesk-ds" version="${project.version}" resolver="(obr)">
         <!-- Database support -->        

@@ -2,14 +2,10 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.example.switchyard</groupId>
-    <parent>
-        <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-        <artifactId>quickstarts-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>
+
   <artifactId>switchyard-drools-channels</artifactId>
+  <groupId>org.jboss.integration.fuse</groupId>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>com.example.switchyard:switchyard-drools-channels</name>
   <properties>
@@ -26,9 +22,20 @@ osgi.extender; filter:="(osgi.extender=pax.cdi)"</switchyard.osgi.require.capabi
         <deploy.skip>true</deploy.skip>
         <wildfly.port>9999</wildfly.port>
   </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.integration.fuse</groupId>
+                <artifactId>fuse-integration-bom</artifactId>
+                <version>${project.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>org.jboss.integration.fuse</groupId>
+      <groupId>org.switchyard.components</groupId>
       <artifactId>switchyard-component-rules</artifactId>
     </dependency>
         <dependency>
@@ -61,13 +68,17 @@ osgi.extender; filter:="(osgi.extender=pax.cdi)"</switchyard.osgi.require.capabi
             <groupId>org.switchyard.components</groupId>
             <artifactId>switchyard-component-sca</artifactId>
         </dependency>
+        <dependency>
+	    <groupId>org.jboss.spec.javax.servlet</groupId>
+	    <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+            <scope>test</scope>
+        </dependency>
   </dependencies>
   <build>
     <plugins>
       <plugin>
         <groupId>org.switchyard</groupId>
         <artifactId>switchyard-plugin</artifactId>
-        <version>${version.switchyard}</version>
         <executions>
           <execution>
             <goals>
