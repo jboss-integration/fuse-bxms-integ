@@ -17,12 +17,10 @@
 package org.kie.camel.component.cxf;
 
 import org.apache.camel.test.spring.CamelSpringTestSupport;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-@Ignore
 public class CxfRestTestWithLookup extends CamelSpringTestSupport {
 
     @Override

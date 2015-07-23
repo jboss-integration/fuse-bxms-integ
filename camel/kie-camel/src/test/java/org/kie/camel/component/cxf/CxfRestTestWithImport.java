@@ -18,11 +18,9 @@ package org.kie.camel.component.cxf;
 
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.Test;
-import org.junit.Ignore;
 import org.kie.api.runtime.KieSession;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-@Ignore
 public class CxfRestTestWithImport extends CamelSpringTestSupport {
 
     @Override
