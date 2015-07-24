@@ -21,13 +21,10 @@ import java.util.Set;
 import javax.xml.namespace.QName;
 
 import org.kie.api.KieServices;
-import org.kie.api.builder.KieScanner;
-import org.kie.api.builder.ReleaseId;
 import org.kie.api.event.kiebase.KieBaseEventListener;
 import org.kie.api.logger.KieRuntimeLogger;
 import org.kie.api.runtime.Channel;
 import org.kie.api.runtime.Environment;
-import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.manager.Context;
 import org.kie.api.runtime.manager.RuntimeEngine;
@@ -43,7 +40,6 @@ import org.switchyard.component.common.knowledge.CommonKnowledgeLogger;
 import org.switchyard.component.common.knowledge.config.builder.ChannelBuilder;
 import org.switchyard.component.common.knowledge.config.builder.LoggerBuilder;
 import org.switchyard.component.common.knowledge.config.items.ExtendedRegisterableItemsFactory;
-import org.switchyard.component.common.knowledge.config.manifest.ContainerManifest;
 
 /**
  * KnowledgeRuntimeManager.
@@ -233,34 +229,34 @@ public class KnowledgeRuntimeManager implements RuntimeManager {
                                 }
                             });
                         }
-                        ContainerManifest containerManifest = ContainerManifest.removeFromEnvironment(environment);
-                        if (containerManifest != null && containerManifest.isScan()) {
-                            KieContainer kieContainer = containerManifest.getKieContainer();
-                            final ReleaseId releaseId = containerManifest.getReleaseId();
-                            if (releaseId != null) {
-                                final KieScanner scanner = _kieServices.newKieScanner(kieContainer);
-                                // final KieScanner scanner = new
-                                // KnowledgeScanner(kieContainer);
-                                disposable.addDisposeListener(new DisposeListener() {
-                                    @Override
-                                    public void onDispose(RuntimeEngine runtime) {
-                                        try {
-                                            scanner.stop();
-                                            scanner.shutdown();
-                                        } catch (Throwable t) {
-                                            CommonKnowledgeLogger.ROOT_LOGGER.problemStopppingKieScanner(t.getMessage());
-                                        } finally {
-                                            if (releaseId != null) {
-                                                // fix for SWITCHYARD-2241
-                                                _kieServices.getRepository().removeKieModule(releaseId);
-                                            }
-                                        }
-                                    }
-                                });
-                                scanner.start(containerManifest.getScanInterval().longValue());
-                            }
-
-                        }
+                        /*
+                         * ContainerManifest containerManifest =
+                         * ContainerManifest.removeFromEnvironment(environment);
+                         * if (containerManifest != null &&
+                         * containerManifest.isScan()) { KieContainer
+                         * kieContainer = containerManifest.getKieContainer();
+                         * final ReleaseId releaseId =
+                         * containerManifest.getReleaseId(); if (releaseId !=
+                         * null) { final KieScanner scanner =
+                         * _kieServices.newKieScanner(kieContainer); // final
+                         * KieScanner scanner = new //
+                         * KnowledgeScanner(kieContainer);
+                         * disposable.addDisposeListener(new DisposeListener() {
+                         * 
+                         * @Override public void onDispose(RuntimeEngine
+                         * runtime) { try { scanner.stop(); scanner.shutdown();
+                         * } catch (Throwable t) {
+                         * CommonKnowledgeLogger.ROOT_LOGGER
+                         * .problemStopppingKieScanner(t.getMessage()); }
+                         * finally { if (releaseId != null) { // fix for
+                         * SWITCHYARD-2241
+                         * _kieServices.getRepository().removeKieModule
+                         * (releaseId); } } } });
+                         * scanner.start(containerManifest
+                         * .getScanInterval().longValue()); }
+                         * 
+                         * }
+                         */
                     }
                 }
             }

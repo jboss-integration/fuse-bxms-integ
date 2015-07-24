@@ -49,7 +49,7 @@ import org.switchyard.metadata.ServiceOperation;
  */
 public abstract class KnowledgeExchangeHandler extends BaseServiceHandler implements ServiceHandler {
 
-    private final KnowledgeComponentImplementationModel _model;
+    protected final KnowledgeComponentImplementationModel _model;
     private final ServiceDomain _serviceDomain;
     private final QName _serviceName;
     private final Map<String, KnowledgeOperation> _operations = new HashMap<String, KnowledgeOperation>();

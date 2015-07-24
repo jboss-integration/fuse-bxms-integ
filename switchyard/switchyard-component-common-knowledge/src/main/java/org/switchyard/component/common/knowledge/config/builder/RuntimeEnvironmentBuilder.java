@@ -32,6 +32,8 @@ import org.jbpm.runtime.manager.impl.mapper.JPAMapper;
 import org.jbpm.services.task.commands.TaskCommandExecutorImpl;
 import org.jbpm.services.task.events.TaskEventSupport;
 import org.jbpm.services.task.impl.command.CommandBasedTaskService;
+import org.kie.api.KieServices;
+import org.kie.api.builder.KieScanner;
 import org.kie.api.builder.ReleaseId;
 import org.kie.api.io.Resource;
 import org.kie.api.marshalling.ObjectMarshallingStrategy;
@@ -71,7 +73,7 @@ import org.switchyard.serial.SerializerFactory;
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
  */
 public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
-
+    private final KieServices _kieServices;
     private final RuntimeEnvironmentBuilderFactory _runtimeEnvironmentBuilderFactory;
     private final boolean _persistent;
     private final EntityManagerFactoryBuilder _entityManagerFactoryBuilder;
@@ -88,6 +90,7 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
      */
     public RuntimeEnvironmentBuilder(ClassLoader classLoader, ServiceDomain serviceDomain, KnowledgeComponentImplementationModel implementationModel) {
         super(classLoader, serviceDomain);
+        _kieServices = KieServices.Factory.get();
         //_runtimeEnvironmentBuilderFactory = org.kie.api.runtime.manager.RuntimeEnvironmentBuilder.Factory.get();
         _runtimeEnvironmentBuilderFactory = new PatchedRuntimeEnvironmentBuilder();
         _persistent = implementationModel != null ? implementationModel.isPersistent() : false;
@@ -96,6 +99,7 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
         _propertiesBuilder = PropertiesBuilder.builder(implementationModel);
         _userGroupCallbackBuilder = UserGroupCallbackBuilder.builder(getClassLoader(), implementationModel);
         _registerableItemsFactoryBuilder = new RegisterableItemsFactoryBuilder(getClassLoader(), serviceDomain, implementationModel);
+
     }
 
     /**
@@ -177,6 +181,7 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
         if (simpleREAccess.isReadable()) {
             SimpleRuntimeEnvironment originalRE = simpleREAccess.read(jbpmRuntimeEnvironmentBuilder);
         */
+        KieScanner scanner = null;
             SimpleRuntimeEnvironment originalRE = ((PatchedRuntimeEnvironmentBuilder)jbpmRuntimeEnvironmentBuilder).getRuntimeEnvironment();
             if (originalRE != null) {
                 RegisterableItemsFactory originalRIF = originalRE.getRegisterableItemsFactory();
@@ -191,6 +196,10 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
                         if (kieContainerAccess.isReadable()) {
                             KieContainer kieContainer = kieContainerAccess.read(originalRIF);
                             ((ContainerManifest)manifest).setKieContainer(kieContainer);
+                        if (((ContainerManifest) manifest).isScan()) {
+                            scanner = _kieServices.newKieScanner(kieContainer);
+                            scanner.start(((ContainerManifest) manifest).getScanInterval().longValue());
+                        }
                         }
                     }
                 }
@@ -215,7 +224,11 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
                 }
             originalRE.addToEnvironment(manifest.getClass().getName(), manifest);
                 ((DeploymentDescriptorImpl)deploymentDescriptor).setAuditMode(auditMode);
+            if (scanner != null) {
+                originalRE.addToEnvironment("KieScanner", scanner);
             }
+            }
+
         /*
         }
         */

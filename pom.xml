@@ -227,6 +227,19 @@
        </snapshots>
     </repository>
     <repository>
+      <id>PUBLIC</id>
+      <name>JBOSS PUBLIC</name>
+      <url>http://repository.jboss.org/nexus/content/groups/public</url>
+      <releases>
+          <enabled>true</enabled>
+          <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+          <enabled>false</enabled>
+          <updatePolicy>never</updatePolicy>
+      </snapshots>
+    </repository>
+    <repository>
       <id>redhat-m2-proxy</id>
       <name>Red Hat M2 Proxy</name>
       <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>

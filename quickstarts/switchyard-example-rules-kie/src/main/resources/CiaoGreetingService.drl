@@ -1,0 +1,10 @@
+package com.example.switchyard.switchyard_example
+
+global java.util.Map globals
+
+rule "CiaoGreetingService"
+    when
+        $name : String(this == "second")
+    then
+        globals.put("response", String.format("Ciao %s!", $name));
+end
