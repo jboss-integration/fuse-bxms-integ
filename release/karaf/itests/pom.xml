@@ -28,6 +28,7 @@
     <description>Fuse Integration Release Karaf Tests</description>
 
     <modules>
+       <module>camel</module>
        <module>switchyard</module>
        <module>drools</module>
     </modules>
