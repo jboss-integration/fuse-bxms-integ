@@ -406,6 +406,12 @@
         <artifactId>pax-url-aether</artifactId>
         <version>${version.org.ops4j.pax.url}</version>
       </dependency>
+      
+      <dependency>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.osgi.core</artifactId>
+          <version>1.4.0</version>
+      </dependency>
 
             <!--  ###################################################################
       ##           Dependencies Not Present in Integration BOM         ##

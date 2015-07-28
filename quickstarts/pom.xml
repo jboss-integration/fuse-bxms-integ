@@ -52,5 +52,6 @@
         <module>fuse-integration-quickstarts-eap</module>
         <module>fuse-integration-quickstarts-karaf</module>
         <module>karaf-features</module>
+        <module>jbpm-workitems-camel</module>
     </modules>
 </project>
