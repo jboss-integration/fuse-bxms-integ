@@ -18,7 +18,7 @@
 
     <artifactId>switchyard-demo-library</artifactId>
     <packaging>bundle</packaging>
-    <groupId>org.jboss.integration.fuse</groupId>
+    <groupId>org.jboss.integration.fuse.quickstarts</groupId>
     <version>1.0.0-SNAPSHOT</version>
     <name>Fuse Integration: Quickstarts: Switchyard Quickstart Demo : Library</name>
     <description>Fuse Integration: Quickstarts: Quickstart Demo : Library</description>
