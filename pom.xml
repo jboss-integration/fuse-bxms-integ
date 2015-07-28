@@ -682,6 +682,11 @@
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
+                <artifactId>switchyard-rules-csv</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview-dtable</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -736,7 +741,7 @@
             <groupId>org.wildfly.camel</groupId>
             <artifactId>wildfly-camel-config</artifactId>
             <version>${version.wildfly.camel}</version>
-         </dependency>
+         </dependency>  
     </dependencies>
   </dependencyManagement>
 

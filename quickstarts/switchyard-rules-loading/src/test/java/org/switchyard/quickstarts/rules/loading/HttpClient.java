@@ -1,4 +1,4 @@
-package com.example.switchyard.switchyard_example;
+package org.switchyard.quickstarts.rules.loading;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

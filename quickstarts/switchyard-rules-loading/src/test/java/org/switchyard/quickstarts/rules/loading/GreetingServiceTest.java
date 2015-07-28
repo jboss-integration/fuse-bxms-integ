@@ -1,4 +1,4 @@
-package com.example.switchyard.switchyard_example;
+package org.switchyard.quickstarts.rules.loading;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +16,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.switchyard.component.test.mixins.http.HTTPMixIn;
@@ -24,13 +25,14 @@ import com.google.common.io.CharStreams;
 
 @RunAsClient
 @RunWith(Arquillian.class)
+@Ignore
 public class GreetingServiceTest {
 
 	private static final String HELLO_SERVICE_ADDRESS = "http://localhost:8080/hello-greeting-service";
 	private static final String CIAO_SERVICE_ADDRESS = "http://localhost:8080/ciao-greeting-service";
 	private static final String ORIGINAL_KIE_MODULE_NAME = "original-project.jar";
 	private static final String MODIFIED_KIE_MODULE_NAME = "modified-project.jar";
-	private static final String KIE_SCANNER_TEST = "switchyard-example";
+    private static final String KIE_SCANNER_TEST = "switchyard-rules-loading";
 	@ArquillianResource
 	private Deployer deployer;
 
