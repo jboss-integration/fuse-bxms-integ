@@ -43,8 +43,8 @@
                 <include>**/switchyard-demo-helpdesk/**/*</include>
                 <include>**/switchyard-demo-library</include>
                 <include>**/switchyard-demo-library/**/*</include>   
-                <include>**/switchyard-drools-channel</include>
-                <include>**/switchyard-drools-channel/**/*</include>    
+                <include>**/switchyard-drools-channels</include>
+                <include>**/switchyard-drools-channels/**/*</include>    
                 <include>**/blueprint-camel-drools-decision-table-example</include>
                 <include>**/blueprint-camel-drools-decision-table-example/**/*</include>   
                 <include>**/drools-camel-server-example</include>
