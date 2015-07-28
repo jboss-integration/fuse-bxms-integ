@@ -15,11 +15,11 @@
         </rules:operations>
       </rules:implementation.rules>
       <sca:service name="HelloGreetingService">
-        <sca:interface.java interface="com.example.switchyard.switchyard_example.GreetingService"/>
+        <sca:interface.java interface="org.switchyard.quickstarts.rules.loading.GreetingService"/>
       </sca:service>
     </sca:component>
     <sca:service name="HelloGreetingService" promote="HelloGreetingServiceBean/HelloGreetingService">
-      <sca:interface.java interface="com.example.switchyard.switchyard_example.GreetingService"/>
+      <sca:interface.java interface="org.switchyard.quickstarts.rules.loading.GreetingService"/>
       <http:binding.http name="http1">
         <http:contextPath>hello-greeting-service</http:contextPath>
       </http:binding.http>
@@ -38,11 +38,11 @@
         </rules:operations>
       </rules:implementation.rules>
       <sca:service name="CiaoGreetingService">
-        <sca:interface.java interface="com.example.switchyard.switchyard_example.GreetingService"/>
+        <sca:interface.java interface="org.switchyard.quickstarts.rules.loading.GreetingService"/>
       </sca:service>
     </sca:component>
     <sca:service name="CiaoGreetingService" promote="CiaoGreetingServiceBean/CiaoGreetingService">
-      <sca:interface.java interface="com.example.switchyard.switchyard_example.GreetingService"/>
+      <sca:interface.java interface="org.switchyard.quickstarts.rules.loading.GreetingService"/>
       <http:binding.http name="http1">
         <http:contextPath>ciao-greeting-service</http:contextPath>
       </http:binding.http>
