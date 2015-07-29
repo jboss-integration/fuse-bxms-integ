@@ -13,7 +13,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.switchyard.component.test.mixins.http.HTTPMixIn;
@@ -33,6 +32,12 @@ public class RulesLoadingQuickstartTest {
 
     @Deployment(testable = false)
     public static JavaArchive createDeployment() {
+        try {
+            installModule(ORIGINAL_KIE_MODULE_NAME);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return BRMSArquillianUtil.createJarQSDeployment("switchyard-rules-loading");
     }
 
@@ -69,10 +74,7 @@ public class RulesLoadingQuickstartTest {
         System.out.println(out);
         System.out.println(err);
     }
-    @Before
-    public void beforeMethod() throws IOException, InterruptedException {
-        installModule(ORIGINAL_KIE_MODULE_NAME);
-    }
+
 
     @Test
     public void testHelloService() throws IOException {
