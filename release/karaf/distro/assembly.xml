@@ -36,6 +36,7 @@
                 <exclude>org/drools/**</exclude>
                 <exclude>org/kie/**</exclude>
                 <exclude>org/jbpm/**</exclude>
+                <exclude>org/switchyard/**</exclude>
             </excludes>
         </fileSet>
         <fileSet>

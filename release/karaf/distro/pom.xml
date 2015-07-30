@@ -88,6 +88,7 @@
                                 <descriptor>mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features</descriptor>
                                 <descriptor>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</descriptor>
                                 <descriptor>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features</descriptor>
+                                <descriptor>mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features</descriptor>
                                </descriptors>
                                <features>
                                    
@@ -97,7 +98,7 @@
                                   <feature>kie-camel/${project.version}</feature>
                                   <feature>jbpm-workitems-camel/${project.version}</feature>
                                   
-                                  <!--
+
                                   <feature>fuse-bxms-switchyard-quickstart-bpm-service/${project.version}</feature>
                                   <feature>fuse-bxms-switchyard-quickstart-rules-camel-cbr/${project.version}</feature>
                                   <feature>fuse-bxms-switchyard-quickstart-rules-interview/${project.version}</feature>
@@ -105,8 +106,11 @@
                                   <feature>fuse-bxms-switchyard-quickstart-rules-interview-dtable/${project.version}</feature>
                                   <feature>fuse-bxms-switchyard-demo-library/${project.version}</feature>
                                   <feature>fuse-bxms-switchyard-demo-helpdesk/${project.version}</feature>
-                                  -->
-                                  
+                                  <feature>fuse-bxms-switchyard-quickstart-rules-multithread/${project.version}</feature>
+                                  <feature>fuse-bxms-switchyard-quickstart-rules-csv/${project.version}</feature>
+                                  <feature>fuse-bxms-camel-blueprint-drools-decision-table/${project.version}</feature>
+                                  <feature>fuse-bxms-camel-spring-drools-decision-table/${project.version}</feature>                                  
+                                  <feature>fuse-bxms-jbpm-workitems-camel-quickstart/${project.version}</feature> 
                                </features>
                                <blackList></blackList>
                                <addTransitiveFeatures>false</addTransitiveFeatures>
