@@ -32,7 +32,7 @@ public class RemoteRuntimeManager implements RuntimeManager {
 
     private final RemoteConfiguration _configuration;
     private final String _identifier;
-    private final Map<Object, RuntimeEngine> _engines = new WeakHashMap<Object, RuntimeEngine>();
+    private Map<Object, RuntimeEngine> _engines = new WeakHashMap<Object, RuntimeEngine>();
 
     /**
      * Creates a new RemoteRuntimeManager.
@@ -83,12 +83,6 @@ public class RemoteRuntimeManager implements RuntimeManager {
     @Override
     public void close() {
         // no-op
-    }
-
-    @Override
-    public void signalEvent(String arg0, Object arg1) {
-        // TODO Auto-generated method stub
-
     }
 
 }
