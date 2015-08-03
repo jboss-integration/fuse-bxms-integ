@@ -255,7 +255,10 @@ public class BPMExchangeHandler extends KnowledgeExchangeHandler {
     private void addFaultToExpressionVariables(Map<String, Object> expressionVars, List<ExpressionMapping> faultExpressions) {
         if (faultExpressions != null && !faultExpressions.isEmpty()) {
             for (ExpressionMapping expression : faultExpressions) {
-                expressionVars.put(expression.getFrom(), null);
+                if (expressionVars.get(expression.getFrom()) == null) {
+                    expressionVars.put(expression.getFrom(), null);
+                }
+
             }
         }
 
