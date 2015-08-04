@@ -126,6 +126,7 @@
                     </instructions>
                     <archive>
                         <manifestEntries>
+                            <!--Dependencies>org.apache.camel.script.jruby, org.apache.camel.script.rhino, org.apache.camel.script.python, org.apache.camel.script.groovy, org.beanshell</Dependencies-->
                             <Project-Artifact-Id>${project.artifactId}</Project-Artifact-Id>
                             <Project-Group-Id>${project.groupId}</Project-Group-Id>
                             <Project-Version>${project.version}</Project-Version>
