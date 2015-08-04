@@ -19,6 +19,43 @@ src/main/resources/META-INF/switchyard.xml:
 ![BPM Service Quickstart](https://github.com/jboss-switchyard/quickstarts/raw/master/bpm-service/bpm-service.jpg)
 
 
+Warning and Error Logs
+======================
+You may see some Warning and Error logs the first time the application is deployed. 
+
+You ll see this logs when the app is deployed:
+
+        ERROR [stderr] (MSC service thread 1-8) ScriptEngineManager providers.next(): javax.script.ScriptEngineFactory: Provider bsh.engine.BshScriptEngineFactory not found
+        ERROR [stderr] (MSC service thread 1-8) ScriptEngineManager providers.next(): javax.script.ScriptEngineFactory: Provider org.codehaus.groovy.jsr223.GroovyScriptEngineFactory not found
+        ERROR [stderr] (MSC service thread 1-8) ScriptEngineManager providers.next(): javax.script.ScriptEngineFactory: Provider org.python.jsr223.PyScriptEngineFactory not found
+        ERROR [stderr] (MSC service thread 1-8) ScriptEngineManager providers.next(): javax.script.ScriptEngineFactory: Provider com.google.code.scriptengines.js.javascript.RhinoScriptEngineFactory not found
+        ERROR [stderr] (MSC service thread 1-8) ScriptEngineManager providers.next(): javax.script.ScriptEngineFactory: Provider com.google.code.scriptengines.js.javascript.EmbeddedRhinoScriptEngineFactory not found
+
+This is caused by:
+
+        https://issues.jboss.org/browse/WFCORE-719
+        https://issues.jboss.org/browse/ENTESB-3765
+
+Once these issues are solved and released, then the workaround is to uncomment this line on the pom.xml of this project:
+
+         <!--Dependencies>org.apache.camel.script.jruby, org.apache.camel.script.rhino, org.apache.camel.script.python, org.apache.camel.script.groovy, org.beanshell</Dependencies-->
+
+
+As well you can see other annoying logs:
+
+         ERROR | yard Extender: 3 | ExtensibleXmlParser              | 290 - org.drools.core - 6.2.0.20141207-0957 | (null: 2, 674): cvc-elt.1.a: Cannot find the declaration of element 'bpmn2:definitions'.
+         WARN  | yard Extender: 3 | ExtensibleXmlParser              | 290 - org.drools.core - 6.2.0.20141207-0957 | (null: 3, 100): schema_reference.4: Failed to read schema document 'BPMN20.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+         WARN  | yard Extender: 3 | ExtensibleXmlParser              | 290 - org.drools.core - 6.2.0.20141207-0957 | (null: 4, 70): schema_reference.4: Failed to read schema document 'BPMN20.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+         WARN  | yard Extender: 3 | ExtensibleXmlParser              | 290 - org.drools.core - 6.2.0.20141207-0957 | (null: 5, 63): schema_reference.4: Failed to read schema document 'BPMN20.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+         WARN  | yard Extender: 3 | ExtensibleXmlParser              | 290 - org.drools.core - 6.2.0.20141207-0957 | (null: 6, 108): schema_reference.4: Failed to read schema document 'BPMN20.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+
+There is a jira related to this error on JBPM side:
+
+         https://issues.jboss.org/browse/JBPM-3716
+
+
+These logs are not causing any error. The quickstart works as expected.
+
 Running the quickstart
 ======================
 
