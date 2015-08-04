@@ -702,10 +702,21 @@
                 <artifactId>switchyard-demo-library</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.kie.remote</groupId>
                 <artifactId>kie-remote-jaxb</artifactId>
+                <version>${version.org.kie}</version>
+                <exclusions>
+                     <exclusion>  <!-- declare the exclusion here -->
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-core</artifactId>
+                     </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jbpm</groupId>
+                <artifactId>jbpm-workitems</artifactId>
                 <version>${version.org.kie}</version>
                 <exclusions>
                      <exclusion>  <!-- declare the exclusion here -->
