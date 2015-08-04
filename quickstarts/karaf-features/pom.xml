@@ -24,7 +24,7 @@
     <artifactId>karaf-features</artifactId>
     <packaging>pom</packaging>
     
-    <name>Fuse Integration: Karaf Features</name>
+    <name>Fuse Integration: Quickstarts: Karaf Features</name>
     <description>Feature descriptions for running Fuse BXMS Integration on Karaf</description>
     
     <properties>

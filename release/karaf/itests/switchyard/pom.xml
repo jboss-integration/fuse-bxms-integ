@@ -132,7 +132,7 @@
                 <artifactId>bcpkix-jdk15on</artifactId>
                 <version>1.49</version>
                 <scope>test</scope>
-            </dependency>
+            </dependency>     
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -264,6 +264,11 @@
             <artifactId>bcpkix-jdk15on</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.integration.fuse.quickstarts</groupId>
+            <artifactId>switchyard-rules-csv</artifactId>
+            <scope>test</scope>
+       </dependency>        
     </dependencies>
     <build>
         <plugins>

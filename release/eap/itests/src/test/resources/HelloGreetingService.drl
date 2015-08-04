@@ -1,0 +1,10 @@
+package org.switchyard.quickstarts.rules.loading
+
+global java.util.Map globals
+
+rule "HelloGreetingService"
+    when
+        $name : String(this == "first")
+    then
+        globals.put("response", String.format("Hello %s!", $name));
+end

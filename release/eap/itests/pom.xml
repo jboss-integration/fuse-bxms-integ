@@ -84,6 +84,11 @@
          <scope>test</scope>
       </dependency>
       <dependency>
+         <groupId>org.jboss.integration.fuse.quickstarts</groupId>
+         <artifactId>switchyard-rules-csv</artifactId>
+         <scope>test</scope>
+      </dependency>      
+      <dependency>
          <groupId>org.jboss.arquillian.junit</groupId>
          <artifactId>arquillian-junit-container</artifactId>
          <scope>test</scope>
