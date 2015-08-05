@@ -60,6 +60,41 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <repositories>
+      <!-- Early access to fuse-eap -->
+      <repository>
+         <id>fuse-eap-staging-repository</id>
+         <url>https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352</url>
+      </repository>
+      <!-- General early access -->
+      <repository>
+         <id>fuse-early-access-repository</id>
+         <url>https://repository.jboss.org/nexus/content/groups/ea</url>
+      </repository>
+    <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
+    <repository>
+        <id>fusesource.ea</id>
+        <name>JBoss Community Early Access Release Repository</name>
+        <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
+    </repository>
+    <repository>
+	<id>jboss-public-repository-group</id>
+	<name>JBoss Public Repository Group</name>
+        <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+	<layout>default</layout>
+    </repository>
+    <repository>
+      <id>redhat-m2-proxy</id>
+      <name>Red Hat M2 Proxy</name>
+      <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
+    </repository>
+    <repository>
+      <id>redhat-techpreview-all-repository</id>
+      <name>Red Hat Tech Preview repository (all)</name>
+      <url>http://maven.repository.redhat.com/techpreview/all/</url>
+      <layout>default</layout>
+    </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.switchyard</groupId>

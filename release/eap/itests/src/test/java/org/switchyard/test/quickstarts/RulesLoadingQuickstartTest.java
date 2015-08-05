@@ -13,6 +13,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.switchyard.component.test.mixins.http.HTTPMixIn;
@@ -21,6 +22,7 @@ import org.switchyard.test.quickstarts.util.BRMSArquillianUtil;
 import com.google.common.io.CharStreams;
 
 @RunWith(Arquillian.class)
+@Ignore
 public class RulesLoadingQuickstartTest {
     private static final String HELLO_SERVICE_ADDRESS = "http://localhost:8080/hello-greeting-service";
     private static final String CIAO_SERVICE_ADDRESS = "http://localhost:8080/ciao-greeting-service";
