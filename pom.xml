@@ -164,10 +164,10 @@
 
    <repositories>
       <!-- Early access to jboss-eap -->
-      <repository>
+      <!--repository>
          <id>jboss-early-access-repository</id>
          <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-eap-6.4-rhel-6-build/latest/maven</url>
-      </repository>
+      </repository-->
       <!-- Early access to fuse-eap -->
       <repository>
          <id>fuse-eap-staging-repository</id>
