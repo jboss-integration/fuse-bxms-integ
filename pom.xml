@@ -168,6 +168,10 @@
          <id>jboss-early-access-repository</id>
          <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-eap-6.4-rhel-6-build/latest/maven</url>
       </repository>
+      <repository>
+         <id>jb-ip-early-access-repository</id>
+         <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-ip-6.1-build/latest/maven</url>
+      </repository>
       <!-- Early access to fuse-eap -->
       <repository>
          <id>fuse-eap-staging-repository</id>
