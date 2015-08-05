@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.jboss.integration.fuse.quickstarts</groupId>
         <artifactId>quickstarts-parent</artifactId>
-        <version>1.1.0-SNAPSHOT</version>
+        <version>1.1.0.redhat-018</version>
         <relativePath>../</relativePath>
     </parent>
     <artifactId>jbpm-workitems-camel-quickstart</artifactId>
