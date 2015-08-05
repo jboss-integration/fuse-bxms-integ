@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.jboss.integration.fuse</groupId>
     <artifactId>camel-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>kie-camel</artifactId>
