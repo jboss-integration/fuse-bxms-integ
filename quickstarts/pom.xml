@@ -49,10 +49,10 @@
         <module>blueprint-camel-drools-decision-table</module>
         <module>spring-camel-drools-decision-table</module>
         <module>spring-jbpm-osgi-example</module>
+        <module>jbpm-workitems-camel</module>
+        <module>switchyard-rules-loading</module>
         <module>fuse-integration-quickstarts-eap</module>
         <module>fuse-integration-quickstarts-karaf</module>
         <module>karaf-features</module>
-        <module>jbpm-workitems-camel</module>
-        <module>switchyard-rules-loading</module>
     </modules>
 </project>
