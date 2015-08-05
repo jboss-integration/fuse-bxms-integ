@@ -34,7 +34,7 @@
    
     <modules>
       <!--module>standalone</module-->
-      <module>eap</module>
+      <!--<module>eap</module>-->
       <module>karaf</module>
     </modules>
 </project>
