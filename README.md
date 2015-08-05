@@ -31,7 +31,7 @@ EAP 6.4 Installation
 
 4.  Install the fuse-integration installer:
 
-        java -jar ${FUSE_BXMS_INTEG}/release/eap/installer/target/fuse-integration-eap-installer-1.1.0-SNAPSHOT.jar ${eap.home}
+        java -jar ${FUSE_BXMS_INTEG}/release/eap/installer/target/fuse-integration-eap-installer-1.2.0-SNAPSHOT.jar ${eap.home}
 
 5.  All the modules and quickstarts will be installed on top of the eap.home provided. The fuse-integration quickstarts are placed:
 
@@ -70,7 +70,7 @@ Fuse 6.2 Installation
 
 3.  Add the fuse-integration features file:  
 
-           features:addurl mvn:org.jboss.integration.fuse/karaf-features/1.1.0-SNAPSHOT/xml/features
+           features:addurl mvn:org.jboss.integration.fuse/karaf-features/1.2.0-SNAPSHOT/xml/features
            
 4.  Install the core features. You can install:  
 
