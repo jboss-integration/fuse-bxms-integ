@@ -21,7 +21,28 @@
     <version>1.1.0-SNAPSHOT</version>
     <name>Fuse Integration: Quickstarts: SwitchYard: rules-camel-cbr</name>
     <description>Fuse Integration: Quickstarts: Switchyard Quickstart : Rules+Camel Content-Based Router</description>
-
+    <url>https://github.com/jboss-integration/fuse-bxms-integ</url>
+    <organization>
+        <name>JBoss by Red Hat</name>
+        <url>http://jboss.org</url>
+    </organization>
+    <developers>
+        <developer>
+            <name>Fuse Integration Commiters</name>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/jboss-integration/fuse-bxms-integ</connection>
+        <developerConnection>scm:git:ssh://git@github.com:jboss-integration/fuse-bxms-integ.git</developerConnection>
+        <url>http://github.com/jboss-integration/fuse-bxms-integ</url>
+    </scm>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <distribution>repo</distribution>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        </license>
+    </licenses>
     <properties>
         <!-- Bundle symbolic name may not contain dashes -->
         <bundle.symbolic.name>${project.groupId}.switchyard.rules.camel.cbr</bundle.symbolic.name>
