@@ -102,6 +102,8 @@
         <version.org.apache.karaf.tooling>2.4.0</version.org.apache.karaf.tooling>
         
          <version.switchyard.osgi>2.1</version.switchyard.osgi>
+
+        <version.switchyard>2.0.1.redhat-6-2-0-SNAPSHOT</version.switchyard>
         <!-- Explicitly declaring the source encoding eliminates the following message: -->
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
           resources, i.e. build is platform dependent! -->
