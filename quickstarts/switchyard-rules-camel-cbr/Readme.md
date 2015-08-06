@@ -44,82 +44,36 @@ See the "Expected Output" section for the expected results.
 
         mvn clean -Pdeploy
 
-FUSE
-----------
-1. Start Fuse:
-
-${FUSE_HOME}/bin/karaf
 
 
-2. Ensure that the drools and switchyard compatible features URL files have been added to your Fuse instance. 
-   In case they are not added then:
-
-    features:addurl mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
-    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
-
-
-3. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
-with the version of Fuse BXMS Integration that you are using (ex. 1.0.0): 
-
-JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
-
-4. Install the feature for the Rules Camel CBR quickstart :
-
-JBossFuse:karaf@root> features:install fuse-bxms-switchyard-quickstart-rules-camel-cbr
-
-5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
-<br/>
-```
-mvn exec:java -Pkaraf
-```
-<br/>
-
-6. Check the log for the expected results :
-
-karaf@root> log:display 
-
-
-7. Undeploy the quickstart:
-
-JBossFuse:karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-rules-camel-cbr
-
-
-KARAF
+Karaf
 ----------
 1. Start the Karaf server :
 
 ${KARAF_HOME}/bin/karaf
 
-
-2. Ensure that the drools and switchyard compatible features URL files have been added to your Karaf instance. 
-   In case they are not added then:
-
-    features:addurl mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
-    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
-
-
-3. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
+2. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
 with the version of Fuse BXMS Integration that you are using (ex. 1.0.0): 
 
 karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
 
-4. Install the feature for the Rules Camel CBR quickstart :
+3. Install the feature for the Rules Camel CBR quickstart :
 
 karaf@root> features:install fuse-bxms-switchyard-quickstart-rules-camel-cbr
 
-5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
+4. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
 <br/>
 ```
 mvn exec:java -Pkaraf
 ```
 <br/>
 
-6. Check the log for the expected results :
+5. Check the log for the expected results :
 
 karaf@root> log:display 
 
 
-7. Undeploy the quickstart:
+6. Undeploy the quickstart:
 
 karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-rules-camel-cbr
 

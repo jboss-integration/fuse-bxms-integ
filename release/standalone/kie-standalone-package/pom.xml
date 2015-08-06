@@ -6,7 +6,7 @@
   <parent>
       <groupId>org.jboss.integration.fuse</groupId>
       <artifactId>release-standalone-parent</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
       <relativePath>../pom.xml</relativePath>
   </parent>
 
@@ -44,8 +44,13 @@
   <dependencies>
     <!-- Binaries and sources -->
     <dependency>
-      <groupId>org.jboss.integration.fuse</groupId>
+      <groupId>org.kie</groupId>
       <artifactId>kie-camel</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie</groupId>
+      <artifactId>kie-camel</artifactId>
+      <classifier>sources</classifier>
     </dependency>
 
     <!-- These deps (together with all others in this project) should be declared in a different bom -->

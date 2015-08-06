@@ -18,7 +18,7 @@
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>fuse-integration-project</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -38,21 +38,16 @@
         <module>switchyard-bpm-service</module>
         <module>switchyard-rules-camel-cbr</module>
         <module>switchyard-rules-interview</module>
-        <module>switchyard-rules-multithreaded</module>
         <module>switchyard-rules-interview-container</module>
-        <module>switchyard-rules-interview-dtable</module>
-        <module>switchyard-demo-helpdesk-ds</module>
+        <!--module>switchyard-rules-interview-dtable</module-->
         <module>switchyard-demo-helpdesk</module>
         <module>switchyard-demo-library</module>
-        <module>switchyard-drools-channels</module>
-        <module>switchyard-rules-csv</module>
-        <module>blueprint-camel-drools-decision-table</module>
-        <module>spring-camel-drools-decision-table</module>
-        <module>spring-jbpm-osgi-example</module>
+        <!--module>drools-camel-server-example</module-->
+        <module>blueprint-camel-drools-decision-table-example</module>
+        <module>spring-camel-drools-decision-table-example</module>
+        <!--module>spring-jbpm-osgi-example</module-->
         <module>fuse-integration-quickstarts-eap</module>
         <module>fuse-integration-quickstarts-karaf</module>
         <module>karaf-features</module>
-        <module>jbpm-workitems-camel</module>
-        <module>switchyard-rules-loading</module>
     </modules>
 </project>

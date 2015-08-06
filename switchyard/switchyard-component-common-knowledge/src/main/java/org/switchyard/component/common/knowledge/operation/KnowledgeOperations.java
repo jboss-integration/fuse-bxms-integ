@@ -37,7 +37,6 @@ import org.switchyard.Message;
 import org.switchyard.Scope;
 import org.switchyard.common.lang.Strings;
 import org.switchyard.component.common.knowledge.CommonKnowledgeMessages;
-import org.switchyard.component.common.knowledge.KnowledgeConstants;
 import org.switchyard.component.common.knowledge.config.model.FaultModel;
 import org.switchyard.component.common.knowledge.config.model.FaultsModel;
 import org.switchyard.component.common.knowledge.config.model.GlobalModel;
@@ -286,11 +285,7 @@ public final class KnowledgeOperations {
      * @param contextOverrides the context overrides
      */
     public static void setOutputs(Message message, KnowledgeOperation operation, Map<String, Object> contextOverrides) {
-        try {
-            setOutputsOrFaults(message, operation.getOutputExpressionMappings(), contextOverrides, RESULT, false);
-        } catch (Exception e) {
-            setOutputsOrFaults(message, operation.getOutputExpressionMappings(), contextOverrides, RESULT, true);
-        }
+        setOutputsOrFaults(message, operation.getOutputExpressionMappings(), contextOverrides, RESULT);
     }
 
     /**
@@ -300,11 +295,10 @@ public final class KnowledgeOperations {
      * @param contextOverrides the context overrides
      */
     public static void setFaults(Message message, KnowledgeOperation operation, Map<String, Object> contextOverrides) {
-            setOutputsOrFaults(message, operation.getFaultExpressionMappings(), contextOverrides, FAULT, false);
+        setOutputsOrFaults(message, operation.getFaultExpressionMappings(), contextOverrides, FAULT);
     }
 
-    private static void setOutputsOrFaults(Message message, List<ExpressionMapping> expressionMappings, Map<String, Object> expressionVariables,
-            String defaultReturnVariable, boolean addGlobalsPrefix) {
+    private static void setOutputsOrFaults(Message message, List<ExpressionMapping> expressionMappings, Map<String, Object> expressionVariables, String defaultReturnVariable) {
         Map<String, List<ExpressionMapping>> toListMap = new HashMap<String, List<ExpressionMapping>>();
         for (ExpressionMapping expressionMapping : expressionMappings) {
             String to = expressionMapping.getTo();
@@ -333,15 +327,7 @@ public final class KnowledgeOperations {
                     if (to_em == null) {
                         to_em = from_em;
                     }
-                    Object from_value;
-                    if (!addGlobalsPrefix || from_em.getFrom().startsWith(KnowledgeConstants.GLOBALS)) {
-                        from_value = run(message, from_em.getFromExpression(), expressionVariables);
-                    } else {
-                        String from = KnowledgeConstants.GLOBALS + "." + from_em.getFrom();
-                        Expression e = ExpressionFactory.INSTANCE.create(from, null, from_em.getPropertyResolver());
-                        from_value = run(message, e, expressionVariables);
-                    }
-
+                    Object from_value = run(message, from_em.getFromExpression(), expressionVariables);
                     if (from_value != null) {
                         from_list.add(from_value);
                     } else {

@@ -32,7 +32,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.xml.namespace.QName;
 
 import org.kie.api.KieServices;
-import org.kie.api.builder.KieScanner;
 import org.kie.api.command.BatchExecutionCommand;
 import org.kie.api.command.Command;
 import org.kie.api.command.KieCommands;
@@ -49,9 +48,7 @@ import org.switchyard.Message;
 import org.switchyard.ServiceDomain;
 import org.switchyard.common.lang.Strings;
 import org.switchyard.common.type.Classes;
-import org.switchyard.component.common.knowledge.CommonKnowledgeLogger;
 import org.switchyard.component.common.knowledge.KnowledgeConstants;
-import org.switchyard.component.common.knowledge.config.manifest.ContainerManifest;
 import org.switchyard.component.common.knowledge.exchange.KnowledgeExchangeHandler;
 import org.switchyard.component.common.knowledge.operation.KnowledgeOperation;
 import org.switchyard.component.common.knowledge.operation.KnowledgeOperations;
@@ -101,22 +98,6 @@ public class RulesExchangeHandler extends KnowledgeExchangeHandler {
     @Override
     protected void doStop() {
         try {
-            KieScanner scanner = ((KieScanner) (_perRequestRuntimeManager.getRuntimeEngine().getKieSession().getEnvironment().get("KieScanner")));
-            if (scanner != null) {
-                try {
-                    scanner.stop();
-                    scanner.shutdown();
-                } catch (Throwable t) {
-                    CommonKnowledgeLogger.ROOT_LOGGER.problemStopppingKieScanner(t.getMessage());
-                } finally {
-                    String releaseId = super._model.getManifest().getContainer().getReleaseId();
-                    if (releaseId != null && !releaseId.trim().equals("")) {
-                        KieServices _kieServices = KieServices.Factory.get();
-                        // fix for SWITCHYARD-2241
-                        _kieServices.getRepository().removeKieModule(ContainerManifest.toReleaseId(releaseId));
-                    }
-                }
-            }
             _perRequestRuntimeManager.close();
         } finally {
             try {
@@ -408,7 +389,6 @@ public class RulesExchangeHandler extends KnowledgeExchangeHandler {
         // sessionIdentifier = runtime.getSessionIdentifier();
         setGlobals(inputMessage, operation, runtime, true);
         KieSession session = runtime.getKieSession();
-
         List<Object> facts = getInputList(inputMessage, operation, runtime);
         for (Object fact : facts) {
             session.insert(fact);

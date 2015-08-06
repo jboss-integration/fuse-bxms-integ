@@ -24,17 +24,15 @@ import org.switchyard.component.common.knowledge.config.model.MappingModel;
  *
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
  */
-public class ExpressionMapping {
+public final class ExpressionMapping {
 
-    protected PropertyResolver _propertyResolver;
-    protected String _from;
-    protected String _to;
-    protected String _output;
-    protected Expression _fromExpression = null;
-    protected Expression _toExpression = null;
+    private final PropertyResolver _propertyResolver;
+    private final String _from;
+    private final String _to;
+    private final String _output;
+    private Expression _fromExpression = null;
+    private Expression _toExpression = null;
 
-    public ExpressionMapping() {
-    }
     /**
      * Constructs an expression mapping from a mapping model.
      * @param mappingModel the mapping model
@@ -42,9 +40,7 @@ public class ExpressionMapping {
     public ExpressionMapping(MappingModel mappingModel) {
         PropertyResolver propertyResolver = mappingModel.getModelConfiguration().getPropertyResolver();
         _propertyResolver = propertyResolver != null ? propertyResolver : SystemAndTestPropertyResolver.INSTANCE;
-
         _from = Strings.trimToNull(mappingModel.getFrom());
-
         _to = Strings.trimToNull(mappingModel.getTo());
         _output = mappingModel instanceof InputModel ? Strings.trimToNull(((InputModel)mappingModel).getOutput()) : null;
     }
@@ -102,6 +98,5 @@ public class ExpressionMapping {
     public String getOutput() {
         return _output;
     }
-
 
 }

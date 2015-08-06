@@ -19,43 +19,6 @@ src/main/resources/META-INF/switchyard.xml:
 ![BPM Service Quickstart](https://github.com/jboss-switchyard/quickstarts/raw/master/bpm-service/bpm-service.jpg)
 
 
-Warning and Error Logs
-======================
-You may see some Warning and Error logs the first time the application is deployed. 
-
-You ll see this logs when the app is deployed:
-
-        ERROR [stderr] (MSC service thread 1-8) ScriptEngineManager providers.next(): javax.script.ScriptEngineFactory: Provider bsh.engine.BshScriptEngineFactory not found
-        ERROR [stderr] (MSC service thread 1-8) ScriptEngineManager providers.next(): javax.script.ScriptEngineFactory: Provider org.codehaus.groovy.jsr223.GroovyScriptEngineFactory not found
-        ERROR [stderr] (MSC service thread 1-8) ScriptEngineManager providers.next(): javax.script.ScriptEngineFactory: Provider org.python.jsr223.PyScriptEngineFactory not found
-        ERROR [stderr] (MSC service thread 1-8) ScriptEngineManager providers.next(): javax.script.ScriptEngineFactory: Provider com.google.code.scriptengines.js.javascript.RhinoScriptEngineFactory not found
-        ERROR [stderr] (MSC service thread 1-8) ScriptEngineManager providers.next(): javax.script.ScriptEngineFactory: Provider com.google.code.scriptengines.js.javascript.EmbeddedRhinoScriptEngineFactory not found
-
-This is caused by:
-
-        https://issues.jboss.org/browse/WFCORE-719
-        https://issues.jboss.org/browse/ENTESB-3765
-
-Once these issues are solved and released, then the workaround is to uncomment this line on the pom.xml of this project:
-
-         <!--Dependencies>org.apache.camel.script.jruby, org.apache.camel.script.rhino, org.apache.camel.script.python, org.apache.camel.script.groovy, org.beanshell</Dependencies-->
-
-
-As well you can see other annoying logs:
-
-         ERROR | yard Extender: 3 | ExtensibleXmlParser              | 290 - org.drools.core - 6.2.0.20141207-0957 | (null: 2, 674): cvc-elt.1.a: Cannot find the declaration of element 'bpmn2:definitions'.
-         WARN  | yard Extender: 3 | ExtensibleXmlParser              | 290 - org.drools.core - 6.2.0.20141207-0957 | (null: 3, 100): schema_reference.4: Failed to read schema document 'BPMN20.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
-         WARN  | yard Extender: 3 | ExtensibleXmlParser              | 290 - org.drools.core - 6.2.0.20141207-0957 | (null: 4, 70): schema_reference.4: Failed to read schema document 'BPMN20.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
-         WARN  | yard Extender: 3 | ExtensibleXmlParser              | 290 - org.drools.core - 6.2.0.20141207-0957 | (null: 5, 63): schema_reference.4: Failed to read schema document 'BPMN20.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
-         WARN  | yard Extender: 3 | ExtensibleXmlParser              | 290 - org.drools.core - 6.2.0.20141207-0957 | (null: 6, 108): schema_reference.4: Failed to read schema document 'BPMN20.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
-
-There is a jira related to this error on JBPM side:
-
-         https://issues.jboss.org/browse/JBPM-3716
-
-
-These logs are not causing any error. The quickstart works as expected.
-
 Running the quickstart
 ======================
 
@@ -87,76 +50,58 @@ EAP
 
         mvn clean -Pdeploy
 
-
-FUSE
+Wildfly
 ----------
-1. Start FUSE:
+1. Start Wildfly in standalone mode:
 
-${FUSE_HOME}/bin/karaf
+        ${AS}/bin/standalone.sh
 
+2. Build and deploy the Quickstart : 
 
-2. Ensure that the drools and switchyard compatible features URL files have been added to your Fuse instance. 
-   In case they are not added then:
+        mvn install -Pdeploy -Pwildfly
 
-    features:addurl mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
-    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
-
-
-3. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
-with the version of Fuse BXMS Integration that you are using (ex. 1.0.0): 
-
-JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
-
-
-4. Install the feature for the bpm-service quickstart :
-
-JBossFuse:karaf@root> features:install fuse-bxms-switchyard-quickstart-bpm-service
-
-5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
+3. Submit a webservice request to invoke the SOAP gateway.  There are a number of ways to do this :
+- Submit a request with your preferred SOAP client - src/test/resources/xml contains sample 
+requests and the responses that you should see
+- Use the simple bundled SOAP client and the sample request XML e.g.
 <br/>
 ```
-mvn exec:java -Pkaraf
+        mvn exec:java
 ```
 <br/>
+- SOAP-UI : Use the wsdl for this projects (src/main/resources/wsdl/) to create a soap-ui 
+project.  Use the sample request (src/test/resources/xml/soap-request.xml) as an example 
+of a sample request.   See the "Expected Output" section for the expected results.
 
-6. Undeploy the quickstart:
+4. Undeploy the quickstart:
 
-JBossFuse:karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-bpm-service
+        mvn clean -Pdeploy -Pwildfly
 
 
-
-KARAF
+Karaf
 ----------
 1. Start the Karaf server :
 
 ${KARAF_HOME}/bin/karaf
 
-
-2. Ensure that the drools and switchyard compatible features URL files have been added to your Karaf instance. 
-   In case they are not added then:
-
-    features:addurl mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
-    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
-
-
-3. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
+2. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
 with the version of Fuse BXMS Integration that you are using (ex. 1.0.0): 
 
 karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
 
 
-4. Install the feature for the bpm-service quickstart :
+3. Install the feature for the bpm-service quickstart :
 
 karaf@root> features:install fuse-bxms-switchyard-quickstart-bpm-service
 
-5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
+4. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
 <br/>
 ```
 mvn exec:java -Pkaraf
 ```
 <br/>
 
-6. Undeploy the quickstart:
+5. Undeploy the quickstart:
 
 karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-bpm-service
 

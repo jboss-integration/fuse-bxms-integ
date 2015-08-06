@@ -32,8 +32,6 @@ import org.jbpm.runtime.manager.impl.mapper.JPAMapper;
 import org.jbpm.services.task.commands.TaskCommandExecutorImpl;
 import org.jbpm.services.task.events.TaskEventSupport;
 import org.jbpm.services.task.impl.command.CommandBasedTaskService;
-import org.kie.api.KieServices;
-import org.kie.api.builder.KieScanner;
 import org.kie.api.builder.ReleaseId;
 import org.kie.api.io.Resource;
 import org.kie.api.marshalling.ObjectMarshallingStrategy;
@@ -73,7 +71,7 @@ import org.switchyard.serial.SerializerFactory;
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
  */
 public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
-    private final KieServices _kieServices;
+
     private final RuntimeEnvironmentBuilderFactory _runtimeEnvironmentBuilderFactory;
     private final boolean _persistent;
     private final EntityManagerFactoryBuilder _entityManagerFactoryBuilder;
@@ -90,7 +88,6 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
      */
     public RuntimeEnvironmentBuilder(ClassLoader classLoader, ServiceDomain serviceDomain, KnowledgeComponentImplementationModel implementationModel) {
         super(classLoader, serviceDomain);
-        _kieServices = KieServices.Factory.get();
         //_runtimeEnvironmentBuilderFactory = org.kie.api.runtime.manager.RuntimeEnvironmentBuilder.Factory.get();
         _runtimeEnvironmentBuilderFactory = new PatchedRuntimeEnvironmentBuilder();
         _persistent = implementationModel != null ? implementationModel.isPersistent() : false;
@@ -99,7 +96,6 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
         _propertiesBuilder = PropertiesBuilder.builder(implementationModel);
         _userGroupCallbackBuilder = UserGroupCallbackBuilder.builder(getClassLoader(), implementationModel);
         _registerableItemsFactoryBuilder = new RegisterableItemsFactoryBuilder(getClassLoader(), serviceDomain, implementationModel);
-
     }
 
     /**
@@ -181,7 +177,6 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
         if (simpleREAccess.isReadable()) {
             SimpleRuntimeEnvironment originalRE = simpleREAccess.read(jbpmRuntimeEnvironmentBuilder);
         */
-        KieScanner scanner = null;
             SimpleRuntimeEnvironment originalRE = ((PatchedRuntimeEnvironmentBuilder)jbpmRuntimeEnvironmentBuilder).getRuntimeEnvironment();
             if (originalRE != null) {
                 RegisterableItemsFactory originalRIF = originalRE.getRegisterableItemsFactory();
@@ -196,10 +191,6 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
                         if (kieContainerAccess.isReadable()) {
                             KieContainer kieContainer = kieContainerAccess.read(originalRIF);
                             ((ContainerManifest)manifest).setKieContainer(kieContainer);
-                        if (((ContainerManifest) manifest).isScan()) {
-                            scanner = _kieServices.newKieScanner(kieContainer);
-                            scanner.start(((ContainerManifest) manifest).getScanInterval().longValue());
-                        }
                         }
                     }
                 }
@@ -215,25 +206,20 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
                 originalRE.setMapper(mapper);
                 Environment environmentTemplate = originalRE.getEnvironmentTemplate();
                 // set the patched LocalTaskServiceFactory
-            originalRE.addToEnvironment(TaskServiceFactory.class.getName(), new PatchedLocalTaskServiceFactory(originalRE));
+                environmentTemplate.set(TaskServiceFactory.class.getName(), new PatchedLocalTaskServiceFactory(originalRE));
                 // TODO: why, when no persistence, do we have to do all this?
                 DeploymentDescriptor deploymentDescriptor = (DeploymentDescriptor)environmentTemplate.get("KieDeploymentDescriptor");
                 if (deploymentDescriptor == null) {
                     deploymentDescriptor = new DeploymentDescriptorManager().getDefaultDescriptor();
-                originalRE.addToEnvironment("KieDeploymentDescriptor", deploymentDescriptor);
+                    environmentTemplate.set("KieDeploymentDescriptor", deploymentDescriptor);
                 }
-            originalRE.addToEnvironment(manifest.getClass().getName(), manifest);
                 ((DeploymentDescriptorImpl)deploymentDescriptor).setAuditMode(auditMode);
-            if (scanner != null) {
-                originalRE.addToEnvironment("KieScanner", scanner);
             }
-            }
-
         /*
         }
         */
         RuntimeEnvironment runtimeEnvironment = jbpmRuntimeEnvironmentBuilder.get();
-        Environment environment = originalRE.getEnvironmentTemplate();
+        Environment environment = runtimeEnvironment.getEnvironment();
         // our ObjectMarshallingStrategy can be added to the Environment after the jBPM RuntimeEnvironmentBuilder is built (get->init)
         List<ObjectMarshallingStrategy> new_oms = new ArrayList<ObjectMarshallingStrategy>();
         new_oms.add(new SerializerObjectMarshallingStrategy(SerializerFactory.create(FormatType.JSON, null, true)));
@@ -245,7 +231,7 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
                 }
             }
         }
-        originalRE.addToEnvironment(EnvironmentName.OBJECT_MARSHALLING_STRATEGIES, new_oms.toArray(new ObjectMarshallingStrategy[new_oms.size()]));
+        environment.set(EnvironmentName.OBJECT_MARSHALLING_STRATEGIES, new_oms.toArray(new ObjectMarshallingStrategy[new_oms.size()]));
         return runtimeEnvironment;
     }
 

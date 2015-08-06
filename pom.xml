@@ -13,7 +13,7 @@
 
   <groupId>org.jboss.integration.fuse</groupId>
   <artifactId>fuse-integration-project</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
 
   <packaging>pom</packaging>
 
@@ -39,18 +39,9 @@
   </licenses>
 
   <properties>
-        <version.jboss.integration>1.0.1-SNAPSHOT</version.jboss.integration>
-
-        <!-- EAP early access -->
-        <version.eap>7.5.0.Final-redhat-20</version.eap>
-
-        <!-- Perfectus managed versions -->
-        <version.fuse.eap>6.2.1.redhat-001b</version.fuse.eap>
-        <version.fuse.patch>1.4.0</version.fuse.patch>
-        <karaf-version>2.4.0</karaf-version>
-        <version.camelsap>6.2.1.redhat-002</version.camelsap>
-        <version.switchyard>2.0.1.redhat-621012</version.switchyard>
-        <version.wildfly.camel>2.3.0.redhat-621012</version.wildfly.camel>
+        <version.jboss.integration>1.0.0.redhat-620136</version.jboss.integration>
+        <version.fuse.eap>6.2.0.redhat-133</version.fuse.eap>
+        <karaf-version>2.4.0.redhat-620133</karaf-version>
 
         <!-- Internal dependencies -->
         <version.org.kie>6.2.1-SNAPSHOT</version.org.kie>
@@ -96,15 +87,17 @@
 
         <!-- used by hibernate-validator -->
         <karaf.version.org.apache.servicemix.specs.jsr303-api>2.4.0</karaf.version.org.apache.servicemix.specs.jsr303-api>
- 	    <karaf.version.org.switchyard>[2.0.1,3.0)</karaf.version.org.switchyard>
+        <karaf.version.org.switchyard>[2.0.1,3.0)</karaf.version.org.switchyard>
         <karaf.version.org.kie>[6.2.0,7.0)</karaf.version.org.kie>
 
+        <version.org.apache.karaf>2.4.0.redhat-620133</version.org.apache.karaf>
         <version.org.apache.karaf.tooling>2.4.0</version.org.apache.karaf.tooling>
-        
-         <version.switchyard.osgi>2.1</version.switchyard.osgi>
+
+        <version.switchyard>2.0.1.redhat-620133</version.switchyard>
+        <version.switchyard.osgi>2.1</version.switchyard.osgi>
         <!-- Explicitly declaring the source encoding eliminates the following message: -->
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
-          resources, i.e. build is platform dependent! -->
+                       resources, i.e. build is platform dependent! -->
         <version.org.jboss.as.console>1.5.4.Final</version.org.jboss.as.console>
         <version.org.jboss.as>7.2.0.Final</version.org.jboss.as>
         <version.redhat.eap6.bom>6.3.0.GA</version.redhat.eap6.bom>
@@ -113,6 +106,8 @@
         <version.redhat.eap6.minor>0.GA</version.redhat.eap6.minor>
         <version.org.fusesource.hawtdispatch>1.18</version.org.fusesource.hawtdispatch>
         <version.org.fusesource.hawtbuf>1.9</version.org.fusesource.hawtbuf>
+        <!-- consider moving to integration platform bom -->
+        <version.camelsap>6.2.0.redhat-133</version.camelsap>
         <version.org.fusesource.mqtt-client>1.6</version.org.fusesource.mqtt-client>
         <!--  RiftSaw -->
         <version.activity.monitor.model>1.2.2.Final</version.activity.monitor.model>
@@ -124,13 +119,10 @@
         <version.net.sourceforge.saxon>9.2.1.5</version.net.sourceforge.saxon>
         <!-- Require investigation and/or will be removed  -->
         <version.jbossws.jboss720.server.integration>4.2.0.Final</version.jbossws.jboss720.server.integration>
-        
         <!-- Plugin versions -->
         <version.felix.maven>2.4.0</version.felix.maven>
         <version.maven.clean.plugin>2.5</version.maven.clean.plugin>
         <version.maven.plugin.plugin>3.1</version.maven.plugin.plugin>
-        <version.shrinkwrap.resolver.plugin>2.1.1</version.shrinkwrap.resolver.plugin>
-        
         <!-- OSGi bundles properties -->
         <switchyard.osgi.import.switchyard.version>version="[$(version;==;${switchyard.osgi.version}),$(version;==;${version.switchyard.osgi}))"</switchyard.osgi.import.switchyard.version>
         <switchyard.osgi.import.default.version>[$(version;==;$(@)),$(version;+;$(@)))</switchyard.osgi.import.default.version>
@@ -158,30 +150,15 @@
         <switchyard.osgi.require.capability/>
 
 
+        <eap.download.url>http://porkchop.redhat.com</eap.download.url>
+	<eap.download.url.path>released/JBEAP-6/6.4.0-Beta/jboss-eap-6.4.0.Beta.zip</eap.download.url.path>
+        <version.org.wildfly.camel>2.2.0.redhat-620133</version.org.wildfly.camel>
+
         <version.org.apache.camel.features>[2.12,3)</version.org.apache.camel.features>
         <version.org.apache.cxf.features>[2.7,4)</version.org.apache.cxf.features>
   </properties>
 
-   <repositories>
-      <!-- Early access to jboss-eap -->
-      <repository>
-         <id>jboss-early-access-repository</id>
-         <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-eap-6.4-rhel-6-build/latest/maven</url>
-      </repository>
-      <repository>
-         <id>jb-ip-early-access-repository</id>
-         <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-ip-6.1-build/latest/maven</url>
-      </repository>
-      <!-- Early access to fuse-eap -->
-      <repository>
-         <id>fuse-eap-staging-repository</id>
-         <url>https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352</url>
-      </repository>
-      <!-- General early access -->
-      <repository>
-         <id>fuse-early-access-repository</id>
-         <url>https://repository.jboss.org/nexus/content/groups/ea</url>
-      </repository>
+  <repositories>
     <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
     <repository>
         <id>fusesource.ea</id>
@@ -231,19 +208,6 @@
        </snapshots>
     </repository>
     <repository>
-      <id>PUBLIC</id>
-      <name>JBOSS PUBLIC</name>
-      <url>http://repository.jboss.org/nexus/content/groups/public</url>
-      <releases>
-          <enabled>true</enabled>
-          <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-          <enabled>false</enabled>
-          <updatePolicy>never</updatePolicy>
-      </snapshots>
-    </repository>
-    <repository>
       <id>redhat-m2-proxy</id>
       <name>Red Hat M2 Proxy</name>
       <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
@@ -255,6 +219,11 @@
           <enabled>false</enabled>
           <updatePolicy>never</updatePolicy>
       </snapshots>
+    </repository>
+    <repository>
+      <id>jb-eap-6.4-rhel-6-build</id>
+      <name>jboss staging</name>
+      <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-eap-6.4-rhel-6-build/latest/maven</url>
     </repository>
     <repository>
        <id>fusesource-public-release-repository-group</id>
@@ -349,11 +318,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-         <dependency>
-            <groupId>org.wildfly.extras.patch</groupId>
-            <artifactId>fuse-patch-installer</artifactId>
-            <version>${version.fuse.patch}</version>
-         </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-util</artifactId>
@@ -410,12 +374,6 @@
         <artifactId>pax-url-aether</artifactId>
         <version>${version.org.ops4j.pax.url}</version>
       </dependency>
-      
-      <dependency>
-          <groupId>org.apache.felix</groupId>
-          <artifactId>org.osgi.core</artifactId>
-          <version>1.4.0</version>
-      </dependency>
 
             <!--  ###################################################################
       ##           Dependencies Not Present in Integration BOM         ##
@@ -461,12 +419,6 @@
             <!--  ###################################################################
       ##                       Project Artifacts                       ##
       ################################################################### -->
-            <dependency>
-                <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>jbpm-workitems-camel</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.switchyard</groupId>
                 <artifactId>switchyard-as7-modules</artifactId>
@@ -645,21 +597,6 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.switchyard.components</groupId>
-                <artifactId>switchyard-component-bpm</artifactId>
-                <version>${version.switchyard}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.switchyard.components</groupId>
-                <artifactId>switchyard-component-common-knowledge</artifactId>
-                <version>${version.switchyard}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.switchyard.components</groupId>
-                <artifactId>switchyard-component-rules</artifactId>
-                <version>${version.switchyard}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>kie-camel</artifactId>
                 <version>${project.version}</version>
@@ -686,11 +623,6 @@
             </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-                <artifactId>switchyard-rules-csv</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-rules-interview-dtable</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -711,29 +643,8 @@
                 <artifactId>switchyard-demo-library</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.kie.remote</groupId>
-                <artifactId>kie-remote-jaxb</artifactId>
-                <version>${version.org.kie}</version>
-                <exclusions>
-                     <exclusion>  <!-- declare the exclusion here -->
-                        <groupId>com.sun.xml.bind</groupId>
-                        <artifactId>jaxb-core</artifactId>
-                     </exclusion>
-                </exclusions>
-            </dependency>
 
-            <dependency>
-                <groupId>org.jbpm</groupId>
-                <artifactId>jbpm-workitems</artifactId>
-                <version>${version.org.kie}</version>
-                <exclusions>
-                     <exclusion>  <!-- declare the exclusion here -->
-                        <groupId>com.sun.xml.bind</groupId>
-                        <artifactId>jaxb-core</artifactId>
-                     </exclusion>
-                </exclusions>
-            </dependency>
+
 
             <dependency>
                 <groupId>org.jboss.as</groupId>
@@ -752,11 +663,6 @@
                 <version>${version.org.jboss.as}</version>
                 <scope>test</scope>
             </dependency>
-         <dependency>
-            <groupId>org.wildfly.camel</groupId>
-            <artifactId>wildfly-camel-config</artifactId>
-            <version>${version.wildfly.camel}</version>
-         </dependency>  
     </dependencies>
   </dependencyManagement>
 
@@ -866,7 +772,7 @@
                 <plugin>
                     <groupId>org.switchyard</groupId>
                     <artifactId>switchyard-plugin</artifactId>
-                    <version>${version.switchyard}</version>
+                    <version>${project.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.felix</groupId>

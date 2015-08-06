@@ -29,47 +29,25 @@
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-interview-container/${project.version}</bundle>
     </feature>
-    <feature name="fuse-bxms-switchyard-quickstart-rules-interview-dtable" version="${project.version}" resolver="(obr)">
+    <!-- feature name="fuse-bxms-switchyard-quickstart-rules-interview-dtable" version="${project.version}" resolver="(obr)">
         <feature version="${karaf.version.org.switchyard}">switchyard-bean</feature>
         <feature version="${karaf.version.org.switchyard}">switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-interview-dtable/${project.version}</bundle>
-    </feature>
+    </feature> -->
     <feature name="fuse-bxms-switchyard-demo-library" version="${project.version}" resolver="(obr)">
         <feature version="${karaf.version.org.switchyard}">switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-demo-library/${project.version}</bundle>
     </feature>
-
-    <feature name="fuse-bxms-switchyard-quickstart-rules-multithread" version="${project.version}" resolver="(obr)">
-        <feature version="${karaf.version.org.switchyard}">switchyard-rest</feature>
-        <feature version="${karaf.version.org.switchyard}">switchyard-bean</feature>
-        <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
-        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-multithreaded/${project.version}</bundle>
-    </feature>
-
-    <feature name="fuse-bxms-switchyard-quickstart-rules-csv" version="${project.version}" resolver="(obr)">
-        <feature version="${karaf.version.org.switchyard}">switchyard-sca</feature>
-        <feature version="${karaf.version.org.switchyard}">switchyard-bean</feature>
-        <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
-        <bundle>wrap:mvn:org.apache.xmlbeans/xmlbeans/${version.org.apache.xmlbeans}</bundle>
-        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-rules-csv/${project.version}</bundle>
-    </feature>
-
     <!-- XXX: this needs some love -->
-  <feature name="fuse-bxms-switchyard-demo-helpdesk-ds" version="${project.version}" resolver="(obr)">
-        <!-- Database support -->        
-        <bundle>mvn:com.h2database/h2/${version.com.h2database}</bundle>
-        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-demo-helpdesk-ds/${project.version}</bundle>
-  </feature>
-
     <feature name="fuse-bxms-switchyard-demo-helpdesk" version="${project.version}" resolver="(obr)">
         <!-- hibernate must be before bpm -->
         <feature version="${karaf.version.org.switchyard}">switchyard-bean</feature>
         <feature version="${karaf.version.org.switchyard}">switchyard-soap</feature>
         <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
-        <feature version="${project.version}">fuse-bxms-switchyard-demo-helpdesk-ds</feature>
+
         <!-- jbpm-kie-services needs to export org.jbpm.kie.services.impl.model for Serviceorm.xml...
         <bundle dependency="true">mvn:org.jbpm/jbpm-shared-services/${version.org.jbpm}</bundle>
         <bundle dependency="true">mvn:org.jbpm/jbpm-services-api/${version.org.jbpm}</bundle>
@@ -80,6 +58,8 @@
         <!-- cdi web support -->
         <feature version="${version.org.ops4j.pax.cdi}">pax-cdi-1.2-web-weld</feature>
 
+        <!-- Database support -->        
+        <bundle>mvn:com.h2database/h2/${version.com.h2database}</bundle>
 
         <!-- JSF Dependencies -->
         <bundle dependency="true">mvn:commons-collections/commons-collections/${version.commons-collections}</bundle>
@@ -97,7 +77,7 @@
         <feature version="${karaf.version.org.kie}">drools-decisiontable</feature>
         <feature version="${karaf.version.org.kie}">kie-aries-blueprint</feature>
         <feature version="${project.version}">kie-camel</feature>
-        <bundle>mvn:org.jboss.integration.fuse.quickstarts/blueprint-camel-drools-decision-table/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/blueprint-camel-drools-decision-table-example/${project.version}</bundle>
     </feature>
 
     <feature name="fuse-bxms-camel-spring-drools-decision-table" version="${project.version}" resolver="(obr)">
@@ -105,13 +85,7 @@
         <feature version="${karaf.version.org.kie}">drools-decisiontable</feature>
         <feature version="${karaf.version.org.kie}">kie-spring</feature>
         <feature version="${project.version}">kie-camel</feature>
-        <bundle>mvn:org.jboss.integration.fuse.quickstarts/spring-camel-drools-decision-table/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/spring-camel-drools-decision-table-example/${project.version}</bundle>
     </feature>
-    
-    <feature name="fuse-bxms-jbpm-workitems-camel-quickstart" version="${project.version}">
-        <feature version="${karaf.version.org.kie}">drools-module</feature>
-        <feature version="${project.version}">jbpm-workitems-camel</feature>
-        <bundle>mvn:org.jboss.integration.fuse.quickstarts/jbpm-workitems-camel-quickstart/${project.version}</bundle>
-    </feature>
-</features>
 
+</features>

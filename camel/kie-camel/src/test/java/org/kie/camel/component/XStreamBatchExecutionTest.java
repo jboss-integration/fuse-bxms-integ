@@ -16,7 +16,18 @@
 
 package org.kie.camel.component;
 
-import com.thoughtworks.xstream.XStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.naming.Context;
+
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.custommonkey.xmlunit.Diff;
@@ -59,16 +70,8 @@ import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.runtime.helper.BatchExecutionHelper;
 import org.xml.sax.SAXException;
 
-import javax.naming.Context;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import com.thoughtworks.xstream.XStream;
+@Ignore
 public class XStreamBatchExecutionTest extends CamelTestSupport {
     protected CommandExecutor exec;
     protected CommandExecutor exec2;
