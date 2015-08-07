@@ -55,3 +55,15 @@ Quickstarts
 ============
 The quickstarts/fuse-integration directory contains the suite of quickstarts available in this distro version. Check directly the README file of the quickstart you are interested for further information about usage.
 
+Current Issues
+===============
+
+There is a problem in the helpdesk demo. It is fixed on the jbpm master code, but it is not included in the release compatible with this version of fuse-integration
+
+https://issues.jboss.org/browse/ENTESB-3793
+
+There is a problem when the fuse-bxms-camel-spring-drools-decision-table and fuse-bxms-camel-blueprint-drools-decision-table:
+
+https://issues.jboss.org/browse/ENTESB-3792
+
+
