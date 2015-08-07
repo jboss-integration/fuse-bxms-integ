@@ -25,7 +25,7 @@
 
     <fileSets>
         <fileSet>
-            <directory>../../</directory>
+            <directory>../</directory>
             <includes>
                 <include>**/switchyard-bpm-service</include>
                 <include>**/switchyard-bpm-service/**/*</include>
@@ -63,9 +63,12 @@
                 <exclude>**/.settings/**/*</exclude>
                 <exclude>**/target</exclude>
                 <exclude>**/target/**/*</exclude>
+                <exclude>**/bin</exclude>
+                <exclude>**/bin/**/*</exclude>
             </excludes>
             <fileMode>644</fileMode>
             <directoryMode>755</directoryMode>
+            <outputDirectory>quickstarts</outputDirectory>
         </fileSet>
     </fileSets>
 
