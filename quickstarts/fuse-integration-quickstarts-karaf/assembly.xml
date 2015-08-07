@@ -25,7 +25,7 @@
 
     <fileSets>
         <fileSet>
-            <directory>../../</directory>
+            <directory>../</directory>
             <includes>
                 <include>**/switchyard-bpm-service</include>
                 <include>**/switchyard-bpm-service/**/*</include>
@@ -43,8 +43,8 @@
                 <include>**/switchyard-demo-helpdesk/**/*</include>
                 <include>**/switchyard-demo-library</include>
                 <include>**/switchyard-demo-library/**/*</include>   
-                <include>**/switchyard-drools-channels</include>
-                <include>**/switchyard-drools-channels/**/*</include>    
+                <include>**/jbpm-workitems-camel</include>
+                <include>**/jbpm-workitems-camel/**/*</include>    
                 <include>**/blueprint-camel-drools-decision-table-example</include>
                 <include>**/blueprint-camel-drools-decision-table-example/**/*</include>   
                 <include>**/drools-camel-server-example</include>
@@ -71,9 +71,12 @@
                 <exclude>**/.settings/**/*</exclude>
                 <exclude>**/target</exclude>
                 <exclude>**/target/**/*</exclude>
+                <exclude>**/bin/</exclude>
+                <exclude>**/bin/**/*</exclude>
             </excludes>
             <fileMode>644</fileMode>
             <directoryMode>755</directoryMode>
+            <outputDirectory>quickstarts</outputDirectory>
         </fileSet>
     </fileSets>
 
