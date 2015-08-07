@@ -13,7 +13,7 @@
 
   <groupId>org.jboss.integration.fuse</groupId>
   <artifactId>fuse-integration-project</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0.redhat-620144</version>
 
   <packaging>pom</packaging>
 
@@ -39,12 +39,12 @@
   </licenses>
 
   <properties>
-        <version.jboss.integration>1.0.0-SNAPSHOT</version.jboss.integration>
+        <version.jboss.integration>1.0.0.redhat-620144</version.jboss.integration>
         <version.fuse.eap>6.2.0.redhat-133</version.fuse.eap>
         <karaf-version>2.4.0.redhat-620133</karaf-version>
 
         <!-- Internal dependencies -->
-        <version.org.kie>6.2.1-SNAPSHOT</version.org.kie>
+        <version.org.kie>6.2.0.Final-redhat-9</version.org.kie>
         <version.org.drools>${version.org.kie}</version.org.drools>
         <version.org.optaplanner>${version.org.kie}</version.org.optaplanner>
         <version.org.jbpm>${version.org.kie}</version.org.jbpm>
@@ -152,7 +152,7 @@
 
         <eap.download.url>http://porkchop.redhat.com</eap.download.url>
 	<eap.download.url.path>released/JBEAP-6/6.4.0-Beta/jboss-eap-6.4.0.Beta.zip</eap.download.url.path>
-        <version.org.wildfly.camel>2.2.0.redhat-620133</version.org.wildfly.camel>
+        <version.org.wildfly.camel>2.3.0.redhat-621012</version.org.wildfly.camel>
 
         <version.org.apache.camel.features>[2.12,3)</version.org.apache.camel.features>
         <version.org.apache.cxf.features>[2.7,4)</version.org.apache.cxf.features>
