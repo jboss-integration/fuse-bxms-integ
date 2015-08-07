@@ -48,7 +48,7 @@
         <version.fuse.eap>6.2.1.redhat-001b</version.fuse.eap>
         <version.fuse.patch>1.4.0</version.fuse.patch>
         <karaf-version>2.4.0</karaf-version>
-        <version.camelsap>6.2.1.redhat-002</version.camelsap>
+        <version.camelsap>6.2.1.redhat-019</version.camelsap>
         <version.switchyard>2.0.1.redhat-621012</version.switchyard>
         <version.wildfly.camel>2.3.0.redhat-621012</version.wildfly.camel>
 
