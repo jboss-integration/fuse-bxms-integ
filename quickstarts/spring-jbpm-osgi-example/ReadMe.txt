@@ -24,10 +24,7 @@ In the console, use the following commands
     features:install spring
     features:install spring-dm
     features:install spring-tx
-    features:install drools-jpa
-    features:install jbpm-human-task
-    features:install kie-spring
-    features:install jbpm-example
+    features:install fuse-bxms-spring-jbpm-osgi-example
 
 To see the results tail the Fuse ESB log
 
