@@ -1,22 +1,41 @@
 Fuse Integration: Quickstarts: jBPM : Work-items camel example
 ==============================================================
 
-To build this project use
+INTRODUCE HERE SOME DESCRIPTION
 
-    mvn install
 
-To deploy this project into :
 
-[JBoss Fuse](http://access.redhat.com/downloads) 
+FUSE
+----------
+1. Start FUSE:
 
-Start JBoss Fuse
+${FUSE_HOME}/bin/karaf
 
-    <JBoss Fuse Home>/bin/fuse
 
-In the console, use the following commands
+2. Ensure that the drools and switchyard compatible features URL files have been added to your Fuse instance. 
+   In case they are not added then:
 
-    features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
-    features:install jbpm-workitems-camel-quickstart
+    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
+
+
+3. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
+with the version of Fuse BXMS Integration that you are using (ex. 1.0.0): 
+
+JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
+
+
+4. Install the feature for the Blueprint camel drools decision table quickstart :
+
+JBossFuse:karaf@root> features:install jbpm-workitems-camel-quickstart
+
+5. Check the output. See output at the end of the document.
+
+6. Undeploy the quickstart:
+
+JBossFuse:karaf@root> features:uninstall jbpm-workitems-camel-quickstart
+
+
+
 
 To see the results display files "acceptedApplications.txt" and "rejectedApplications.txt" in fuse tmp
 directory (<JBoss Fuse Home>/data/tmp).
