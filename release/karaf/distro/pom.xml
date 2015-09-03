@@ -50,6 +50,24 @@
                             <outputDirectory>${project.build.directory}/fuse-integration</outputDirectory>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>install-jbpm-dlls</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.jbpm</groupId>
+                                    <artifactId>jbpm-distribution</artifactId>
+                                    <classifier>src</classifier>
+                                    <type>zip</type>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/jbpm-sources</outputDirectory>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>

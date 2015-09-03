@@ -28,6 +28,12 @@
             <outputDirectory>quickstarts/fuse-integration</outputDirectory>
         </fileSet>
         <fileSet>
+            <directory>${project.build.directory}/jbpm-sources/jbpm-installer/db/</directory>
+            <fileMode>644</fileMode>
+            <directoryMode>755</directoryMode>
+            <outputDirectory>db</outputDirectory>
+        </fileSet>
+        <fileSet>
             <directory>${project.build.directory}/features-repo</directory>
             <outputDirectory>system</outputDirectory>
             <fileMode>644</fileMode>
