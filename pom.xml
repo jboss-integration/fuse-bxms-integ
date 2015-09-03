@@ -564,6 +564,13 @@
                 <classifier>features</classifier>
                 <version>${version.org.kie}</version>
             </dependency>
+            <dependency>
+                <groupId>org.jbpm</groupId>
+                <artifactId>jbpm-distribution</artifactId>
+                <version>${version.org.kie}</version>
+                <classifier>src</classifier>
+                <type>zip</type>
+            </dependency>
 
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
@@ -758,6 +765,7 @@
             <artifactId>wildfly-camel-config</artifactId>
             <version>${version.wildfly.camel}</version>
          </dependency>  
+
     </dependencies>
   </dependencyManagement>
 
