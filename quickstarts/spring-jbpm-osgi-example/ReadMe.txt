@@ -4,11 +4,7 @@ jBPM Example
 This example deploys as a bundle a jBPM process (? display image) which is called when Spring instantiates
 the bean "EvaluationProcessExample". The process contains a task ("RegisterTask" )and a user task ("Human Task").
 
-??
 
-To build this project use
-
-    mvn install
 
 To deploy this project into :
 
@@ -21,14 +17,14 @@ Start JBoss Fuse or Apache Karaf
 
 In the console, use the following commands
 
+
+
+    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
     features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
     features:install spring
     features:install spring-dm
     features:install spring-tx
-    features:install drools-jpa
-    features:install jbpm-human-task
-    features:install kie-spring
-    features:install jbpm-example
+    features:install fuse-bxms-spring-jbpm-osgi-example
 
 To see the results tail the Fuse ESB log
 

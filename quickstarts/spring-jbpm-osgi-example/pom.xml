@@ -103,8 +103,6 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Bundle-SymbolicName>jbpm-osgi-example</Bundle-SymbolicName>
-            <Bundle-Name>jBPM-Example</Bundle-Name>
             <Import-Package>
               org.slf4j,
               org.drools.core;version="[6.0,7)",
@@ -141,6 +139,9 @@
               org.kie.spring;version="[6.0,7)",
               org.eclipse.jdt.internal.compiler
             </Import-Package>
+            <Export-Package>
+              org.jbpm.osgi.example
+            </Export-Package>
             <!--
                           org.apache.camel;version="[2.10,3)",
               org.apache.camel.spi;version="[2.10,3)",
