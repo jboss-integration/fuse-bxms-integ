@@ -1,0 +1,13 @@
+LIST OF ADDITIONAL JAVA SYSTEM PROPERTIES FOR org.jboss.integration.fuse.karaf.itest
+
+These additional properties can be used to execute tests against custom karaf
+or karaf like container (for example JBoss FUSE). 
+
+karaf.dist.file - path to karaf distribution file (if not defined, the default karaf is downloaded from maven central)
+karaf.keep.runtime.folder - keep pax exam runtime folder after the test execution is finished
+karaf.maxpermsize - increase the maximal size of PermGen space for karaf container in Java 7
+karaf.install.camel - Some Karaf based containers (for example JBoss Fuse) have Camel
+                      already installed. For these containers set
+                      value of this property to false. (Default value is true).
+
+Example: mvn clean install -Dkaraf.dist.file=/path_to_karaf -Dkaraf.keep.runtime.folder -Dkaraf.maxpermsize=512m
