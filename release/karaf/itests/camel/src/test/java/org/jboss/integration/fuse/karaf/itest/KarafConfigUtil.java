@@ -16,9 +16,13 @@ package org.jboss.integration.fuse.karaf.itest;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.KARAF_FEATURES_CONFIG_FILE;
+import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.KARAF_BOOT_FEATURES_KEY;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.CAMEL_FEATURE_ARTIFACT_ID;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.CAMEL_FEATURE_GROUP_ID;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.CAMEL_FEATURE_NAME;
+import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.CAMEL_FEATURE_SQL_NAME;
+import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.CAMEL_FEATURE_STREAM_NAME;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.CAMEL_WORKITEM_FEATURE_NAME;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.COMMONS_IO_ARTIFACT_ID;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.COMMONS_IO_GROUP_ID;
@@ -39,10 +43,12 @@ import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.vmOption;
 import static org.ops4j.pax.exam.CoreOptions.when;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.debugConfiguration;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.editConfigurationFileExtend;
+import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.editConfigurationFilePut;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.karaf.options.KarafDistributionBaseConfigurationOption;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.configureConsole;
-import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.editConfigurationFilePut;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.karafDistributionConfiguration;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.keepRuntimeFolder;
@@ -71,6 +77,12 @@ public class KarafConfigUtil {
      * It can be very useful for debugging to keep the content of runtime folder.
      */
     public static final String PROP_KEEP_RUNTIME_FOLDER = "karaf.keep.runtime.folder";
+
+    /**
+     * Specify port for remote debugger. If this property is defined, the remote debugger
+     * can be attached to the specified port.
+     */
+    public static final String PROP_KARAF_DEBUG_CONFIGURATION_PORT = "karaf.debug.port";
     
     /**
      * Whether to install Camel to the container. Some Karaf based containers
@@ -163,12 +175,18 @@ public class KarafConfigUtil {
         if (Boolean.parseBoolean(System.getProperty(PROP_INSTALL_CAMEL, "true"))) {
             options.add(features(maven().groupId(CAMEL_FEATURE_GROUP_ID).artifactId(CAMEL_FEATURE_ARTIFACT_ID)
                         .versionAsInProject().type("xml").classifier("features"),
-                    CAMEL_FEATURE_NAME));
+                    CAMEL_FEATURE_NAME, CAMEL_FEATURE_SQL_NAME, CAMEL_FEATURE_STREAM_NAME));
+        } else {
+            options.add(editConfigurationFileExtend(KARAF_FEATURES_CONFIG_FILE, KARAF_BOOT_FEATURES_KEY, CAMEL_FEATURE_SQL_NAME));
+            options.add(editConfigurationFileExtend(KARAF_FEATURES_CONFIG_FILE, KARAF_BOOT_FEATURES_KEY, CAMEL_FEATURE_STREAM_NAME));
         }
         
         options.add(bundle(mavenBundle().groupId(COMMONS_IO_GROUP_ID).artifactId(COMMONS_IO_ARTIFACT_ID)
                                 .versionAsInProject().getURL()));
-        
+
+        if (System.getProperty(PROP_KARAF_DEBUG_CONFIGURATION_PORT) != null) {
+            options.add(debugConfiguration(System.getProperty(PROP_KARAF_DEBUG_CONFIGURATION_PORT), true));
+        }
         
         return options.toArray(new Option[1]);
     }

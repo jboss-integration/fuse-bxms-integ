@@ -6,6 +6,8 @@ or karaf like container (for example JBoss FUSE).
 karaf.dist.file - path to karaf distribution file (if not defined, the default karaf is downloaded from maven central)
 karaf.keep.runtime.folder - keep pax exam runtime folder after the test execution is finished
 karaf.maxpermsize - increase the maximal size of PermGen space for karaf container in Java 7
+karaf.debug.port - Specify port for remote debugger. If this property is defined, the remote debugger
+                   can be attached to the specified port.
 karaf.install.camel - Some Karaf based containers (for example JBoss Fuse) have Camel
                       already installed. For these containers set
                       value of this property to false. (Default value is true).

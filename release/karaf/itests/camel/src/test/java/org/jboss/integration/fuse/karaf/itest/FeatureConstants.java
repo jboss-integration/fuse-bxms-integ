@@ -14,10 +14,15 @@
 package org.jboss.integration.fuse.karaf.itest;
 
 public class FeatureConstants {
+
+    public static final String KARAF_FEATURES_CONFIG_FILE = "etc/org.apache.karaf.features.cfg";
+    public static final String KARAF_BOOT_FEATURES_KEY = "featuresBoot";
     
     public static final String CAMEL_FEATURE_GROUP_ID = "org.apache.camel.karaf";
     public static final String CAMEL_FEATURE_ARTIFACT_ID = "apache-camel";
     public static final String CAMEL_FEATURE_NAME = "camel";
+    public static final String CAMEL_FEATURE_SQL_NAME = "camel-sql";
+    public static final String CAMEL_FEATURE_STREAM_NAME = "camel-stream";
 
     public static final String DROOLS_FEATURE_GROUP_ID = "org.drools";
     public static final String DROOLS_FEATURE_ARTIFACT_ID = "drools-karaf-features";

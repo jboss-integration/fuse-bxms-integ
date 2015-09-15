@@ -67,6 +67,14 @@
             <bean method="insertAndFireAll" ref="droolsCommandHelper"/>
             <to uri="kie:example-command-ksession?action=execute"/>
         </route>
+
+
     </camelContext>
+
+    <bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
+        <property name="URL" value="jdbc:h2:mem:db1"/>
+        <property name="user" value="sa"/>
+        <property name="password" value="sa"/>
+    </bean>
 
 </blueprint>
