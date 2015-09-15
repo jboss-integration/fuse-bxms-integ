@@ -13,6 +13,8 @@
  */
 package org.switchyard.component.common.knowledge.persistence;
 
+import java.util.HashMap;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -30,6 +32,6 @@ public class EntityManagerFactoryLoader {
      * @return the BPM EMF associated with the specified domain.
      */
     public EntityManagerFactory getEntityManagerFactory(ServiceDomain domain) {
-        return Persistence.createEntityManagerFactory(UNIT_NAME);
+        return Persistence.createEntityManagerFactory(UNIT_NAME, new HashMap());
     }
 }
