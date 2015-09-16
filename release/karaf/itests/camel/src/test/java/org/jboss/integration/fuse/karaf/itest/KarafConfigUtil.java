@@ -14,6 +14,8 @@
 package org.jboss.integration.fuse.karaf.itest;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.CAMEL_FEATURE_ARTIFACT_ID;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.CAMEL_FEATURE_GROUP_ID;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.CAMEL_FEATURE_NAME;
@@ -35,8 +37,10 @@ import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.KIE_SPRING
 import static org.ops4j.pax.exam.CoreOptions.bundle;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+import static org.ops4j.pax.exam.CoreOptions.vmOption;
 import static org.ops4j.pax.exam.CoreOptions.when;
 import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.karaf.options.KarafDistributionBaseConfigurationOption;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.configureConsole;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.editConfigurationFilePut;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
@@ -51,16 +55,50 @@ import org.slf4j.LoggerFactory;
 
 public class KarafConfigUtil {
 
+    /**
+     * Path to file containing container binary archive.
+     */
+    public static final String PROP_KARAF_DISTRIBUTION_FILE = "karaf.dist.file";
+    
+    /**
+     * Maximal size of perm gen memory. For example "512M". This property
+     * is useful only in Java 7.
+     */
+    public static final String PROP_KARAF_MAXPERMSIZE = "karaf.maxpermsize";
+    
+    /**
+     * Whether to keep pax-exam runtime folder after the test execution is completed.
+     * It can be very useful for debugging to keep the content of runtime folder.
+     */
+    public static final String PROP_KEEP_RUNTIME_FOLDER = "karaf.keep.runtime.folder";
+    
+    /**
+     * Whether to install Camel to the container. Some Karaf based containers
+     * (for example JBoss Fuse) have Camel installed. (Default value is true).
+     */
+    public static final String PROP_INSTALL_CAMEL = "karaf.install.camel";
+
     private static final transient Logger logger = LoggerFactory.getLogger(KarafConfigUtil.class);
 
     private static Option getKarafDistributionOption() {
         String karafVersion = getKarafVersion();
         logger.info("*** The karaf version is " + karafVersion + " ***");
-        return new DefaultCompositeOption(karafDistributionConfiguration()
-                .frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").type("tar.gz").versionAsInProject())
-                .karafVersion(karafVersion)
-                .name("Apache Karaf")
-                .useDeployFolder(false).unpackDirectory(new File("target/paxexam/unpack/")),
+        
+        KarafDistributionBaseConfigurationOption karafDistributionConfiguration = karafDistributionConfiguration();
+        
+        /* Use default or custom container */
+        if (System.getProperty(PROP_KARAF_DISTRIBUTION_FILE) == null) {
+            karafDistributionConfiguration.frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").type("tar.gz").versionAsInProject());
+        } else {
+            File fuseDistributionFile = new File(System.getProperty(PROP_KARAF_DISTRIBUTION_FILE));
+            karafDistributionConfiguration.frameworkUrl("file:" + fuseDistributionFile.getAbsolutePath());
+        }
+        
+        karafDistributionConfiguration.karafVersion(karafVersion)
+            .name("Apache Karaf")
+            .useDeployFolder(false).unpackDirectory(new File("target/paxexam/unpack/"));
+        
+        return new DefaultCompositeOption(karafDistributionConfiguration,
                 localMavenRepoOption(),
                 editConfigurationFilePut("etc/org.ops4j.pax.url.mvn.cfg", "org.ops4j.pax.url.mvn.repositories",
                         "http://repo1.maven.org/maven2@id=central,"
@@ -91,39 +129,47 @@ public class KarafConfigUtil {
     }
 
     public static Option[] karafConfiguration() {
-        return new Option[]{
-                // Install Karaf Container
-                getKarafDistributionOption(),
-
-                // It is really nice if the container sticks around after the test so you can check the contents
-                // of the data directory when things go wrong.
-                keepRuntimeFolder(),
-                // Don't bother with local console output as it just ends up cluttering the logs
-                configureConsole().ignoreLocalConsole(),
-                // Force the log level to INFO so we have more details during the test.  It defaults to WARN.
-                logLevel(LogLevelOption.LogLevel.INFO),
-
-                // Option to be used to do remote debugging
-                //  debugConfiguration("5005", true),
-                
-                features(maven().groupId(DROOLS_FEATURE_GROUP_ID).artifactId(DROOLS_FEATURE_ARTIFACT_ID)
+        
+        List<Option> options = new ArrayList<Option>();
+        
+        options.add(getKarafDistributionOption());
+        
+        /* Set maximal perm space size */
+        if (System.getProperty(PROP_KARAF_MAXPERMSIZE) != null) {
+            options.add(vmOption("-XX:MaxPermSize=" + System.getProperty(PROP_KARAF_MAXPERMSIZE)));
+        }
+        
+        // It is really nice if the container sticks around after the test so you can check the contents
+        // of the data directory when things go wrong.
+        if (System.getProperty(PROP_KEEP_RUNTIME_FOLDER) != null) {
+            options.add(keepRuntimeFolder());
+        }
+        
+        // Don't bother with local console output as it just ends up cluttering the logs
+        options.add(configureConsole().ignoreLocalConsole());
+        
+        // Force the log level to INFO so we have more details during the test.  It defaults to WARN.
+        options.add(logLevel(LogLevelOption.LogLevel.INFO));
+        
+        options.add(features(maven().groupId(DROOLS_FEATURE_GROUP_ID).artifactId(DROOLS_FEATURE_ARTIFACT_ID)
                                         .versionAsInProject().type("xml").classifier("features"),
                                 JNDI_FEATURE_NAME, H2_FEATURE_NAME, HIBERNATE_FEATURE_NAME,
                                 JBPM_FEATURE_NAME, DROOLS_DT_FEATURE_NAME, KIE_SPRING_FEATURE_NAME,
-                                KIE_ARIES_BLUEPRINT_FEATURE_NAME),
-                
-                // Install Camel feature into Apache Karaf
-                features(maven().groupId(INTEG_PACK_FEATURE_GROUP_ID).artifactId(INTEG_PACK_FEATURE_ARTIFACT_ID)
+                                KIE_ARIES_BLUEPRINT_FEATURE_NAME));
+        options.add(features(maven().groupId(INTEG_PACK_FEATURE_GROUP_ID).artifactId(INTEG_PACK_FEATURE_ARTIFACT_ID)
                                         .versionAsInProject().type("xml").classifier("features"),
-                                KIE_CAMEL_FEATURE_NAME, CAMEL_WORKITEM_FEATURE_NAME),
-                
-                features(maven().groupId(CAMEL_FEATURE_GROUP_ID).artifactId(CAMEL_FEATURE_ARTIFACT_ID)
-                            .versionAsInProject().type("xml").classifier("features"),
-                        CAMEL_FEATURE_NAME),
-                
-                // Install Apache Commons IO bundle into Apache Karaf
-                bundle(mavenBundle().groupId(COMMONS_IO_GROUP_ID).artifactId(COMMONS_IO_ARTIFACT_ID)
-                                .versionAsInProject().getURL())
-        };
+                                KIE_CAMEL_FEATURE_NAME, CAMEL_WORKITEM_FEATURE_NAME));
+        
+        if (Boolean.parseBoolean(System.getProperty(PROP_INSTALL_CAMEL, "true"))) {
+            options.add(features(maven().groupId(CAMEL_FEATURE_GROUP_ID).artifactId(CAMEL_FEATURE_ARTIFACT_ID)
+                        .versionAsInProject().type("xml").classifier("features"),
+                    CAMEL_FEATURE_NAME));
+        }
+        
+        options.add(bundle(mavenBundle().groupId(COMMONS_IO_GROUP_ID).artifactId(COMMONS_IO_ARTIFACT_ID)
+                                .versionAsInProject().getURL()));
+        
+        
+        return options.toArray(new Option[1]);
     }
 }
