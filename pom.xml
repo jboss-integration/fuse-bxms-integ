@@ -65,6 +65,7 @@
         <version.org.eclipse.jetty>8.1.14.v20131031</version.org.eclipse.jetty>
         <!-- overrides <version.org.apache.ws.xmlschema>2.0.2 used in jboss-ip-bom 6.0.0.CR13 -->
         <version.org.apache.ws.xmlschema>2.0.3</version.org.apache.ws.xmlschema>
+        <version.org.eclipse.aether.aether-api>1.0.2.v20150114</version.org.eclipse.aether.aether-api>
 
         <version.org.mvel>2.2.4.Final</version.org.mvel>
         <version.org.apache.geronimo.specs>1.0</version.org.apache.geronimo.specs>
