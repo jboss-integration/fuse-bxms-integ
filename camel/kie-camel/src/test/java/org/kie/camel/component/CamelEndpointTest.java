@@ -31,14 +31,6 @@
 
 package org.kie.camel.component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.naming.Context;
-
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.drools.core.command.impl.GenericCommand;
@@ -54,6 +46,13 @@ import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.FactHandle;
 import org.kie.internal.command.CommandFactory;
 import org.kie.pipeline.camel.Person;
+
+import javax.naming.Context;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CamelEndpointTest extends KieCamelTestSupport {
     private String handle;
@@ -229,7 +228,7 @@ public class CamelEndpointTest extends KieCamelTestSupport {
 
     @Test
     public void testSessionGetObject() throws Exception {
-        FactHandle factHandle = new DefaultFactHandle( handle );
+        FactHandle factHandle = DefaultFactHandle.createFromExternalFormat( handle );
         GetObjectCommand cmd = (GetObjectCommand) CommandFactory.newGetObject( factHandle );
         cmd.setOutIdentifier( "rider" );
 

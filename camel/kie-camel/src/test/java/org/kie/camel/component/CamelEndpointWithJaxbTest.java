@@ -29,26 +29,23 @@ import org.drools.core.command.runtime.rule.InsertElementsCommand;
 import org.drools.core.command.runtime.rule.InsertObjectCommand;
 import org.drools.core.command.runtime.rule.QueryCommand;
 import org.drools.core.common.DefaultFactHandle;
-import org.drools.core.impl.KnowledgeBaseImpl;
-import org.kie.api.KieBase;
+import org.drools.core.runtime.rule.impl.FlatQueryResults;
+import org.junit.Test;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
 import org.kie.api.builder.Message;
 import org.kie.api.io.KieResources;
-import org.kie.api.runtime.KieSession;
-import org.kie.pipeline.camel.Person;
-import org.drools.core.runtime.rule.impl.FlatQueryResults;
-import org.junit.Test;
-import org.kie.internal.builder.JaxbConfiguration;
-import org.kie.internal.builder.KnowledgeBuilderFactory;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.ExecutionResults;
+import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.FactHandle;
 import org.kie.api.runtime.rule.QueryResultsRow;
+import org.kie.internal.builder.JaxbConfiguration;
+import org.kie.internal.builder.KnowledgeBuilderFactory;
+import org.kie.pipeline.camel.Person;
 
 import javax.naming.NamingException;
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import java.io.ByteArrayInputStream;
 import java.io.StringWriter;
@@ -113,7 +110,7 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
 
         BatchExecutionCommandImpl cmd = new BatchExecutionCommandImpl();
         cmd.setLookup( "ksession1" );
-        cmd.getCommands().add( new GetObjectCommand( new DefaultFactHandle( handle ),
+        cmd.getCommands().add( new GetObjectCommand( DefaultFactHandle.createFromExternalFormat( handle ),
                                                      "hadrian" ) );
 
         StringWriter xmlReq = new StringWriter();
