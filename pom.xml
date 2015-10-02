@@ -165,7 +165,7 @@
         <version.org.apache.geronimo.specs.geronimo-validation_1.0_spec>1.1</version.org.apache.geronimo.specs.geronimo-validation_1.0_spec>
         <version.org.apache.myfaces.core.myfaces-bundle>2.1.15</version.org.apache.myfaces.core.myfaces-bundle>
         <version.commons-beanutils>1.9.2</version.commons-beanutils>
-        <version.org.ops4j.pax.cdi>0.11.0</version.org.ops4j.pax.cdi>
+        <version.org.ops4j.pax.cdi>0.11.0.redhat-001</version.org.ops4j.pax.cdi>
 
         <version.commons-digester>1.8.1</version.commons-digester>
   </properties>
