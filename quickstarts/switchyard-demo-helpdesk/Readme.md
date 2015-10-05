@@ -92,6 +92,8 @@ mvn exec:java -Pkaraf
 <br/>
 
 6. Going back to your web browser window:
+    Browse to http://localhost:8181/helpdesk/index.html
+
     As krisv (a developer), click the Submit button to get the list of tasks.
     As krisv, review the tasks you want to perform and click the Submit button again.
     As david (a user), click the Submit button to get the list of tasks. He will only have tasks if more details were required.
@@ -141,6 +143,8 @@ mvn exec:java -Pkaraf
 <br/>
 
 6. Going back to your web browser window:
+    Browse to http://localhost:8181/helpdesk/index.html
+
     As krisv (a developer), click the Submit button to get the list of tasks.
     As krisv, review the tasks you want to perform and click the Submit button again.
     As david (a user), click the Submit button to get the list of tasks. He will only have tasks if more details were required.
