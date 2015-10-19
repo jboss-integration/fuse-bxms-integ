@@ -18,7 +18,7 @@
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>fuse-integration-project</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.2.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -33,8 +33,7 @@
     </properties>
    
     <modules>
-      <!--module>standalone</module-->
-      <!--module>eap</module-->
+      <module>eap</module>
       <module>karaf</module>
     </modules>
 </project>
