@@ -237,7 +237,7 @@
 @end{}
 
 @declare{"testModifyObject.in.4"}
-{"batch-execution":{"commands":[  {"modify":{"fact-handle":"@{var1}",  "setters":[{"accessor":"type","set":throwException()}, {"accessor":"price","set":100}]} }, {"fire-all-rules":""}]}}
+{"batch-execution":{"commands":[  {"modify":{"fact-handle":"@{var1}", "allow-modify-expr":"false", "setters":[{"accessor":"type","set":throwException()}, {"accessor":"price","set":100}]} }, {"fire-all-rules":""}]}}
 @end{}
 
 @declare{"testModifyObject.in.5"}

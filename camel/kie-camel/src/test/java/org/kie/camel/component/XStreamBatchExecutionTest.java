@@ -566,10 +566,9 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
                       cheddar.getPrice() );
 
         //now test for code injection:
-        ModifyCommand.ALLOW_MODIFY_EXPRESSIONS = false;
         inXml = "";
         inXml += "<batch-execution>";
-        inXml += "  <modify fact-handle='" + factHandle.toExternalForm() + "'> <set accessor='type' value='44\"; System.exit(1);' /><set accessor='price' value='50' /></modify>";
+        inXml += "  <modify fact-handle='" + factHandle.toExternalForm() + " allow-modify-expr=\"false\"'> <set accessor='type' value='44\"; System.exit(1);' /><set accessor='price' value='50' /></modify>";
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
 
@@ -581,7 +580,6 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
                                        ExecutionResults.class );
 
         result = (ExecutionResults) BatchExecutionHelper.newXStreamMarshaller().fromXML( outXml );
-        ModifyCommand.ALLOW_MODIFY_EXPRESSIONS = true;
 
     }
 

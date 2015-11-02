@@ -135,7 +135,8 @@ public class JaxbInsertTest {
         String insertElements = 
             "<batch-execution>\n"
             + "  <insert-elements return-objects=\"true\">\n"
-            + "    <list>\n";
+            + "    <objects>\n"
+            + "    <type>LIST</type>\n";
         for(Person p : objects) {
             insertElements += "      <element xsi:type=\"person\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n"
                 + "        <age>" + p.getAge() + "</age>\n"
@@ -144,7 +145,7 @@ public class JaxbInsertTest {
                 + "      </element>\n";
         }
         insertElements +=
-            "    </list>\n"
+            "      </objects>\n"
             + "  </insert-elements>\n"
             + "</batch-execution>";
         template.requestBody("direct:test-session", insertElements, String.class);

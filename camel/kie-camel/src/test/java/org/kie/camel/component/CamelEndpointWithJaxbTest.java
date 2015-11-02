@@ -139,7 +139,7 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         String cmd = "";
         cmd += "<batch-execution lookup='ksession1'>\n";
         cmd += "   <modify fact-handle='" + handle + "'>\n";
-        cmd += "      <setters>";
+        cmd += "      <setters>\n";
         cmd += "          <item accessor='name' value='salaboy' />\n";
         cmd += "      </setters>\n";
         cmd += "   </modify>\n";
