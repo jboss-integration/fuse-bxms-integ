@@ -41,9 +41,12 @@ import org.kie.api.runtime.ExecutionResults;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.FactHandle;
 import org.kie.api.runtime.rule.QueryResultsRow;
+import org.kie.camel.component.cxf.CxfRestTest;
 import org.kie.internal.builder.JaxbConfiguration;
 import org.kie.internal.builder.KnowledgeBuilderFactory;
 import org.kie.pipeline.camel.Person;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.naming.NamingException;
 import javax.xml.bind.Marshaller;
@@ -84,12 +87,12 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         marshaller.marshal( cmd,
                             xmlReq );
 
-        System.out.println( xmlReq.toString() );
+        logger.debug( xmlReq.toString() );
 
         byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
                                                         xmlReq.toString() );
         assertNotNull( xmlResp );
-        System.out.println( new String( xmlResp ) );
+        logger.debug( new String( xmlResp ) );
 
         ExecutionResults resp = (ExecutionResults) getJaxbContext().createUnmarshaller().unmarshal( new ByteArrayInputStream( xmlResp ) );
         assertNotNull( resp );
@@ -120,7 +123,7 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         marshaller.marshal( cmd,
                             xmlReq );
 
-        System.out.println( xmlReq.toString() );
+        logger.debug( xmlReq.toString() );
 
         byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
                                                         xmlReq.toString() );
@@ -138,10 +141,9 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
     public void testSessionModify() throws Exception {
         String cmd = "";
         cmd += "<batch-execution lookup='ksession1'>\n";
-        cmd += "   <modify fact-handle='" + handle + "'>\n";
-        cmd += "      <setters>";
-        cmd += "          <item accessor='name' value='salaboy' />\n";
-        cmd += "      </setters>\n";
+        cmd += "   <modify>\n";
+        cmd += "      <fact-handle>"+ handle + "</fact-handle>\n";
+        cmd += "      <setters accessor='name' value='salaboy' />\n";
         cmd += "   </modify>\n";
         cmd += "</batch-execution>\n";
 
@@ -158,7 +160,9 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
                         outXml );
 
         cmd = "<batch-execution lookup='ksession1'>\n";
-        cmd += "   <get-object out-identifier='rider' fact-handle='" + handle + "'/>\n";
+        cmd += "   <get-object out-identifier='rider'>\n";
+        cmd += "     <fact-handle>" + handle + "</fact-handle>\n";
+        cmd += "   </get-object>\n";
         cmd += "</batch-execution>\n";
 
         byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
@@ -180,13 +184,15 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
 
         String cmd = "";
         cmd += "<batch-execution lookup='ksession1'>\n";
-        cmd += "   <retract fact-handle='" + handle + "' />\n";
+        cmd += "   <retract>\n";
+        cmd += "     <fact-handle>"+ handle + "</fact-handle>\n";
+        cmd += "   </retract>\n";
         cmd += "</batch-execution>";
 
         String outXml = new String( (byte[]) template.requestBody( "direct:test-with-session",
                                                                    cmd ) );
 
-        System.out.println( outXml );
+        logger.debug( outXml );
 
         assertNotNull( outXml );
 
@@ -259,12 +265,12 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         marshaller.marshal( cmd,
                             xmlReq );
 
-        System.out.println( xmlReq.toString() );
+        logger.debug( xmlReq.toString() );
 
         byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
                                                         xmlReq.toString() );
         assertNotNull( xmlResp );
-        System.out.println( new String( xmlResp ) );
+        logger.debug( new String( xmlResp ) );
 
         ExecutionResults resp = (ExecutionResults) getJaxbContext().createUnmarshaller().unmarshal( new ByteArrayInputStream( xmlResp ) );
         assertNotNull( resp );
@@ -310,12 +316,12 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         marshaller.marshal( cmd,
                             xmlReq );
 
-        System.out.println( xmlReq.toString() );
+        logger.debug( xmlReq.toString() );
 
         byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
                                                         xmlReq.toString() );
         assertNotNull( xmlResp );
-        System.out.println( new String( xmlResp ) );
+        logger.debug( new String( xmlResp ) );
         ExecutionResults resp = (ExecutionResults) getJaxbContext().createUnmarshaller().unmarshal( new ByteArrayInputStream( xmlResp ) );
         assertNotNull( resp );
         assertNotNull( resp.getValue( "process-instance-id" ) );
@@ -332,7 +338,7 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         cmd += "  </start-process>\n";
         cmd += "</batch-execution>\n";
 
-        System.out.println( cmd );
+        logger.debug( cmd );
 
         String outXml = new String( (byte[]) template.requestBody( "direct:test-with-session",
                                                                    cmd ) );
@@ -351,7 +357,7 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         outXml = new String( (byte[]) template.requestBody( "direct:test-with-session",
                                                             cmd ) );
 
-        System.out.println( outXml );
+        logger.debug( outXml );
     }
 
     @Override

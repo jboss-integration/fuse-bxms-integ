@@ -18,10 +18,14 @@ package org.kie.camel.component.cxf;
 
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class CxfRestTestWithLookup extends CamelSpringTestSupport {
+
+    private static final Logger logger = LoggerFactory.getLogger(CxfRestTestWithLookup.class);
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
@@ -42,7 +46,8 @@ public class CxfRestTestWithLookup extends CamelSpringTestSupport {
 
         Object object = this.context.createProducerTemplate().requestBody( "direct://http",
                                                                            cmd );
-        System.out.println( object );
+        logger.debug( "{}", object );
+
         assertTrue( object.toString().contains( "fact-handle identifier=\"salaboy\"" ) );
         String cmd2 = "";
         cmd2 += "<batch-execution lookup=\"ksession2\">\n";
@@ -56,7 +61,7 @@ public class CxfRestTestWithLookup extends CamelSpringTestSupport {
 
         Object object2 = this.context.createProducerTemplate().requestBody( "direct://http",
                                                                            cmd2 );
-        System.out.println( object2 );
+        logger.debug( "{}", object2 );
         assertTrue( object2.toString().contains( "fact-handle identifier=\"salaboy\"" ) );
     }
 

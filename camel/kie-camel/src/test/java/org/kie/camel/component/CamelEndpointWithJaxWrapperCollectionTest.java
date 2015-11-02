@@ -86,12 +86,12 @@ public class CamelEndpointWithJaxWrapperCollectionTest extends KieCamelTestSuppo
         marshaller.marshal( cmd,
                             xml );
 
-        System.out.println( xml.toString() );
+        logger.debug( xml.toString() );
 
         byte[] response = (byte[]) template.requestBody( "direct:test-with-session",
                                                          xml.toString() );
         assertNotNull( response );
-        System.out.println( "response:\n" + new String( response ) );
+        logger.debug( "response:\n" + new String( response ) );
         Unmarshaller unmarshaller = getJaxbContext().createUnmarshaller();
         ExecutionResults res = (ExecutionResults) unmarshaller.unmarshal( new ByteArrayInputStream( response ) );
         WrappedList resp = (WrappedList) res.getValue( "list" );

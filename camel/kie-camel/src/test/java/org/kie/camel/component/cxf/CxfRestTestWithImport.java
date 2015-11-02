@@ -19,9 +19,13 @@ package org.kie.camel.component.cxf;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.Test;
 import org.kie.api.runtime.KieSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class CxfRestTestWithImport extends CamelSpringTestSupport {
+
+    private static final Logger logger = LoggerFactory.getLogger(CxfRestTestWithImport.class);
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
@@ -46,7 +50,7 @@ public class CxfRestTestWithImport extends CamelSpringTestSupport {
 
         Object object = this.context.createProducerTemplate().requestBody( "direct://http",
                                                                            cmd );
-        System.out.println( object );
+        logger.debug( object.toString() );
     }
 
 }

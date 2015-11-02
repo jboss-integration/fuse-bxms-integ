@@ -241,7 +241,7 @@
 @declare{"testModifyObject.in.4"}
 
 <batch-execution>
-    <modify fact-handle="0:1:8501308:-1889973673:1:DEFAULT">
+    <modify fact-handle="0:1:8501308:-1889973673:1:DEFAULT" allow-modify-expr="false">
         <set accessor="type" value="throwException()"/>
         <set accessor="price" value="100"/>
     </modify>

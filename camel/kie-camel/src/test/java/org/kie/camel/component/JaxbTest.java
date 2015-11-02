@@ -40,6 +40,8 @@ import org.drools.core.command.runtime.GetGlobalCommand;
 import org.drools.core.command.runtime.SetGlobalCommand;
 import org.drools.core.command.runtime.rule.InsertObjectCommand;
 import org.kie.pipeline.camel.Person;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.drools.compiler.runtime.pipeline.impl.DroolsJaxbHelperProviderImpl;
 import org.junit.Test;
 import org.kie.internal.KnowledgeBase;
@@ -49,8 +51,11 @@ import org.kie.internal.command.CommandFactory;
 import org.kie.api.runtime.ExecutionResults;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 import org.kie.api.runtime.rule.FactHandle;
+import org.kie.camel.component.cxf.CxfRestTest;
 
 public class JaxbTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(JaxbTest.class);
 
     @Test
     public void test1() throws Exception {
@@ -73,14 +78,14 @@ public class JaxbTest {
         marshaller.marshal( batch,
                             baos );
 
-        System.out.println( baos );
+        logger.debug( "{}", baos );
 
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         BatchExecutionCommandImpl batch2 = (BatchExecutionCommandImpl) unmarshaller.unmarshal( new ByteArrayInputStream( baos.toByteArray() ) );
         baos = new ByteArrayOutputStream();
         marshaller.marshal( batch2,
                             baos );
-        System.out.println( baos );
+        logger.debug( "{}", baos );
     }
 
     private JAXBContext getJaxbContext() throws JAXBException {
@@ -109,7 +114,7 @@ public class JaxbTest {
             sb.append( ':' );
         }
 
-        System.out.println( "context path: " + sb.toString() );
+        logger.debug( "context path: " + sb.toString() );
         //        jaxbDataFormat.setContextPath( sb.toString() );
         //        jaxbDataFormat.setPrettyPrint( true );
         return JAXBContext.newInstance( sb.toString() );
@@ -159,7 +164,7 @@ public class JaxbTest {
                 baos );
 
         // note it's using xsi:type
-        System.out.println(new String(baos.toByteArray()));
+        logger.debug(new String(baos.toByteArray()));
 
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         ExecutionResults res2 = ( ExecutionResults ) unmarshaller.unmarshal( new StringReader( baos.toString() ) );

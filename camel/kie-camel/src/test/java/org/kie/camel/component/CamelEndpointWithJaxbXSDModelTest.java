@@ -106,7 +106,7 @@ public class CamelEndpointWithJaxbXSDModelTest extends KieCamelTestSupport {
         marshaller.marshal( cmd,
                             xmlReq );
 
-        System.out.println( xmlReq.toString() );
+        logger.debug( xmlReq.toString() );
 
         String xmlCmd = "";
         xmlCmd += "<batch-execution lookup='ksession1'>\n";
@@ -132,7 +132,7 @@ public class CamelEndpointWithJaxbXSDModelTest extends KieCamelTestSupport {
         byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
                                                         xmlReq.toString() );
         assertNotNull( xmlResp );
-        System.out.println( new String( xmlResp ) );
+        logger.debug( new String( xmlResp ) );
 
         ExecutionResults resp = (ExecutionResults) getJaxbContext().createUnmarshaller().unmarshal( new ByteArrayInputStream( xmlResp ) );
         assertNotNull( resp );

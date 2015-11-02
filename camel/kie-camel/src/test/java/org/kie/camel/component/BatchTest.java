@@ -608,13 +608,9 @@ public abstract class BatchTest extends CamelTestSupport {
                       stilton.getPrice() );
 
         //now test for code injection:
-        ModifyCommand.ALLOW_MODIFY_EXPRESSIONS = false;
-
         execContent( "testModifyObject.in.4",
                      ExecutionResults.class,
                      stiltonfh );
-
-        ModifyCommand.ALLOW_MODIFY_EXPRESSIONS = true;
 
         // should be the same as before
         result = execContent( "testModifyObject.in.5",
