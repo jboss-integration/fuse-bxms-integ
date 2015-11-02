@@ -278,7 +278,7 @@
 @declare{"testModifyObject.in.4"}
 <?xml version="1.0" encoding="UTF-8"?>
 <batch-execution>
-    <modify fact-handle="0:1:2020896:-1889973673:1:DEFAULT">
+    <modify fact-handle="0:1:2020896:-1889973673:1:DEFAULT" allow-modify-expr="false">
         <setters>
             <item accessor="type" value="throwException()"/>
             <item accessor="price" value="100"/>

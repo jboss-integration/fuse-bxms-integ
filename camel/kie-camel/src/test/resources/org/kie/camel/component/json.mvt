@@ -237,7 +237,7 @@
 @end{}
 
 @declare{"testModifyObject.in.4"}
-{"batch-execution":{"commands":[  {"modify":{"fact-handle":"@{var1}",  "setters":[{"accessor":"type","set":throwException()}, {"accessor":"price","set":100}]} }, {"fire-all-rules":""}]}}
+{"batch-execution":{"commands":[  {"modify":{"fact-handle":"@{var1}", "setters":[{"accessor":"type","set":throwException()}, {"accessor":"price","set":100}]} }, {"fire-all-rules":""}]}}
 @end{}
 
 @declare{"testModifyObject.in.5"}
@@ -290,7 +290,7 @@
 @end{}
 
 @declare{"testQuery.expected.1"}
-{"execution-results":{"results":{"result":{"identifier":"cheeses","value":{"query-results":{"identifiers":{"string":["cheddar","stilton"]},"row":[{"item":[{"external-form":"0:3:29292935:742337872:3:DEFAULT","object":{"org.kie.camel.testdomain.Cheese":{"type":"cheddar","price":2,"oldPrice":0}}},{"external-form":"0:1:18538167:-1889974386:1:DEFAULT","object":{"org.kie.camel.testdomain.Cheese":{"type":"stilton","price":2,"oldPrice":0}}}]},{"item":[{"external-form":"0:2:2419450:742337841:2:DEFAULT","object":{"org.kie.camel.testdomain.Cheese":{"type":"cheddar","price":1,"oldPrice":0}}},{"external-form":"0:4:15736146:-1889974417:4:DEFAULT","object":{"org.kie.camel.testdomain.Cheese":{"type":"stilton","price":1,"oldPrice":0}}}]}]}}}}}}
+{"execution-results":{"results":{"result":{"identifier":"cheeses","value":{"query-results":{"identifiers":{"string":["cheddar","stilton"]},"row":[{"item":[{"identifier":"cheddar","external-form":"0:3:29292935:742337872:3:DEFAULT","object":{"org.kie.camel.testdomain.Cheese":{"type":"cheddar","price":2,"oldPrice":0}}},{"identifier":"stilton","external-form":"0:1:18538167:-1889974386:1:DEFAULT","object":{"org.kie.camel.testdomain.Cheese":{"type":"stilton","price":2,"oldPrice":0}}}]},{"item":[{"identifier":"cheddar","external-form":"0:2:2419450:742337841:2:DEFAULT","object":{"org.kie.camel.testdomain.Cheese":{"type":"cheddar","price":1,"oldPrice":0}}},{"identifier":"stilton","external-form":"0:4:15736146:-1889974417:4:DEFAULT","object":{"org.kie.camel.testdomain.Cheese":{"type":"stilton","price":1,"oldPrice":0}}}]}]}}}}}}
 @end{}
 
 @declare{"testManualFireAllRules.in.1"}
@@ -342,11 +342,11 @@
 @end{}
 
 @declare{"testInsertObjectWithDeclaredFactAndQuery.in.2"}
-{"batch-execution":{"commands":[   {"query":{"out-identifier":"matchingthings","name":"results"}}]}}
+{"batch-execution":{"commands":[   {"query":{"out-identifier":"matchingthings","name":"results", "arguments":{}}}]}}
 @end{}
 
 @declare{"testInsertObjectWithDeclaredFactAndQuery.expected.1"}
-{"execution-results":{"results":{"result":{"identifier":"matchingthings","value":{"query-results":{"identifiers":{"string":"w"},"row":{"item":{"external-form":"@{var1}","object":{"org.foo.Whee":{"type":"stilton","price":30,"oldPrice":0}}}}}}}}}}
+{"execution-results":{"results":{"result":{"identifier":"matchingthings","value":{"query-results":{"identifiers":{"string":"w"},"row":{"item":{"identifier":"w","external-form":"@{var1}","object":{"org.foo.Whee":{"type":"stilton","price":30,"oldPrice":0}}}}}}}}}}
 @end{}
 
 @declare{"testExecutionNodeLookup.in.1"}

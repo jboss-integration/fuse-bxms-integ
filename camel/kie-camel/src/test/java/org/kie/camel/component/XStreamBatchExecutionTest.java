@@ -52,11 +52,14 @@ import org.kie.api.runtime.process.WorkItemManager;
 import org.kie.api.runtime.process.WorkflowProcessInstance;
 import org.kie.api.runtime.rule.FactHandle;
 import org.kie.api.runtime.rule.QueryResultsRow;
+import org.kie.camel.component.cxf.CxfRestTest;
 import org.kie.camel.testdomain.Cheese;
 import org.kie.camel.testdomain.Person;
 import org.kie.camel.testdomain.TestVariable;
 import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.runtime.helper.BatchExecutionHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 import javax.naming.Context;
@@ -70,6 +73,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 public class XStreamBatchExecutionTest extends CamelTestSupport {
+
+    private static final Logger logger = LoggerFactory.getLogger(XStreamBatchExecutionTest.class);
+
     protected CommandExecutor exec;
     protected CommandExecutor exec2;
 
@@ -566,10 +572,9 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
                       cheddar.getPrice() );
 
         //now test for code injection:
-        ModifyCommand.ALLOW_MODIFY_EXPRESSIONS = false;
         inXml = "";
         inXml += "<batch-execution>";
-        inXml += "  <modify fact-handle='" + factHandle.toExternalForm() + "'> <set accessor='type' value='44\"; System.exit(1);' /><set accessor='price' value='50' /></modify>";
+        inXml += "  <modify fact-handle='" + factHandle.toExternalForm() + " allow-modify-expr=\"false\"'> <set accessor='type' value='44\"; System.exit(1);' /><set accessor='price' value='50' /></modify>";
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
 
@@ -581,7 +586,6 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
                                        ExecutionResults.class );
 
         result = (ExecutionResults) BatchExecutionHelper.newXStreamMarshaller().fromXML( outXml );
-        ModifyCommand.ALLOW_MODIFY_EXPRESSIONS = true;
 
     }
 
@@ -699,7 +703,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
                                               inXml,
                                               String.class );
 
-        System.err.println( outXml );
+        logger.debug( outXml );
         String expectedXml = "";
         expectedXml += "<execution-results>\n" + "  <result identifier=\"out-list\">\n" + "    <list>\n" + "      <fact-handle external-form=\"" + fh.toExternalForm() + "\"/>\n" + "    </list>\n" + "  </result>\n" + "</execution-results>";
 
@@ -1919,7 +1923,8 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         str += "  then \n";
         str += "    $c.setPrice( $c.getPrice() + 5 ); \n";
         str += "end\n";
-        //System.out.println("STR = "+str);
+        logger.trace("STR = "+str);
+
         String str2 = "";
         str2 += "package org.kie.camel.testdomain \n"
                 + "declare Cheese2\n"
@@ -1934,7 +1939,8 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         str2 += "  then \n";
         str2 += "    $c.setPrice( $c.getPrice() + 10 ); \n";
         str2 += "end\n";
-        //System.out.println("STR2 = "+str2);
+        logger.trace("STR2 = "+str2);
+
         String inXml = "";
         inXml += "<batch-execution lookup=\"ksession1\" >";
         inXml += "  <insert out-identifier='outStilton'>";

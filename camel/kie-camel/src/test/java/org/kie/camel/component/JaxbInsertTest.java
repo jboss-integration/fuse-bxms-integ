@@ -68,7 +68,7 @@ public class JaxbInsertTest {
         this.template = context.createProducerTemplate();
         context.start();
     }
-    
+
     /**
      * configures camel-drools integration and defines 3 routes:
      * 1) testing route (connection to drools with JAXB command format)
@@ -82,7 +82,7 @@ public class JaxbInsertTest {
         CamelContext camelContext = new DefaultCamelContext(context);
         camelContext.addRoutes(new RouteBuilder() {
             @Override
-            public void configure() throws Exception {          
+            public void configure() throws Exception {
                 JaxbDataFormat jdf = new JaxbDataFormat();
                 jdf.setContextPath("org.kie.camel.testdomain");
                 jdf.setPrettyPrint(true);
@@ -97,13 +97,13 @@ public class JaxbInsertTest {
                         .marshal(jdf);
             }
         });
-        
+
         return camelContext;
     }
-    
+
     /**
      * bz771203
-     * creates batch-execution command with insert. Marshalls it to XML 
+     * creates batch-execution command with insert. Marshalls it to XML
      * and send to drools
      */
     @Test
@@ -118,33 +118,35 @@ public class JaxbInsertTest {
         ExecutionResults res = (ExecutionResults) template.requestBody("direct:unmarshall", xml);
 
         Object o = res.getFactHandle("tempPerson");
-        assertTrue("returned String instead of FactHandle instance", o instanceof FactHandle);       
+        assertTrue("returned String instead of FactHandle instance", o instanceof FactHandle);
     }
-    
+
     @Test
     public void testInsertElements() {
         List<Person> persons = new ArrayList<Person>();
         persons.add(new Person("John", "nobody", 50));
         persons.add(new Person("Peter", "himself", 24));
-        
+
         insertElements(persons);
         assertEquals(2, ksession.getFactCount());
     }
-    
+
     private void insertElements(List<Person> objects) {
-        String insertElements = 
+        String insertElements =
             "<batch-execution>\n"
             + "  <insert-elements return-objects=\"true\">\n"
-            + "    <list>\n";
+            + "    <list>\n"
+            + "      <type>LIST</type>\n";
         for(Person p : objects) {
-            insertElements += "      <element xsi:type=\"person\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n"
-                + "        <age>" + p.getAge() + "</age>\n"
-                + "        <likes>" + p.getLikes() + "</likes>\n"
-                + "        <name>" + p.getName() + "</name>\n"
-                + "      </element>\n";
+            insertElements
+           += "        <element xsi:type=\"person\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n"
+            + "          <age>" + p.getAge() + "</age>\n"
+            + "          <likes>" + p.getLikes() + "</likes>\n"
+            + "          <name>" + p.getName() + "</name>\n"
+            + "        </element>\n";
         }
         insertElements +=
-            "    </list>\n"
+            "      </list>\n"
             + "  </insert-elements>\n"
             + "</batch-execution>";
         template.requestBody("direct:test-session", insertElements, String.class);
