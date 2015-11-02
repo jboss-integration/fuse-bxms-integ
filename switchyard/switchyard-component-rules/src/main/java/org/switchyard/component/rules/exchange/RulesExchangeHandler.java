@@ -148,6 +148,9 @@ public class RulesExchangeHandler extends KnowledgeExchangeHandler {
         switch (operationType) {
             case EXECUTE: {
                 KnowledgeRuntimeEngine runtime = getPerRequestRuntimeEngine();
+                if( runtime.isRemote() ) {
+                    throw new UnsupportedOperationException("Remote rules integration is not yet supported.");
+                }
                 //sessionIdentifier = runtime.getSessionIdentifier();
                 setGlobals(inputMessage, operation, runtime, false);
                 try {
@@ -183,6 +186,9 @@ public class RulesExchangeHandler extends KnowledgeExchangeHandler {
             case INSERT:
             case FIRE_ALL_RULES: {
                 KnowledgeRuntimeEngine runtime = getSingletonRuntimeEngine();
+                if( runtime.isRemote() ) {
+                    throw new UnsupportedOperationException("Remote rules integration is not yet supported.");
+                }
                 if (ExchangePattern.IN_OUT.equals(exchangePattern)) {
                     synchronized (this) {
                         fireAllRules(inputMessage, operation);
@@ -207,6 +213,9 @@ public class RulesExchangeHandler extends KnowledgeExchangeHandler {
             }
             case FIRE_UNTIL_HALT: {
                 KnowledgeRuntimeEngine runtime = getSingletonRuntimeEngine();
+                if( runtime.isRemote() ) {
+                    throw new UnsupportedOperationException("Remote rules integration is not yet supported.");
+                }
                 if (ExchangePattern.IN_OUT.equals(exchangePattern)) {
                     synchronized (this) {
                         fireUntilHalt(inputMessage, exchange, operation);
