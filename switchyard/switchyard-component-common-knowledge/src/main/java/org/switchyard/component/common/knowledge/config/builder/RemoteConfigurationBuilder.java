@@ -15,8 +15,6 @@ package org.switchyard.component.common.knowledge.config.builder;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Properties;
 import java.util.Set;
@@ -24,12 +22,10 @@ import java.util.Set;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import org.drools.core.command.runtime.BatchExecutionCommandImpl;
 import org.kie.api.runtime.manager.RuntimeEngine;
 import org.kie.remote.client.api.RemoteJmsRuntimeEngineBuilder;
 import org.kie.remote.client.api.RemoteRestRuntimeEngineBuilder;
 import org.kie.remote.client.api.RemoteRuntimeEngineBuilder;
-import org.kie.remote.client.jaxb.AcceptedClientCommands;
 import org.kie.services.client.api.RemoteRuntimeEngineFactory;
 import org.kie.services.client.api.command.RemoteConfiguration;
 import org.kie.services.client.api.command.RemoteRuntimeEngine;
@@ -47,15 +43,6 @@ import org.switchyard.component.common.knowledge.config.model.RemoteRestModel;
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
  */
 public class RemoteConfigurationBuilder extends KnowledgeBuilder {
-
-    private static Set<Class<?>> acceptedCommands = new HashSet<Class<?>>();
-    static {
-        Access<Set<Class<?>>> access = new FieldAccess<Set<Class<?>>>(AcceptedClientCommands.class, "acceptedCommands");
-        acceptedCommands.addAll(access.read(null));
-        acceptedCommands.add(BatchExecutionCommandImpl.class);
-        acceptedCommands = Collections.unmodifiableSet(acceptedCommands);
-        access.write(null, acceptedCommands);
-    }
 
     private final RemoteConfiguration _remoteConfiguration;
 
@@ -203,7 +190,6 @@ public class RemoteConfigurationBuilder extends KnowledgeBuilder {
                 builder.addExtraJaxbClasses(clazzes.toArray(new Class<?>[cs]));
             }
         }
-        builder.addExtraJaxbClasses(acceptedCommands.toArray(new Class<?>[acceptedCommands.size()]));
     }
 
     /**
