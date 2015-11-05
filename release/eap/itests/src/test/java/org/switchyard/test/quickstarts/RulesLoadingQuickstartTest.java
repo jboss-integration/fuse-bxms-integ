@@ -1,5 +1,7 @@
 package org.switchyard.test.quickstarts;
 
+import com.google.common.io.CharStreams;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,20 +21,27 @@ import org.junit.runner.RunWith;
 import org.switchyard.component.test.mixins.http.HTTPMixIn;
 import org.switchyard.test.quickstarts.util.BRMSArquillianUtil;
 
-import com.google.common.io.CharStreams;
-
 @RunWith(Arquillian.class)
 public class RulesLoadingQuickstartTest {
     private static final String HELLO_SERVICE_ADDRESS = "http://localhost:8080/hello-greeting-service";
     private static final String CIAO_SERVICE_ADDRESS = "http://localhost:8080/ciao-greeting-service";
     private static final String ORIGINAL_KIE_MODULE_NAME = "original-project.jar";
     private static final String MODIFIED_KIE_MODULE_NAME = "modified-project.jar";
-
+    private static boolean before = false;
     @ArquillianResource
     private Deployer deployer;
 
     @Deployment(testable = false)
     public static JavaArchive createDeployment() {
+        if (!before) {
+            try {
+                installModule(ORIGINAL_KIE_MODULE_NAME);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            before = true;
+        }
         return BRMSArquillianUtil.createJarQSDeployment("switchyard-rules-loading");
     }
 
@@ -71,11 +80,17 @@ public class RulesLoadingQuickstartTest {
     }
     @Before
     public void beforeMethod() throws IOException, InterruptedException {
-        installModule(ORIGINAL_KIE_MODULE_NAME);
+
+        if (!before) {
+            installModule(ORIGINAL_KIE_MODULE_NAME);
+        }
+        before = true;
+
     }
 
     @Test
     public void testHelloService() throws IOException {
+        System.out.println("ENTRANDO5");
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e1) {
