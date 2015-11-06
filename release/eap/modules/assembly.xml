@@ -28,6 +28,7 @@
       <componentDescriptor>src/main/resources/org/fuse/integration/switchyard/components/bpm/assembly-component.xml</componentDescriptor>
       <componentDescriptor>src/main/resources/org/fuse/integration/switchyard/components/rules/assembly-component.xml</componentDescriptor>
       <componentDescriptor>src/main/resources/org/fuse/integration/switchyard/components/common/knowledge/assembly-component.xml</componentDescriptor>
+      <componentDescriptor>src/main/resources/org/wildfly/extras/config/plugin/bpms/assembly-component.xml</componentDescriptor>
     </componentDescriptors>
 
 </assembly>
