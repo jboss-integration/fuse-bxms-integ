@@ -74,10 +74,6 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.integration.fuse</groupId>
-            <artifactId>fuse-integration-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>switchyard-component-common-knowledge</artifactId>
         </dependency>
 

@@ -15,9 +15,9 @@
  */
 package org.jboss.integration.fuse.config;
 
+import static org.wildfly.extension.camel.config.LayerConfig.Type.INSTALLING;
+import static org.wildfly.extension.camel.config.LayerConfig.Type.REQUIRED;
 import static org.wildfly.extension.camel.config.WildFlyCamelConfigPlugin.NS_DOMAIN;
-import static org.wildfly.extras.config.LayerConfig.Type.INSTALLING;
-import static org.wildfly.extras.config.LayerConfig.Type.REQUIRED;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,10 +26,10 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
 import org.jdom.Text;
-import org.wildfly.extras.config.ConfigContext;
-import org.wildfly.extras.config.ConfigPlugin;
-import org.wildfly.extras.config.ConfigSupport;
-import org.wildfly.extras.config.LayerConfig;
+import org.wildfly.extension.camel.config.ConfigContext;
+import org.wildfly.extension.camel.config.ConfigPlugin;
+import org.wildfly.extension.camel.config.ConfigSupport;
+import org.wildfly.extension.camel.config.LayerConfig;
 
 /**
  */

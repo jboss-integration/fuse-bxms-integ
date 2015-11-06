@@ -21,4 +21,4 @@ java -Djboss.home=. -Dlogging.configuration=file:bin/fusepatch-logging.propertie
 #
 # bin/fuseconfig.sh enable
 #
-java -Djboss.home=. -jar jboss-modules.jar -mp modules org.wildfly.extras.config --configs camel,switchyard,bpms --enable
+java -Djboss.home=. -jar jboss-modules.jar -mp modules org.wildfly.extension.camel.config --configs camel,switchyard,bpms --enable
