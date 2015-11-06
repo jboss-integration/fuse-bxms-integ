@@ -19,6 +19,7 @@
     <deployment>
         <dependencies>
             <module name="org.fuse.integration.switchyard.component.bpm" meta-inf="import"/>
+            <module name="org.apache.camel.core" meta-inf="import"/>
         </dependencies>
     </deployment>
 </jboss-deployment-structure>
