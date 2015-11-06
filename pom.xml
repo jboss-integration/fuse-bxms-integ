@@ -45,12 +45,12 @@
         <version.eap>7.5.0.Final-redhat-20</version.eap>
 
         <!-- Perfectus managed versions -->
-        <version.fuse.eap>6.2.1.redhat-001b</version.fuse.eap>
-        <version.fuse.patch>1.4.0</version.fuse.patch>
+        <version.fuse.eap>6.2.1.redhat-070</version.fuse.eap>
+        <version.fuse.patch>1.6.2</version.fuse.patch>
         <karaf-version>2.4.0</karaf-version>
-        <version.camelsap>6.2.1.redhat-019</version.camelsap>
+        <version.camelsap>6.2.1.redhat-070</version.camelsap>
         <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>
-        <version.wildfly.camel>2.3.0.redhat-621012</version.wildfly.camel>
+        <version.wildfly.camel>2.3.0.redhat-621071</version.wildfly.camel>
 
         <!-- Internal dependencies -->
         <version.org.kie>6.4.0-SNAPSHOT</version.org.kie>
