@@ -8,6 +8,10 @@
     <packaging>bundle</packaging>
 
     <name>Fuse Integration: Quickstarts: Drools &amp; Decision Table using Kie Spring</name>
+    <description>
+      Drools &amp; Decision Table using Kie Spring
+    </description>
+
     <url>https://github.com/jboss-integration/fuse-bxms-integ</url>
     <organization>
         <name>JBoss by Red Hat</name>
