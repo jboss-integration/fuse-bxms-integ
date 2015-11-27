@@ -11,7 +11,7 @@ Camel components used in kie: kie-camel and jbpm-workitem-camel components
 
 Requirements
 ============
-DROOLS_VERSION --> ${DROOLS_VERSION}
+DROOLS_VERSION --> 6.3.x
 
 1.  Download the Fuse distribution that is aligned with the version of fuse-integration:
     `
