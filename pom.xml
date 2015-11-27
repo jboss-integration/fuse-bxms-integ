@@ -41,9 +41,6 @@
   <properties>
         <version.jboss.integration>1.2.0-SNAPSHOT</version.jboss.integration>
 
-        <!-- EAP early access -->
-        <version.eap>7.5.0.Final-redhat-20</version.eap>
-
         <!-- Perfectus managed versions -->
         <version.fuse.eap>6.2.1.redhat-071</version.fuse.eap>
         <version.fuse.patch>1.6.2</version.fuse.patch>
@@ -107,10 +104,10 @@
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
           resources, i.e. build is platform dependent! -->
         <version.org.jboss.as.console>1.5.4.Final</version.org.jboss.as.console>
-        <version.org.jboss.as>7.2.0.Final</version.org.jboss.as>
-        <version.redhat.eap6.bom>6.3.0.GA</version.redhat.eap6.bom>
+        <version.org.jboss.as>7.5.4.Final-redhat-4</version.org.jboss.as>
+        <version.redhat.eap6.bom>6.4.4.GA</version.redhat.eap6.bom>
         <!-- This version is only used as a prefix for a jar included in release modules -->
-        <version.redhat.eap6>6.3</version.redhat.eap6>
+        <version.redhat.eap6>6.4</version.redhat.eap6>
         <version.redhat.eap6.minor>0.GA</version.redhat.eap6.minor>
         <version.org.fusesource.hawtdispatch>1.18</version.org.fusesource.hawtdispatch>
         <version.org.fusesource.hawtbuf>1.9</version.org.fusesource.hawtbuf>
