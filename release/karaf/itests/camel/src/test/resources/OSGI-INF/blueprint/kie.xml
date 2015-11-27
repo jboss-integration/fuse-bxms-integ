@@ -17,4 +17,24 @@
     </kie:kbase>
   </kie:kmodule>
 
+  <kie:releaseId id="kjar-gav" groupId="org.jboss.integration.fuse" artifactId="kie-camel-karaf-itest-module" version="1.2.0-SNAPSHOT"/>
+  <kie:kcontainer-ref id="kjar-container" releaseId="kjar-gav"/>
+
+  <bean id="kie-services"
+        class="org.kie.api.KieServices.Factory"
+        factory-method="get"/>
+
+  <bean id="kieModuleKieBaseDrinkGav"
+        factory-ref="kjar-container"
+        factory-method="getKieBase">
+    <argument value="kieModuleKieBaseDrinkGav"/>
+  </bean>
+  <bean id="kieModuleKieSessionDrinkGav"
+        factory-ref="kjar-container"
+        factory-method="newStatelessKieSession">
+    <argument value="kieModuleKieSessionDrinkGav"/>
+  </bean>
+
+  <service id="kieModuleKieBaseDrinkGavService" ref="kieModuleKieBaseDrinkGav" interface="org.kie.api.KieBase"/>
+
 </blueprint>
