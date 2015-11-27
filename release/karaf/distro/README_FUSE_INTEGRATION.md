@@ -11,7 +11,7 @@ Camel components used in kie: kie-camel and jbpm-workitem-camel components
 
 Requirements
 ============
-DROOLS_VERSION --> 6.2.0.Final
+DROOLS_VERSION --> 6.3.x
 
 1.  Download the Fuse distribution that is aligned with the version of fuse-integration:
     `
@@ -23,7 +23,7 @@ DROOLS_VERSION --> 6.2.0.Final
      `
 3.  If the Drools features URL has not been added, it should be:
 ```
-JBossFuse:karaf@root> features:addurl mvn:org.switchyard.karaf/mvn:org.switchyard.karaf/switchyard/{SWITCHYARD_VERSION}/xml/core-features
+JBossFuse:karaf@root> features:addurl mvn:org.switchyard.karaf/mvn:org.switchyard.karaf/switchyard/${SWITCHYARD_VERSION}/xml/core-features
 JBossFuse:karaf@root> features:addurl mvn:org.drools/drools-karaf-features/${DROOLS_VERSION}/xml/features
 ```
 
@@ -32,6 +32,7 @@ Installation
 ============
 1.   Add the fuse-integration features file: 
 ```
+JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse/karaf-features/${FUSE_INTEGRATION_VERSION}/xml/features
 JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_INTEGRATION_VERSION}/xml/features
 ```
 2.  Install the features. You can install: 
@@ -44,7 +45,6 @@ JBossFuse:karaf@root> features:install
         fuse-bxms-switchyard-quickstart-bpm-service
         fuse-bxms-switchyard-demo-library
         fuse-bxms-switchyard-demo-helpdesk
-        fuse-bxms-jbpm-workitems-camel
         fuse-bxms-camel-spring-drools-decision-table
         fuse-bxms-camel-blueprint-drools-decision-table
         fuse-bxms-switchyard-quickstart-rules-csv
