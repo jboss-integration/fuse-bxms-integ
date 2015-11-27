@@ -11,7 +11,7 @@ Camel components used in kie: kie-camel and jbpm-workitem-camel components
 
 Requirements
 ============
-DROOLS_VERSION --> 6.2.0.Final-redhat-6
+DROOLS_VERSION --> ${DROOLS_VERSION}
 
 1.  Download the Fuse distribution that is aligned with the version of fuse-integration:
     `
@@ -23,18 +23,9 @@ DROOLS_VERSION --> 6.2.0.Final-redhat-6
      `
 3.  If the Drools features URL has not been added, it should be:
 ```
-JBossFuse:karaf@root> features:addurl mvn:org.switchyard.karaf/mvn:org.switchyard.karaf/switchyard/{SWITCHYARD_VERSION}/xml/core-features
+JBossFuse:karaf@root> features:addurl mvn:org.switchyard.karaf/mvn:org.switchyard.karaf/switchyard/${SWITCHYARD_VERSION}/xml/core-features
 JBossFuse:karaf@root> features:addurl mvn:org.drools/drools-karaf-features/${DROOLS_VERSION}/xml/features
 ```
-
-Patch Current Version
-============
-There is a bug on drools 6.2.0.Final-redhat-6. This is the bugzilla:
-
-https://bugzilla.redhat.com/show_bug.cgi?id=1232486
-
-The zip patch can be downloaded and the correct features.xml can be upgraded on your maven repository: org/drools/drools-karaf-features/6.2.0.Final-redhat-6
-
 
 Installation
 ============
@@ -51,7 +42,6 @@ JBossFuse:karaf@root> features:install
         fuse-bxms-switchyard-quickstart-bpm-service
         fuse-bxms-switchyard-demo-library
         fuse-bxms-switchyard-demo-helpdesk
-        fuse-bxms-jbpm-workitems-camel
         fuse-bxms-camel-spring-drools-decision-table
         fuse-bxms-camel-blueprint-drools-decision-table
 ```
