@@ -15,14 +15,18 @@ REQUIREMENTS
 
 Previously needs to be installed the following modules:
 
-    - Wildfly-camel distro
-    - KIE distro
-    - Switchyard distro
+    - Fuse
+
+       1º Download the Fuse EAP Installer: 
+		https://origin-repository.jboss.org/nexus/content/groups/ea/com/redhat/fuse/eap/fuse-eap-installer/${version.fuse.eap}
+       2º java -jar fuse-eap-installer-${version.fuse.eap}.jar ${EAP-HOME}
 
 INSTALLATION
 
-Extract all the contents on your Jboss EAP instance.
-Execute ${EAP_HOME}/bin/java -jar fuse-integration-config.jar [enable/disable]
+    1º Download the Fuse Integration EAP Installer: 
+		https://origin-repository.jboss.org/nexus/content/groups/ea/org/jboss/integration/fuse/fuse-integration-eap-installer/${project.version}
+    2º java -jar fuse-integration-eap-installer-${project.version}.jar ${EAP-HOME}
+
 
 QUICKSTARTS
 

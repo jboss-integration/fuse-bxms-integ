@@ -71,10 +71,9 @@ ${FUSE_HOME}/bin/karaf
 
     features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
 
-3. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
-with the version of Fuse BXMS Integration that you are using (ex. 1.0.0): 
+3. Add the features URL for the respective version of BXMS.
 
-JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
+JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features
 
 
 4. Install the feature for the Switchyard HelpDesk Demo quickstart :
@@ -122,10 +121,8 @@ ${KARAF_HOME}/bin/karaf
     features:addurl mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
     features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
 
-3. Add the features URL for the respective version of BXMS.   Replace {FUSE_BXMS_VERSION}
-with the version of Fuse BXMS Integration that you are using (ex. 1.0.0): 
-
-karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_BXMS_VERSION}/xml/features
+3. Add the features URL for the respective version of BXMS.
+karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features
 
 
 4. Install the feature for the Switchyard HelpDesk Demo quickstart :
