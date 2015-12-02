@@ -5,7 +5,7 @@
 
     <artifactId>switchyard-drools-channels</artifactId>
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>1.3.0.redhat-002</version>
     <packaging>bundle</packaging>
     <name>com.example.switchyard:switchyard-drools-channels</name>
     <description>
