@@ -22,19 +22,11 @@ EAP
 
         mvn install -Pdeploy
 
-3. Submit a webservice request to invoke the SOAP gateway.  There are a number of ways to do this :
-    - Submit a request with your preferred SOAP client - src/test/resources/xml contains 
-      sample requests and the responses that you should see
-    - Use the simple bundled SOAP client and the sample request XML e.g.
-<br/>
+3. Submit a webservice request to invoke the Client<br/>
 ```
         mvn exec:java
 ```
 <br/>
-    - SOAP-UI : Use the wsdl for this project (src/main/resources/wsdl/OrderService.wsdl) to 
-      create a soap-ui project. Use the sample request (src/test/resources/xml/soap-request-pass.xml) 
-      as an example of a sample request.  See the "Expected Output" section for the expected results. 
-
 
 4. Undeploy the quickstart:
 
