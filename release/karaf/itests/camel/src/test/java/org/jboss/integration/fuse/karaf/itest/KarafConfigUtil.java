@@ -30,6 +30,7 @@ import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.DROOLS_DT_
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.DROOLS_FEATURE_ARTIFACT_ID;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.DROOLS_FEATURE_GROUP_ID;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.H2_FEATURE_NAME;
+import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.KIE_CI_FEATURE_NAME;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.HIBERNATE_FEATURE_NAME;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.INTEG_PACK_FEATURE_ARTIFACT_ID;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.INTEG_PACK_FEATURE_GROUP_ID;
@@ -165,7 +166,7 @@ public class KarafConfigUtil {
         
         options.add(features(maven().groupId(DROOLS_FEATURE_GROUP_ID).artifactId(DROOLS_FEATURE_ARTIFACT_ID)
                                         .versionAsInProject().type("xml").classifier("features"),
-                                JNDI_FEATURE_NAME, H2_FEATURE_NAME, HIBERNATE_FEATURE_NAME,
+                                JNDI_FEATURE_NAME, H2_FEATURE_NAME, HIBERNATE_FEATURE_NAME, KIE_CI_FEATURE_NAME,
                                 JBPM_FEATURE_NAME, DROOLS_DT_FEATURE_NAME, KIE_SPRING_FEATURE_NAME,
                                 KIE_ARIES_BLUEPRINT_FEATURE_NAME));
         options.add(features(maven().groupId(INTEG_PACK_FEATURE_GROUP_ID).artifactId(INTEG_PACK_FEATURE_ARTIFACT_ID)
