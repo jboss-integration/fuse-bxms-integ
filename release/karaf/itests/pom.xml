@@ -29,7 +29,7 @@
 
     <modules>
        <module>camel-module</module>
-       <module>camel</module>
+       <!--module>camel</module-->
        <module>switchyard</module>
        <module>drools</module>
     </modules>
