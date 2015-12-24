@@ -39,6 +39,22 @@
             </choice>
         </route>
 
+        <route trace="true" id="testRouteGav">
+            <description>This route is for kie-camel containing facts imported by releaseId.
+            </description>
+            <from uri="direct://startAgeVerificationGav"/>
+            <to uri="kie:kieModuleKieSessionDrinkGav?action=insertBody" id="AgeVerificationGav"/>
+            <choice>
+                <when id="CanDrinkGav">
+                    <simple>${body.canDrink}</simple>
+                    <log logName="Bar" message="Person ${body.name} can go to the bar"/>
+                </when>
+                <otherwise>
+                    <log logName="Home" message="Person ${body.name} is staying home"/>
+                </otherwise>
+            </choice>
+        </route>
+
         <!-- Decision Table Routes -->
         <route trace="false" id="testRouteDecisionTable">
             <description>This route shows an example of passing (inserting) the Body of the message as a POJO to Drools
