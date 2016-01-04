@@ -17,7 +17,7 @@
     </kie:kbase>
   </kie:kmodule>
 
-  <kie:releaseId id="kjar-gav" groupId="org.jboss.integration.fuse" artifactId="kie-camel-karaf-itest-module" version="1.2.0-SNAPSHOT"/>
+  <kie:releaseId id="kjar-gav" groupId="org.jboss.integration.fuse" artifactId="kie-camel-karaf-itest-module" version="${project.version}"/>
   <kie:kcontainer-ref id="kjar-container" releaseId="kjar-gav"/>
 
   <bean id="kie-services"

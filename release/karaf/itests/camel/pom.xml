@@ -139,6 +139,14 @@
             <artifactId>h2</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Temporary workaround. This should be removed once the Karaf is properly configured with the remote repos,
+             so that it can download the kie-ci-osgi itself (instead of relying on the outer Maven test build). -->
+        <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-ci-osgi</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     
     <build>
