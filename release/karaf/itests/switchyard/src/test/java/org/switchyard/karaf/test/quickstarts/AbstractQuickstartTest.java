@@ -143,7 +143,7 @@ public abstract class AbstractQuickstartTest {
                         .name("Apache Karaf").unpackDirectory(new File("target/karaf/" + featureName))
                         .useDeployFolder(false),
                 //keepRuntimeFolder(), // this could leave behind lots of cruft
-                logLevel(LogLevel.DEBUG),
+                logLevel(LogLevel.INFO),
                 configureConsole().ignoreLocalConsole().ignoreRemoteShell(),
                 editConfigurationFileExtend("etc/config.properties", "org.osgi.framework.system.packages.extra",
                         "sun.misc"),
