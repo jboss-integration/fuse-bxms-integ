@@ -45,12 +45,12 @@
                 <include>**/switchyard-demo-library/**/*</include>   
                 <include>**/jbpm-workitems-camel</include>
                 <include>**/jbpm-workitems-camel/**/*</include>    
-                <include>**/blueprint-camel-drools-decision-table-example</include>
-                <include>**/blueprint-camel-drools-decision-table-example/**/*</include>   
+                <include>**/blueprint-camel-drools-decision-table</include>
+                <include>**/blueprint-camel-drools-decision-table/**/*</include>   
                 <include>**/drools-camel-server-example</include>
                 <include>**/drools-camel-server-example/**/*</include>       
-                <include>**/spring-camel-drools-decision-table-example</include>
-                <include>**/spring-camel-drools-decision-table-example/**/*</include>    
+                <include>**/spring-camel-drools-decision-table</include>
+                <include>**/spring-camel-drools-decision-table/**/*</include>    
                 <!--include>**/spring-jbpm-osgi-example</include>
                 <include>**/spring-jbpm-osgi-example/**/*</include-->  
                 <include>**/switchyard-rules-multithreaded</include>
