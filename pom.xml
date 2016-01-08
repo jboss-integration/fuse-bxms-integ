@@ -168,6 +168,7 @@
         <version.org.ops4j.pax.cdi>0.11.0.redhat-001</version.org.ops4j.pax.cdi>
 
         <version.commons-digester>1.8.1</version.commons-digester>
+        <maven.surefire.plugin.version>2.6</maven.surefire.plugin.version>
   </properties>
 
    <repositories>
@@ -768,7 +769,6 @@
             <artifactId>wildfly-camel-config</artifactId>
             <version>${version.wildfly.camel}</version>
          </dependency>  
-
     </dependencies>
   </dependencyManagement>
 
@@ -987,7 +987,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.6</version>
+                <version>${maven.surefire.plugin.version}</version>
                 <configuration>
                     <systemPropertyVariables>
                         <java.awt.headless>true</java.awt.headless>
