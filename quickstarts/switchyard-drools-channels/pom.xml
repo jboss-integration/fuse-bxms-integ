@@ -47,6 +47,7 @@ osgi.extender; filter:="(osgi.extender=pax.cdi)"</switchyard.osgi.require.capabi
       <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
       <deploy.skip>true</deploy.skip>
       <wildfly.port>9999</wildfly.port>
+      <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>		
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -131,7 +132,16 @@ osgi.extender; filter:="(osgi.extender=pax.cdi)"</switchyard.osgi.require.capabi
         </dependency>
   </dependencies>
   <build>
-    <plugins>
+     <pluginManagement>
+       <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+             <version>${maven.surefire.plugin.version}</version>
+         </plugin>
+       </plugins>
+     </pluginManagement> 
+     <plugins>
       <plugin>
         <groupId>org.switchyard</groupId>
         <artifactId>switchyard-plugin</artifactId>
