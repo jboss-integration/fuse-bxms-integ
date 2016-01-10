@@ -922,7 +922,20 @@
                     <artifactId>depends-maven-plugin</artifactId>
                     <version>1.2</version>
                 </plugin>
-
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <configuration>
+                        <links>
+                            <link>http://docs.oracle.com/javase/7/docs/api</link>
+                        </links>
+                        <minmemory>128m</minmemory>
+                        <maxmemory>512m</maxmemory>
+                        <author>false</author>
+                        <breakiterator>true</breakiterator>
+                        <quiet>true</quiet>
+                    </configuration>
+            </plugin>
       </plugins>
     </pluginManagement>
         <plugins>
@@ -1153,6 +1166,19 @@
                                 <switchyard.osgi.version>${project.version}</switchyard.osgi.version>
                             </versions>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadoc</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
