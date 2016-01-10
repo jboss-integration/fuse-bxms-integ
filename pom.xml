@@ -8,7 +8,7 @@
     <groupId>org.jboss.integration-platform</groupId>
     <artifactId>jboss-integration-platform-parent</artifactId>
     <!-- Keep in sync with property <version.org.jboss.integration-platform> -->
-    <version>6.0.0.CR30</version>
+    <version>6.0.0.Final</version>
   </parent>
 
   <groupId>org.jboss.integration.fuse</groupId>
@@ -60,7 +60,7 @@
         <version.org.jbpm.dashboard-builder>${version.org.kie}</version.org.jbpm.dashboard-builder>
         <version.org.drools.droolsjbpm-integration>${version.org.kie}</version.org.drools.droolsjbpm-integration>
 
-        <version.org.jboss.integration-platform>6.0.0.CR30</version.org.jboss.integration-platform>
+        <version.org.jboss.integration-platform>6.0.0.Final</version.org.jboss.integration-platform>
 
         <version.org.eclipse.jetty>8.1.14.v20131031</version.org.eclipse.jetty>
         <!-- overrides <version.org.apache.ws.xmlschema>2.0.2 used in jboss-ip-bom 6.0.0.CR13 -->
@@ -1228,7 +1228,7 @@
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
+      <artifactId>mockito-core</artifactId>
       <scope>test</scope>
     </dependency>
 
