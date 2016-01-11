@@ -42,10 +42,11 @@
         <version.jboss.integration>1.2.0-SNAPSHOT</version.jboss.integration>
 
         <!-- Perfectus managed versions -->
-        <version.fuse.eap>6.2.1.redhat-084</version.fuse.eap>
+        <version.fuse>6.2.1.redhat-084</version.fuse>
+        <version.fuse.eap>${version.fuse}</version.fuse.eap>
         <version.fuse.patch>1.6.2</version.fuse.patch>
         <karaf-version>2.4.0</karaf-version>
-        <version.camelsap>6.2.1.redhat-084</version.camelsap>
+        <version.camelsap>${version.fuse}</version.camelsap>
         <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>
         <version.wildfly.camel>2.3.0.redhat-621084</version.wildfly.camel>
 
