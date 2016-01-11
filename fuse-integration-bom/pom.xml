@@ -31,55 +31,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.jboss.integration-platform</groupId>
-                <artifactId>jboss-integration-platform-bom</artifactId>
-                <version>${version.org.jboss.integration-platform}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.kie</groupId>
-                <artifactId>kie-bom</artifactId>
-                <version>${version.org.kie}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.switchyard</groupId>
-                <artifactId>switchyard-bom</artifactId>
-                <version>${version.switchyard}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.drools</groupId>
-                <artifactId>drools-bom</artifactId>
-                <version>${version.org.drools}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jbpm</groupId>
-                <artifactId>jbpm-bom</artifactId>
-                <version>${version.org.jbpm}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.bom</groupId>
-                <artifactId>eap6-supported-artifacts</artifactId>
-                <version>${version.redhat.eap6.bom}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.as</groupId>
-                <artifactId>jboss-as-parent</artifactId>
-                <version>${version.org.jboss.as}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
               <dependency>
                 <groupId>org.switchyard.components</groupId>
                 <artifactId>switchyard-component-common</artifactId>
