@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-        <artifactId>quickstarts-parent</artifactId>
-        <version>1.4.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>     
-    <!--packaging>bundle</packaging-->
-     <artifactId>switchyard-rules-loading</artifactId>
+		 xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.jboss.integration.fuse.quickstarts</groupId>
+	<artifactId>switchyard-rules-loading</artifactId>
+	<version>1.4.0-SNAPSHOT</version>
 	<name>Switchyard Rules Loading</name>
 
-  <properties>
+	<properties>
         <!-- Bundle symbolic name may not contain dashes -->
         <!--bundle.symbolic.name>${project.groupId}.switchyard.rules.loading</bundle.symbolic.name>
         <deploy.skip>true</deploy.skip>
@@ -36,6 +31,13 @@
     </properties>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.jboss.integration.fuse</groupId>
+				<artifactId>fuse-integration-bom</artifactId>
+				<version>${project.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
 			<dependency>
 				<groupId>org.jboss.arquillian</groupId>
 				<artifactId>arquillian-bom</artifactId>
@@ -177,4 +179,36 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>redhat-product-ga-repository</id>
+			<name>Red Hat Product Repository</name>
+			<url>https://maven.repository.redhat.com/ga/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>redhat-product-ga-repository</id>
+            <name>Red Hat Product Repository</name>
+            <url>https://maven.repository.redhat.com/ga/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
