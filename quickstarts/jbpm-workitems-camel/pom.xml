@@ -4,7 +4,7 @@
 
 
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>1.3.0.redhat-003</version>
     <artifactId>jbpm-workitems-camel-quickstart</artifactId>
     <packaging>bundle</packaging>
     <name>Fuse Integration: Quickstarts: jBPM : Work-items camel example</name>
