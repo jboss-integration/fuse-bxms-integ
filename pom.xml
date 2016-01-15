@@ -1255,6 +1255,12 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>backward-compat</id>
+            <modules>
+                <module>backward-compat</module>
+            </modules>
+        </profile>
     </profiles>
     <dependencies>
         <dependency>
@@ -1274,7 +1280,7 @@
         <module>fuse-integration-bom</module>
         <module>camel</module>
         <module>switchyard</module>
-        <module>backward-compat</module>
+        <!--module>backward-compat</module-->
         <module>quickstarts</module>
         <module>karaf</module>
         <module>release</module>
