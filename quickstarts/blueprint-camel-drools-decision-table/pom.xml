@@ -8,12 +8,10 @@
     <packaging>bundle</packaging>
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
     <version>1.1.0-SNAPSHOT</version>
-    <name>Fuse Integration: Quickstarts: Drools &amp; Decision Table using Kie Aries Blueprint</name>
-    <description>
-      Drools &amp; Decision Table using Kie Aries Blueprint
-    </description>
+    <name>Fuse Integration: Quickstarts: Drools and Decision Table using Kie Aries Blueprint</name>
+    <description>Drools and Decision Table using Kie Aries Blueprint</description>
 
-    
+
     <url>https://github.com/jboss-integration/fuse-bxms-integ</url>
     <organization>
         <name>JBoss by Red Hat</name>
@@ -21,7 +19,7 @@
     </organization>
     <developers>
         <developer>
-            <name>Fuse Integration Commiters</name>
+            <name>Fuse Integration Committers</name>
         </developer>
     </developers>
     <scm>
@@ -38,7 +36,9 @@
     </licenses>
     <properties>
         <version.felix.maven>2.4.0</version.felix.maven>
-        <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>				
+        <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
+        <version.org.kie>6.2.1-SNAPSHOT</version.org.kie>
+        <version.org.jboss.integration-platform>6.0.0.CR26-redhat-4</version.org.jboss.integration-platform>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -49,37 +49,67 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+            <dependency>
+                <groupId>org.kie</groupId>
+                <artifactId>kie-bom</artifactId>
+                <version>${version.org.kie}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-bom</artifactId>
+                <version>${version.org.kie}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jbpm</groupId>
+                <artifactId>jbpm-bom</artifactId>
+                <version>${version.org.kie}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration-platform</groupId>
+                <artifactId>jboss-integration-platform-bom</artifactId>
+                <version>${version.org.jboss.integration-platform}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <repositories>
-      <!-- Early access to fuse-eap -->
-      <repository>
-         <id>fuse-eap-staging-repository</id>
-         <url>https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352</url>
-      </repository>
-      <!-- General early access -->
-      <repository>
-         <id>fuse-early-access-repository</id>
-         <url>https://repository.jboss.org/nexus/content/groups/ea</url>
-      </repository>
-    <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
-    <repository>
-        <id>fusesource.ea</id>
-        <name>JBoss Community Early Access Release Repository</name>
-        <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-        <releases>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-        </releases>
-    </repository>
-    <repository>
-      <id>redhat-m2-proxy</id>
-      <name>Red Hat M2 Proxy</name>
-      <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
-    </repository>
+        <!-- Early access to fuse-eap -->
+        <repository>
+            <id>fuse-eap-staging-repository</id>
+            <url>
+                https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352
+            </url>
+        </repository>
+        <!-- General early access -->
+        <repository>
+            <id>fuse-early-access-repository</id>
+            <url>https://repository.jboss.org/nexus/content/groups/ea</url>
+        </repository>
+        <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
+        <repository>
+            <id>fusesource.ea</id>
+            <name>JBoss Community Early Access Release Repository</name>
+            <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>redhat-m2-proxy</id>
+            <name>Red Hat M2 Proxy</name>
+            <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
+        </repository>
     </repositories>
     <dependencies>
         <dependency>
@@ -153,14 +183,14 @@
             </resource>
         </resources>
         <pluginManagement>
-           <plugins>
-             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                 <version>${maven.surefire.plugin.version}</version>
-             </plugin>
-           </plugins>
-        </pluginManagement> 
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
