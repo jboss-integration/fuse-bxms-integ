@@ -238,7 +238,6 @@
               org.kie.internal;version="[6.0,7)",
               org.kie.spring;version="[6.0,7)",
               org.kie.camel.component;version="[1.0,2)",
-              org.eclipse.jdt.internal.compiler,
               org.drools.osgi.spring,
               org.drools.osgi.compiler
             </Import-Package>

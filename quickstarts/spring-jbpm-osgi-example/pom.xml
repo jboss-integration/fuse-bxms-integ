@@ -161,8 +161,7 @@
                             org.kie.internal.runtime.manager;version="[6.0,7)",
                             org.kie.internal.runtime.manager.context;version="[6.0,7)",
                             org.kie.internal;version="[6.0,7)",
-                            org.kie.spring;version="[6.0,7)",
-                            org.eclipse.jdt.internal.compiler
+                            org.kie.spring;version="[6.0,7)"
                         </Import-Package>
                         <Export-Package>
                             org.jbpm.osgi.example

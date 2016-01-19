@@ -205,8 +205,7 @@
                             org.kie.internal;version="[6.0,7)",
                             org.kie.aries.blueprint;version="[6.0,7)",
                             org.kie.aries.blueprint.factorybeans;version="[6.0,7)",
-                            org.kie.camel.component;version="[1.0,2)",
-                            org.eclipse.jdt.internal.compiler
+                            org.kie.camel.component;version="[1.0,2)"
                         </Import-Package>
                         <Private-Package>
                             org.drools.camel.example
