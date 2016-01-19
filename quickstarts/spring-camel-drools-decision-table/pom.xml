@@ -36,7 +36,9 @@
     </licenses>
     <properties>
         <version.felix.maven>2.4.0</version.felix.maven>
-        <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>				
+        <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>	
+        <version.org.kie>6.3.1-SNAPSHOT</version.org.kie>
+        <version.org.jboss.integration-platform>6.0.0.CR30-redhat-2</version.org.jboss.integration-platform>	
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -46,6 +48,34 @@
                 <version>${project.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.kie</groupId>
+                <artifactId>kie-bom</artifactId>
+                <version>${version.org.kie}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-bom</artifactId>
+                <version>${version.org.kie}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jbpm</groupId>
+                <artifactId>jbpm-bom</artifactId>
+                <version>${version.org.kie}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration-platform</groupId>
+                <artifactId>jboss-integration-platform-bom</artifactId>
+                <version>${version.org.jboss.integration-platform}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
