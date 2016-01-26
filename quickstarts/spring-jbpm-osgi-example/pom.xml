@@ -8,7 +8,29 @@
     <version>1.4.0-SNAPSHOT</version>
 
     <packaging>bundle</packaging>
-
+   <description>Fuse Integration: Quickstarts: Drools Spring JBPM OSGI Example</description>
+    <url>https://github.com/jboss-integration/fuse-bxms-integ</url>
+    <organization>
+        <name>JBoss by Red Hat</name>
+        <url>http://jboss.org</url>
+    </organization>
+    <developers>
+        <developer>
+            <name>Fuse Integration Committers</name>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/jboss-integration/fuse-bxms-integ</connection>
+        <developerConnection>scm:git:ssh://git@github.com:jboss-integration/fuse-bxms-integ.git</developerConnection>
+        <url>http://github.com/jboss-integration/fuse-bxms-integ</url>
+    </scm>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <distribution>repo</distribution>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        </license>
+    </licenses>
     <name>Fuse Integration: Quickstarts: jBPM :: OSGi Example</name>
     <properties>
         <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
