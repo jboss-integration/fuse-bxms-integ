@@ -229,7 +229,6 @@
                	<skip>true</skip>
                </configuration>
 			</plugin>
-		</plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -244,5 +243,6 @@
                     </execution>
                 </executions>
             </plugin>
+		</plugins>
 	</build>
 </project>
