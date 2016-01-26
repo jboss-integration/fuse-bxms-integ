@@ -20,7 +20,7 @@
     <packaging>bundle</packaging>
     <name>SwitchYard Quickstart: Rules Multitheaded</name>
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.1.0.redhat-028</version>
     <description>SwitchYard Quickstart: Rules Multitheaded</description>
     <url>https://github.com/jboss-integration/fuse-bxms-integ</url>
     <organization>
@@ -64,8 +64,8 @@
         <version.felix.maven>2.4.0</version.felix.maven>
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>	
-        <version.org.kie>6.2.1-SNAPSHOT</version.org.kie>
-        <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>			
+        <version.org.kie>6.2.0.Final-redhat-15</version.org.kie>
+        <version.switchyard>2.0.1.redhat-621084</version.switchyard>			
     </properties>
     <dependencyManagement>
         <dependencies>

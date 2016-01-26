@@ -5,7 +5,7 @@
 
     <artifactId>switchyard-drools-channels</artifactId>
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.1.0.redhat-028</version>
     <packaging>bundle</packaging>
     <name>com.example.switchyard:switchyard-drools-channels</name>
     <description>
@@ -48,8 +48,8 @@ osgi.extender; filter:="(osgi.extender=pax.cdi)"</switchyard.osgi.require.capabi
       <deploy.skip>true</deploy.skip>
       <wildfly.port>9999</wildfly.port>
       <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>	
-      <version.org.kie>6.2.1-SNAPSHOT</version.org.kie>
-      <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>	
+      <version.org.kie>6.2.0.Final-redhat-15</version.org.kie>
+      <version.switchyard>2.0.1.redhat-621084</version.switchyard>	
     </properties>
     <dependencyManagement>
         <dependencies>

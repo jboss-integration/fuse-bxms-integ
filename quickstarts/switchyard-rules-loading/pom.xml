@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jboss.integration.fuse.quickstarts</groupId>
 	<artifactId>switchyard-rules-loading</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>1.1.0.redhat-028</version>
 	<name>Switchyard Rules Loading</name>
 
 	<properties>
@@ -28,8 +28,8 @@
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven-->
          <enforcer.skip>true</enforcer.skip>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>	
-        <version.org.kie>6.2.1-SNAPSHOT</version.org.kie>
-        <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>		  
+        <version.org.kie>6.2.0.Final-redhat-15</version.org.kie>
+        <version.switchyard>2.0.1.redhat-621084</version.switchyard>		  
     </properties>
     <dependencyManagement>
         <dependencies>

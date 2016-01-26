@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
     <artifactId>spring-jbpm-osgi-example</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.1.0.redhat-028</version>
 
     <packaging>bundle</packaging>
 
@@ -14,7 +14,7 @@
         <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <maven.felix.plugin.version>2.5.3</maven.felix.plugin.version>
-        <version.org.kie>6.2.1-SNAPSHOT</version.org.kie>
+        <version.org.kie>6.2.0.Final-redhat-15</version.org.kie>
         <version.org.jboss.integration-platform>6.0.0.CR26-redhat-4</version.org.jboss.integration-platform>
     </properties>
 

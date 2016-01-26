@@ -4,7 +4,7 @@
 
 
   <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-  <version>1.1.0-SNAPSHOT</version>
+  <version>1.1.0.redhat-028</version>
     <artifactId>jbpm-workitems-camel-quickstart</artifactId>
     <packaging>bundle</packaging>
     <name>Fuse Integration: Quickstarts: jBPM : Work-items camel example</name>
@@ -54,7 +54,7 @@
         <version.felix.maven>2.4.0</version.felix.maven>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <version.felix.maven>2.4.0</version.felix.maven>
-        <version.org.kie>6.2.1-SNAPSHOT</version.org.kie>
+        <version.org.kie>6.2.0.Final-redhat-15</version.org.kie>
         <version.org.jboss.integration-platform>6.0.0.CR26-redhat-4</version.org.jboss.integration-platform>
     </properties>
     <dependencyManagement>
