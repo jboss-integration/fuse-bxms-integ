@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
+<kmodule xmlns="http://www.drools.org/xsd/kmodule">
     <kbase name="camel-workitem-kbase" packages="org.jboss.integration.fuse.quickstarts.jbpm.workitems.camel" default="true">
         <ksession name="camel-workitem-ksession" default="true"/>
     </kbase>
