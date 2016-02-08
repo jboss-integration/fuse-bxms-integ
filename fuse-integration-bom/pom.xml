@@ -33,6 +33,18 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.jboss.integration.fuse</groupId>
+                <artifactId>karaf-features</artifactId>
+                <version>${project.version}</version>
+                <type>xml</type>
+                <classifier>features</classifier>
+            </dependency>
+            <dependency>
+                <groupId>org.switchyard.components</groupId>
+                <artifactId>switchyard-component-bpm</artifactId>
+                <version>${version.switchyard}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.switchyard.components</groupId>
                 <artifactId>switchyard-component-common</artifactId>
                 <version>${version.switchyard}</version>
