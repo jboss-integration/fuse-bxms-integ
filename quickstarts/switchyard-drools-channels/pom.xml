@@ -47,9 +47,7 @@ osgi.extender; filter:="(osgi.extender=pax.cdi)"</switchyard.osgi.require.capabi
       <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
       <deploy.skip>true</deploy.skip>
       <wildfly.port>9999</wildfly.port>
-      <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>	
-      <version.org.kie>6.3.1-SNAPSHOT</version.org.kie>
-      <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>	
+      <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>		
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -59,34 +57,6 @@ osgi.extender; filter:="(osgi.extender=pax.cdi)"</switchyard.osgi.require.capabi
                 <version>${project.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>org.kie</groupId>
-                <artifactId>kie-bom</artifactId>
-                <version>${version.org.kie}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.switchyard</groupId>
-                <artifactId>switchyard-bom</artifactId>
-                <version>${version.switchyard}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.drools</groupId>
-                <artifactId>drools-bom</artifactId>
-                <version>${version.org.kie}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jbpm</groupId>
-                <artifactId>jbpm-bom</artifactId>
-                <version>${version.org.kie}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

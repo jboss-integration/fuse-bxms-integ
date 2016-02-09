@@ -12,35 +12,29 @@
 - See the License for the specific language governing permissions and
 - limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <!-- That parent extends the org.jboss:jboss-parent -->
-        <groupId>org.jboss.integration-platform</groupId>
-        <artifactId>jboss-integration-platform-parent</artifactId>
-        <!-- Keep in sync with property <version.org.jboss.integration-platform> -->
-        <version>6.0.0.CR30-redhat-2</version>
-    </parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.jboss.integration.fuse</groupId>
+
+    <parent>
+        <groupId>org.jboss.integration.fuse</groupId>
+        <artifactId>fuse-integration-project</artifactId>
+        <version>1.3.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
+
     <artifactId>fuse-integration-bom</artifactId>
     <version>1.3.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Fuse Integration: BOM</name>
     <description>The BOM for Fuse BXMS Integration Repository</description>
-    <properties>
-        <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>
-    </properties>
+
     <dependencyManagement>
         <dependencies>
-           <dependency>
+            <dependency>
                 <groupId>org.switchyard.components</groupId>
-                <artifactId>switchyard-component-bpm</artifactId>
-                <version>${version.switchyard}</version>
-            </dependency>
-           <dependency>
-                <groupId>org.switchyard.components</groupId>
-                <artifactId>switchyard-component-rules</artifactId>
+                <artifactId>switchyard-component-common</artifactId>
                 <version>${version.switchyard}</version>
             </dependency>
             <dependency>
@@ -94,21 +88,6 @@
                 <groupId>org.jboss.integration.fuse.quickstarts</groupId>
                 <artifactId>switchyard-demo-library</artifactId>
                 <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>kie-camel</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.integration.fuse</groupId>
-                <artifactId>jbpm-workitems-camel</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mvel</groupId>
-                <artifactId>mvel2</artifactId>
-                <version>${version.org.mvel}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
