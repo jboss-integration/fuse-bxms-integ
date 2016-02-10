@@ -74,7 +74,7 @@ JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts
 
 4. Install the feature for the Rules Interview quickstart :
 
-JBossFuse:karaf@root> features:install fuse-bxms-switchyard-quickstart-rules-multithreaded
+JBossFuse:karaf@root> features:install fuse-bxms-switchyard-quickstart-rules-multithread
 
 5. To submit a rest request, run the quickstart client :
 <br/>
@@ -85,7 +85,7 @@ mvn exec:java -Pkaraf
 
 6. Undeploy the quickstart:
 
-JBossFuse:karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-rules-interview
+JBossFuse:karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-rules-multithread
 
 
 KARAF
