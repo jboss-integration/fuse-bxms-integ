@@ -8,7 +8,7 @@
         <groupId>org.jboss.integration-platform</groupId>
         <artifactId>jboss-integration-platform-parent</artifactId>
         <!-- Keep in sync with property <version.org.jboss.integration-platform> -->
-        <version>6.0.0.Final</version>
+        <version>6.0.2.Final</version>
     </parent>
 
     <groupId>org.jboss.integration.fuse</groupId>
@@ -41,89 +41,38 @@
     <properties>
         <version.jboss.integration>1.4.0-SNAPSHOT</version.jboss.integration>
 
-        <!-- EAP early access -->
-        <version.eap>7.5.0.Final-redhat-20</version.eap>
+        <!-- EAP 6.4.x -->
+        <version.eap>7.5.6.Final-redhat-2</version.eap>
 
         <!-- Perfectus managed versions -->
         <version.fuse>6.2.1.redhat-084</version.fuse>
         <version.fuse.eap>${version.fuse}</version.fuse.eap>
         <version.fuse.patch>1.6.2</version.fuse.patch>
-        <karaf-version>2.4.0</karaf-version>
+        <version.org.apache.karaf>2.4.0.redhat-621084</version.org.apache.karaf>
         <version.camelsap>${version.fuse}</version.camelsap>
         <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>
         <version.wildfly.camel>2.3.0.redhat-621084</version.wildfly.camel>
-
         <!-- Internal dependencies -->
         <version.org.kie>6.4.0-SNAPSHOT</version.org.kie>
-        <version.org.jboss.integration-platform>6.0.0.Final</version.org.jboss.integration-platform>
-
-        <version.org.eclipse.jetty>8.1.14.v20131031</version.org.eclipse.jetty>
-        <!-- overrides <version.org.apache.ws.xmlschema>2.0.2 used in jboss-ip-bom 6.0.0.CR13 -->
-        <version.org.apache.ws.xmlschema>2.0.3</version.org.apache.ws.xmlschema>
-        <version.org.eclipse.aether.aether-api>1.0.2.v20150114</version.org.eclipse.aether.aether-api>
+        <version.org.jboss.integration-platform>6.0.2.Final</version.org.jboss.integration-platform>
 
         <version.org.apache.geronimo.specs>1.0</version.org.apache.geronimo.specs>
         <version.org.ops4j.pax.url>2.2.0</version.org.ops4j.pax.url>
 
-        <!-- Make build platform independent -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
-        <!-- Make OSGi happy -->
-        <osgi.snapshot.qualifier>${maven.build.timestamp}</osgi.snapshot.qualifier>
+        <maven.compiler.argument.source>1.7</maven.compiler.argument.source>
+        <maven.compiler.argument.target>1.7</maven.compiler.argument.target>
 
-        <!-- used by jbpm-commons -->
-        <karaf.version.org.jboss.spec.javax.security.jacc>1.0.0.Final</karaf.version.org.jboss.spec.javax.security.jacc>
-        <karaf.version.org.jboss.spec.javax.interceptor>1.0.0.Final</karaf.version.org.jboss.spec.javax.interceptor>
-        <karaf.version.org.apache.geronimo.specs.servlet>1.0</karaf.version.org.apache.geronimo.specs.servlet>
-        <karaf.version.org.apache.geronimo.specs.jms>1.1.1</karaf.version.org.apache.geronimo.specs.jms>
-        <karaf.version.org.apache.geronimo.specs.jpa>1.1</karaf.version.org.apache.geronimo.specs.jpa>
-        <karaf.version.org.apache.geronimo.specs.jta>1.1.1</karaf.version.org.apache.geronimo.specs.jta>
-
-        <!-- used by droolsjbpm-hibernate -->
-        <karaf.version.org.apache.servicemix.bundles.antlr>2.7.7_5</karaf.version.org.apache.servicemix.bundles.antlr>
-        <karaf.version.org.apache.servicemix.bundles.ant>1.8.2_2</karaf.version.org.apache.servicemix.bundles.ant>
-        <karaf.version.org.apache.servicemix.bundles.dom4j>1.6.1_5</karaf.version.org.apache.servicemix.bundles.dom4j>
-        <karaf.version.org.apache.servicemix.bundles.serp>1.14.1_1</karaf.version.org.apache.servicemix.bundles.serp>
-        <karaf.version.com.fasterxml.classmate>0.9.0</karaf.version.com.fasterxml.classmate>
-        <karaf.version.org.jboss.jandex>1.1.0.Final</karaf.version.org.jboss.jandex>
-        <karaf.version.javax.validation>1.1.0.Final</karaf.version.javax.validation>
-
-        <!-- used by hibernate-validator -->
-        <karaf.version.org.apache.servicemix.specs.jsr303-api>2.4.0</karaf.version.org.apache.servicemix.specs.jsr303-api>
         <karaf.version.org.switchyard>[2.0.1,3.0)</karaf.version.org.switchyard>
         <karaf.version.org.kie>[6.2.0,7.0)</karaf.version.org.kie>
 
         <version.org.apache.karaf.tooling>2.4.0</version.org.apache.karaf.tooling>
 
         <version.switchyard.osgi>2.1</version.switchyard.osgi>
-        <!-- Explicitly declaring the source encoding eliminates the following message: -->
-        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
-          resources, i.e. build is platform dependent! -->
-        <version.org.jboss.as.console>1.5.4.Final</version.org.jboss.as.console>
-        <version.org.jboss.as>7.2.0.Final</version.org.jboss.as>
-        <version.redhat.eap6.bom>6.3.0.GA</version.redhat.eap6.bom>
-        <!-- This version is only used as a prefix for a jar included in release modules -->
-        <version.redhat.eap6>6.3</version.redhat.eap6>
-        <version.redhat.eap6.minor>0.GA</version.redhat.eap6.minor>
-        <version.org.fusesource.hawtdispatch>1.18</version.org.fusesource.hawtdispatch>
-        <version.org.fusesource.hawtbuf>1.9</version.org.fusesource.hawtbuf>
         <version.org.fusesource.mqtt-client>1.6</version.org.fusesource.mqtt-client>
-        <!--  RiftSaw -->
-        <version.activity.monitor.model>1.2.2.Final</version.activity.monitor.model>
-        <version.overlord-commons>2.0.2.Final</version.overlord-commons>
-        <version.riftsaw.ode>3.2.0.Final</version.riftsaw.ode>
-        <version.riftsaw.engine>3.2.0.Final</version.riftsaw.engine>
-        <version.riftsaw.console>2.4.6.Final</version.riftsaw.console>
-        <!-- Remove when RiftSaw upgrades to net.sf.saxon:Saxon-HE:9.5.1-2  -->
-        <version.net.sourceforge.saxon>9.2.1.5</version.net.sourceforge.saxon>
-        <!-- Require investigation and/or will be removed  -->
-        <version.jbossws.jboss720.server.integration>4.2.0.Final</version.jbossws.jboss720.server.integration>
 
         <!-- Plugin versions -->
         <version.felix.maven>2.4.0</version.felix.maven>
-        <version.maven.plugin.plugin>3.1</version.maven.plugin.plugin>
-        <version.shrinkwrap.resolver.plugin>2.1.1</version.shrinkwrap.resolver.plugin>
 
         <!-- OSGi bundles properties -->
         <switchyard.osgi.import.switchyard.version>
@@ -160,11 +109,9 @@
         <version.org.ops4j.pax.cdi>0.11.0.redhat-001</version.org.ops4j.pax.cdi>
 
         <version.commons-digester>1.8.1</version.commons-digester>
-        <maven.surefire.plugin.version>2.6</maven.surefire.plugin.version>
     </properties>
 
     <repositories>
-        <!-- Early access to jboss-eap -->
         <repository>
             <id>fuse-early-access-repository</id>
             <url>https://repository.jboss.org/nexus/content/groups/ea</url>
@@ -193,7 +140,7 @@
                 <updatePolicy>never</updatePolicy>
             </releases>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
                 <updatePolicy>never</updatePolicy>
             </snapshots>
         </repository>
@@ -260,11 +207,35 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.jboss.fuse.bom</groupId>
+                <artifactId>jboss-fuse-parent</artifactId>
+                <version>${version.fuse}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration-platform</groupId>
+                <artifactId>jboss-integration-platform-bom</artifactId>
+                <version>${version.org.jboss.integration-platform}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${version.ch.qos.logback}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.switchyard</groupId>
                 <artifactId>switchyard-bom</artifactId>
                 <version>${version.switchyard}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.extras.patch</groupId>
+                <artifactId>fuse-patch-config</artifactId>
+                <version>${version.fuse.patch}</version>
             </dependency>
             <dependency>
                 <groupId>org.wildfly.extras.patch</groupId>
@@ -275,13 +246,6 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-util</artifactId>
                 <version>${version.org.eclipse.jetty}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.kie</groupId>
-                <artifactId>kie-bom</artifactId>
-                <version>${version.org.kie}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.drools</groupId>
@@ -297,22 +261,11 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.apache.ws.xmlschema</groupId>
-                <artifactId>xmlschema-core</artifactId>
-                <version>${version.org.apache.ws.xmlschema}</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.redhat.fuse</groupId>
                 <artifactId>fuse-eap-config</artifactId>
                 <version>${version.fuse.eap}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.mvel</groupId>
-                <artifactId>mvel2</artifactId>
-                <version>${version.org.mvel}</version>
             </dependency>
 
             <dependency>
@@ -325,6 +278,16 @@
                 <artifactId>pax-url-aether</artifactId>
                 <version>${version.org.ops4j.pax.url}</version>
             </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam</artifactId>
+                <version>3.5.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-spi</artifactId>
+                <version>3.5.0</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.apache.felix</groupId>
@@ -332,6 +295,7 @@
                 <version>1.4.0</version>
             </dependency>
 
+            <!-- drools-decisiontables needs POI 3.13+ -->
             <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi</artifactId>
@@ -351,17 +315,6 @@
             <!--  ###################################################################
                   ##           Dependencies Not Present in Integration BOM         ##
                   ################################################################### -->
-            <dependency>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-plugin-plugin</artifactId>
-                <version>${version.maven.plugin.plugin}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven.plugin-tools</groupId>
-                <artifactId>maven-plugin-annotations</artifactId>
-                <version>${version.maven.plugin.plugin}</version>
-            </dependency>
             <dependency>
                 <groupId>org.fusesource</groupId>
                 <artifactId>camel-sap</artifactId>
@@ -411,6 +364,17 @@
                 <type>zip</type>
             </dependency>
 
+            <dependency>
+                <groupId>org.jboss.integration.fuse</groupId>
+                <artifactId>fuse-integration-eap-distro</artifactId>
+                <version>${project.version}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.integration.fuse</groupId>
+                <artifactId>fuse-integration-eap-installer</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
                 <artifactId>fuse-integration-config</artifactId>
@@ -695,6 +659,12 @@
                 <artifactId>wildfly-camel-config</artifactId>
                 <version>${version.wildfly.camel}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.sshd</groupId>
+                <artifactId>sshd-sftp</artifactId>
+                <version>0.11.0</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -705,17 +675,6 @@
                     <groupId>org.apache.camel</groupId>
                     <artifactId>camel-maven-plugin</artifactId>
                     <version>2.10.3</version>
-                </plugin>
-
-
-                <plugin>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>enforce-plugin-versions</id>
-                            <phase>none</phase>
-                        </execution>
-                    </executions>
                 </plugin>
                 <!-- address "quirks" in m2e 1.0 -->
                 <plugin>
@@ -734,19 +693,6 @@
                                             <goal>unpack</goal>
                                             <goal>unpack-dependencies</goal>
                                             <goal>copy-dependencies</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <execute/>
-                                    </action>
-                                </pluginExecution>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-enforcer-plugin</artifactId>
-                                        <versionRange>[1.0,)</versionRange>
-                                        <goals>
-                                            <goal>enforce</goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
@@ -795,11 +741,6 @@
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>xml-maven-plugin</artifactId>
-                    <version>1.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.switchyard</groupId>
@@ -863,6 +804,11 @@
                         <additionalparam>${javadoc.additional.params}</additionalparam>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                    <artifactId>shrinkwrap-resolver-maven-plugin</artifactId>
+                    <version>${version.org.jboss.shrinkwrap.resolver}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -876,13 +822,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>commons-lang</groupId>
-                        <artifactId>commons-lang</artifactId>
-                        <version>2.4</version>
-                    </dependency>
-                </dependencies>
                 <configuration>
                     <archive>
                         <addMavenDescriptor>true</addMavenDescriptor>
@@ -906,8 +845,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
                     <debug>true</debug>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
@@ -923,7 +860,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.plugin.version}</version>
                 <configuration>
                     <systemPropertyVariables>
                         <java.awt.headless>true</java.awt.headless>
@@ -962,13 +898,6 @@
                     <failsOnError>true</failsOnError>
                     <useFile/>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.switchyard</groupId>
-                        <artifactId>switchyard-build</artifactId>
-                        <version>${project.version}</version>
-                    </dependency>
-                </dependencies>
                 <executions>
                     <execution>
                         <id>check-style</id>
@@ -988,13 +917,6 @@
                     <effort>Max</effort>
                     <xmlOutput>true</xmlOutput>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.switchyard</groupId>
-                        <artifactId>switchyard-build</artifactId>
-                        <version>${project.version}</version>
-                    </dependency>
-                </dependencies>
                 <executions>
                     <execution>
                         <id>find-bugs</id>
@@ -1005,28 +927,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>enforce-java-version</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireJavaVersion>
-                                    <version>1.7</version>
-                                    <message>To build this project JDK 1.7 (or greater) is required. Please install
-                                        it.
-                                    </message>
-                                </requireJavaVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- Attach sources -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -1077,85 +977,12 @@
     </build>
     <profiles>
         <profile>
-            <!-- https://cwiki.apache.org/confluence/display/MAVEN/Maven+3.x+and+site+plugin -->
-            <id>maven-3</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <property>
-                    <name>maven-site-plugin</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-site-plugin</artifactId>
-                        <version>3.0-beta-3</version>
-                        <configuration>
-                            <siteDirectory>build/src/site</siteDirectory>
-                            <reportPlugins>
-                                <!-- The Dependencies report takes an obscene amount of time to run. Leaving it out of the reportSet -->
-                                <plugin>
-                                    <groupId>org.apache.maven.plugins</groupId>
-                                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                                    <version>2.4</version>
-                                    <reportSets>
-                                        <reportSet>
-                                            <reports>
-                                                <report>cim</report>
-                                                <!--
-                                                   <report>dependency-management</report>
-                                                   <report>dependency-convergence</report>
-                                                -->
-                                                <report>help</report>
-                                                <report>index</report>
-                                                <report>issue-tracking</report>
-                                                <report>license</report>
-                                                <report>mailing-list</report>
-                                                <report>modules</report>
-                                                <report>plugin-management</report>
-                                                <report>plugins</report>
-                                                <report>project-team</report>
-                                                <report>scm</report>
-                                                <report>summary</report>
-                                            </reports>
-                                        </reportSet>
-                                    </reportSets>
-                                </plugin>
-                            </reportPlugins>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>attach-descriptor</id>
-                                <goals>
-                                    <goal>attach-descriptor</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>backward-compat</id>
             <modules>
                 <module>backward-compat</module>
             </modules>
         </profile>
     </profiles>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-    </dependencies>
 
     <modules>
         <module>fuse-integration-bom</module>

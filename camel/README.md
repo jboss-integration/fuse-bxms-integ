@@ -1,3 +1,3 @@
 # Overview
 
-This mvn multi-module build contains camel components/plugins.
+This Maven multi-module build contains Camel components/plugins.
