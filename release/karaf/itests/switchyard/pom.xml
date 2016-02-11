@@ -12,7 +12,8 @@
 - See the License for the specific language governing permissions and
 - limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -25,87 +26,11 @@
     <artifactId>fuse-integration-karaf-tests-switchyard</artifactId>
     <packaging>jar</packaging>
 
-    <name>Fuse Integration: Release: Karaf: Tests: Switchyard </name>
+    <name>Fuse Integration: Release: Karaf: Tests: Switchyard</name>
     <description>Fuse Integration: Release: Switchyard Karaf Tests</description>
-    
-    <properties>
-        <!-- Align with Fuse 6.2 -->
-        <version.org.apache.cxf>3.0.2</version.org.apache.cxf>
-        <version.org.apache.activemq>5.9.0</version.org.apache.activemq>
-    </properties>
-   <dependencyManagement>
+
+    <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-core</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-bindings-coloc</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-bindings-object</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-bindings-soap</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-bindings-xml</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-databinding-jaxb</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-frontend-jaxws</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-frontend-simple</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-transports-http</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-transports-http-jetty</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-transports-local</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-ws-addr</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-ws-policy</artifactId>
-                <version>${version.org.apache.cxf}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.ftpserver</groupId>
-                <artifactId>ftplet-api</artifactId>
-                <version>1.0.6</version>
-                <scope>test</scope>
-            </dependency>
             <dependency>
                 <groupId>org.apache.sshd</groupId>
                 <artifactId>sshd-core</artifactId>
@@ -132,7 +57,7 @@
                 <artifactId>bcpkix-jdk15on</artifactId>
                 <version>1.49</version>
                 <scope>test</scope>
-            </dependency>     
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -161,15 +86,16 @@
             <artifactId>apache-karaf</artifactId>
             <type>tar.gz</type>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.jboss.spec.javax.jms</groupId>
             <artifactId>jboss-jms-api_1.1_spec</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-client</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -189,7 +115,7 @@
             <classifier>features</classifier>
             <scope>test</scope>
         </dependency>
-      
+
         <dependency>
             <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>karaf-features</artifactId>
@@ -197,7 +123,7 @@
             <classifier>features</classifier>
             <scope>test</scope>
         </dependency>
-      
+
         <dependency>
             <groupId>org.drools</groupId>
             <artifactId>drools-karaf-features</artifactId>
@@ -215,16 +141,6 @@
         <dependency>
             <groupId>org.fusesource.mqtt-client</groupId>
             <artifactId>mqtt-client</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-broker</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-mqtt</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -268,7 +184,7 @@
             <groupId>org.jboss.integration.fuse.quickstarts</groupId>
             <artifactId>switchyard-rules-csv</artifactId>
             <scope>test</scope>
-       </dependency>        
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -287,6 +203,8 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <!-- 2.18.1 is failing with "When writing xml report stdout/stderr: /tmp/stdout (No such file or directory)" -->
+                <version>2.16</version>
                 <configuration>
                     <systemPropertyVariables>
                         <java.awt.headless>true</java.awt.headless>
@@ -315,10 +233,16 @@
                         <configuration>
                             <karafVersion>${version.org.apache.karaf}</karafVersion>
                             <descriptors>
-                                <descriptor>mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features</descriptor>
-                                <descriptor>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</descriptor>
-                                <descriptor>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features</descriptor>
-                                <descriptor>mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features</descriptor>
+                                <descriptor>
+                                    mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features
+                                </descriptor>
+                                <descriptor>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
+                                </descriptor>
+                                <descriptor>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
+                                </descriptor>
+                                <descriptor>
+                                    mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features
+                                </descriptor>
                             </descriptors>
                             <features>
                                 <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
@@ -382,35 +306,4 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <!-- Required to resolve feature bundles. -->
-        <repository>
-            <id>springsource.release</id>
-            <name>Spring Release Repository</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/springsource-obr-releases/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>springsource.external</id>
-            <name>Spring External Repository</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/springsource-obr-external/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>
