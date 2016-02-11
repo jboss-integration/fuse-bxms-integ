@@ -336,6 +336,22 @@
                 <version>1.4.0</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${version.org.apache.poi}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${version.org.apache.poi}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml-schemas</artifactId>
+                <version>${version.org.apache.poi}</version>
+            </dependency>
+
             <!--  ###################################################################
                   ##           Dependencies Not Present in Integration BOM         ##
                   ################################################################### -->
