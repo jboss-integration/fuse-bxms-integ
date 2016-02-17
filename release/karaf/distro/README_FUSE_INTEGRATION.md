@@ -27,11 +27,15 @@ JBossFuse:karaf@root> features:addurl mvn:org.drools/drools-karaf-features/${ver
 
 Installation
 ============
-1.   Add the fuse-integration features file: 
+1   Add the fuse-integration features file:  
+
 ```
+JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse/karaf-features/${project.version}/xml/features
 JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features
 ```
-2.  Install the features. You can install: 
+
+2  Install the features. You can install:  
+ 
 ```
 JBossFuse:karaf@root> features:install    
         fuse-bxms-switchyard-quickstart-rules-camel-cbr             
@@ -41,7 +45,6 @@ JBossFuse:karaf@root> features:install
         fuse-bxms-switchyard-quickstart-bpm-service
         fuse-bxms-switchyard-demo-library
         fuse-bxms-switchyard-demo-helpdesk
-        fuse-bxms-jbpm-workitems-camel
         fuse-bxms-camel-spring-drools-decision-table
         fuse-bxms-camel-blueprint-drools-decision-table
         fuse-bxms-switchyard-quickstart-rules-csv
@@ -51,4 +54,5 @@ JBossFuse:karaf@root> features:install
 Quickstarts
 ============
 The quickstarts/fuse-integration directory contains the suite of quickstarts available in this distro version. Check directly the README file of the quickstart you are interested for further information about usage.
+
 
