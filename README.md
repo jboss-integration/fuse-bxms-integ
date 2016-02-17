@@ -13,7 +13,7 @@ For the moment it contains:
 
 Below, in the details, there will be references to versions. Check the compatible versions suited in the distribution you want to install:
 
-${version.fuse.bxms-integration}
+${version.fuse.bxms-integration}  
 ${version.drools}
 
 Additionally a suite of quickstarts has been added as well as eap 6.4 and karaf support.
