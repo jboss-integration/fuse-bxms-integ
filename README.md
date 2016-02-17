@@ -3,7 +3,7 @@ Fuse BXMS Integration Repository
 
 This is a code repository for the Fuse and BxMS integration components.
 
-It is an optional package that can be added to an existing Fuse 6.2 installation. It contains libraries/components that can interact with other integration modules that have not been added into the default Fuse 6.2 release. 
+It is an optional package that can be added to an existing Fuse 6.2 and 6.3 installation. It contains libraries/components that can interact with other integration modules that have not been added into the default Fuse release. 
 
 For the moment it provides the “glue” between Fuse and BRMS components/libraries. The fuse integration package gives the ability to install the components/libraries that have not been included in Fuse (for instance BRMS).
 
@@ -11,9 +11,15 @@ For the moment it contains:
   * Switchyard brms components: Rules-component and BPM component
   * Camel components used in kie:  kie-camel and  jbpm-workitem-camel components
 
+Below, in the details, there will be references to versions. Check the compatible versions suited in the distribution you want to install:
+
+${version.fuse.bxms-integration}  
+${version.drools}
+
 Additionally a suite of quickstarts has been added as well as eap 6.4 and karaf support.
 
 Execute mvn clean install
+
 
 EAP 6.4 Installation
 ======================
@@ -31,7 +37,7 @@ EAP 6.4 Installation
 
 4.  Install the fuse-integration installer:
 
-        java -jar ${FUSE_BXMS_INTEG}/release/eap/installer/target/fuse-integration-eap-installer-1.2.0-SNAPSHOT.jar ${eap.home}
+        java -jar ${FUSE_BXMS_INTEG}/release/eap/installer/target/fuse-integration-eap-installer-${version.fuse.bxms-integration}.jar ${eap.home}
 
 5.  All the modules and quickstarts will be installed on top of the eap.home provided. The fuse-integration quickstarts are placed:
 
@@ -66,11 +72,11 @@ Fuse 6.2 Installation
 
 2.  If Drools have not been added, it should. 
 
-           features:addurl mvn:org.drools/drools-karaf-features/6.3.0-SNAPSHOT/xml/features
+           features:addurl mvn:org.drools/drools-karaf-features/${version.drools}/xml/features
 
 3.  Add the fuse-integration features file:  
 
-           features:addurl mvn:org.jboss.integration.fuse/karaf-features/1.2.0-SNAPSHOT/xml/features
+           features:addurl mvn:org.jboss.integration.fuse/karaf-features/${version.fuse.bxms-integration}/xml/features
            
 4.  Install the core features. You can install:  
 
@@ -82,7 +88,7 @@ Fuse 6.2 Installation
             
 5.  Try our quickstarts:
 
-           features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${FUSE_INTEGRATION_VERSION}/xml/features
+           features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${version.fuse.bxms-integration}/xml/features
            
            features:install    
             fuse-bxms-switchyard-quickstart-rules-camel-cbr             
