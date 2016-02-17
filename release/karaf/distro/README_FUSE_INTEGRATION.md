@@ -27,12 +27,15 @@ JBossFuse:karaf@root> features:addurl mvn:org.drools/drools-karaf-features/${ver
 
 Installation
 ============
-1.   Add the fuse-integration features file: 
+1.   Add the fuse-integration features file:  
+
 ```
 JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse/karaf-features/${project.version}/xml/features
 JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features
 ```
-2.  Install the features. You can install: 
+
+2.  Install the features. You can install:  
+ 
 ```
 JBossFuse:karaf@root> features:install    
         fuse-bxms-switchyard-quickstart-rules-camel-cbr             
