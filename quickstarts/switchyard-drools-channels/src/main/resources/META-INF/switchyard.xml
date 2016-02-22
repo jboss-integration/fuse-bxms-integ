@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:rules="urn:switchyard-component-rules:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sy="urn:switchyard-config:switchyard:2.0" name="switchyard-drools-channels" targetNamespace="urn:com.example.switchyard:switchyard-drools-channels:1.0">
-  <sca:composite name="switchyard-drools-channels" targetNamespace="urn:com.example.switchyard:switchyard-drools-channels:1.0">
+  <sca:composite name="switchyard-drools-channels" targetNamespace="urn:switchyard-quickstart.switchyard:switchyard-drools-channels:1.0">
     <sca:component name="RulesComponentB">
       <rules:implementation.rules>
         <rules:loggers>
@@ -24,7 +24,7 @@
 		  </rules:operations>
       </rules:implementation.rules>
       <sca:service name="WorkerB">
-        <sca:interface.java interface="com.example.switchyard.drools.channels.WorkerB"/>
+        <sca:interface.java interface="org.switchyard.quickstarts.channels.WorkerB"/>
       </sca:service>
     </sca:component>
     <sca:component name="ChannelComponent">
@@ -54,23 +54,23 @@
         </rules:operations>
       </rules:implementation.rules>
       <sca:service name="Channel">
-        <sca:interface.java interface="com.example.switchyard.drools.channels.Channel"/>
+        <sca:interface.java interface="org.switchyard.quickstarts.channels.Channel"/>
       </sca:service>
       <sca:reference name="WorkerA">
-        <sca:interface.java interface="com.example.switchyard.drools.channels.WorkerA"/>
+        <sca:interface.java interface="org.switchyard.quickstarts.channels.WorkerA"/>
       </sca:reference>
       <sca:reference name="WorkerB">
-        <sca:interface.java interface="com.example.switchyard.drools.channels.WorkerB"/>
+        <sca:interface.java interface="org.switchyard.quickstarts.channels.WorkerB"/>
       </sca:reference>
     </sca:component>
     <sca:service name="Channel" promote="ChannelComponent/Channel">
-      <sca:interface.java interface="com.example.switchyard.drools.channels.Channel"/>
+      <sca:interface.java interface="org.switchyard.quickstarts.channels.Channel"/>
       <sca:binding.sca name="sca1"/>
     </sca:service>
     <sca:component name="WorkerABean">
-      <bean:implementation.bean class="com.example.switchyard.drools.channels.WorkerABean"/>
+      <bean:implementation.bean class="org.switchyard.quickstarts.channels.WorkerABean"/>
       <sca:service name="WorkerA">
-        <sca:interface.java interface="com.example.switchyard.drools.channels.WorkerA"/>
+        <sca:interface.java interface="org.switchyard.quickstarts.channels.WorkerA"/>
       </sca:service>
     </sca:component>
   </sca:composite>

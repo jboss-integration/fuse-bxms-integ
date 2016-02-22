@@ -118,5 +118,11 @@
         <feature version="${karaf.version.org.kie}">kie-spring</feature>
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/spring-jbpm-osgi-example/${project.version}</bundle>
     </feature>
+    <feature name="fuse-bxms-switchyard-drools-channels" version="${project.version}">
+        <feature version="${karaf.version.org.switchyard}">switchyard-sca</feature>
+        <feature version="${karaf.version.org.switchyard}">switchyard-bean</feature>
+        <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/switchyard-drools-channels/${project.version}</bundle>
+    </feature>
 </features>
 

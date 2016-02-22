@@ -1,4 +1,4 @@
-package com.example.switchyard.drools.channels;
+package org.switchyard.quickstarts.channels;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.switchyard.component.test.mixins.cdi.CDIMixIn;
