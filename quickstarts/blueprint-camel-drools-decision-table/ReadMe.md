@@ -1,9 +1,9 @@
 Drools-Blueprint-Camel Quickstart
 =================================
 
-INTRODUCE HERE SOME DESCRIPTION
-
-
+This quickstart shows integration between Blueprint, Camel and Drools. Decision table and DRL file contain simple rules
+which are used to create knowledge session via Blueprint configuration file. Camel routes, defined via Blueprint
+as well, are then used to e.g. pass (insert) the Body of the message as a POJO to Drools engine for execution.
 
 FUSE
 ----------

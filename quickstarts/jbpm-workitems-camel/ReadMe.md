@@ -1,9 +1,11 @@
 Fuse Integration: Quickstarts: jBPM : Work-items camel example
 ==============================================================
 
-INTRODUCE HERE SOME DESCRIPTION
-
-
+Purpose of this quickstart is to show how to easily write into file using jBPM workitems and Camel endpoint.
+The base of the quickstart is simple process which can decide validity of mortgage application and potentially
+calculates repayments. The bundle activator creates few mortgage applications and runs the process for each of these
+applications. The results are saved into "acceptedApplications.txt" and "rejectedApplications.txt" files. These files
+are located in server temporary folder.
 
 FUSE
 ----------
