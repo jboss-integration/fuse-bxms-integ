@@ -84,7 +84,9 @@
             org.jbpm.services.task.query,
             org.kie.api.task.model,
             org.kie.internal.executor.api,
+            org.kie.internal.task.api,
             org.kie.internal.task.api.model,
+            org.kie.api.executor,
             org.w3c.dom,
             *
         </switchyard.osgi.import>
