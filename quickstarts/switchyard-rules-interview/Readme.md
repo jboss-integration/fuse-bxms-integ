@@ -61,7 +61,7 @@ ${FUSE_HOME}/bin/karaf
 2. Ensure that the drools and switchyard compatible features URL files have been added to your Fuse Karaf instance. 
    In case they are not added then:
 
-    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
+    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/${drools.karaf.features.classifier}
 
 3. Add the features URL for the respective version of BXMS.
 
@@ -96,7 +96,7 @@ ${KARAF_HOME}/bin/karaf
    In case they are not added then:
 
     features:addurl mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
-    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
+    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/${drools.karaf.features.classifier}
 
 3. Add the features URL for the respective version of BXMS.
 

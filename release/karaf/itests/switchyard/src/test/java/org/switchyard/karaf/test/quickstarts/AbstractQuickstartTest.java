@@ -41,6 +41,8 @@ import org.osgi.framework.Constants;
 import org.switchyard.karaf.test.quickstarts.PhaseListener.Phase;
 
 public abstract class AbstractQuickstartTest {
+
+    private static final String DROOLS_KARAF_FEATURES_CLASSIFIER = "drools.karaf.features.classifier";
     protected static ExamSystem system;
     protected static TestContainer testContainer;
     private static TestProbeProvider testProbe;
@@ -135,7 +137,7 @@ public abstract class AbstractQuickstartTest {
 
     private static Option[] config(String featureName, String bundleName) throws Exception {
         final String localMavenRepo = System.getProperty("maven.repo.local", "");
-
+        String droolsClassifier = System.getProperty(DROOLS_KARAF_FEATURES_CLASSIFIER) != null ? System.getProperty(DROOLS_KARAF_FEATURES_CLASSIFIER) : "features";
         return options(
                 // karafDistributionConfiguration().frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").type("tar.gz").versionAsInProject())
                 karafDistributionConfiguration().frameworkUrl(new File("target/fuse-integration-karaf-tests-switchyard-bin.tar.gz").toURI().toURL().toString())
@@ -168,7 +170,7 @@ public abstract class AbstractQuickstartTest {
                         "org.ops4j.pax.url.mvn.repositories",
                         "https://repository.jboss.org/nexus/content/groups/public@id=jboss-public-repository-group,http://repo1.maven.org/maven2@id=central, http://svn.apache.org/repos/asf/servicemix/m2-repo@id=servicemix, http://repository.springsource.com/maven/bundles/release@id=springsource.release, http://repository.springsource.com/maven/bundles/external@id=springsource.external, https://repository.jboss.org/nexus/content/repositories/snapshots@snapshots@noreleases@id=jboss-snapshot, https://repository.jboss.org/nexus/content/repositories/fs-releases@id=fusesource.release, https://repository.jboss.org/nexus/content/groups/ea@id=ea"),
                 features(maven().groupId("org.switchyard.karaf").artifactId("switchyard").type("xml").classifier("features").versionAsInProject().getURL()),
-                features(maven().groupId("org.drools").artifactId("drools-karaf-features").type("xml").classifier("features").versionAsInProject().getURL()),
+                features(maven().groupId("org.drools").artifactId("drools-karaf-features").type("xml").classifier(droolsClassifier).versionAsInProject().getURL()),
                 features(maven().groupId("org.jboss.integration.fuse.quickstarts").artifactId("karaf-features").type("xml").classifier("features")
                         .versionAsInProject().getURL(), featureName),
                 systemProperty(DeploymentProbe.BUNDLE_NAME_KEY).value(bundleName),

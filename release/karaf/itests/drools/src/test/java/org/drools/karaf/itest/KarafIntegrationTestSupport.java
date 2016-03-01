@@ -42,6 +42,7 @@ import org.slf4j.LoggerFactory;
 abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
 
     protected static final transient Logger LOG = LoggerFactory.getLogger(KarafIntegrationTestSupport.class);
+    private static final String DROOLS_KARAF_FEATURES_CLASSIFIER = "drools.karaf.features.classifier";
 
     @Inject
     protected BundleContext bundleContext;
@@ -116,7 +117,8 @@ abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
     }
 
     public static Option loadDroolsRepo() {
-        return features(maven().groupId("org.drools").artifactId("drools-karaf-features").type("xml").classifier("features").versionAsInProject().getURL());
+        String droolsClassifier = System.getProperty(DROOLS_KARAF_FEATURES_CLASSIFIER) != null ? System.getProperty(DROOLS_KARAF_FEATURES_CLASSIFIER) : "features";
+        return features(maven().groupId("org.drools").artifactId("drools-karaf-features").type("xml").classifier(droolsClassifier).versionAsInProject().getURL());
     }
 
     private static String getKarafVersion() {
