@@ -14,6 +14,7 @@
 package org.kie.camel.component;
 
 import java.io.ByteArrayInputStream;
+import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -43,6 +44,7 @@ import org.kie.jax.soap.PostCxfSoapProcessor;
 import org.kie.jax.soap.PostCxfTransportSoapProcessor;
 import org.kie.jax.soap.PreCxfSoapProcessor;
 import org.kie.jax.soap.PreCxfTransportSoapProcessor;
+
 
 public class KiePolicy implements Policy {
 
@@ -123,23 +125,46 @@ public class KiePolicy implements Policy {
         }
     }
 
-    private static DataFormatDefinition processDataFormatType(RouteContext routeContext, String ref, DataFormatDefinition dformatDefinition) {
-        if (dformatDefinition == null) {
-            if ("json".equals(ref)) {
+    /** Sets the permissions on the DataFormatDefinition object in case the setPermitions method exists inside of the DataFormatDefinition class. As this KiePolicy class could
+     * be used in different environments (Fuse 6.2.1, Fuse 6.3), the XStream library could not have this method in their API.
+     *
+     * @param dformatDefinition the data format definitoin */
+    private static void setPermissions(DataFormatDefinition dformatDefinition) {
+        // Use Java Reflection to get the method setPermissions. This is done to allow compatibility between fuse 6.3 and fuse 6.2.1
+        // The xstream library differs on version between the 6.2.1 and 6.3 version of fuse.
+        Method setPermissions = null;
+        try {
+            setPermissions = dformatDefinition.getClass().getMethod("setPermissions", String.class);
+        } catch (Exception e) {
+        }
+
+        if (setPermissions != null) {
+            try {
+                setPermissions.invoke(dformatDefinition, "+*");
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    private static DataFormatDefinition processDataFormatType(RouteContext routeContext,
+                                                              String ref,
+                                                              DataFormatDefinition dformatDefinition) {
+        if ( dformatDefinition == null ) {
+            if ( "json".equals( ref ) ) {
                 dformatDefinition = new XStreamDataFormat();
-                ((XStreamDataFormat)dformatDefinition).setDriver("json");
-            } else if ("xstream".equals(ref)) {
+                ((XStreamDataFormat) dformatDefinition).setDriver( "json" );
+                setPermissions(dformatDefinition);
+            } else if ( "xstream".equals( ref ) ) {
                 dformatDefinition = new XStreamDataFormat();
-            } else if ("jaxb".equals(ref)) {
+                setPermissions(dformatDefinition);
+            } else if ( "jaxb".equals( ref ) ) {
                 dformatDefinition = new JaxbDataFormat();
             } else {
                 dformatDefinition = routeContext.getCamelContext().resolveDataFormatDefinition(ref);
             }
         }
-
         // always clone before changing
         dformatDefinition = new FastCloner().deepClone(dformatDefinition);
-
         if (dformatDefinition instanceof JaxbDataFormat) {
             dformatDefinition = augmentJaxbDataFormatDefinition((JaxbDataFormat)dformatDefinition);
         } else if (dformatDefinition instanceof XStreamDataFormat) {
@@ -149,7 +174,7 @@ public class KiePolicy implements Policy {
             } else {
                 dformatDefinition = XStreamXml.newXStreamMarshaller((XStreamDataFormat)dformatDefinition);
             }
-
+            setPermissions(dformatDefinition);
         }
         return dformatDefinition;
     }

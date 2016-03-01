@@ -122,7 +122,7 @@
             <groupId>org.drools</groupId>
             <artifactId>drools-karaf-features</artifactId>
             <type>xml</type>
-            <classifier>features</classifier>
+            <classifier>${drools.karaf.features.classifier}</classifier>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -203,13 +203,13 @@
                 <configuration>
                     <systemPropertyVariables>
                         <java.awt.headless>true</java.awt.headless>
+                        <drools.karaf.features.classifier>${drools.karaf.features.classifier}</drools.karaf.features.classifier>
                     </systemPropertyVariables>
                     <includes>
                         <include>**/*Test*.java</include>
                     </includes>
                     <excludes>
                         <exclude>**/Abstract*.java</exclude>
-                        <exclude>**/CamelNettyBindingQuickstartTest.java</exclude>
                         <exclude>**/*$*</exclude>
                     </excludes>
                 </configuration>
@@ -233,7 +233,7 @@
                                 </descriptor>
                                 <descriptor>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features 
                                 </descriptor>
-                                <descriptor>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features 
+                                <descriptor>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/${drools.karaf.features.classifier}
                                 </descriptor>
                                 <descriptor>
                                     mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features 

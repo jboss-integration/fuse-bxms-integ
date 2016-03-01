@@ -16,6 +16,7 @@ package org.jboss.integration.fuse.karaf.itest;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.KARAF_FEATURES_CONFIG_FILE;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.KARAF_BOOT_FEATURES_KEY;
 import static org.jboss.integration.fuse.karaf.itest.FeatureConstants.CAMEL_FEATURE_ARTIFACT_ID;
@@ -56,7 +57,6 @@ import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.keepRunti
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.logLevel;
 import org.ops4j.pax.exam.karaf.options.LogLevelOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -90,6 +90,8 @@ public class KarafConfigUtil {
      * (for example JBoss Fuse) have Camel installed. (Default value is true).
      */
     public static final String PROP_INSTALL_CAMEL = "karaf.install.camel";
+    
+    private static final String DROOLS_KARAF_FEATURES_CLASSIFIER = "drools.karaf.features.classifier";
 
     private static final transient Logger logger = LoggerFactory.getLogger(KarafConfigUtil.class);
 
@@ -164,8 +166,10 @@ public class KarafConfigUtil {
         // Force the log level to INFO so we have more details during the test.  It defaults to WARN.
         options.add(logLevel(LogLevelOption.LogLevel.INFO));
         
+        String droolsClassifier = System.getProperty(DROOLS_KARAF_FEATURES_CLASSIFIER) != null ? System.getProperty(DROOLS_KARAF_FEATURES_CLASSIFIER) : "features";
+        
         options.add(features(maven().groupId(DROOLS_FEATURE_GROUP_ID).artifactId(DROOLS_FEATURE_ARTIFACT_ID)
-                                        .versionAsInProject().type("xml").classifier("features"),
+                                        .versionAsInProject().type("xml").classifier(droolsClassifier),
                                 JNDI_FEATURE_NAME, H2_FEATURE_NAME, HIBERNATE_FEATURE_NAME, KIE_CI_FEATURE_NAME,
                                 JBPM_FEATURE_NAME, DROOLS_DT_FEATURE_NAME, KIE_SPRING_FEATURE_NAME,
                                 KIE_ARIES_BLUEPRINT_FEATURE_NAME));
