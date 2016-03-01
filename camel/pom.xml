@@ -12,7 +12,8 @@
 - See the License for the specific language governing permissions and
 - limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -24,19 +25,9 @@
 
     <artifactId>camel-parent</artifactId>
     <packaging>pom</packaging>
-    <dependencyManagement>
-       <dependencies>
-          <dependency>
-            <groupId>org.jboss.fuse.bom</groupId>
-            <artifactId>jboss-fuse-parent</artifactId>
-            <version>${version.fuse.eap}</version>
-            <type>pom</type>
-            <scope>import</scope>
-         </dependency>
-       </dependencies>
-    </dependencyManagement>
+
     <name>Fuse Integration: Camel: Parent</name>
-    <description>Fuse BXMS Integration Camel Parent</description>
+    <description>Fuse Integration Camel Parent</description>
     <modules>
         <module>kie-camel</module>
         <module>jbpm-workitems-camel</module>
