@@ -46,7 +46,11 @@
                 <include>**/switchyard-rules-multithreaded</include>
                 <include>**/switchyard-rules-multithreaded/**/*</include>   
                 <include>**/switchyard-drools-channel</include>
-                <include>**/switchyard-drools-channel/**/*</include>         
+                <include>**/switchyard-drools-channel/**/*</include>     
+                <include>**/jbpm-workitems-camel</include>
+                <include>**/jbpm-workitems-camel/**/*</include>    
+                <include>**/spring-camel-drools-decision-table</include>
+                <include>**/spring-camel-drools-decision-table/**/*</include>        
             </includes>
             <excludes>
                 <exclude>**/.git</exclude>

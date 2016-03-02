@@ -39,12 +39,12 @@ public class FuseIntegrationConfigPlugin implements ConfigPlugin {
     
     @Override
     public String getConfigName() {
-        return "bpms";
+        return "fuse-integration";
     }
 
     @Override
     public List<LayerConfig> getLayerConfigs() {
-        return Arrays.asList(new LayerConfig("fuse", REQUIRED, -10), new LayerConfig("bpms", INSTALLING, -9), new LayerConfig("soa", REQUIRED, -8), new LayerConfig(
+        return Arrays.asList(new LayerConfig("fuse", REQUIRED, -10), new LayerConfig("bpms", REQUIRED, -9), new LayerConfig("soa", REQUIRED, -8), new LayerConfig(
                 "fuse-integration", INSTALLING, -7)
         );
     }

@@ -28,7 +28,10 @@
       <componentDescriptor>src/main/resources/org/fuse/integration/switchyard/components/bpm/assembly-component.xml</componentDescriptor>
       <componentDescriptor>src/main/resources/org/fuse/integration/switchyard/components/rules/assembly-component.xml</componentDescriptor>
       <componentDescriptor>src/main/resources/org/fuse/integration/switchyard/components/common/knowledge/assembly-component.xml</componentDescriptor>
-      <componentDescriptor>src/main/resources/org/wildfly/extras/config/plugin/bpms/assembly-component.xml</componentDescriptor>
+      <componentDescriptor>src/main/resources/org/wildfly/extras/config/plugin/fuse-integration/assembly-component.xml</componentDescriptor>
+      <componentDescriptor>src/main/resources/org/fuse/integration/camel/kie/assembly-component.xml</componentDescriptor>
+      <componentDescriptor>src/main/resources/org/fuse/integration/camel/jbpm-workitems/assembly-component.xml</componentDescriptor>
+      <componentDescriptor>src/main/resources/org/apache/camel/spring/assembly-component.xml</componentDescriptor>
     </componentDescriptors>
 
 </assembly>

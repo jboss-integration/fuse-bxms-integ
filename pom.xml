@@ -109,6 +109,8 @@
         <version.org.ops4j.pax.cdi>0.11.0.redhat-001</version.org.ops4j.pax.cdi>
 
         <version.commons-digester>1.8.1</version.commons-digester>
+
+        <version.apache.camel>2.15.1.redhat-621084</version.apache.camel>
     </properties>
 
     <repositories>
@@ -241,6 +243,11 @@
                 <groupId>org.wildfly.extras.patch</groupId>
                 <artifactId>fuse-patch-installer</artifactId>
                 <version>${version.fuse.patch}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kie</groupId>
+                <artifactId>kie-eap-installer</artifactId>
+                <version>${version.org.kie}</version>
             </dependency>
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
@@ -664,6 +671,11 @@
                 <artifactId>sshd-sftp</artifactId>
                 <version>0.11.0</version>
                 <scope>test</scope>
+           </dependency>
+           <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-spring</artifactId>
+                <version>${version.apache.camel}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
