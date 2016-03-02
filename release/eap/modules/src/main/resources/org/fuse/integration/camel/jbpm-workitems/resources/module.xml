@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<module xmlns="urn:jboss:module:1.0" name="org.fuse.integration.camel.jbpm-workitems">
+    <resources>
+        <resource-root path="jbpm-workitems-camel-${project.version}.jar"/>
+    </resources>
+    <dependencies>
+        <module name="org.kie.spring"/>
+
+        <module name="org.kie" export="true"/>
+        <module name="org.drools" export="true"/>
+        <module name="org.jbpm" export="true">
+            <imports>
+                <include path="META-INF/services"/>
+                <exclude path="META-INF/beans.xml"/>
+            </imports>
+            <exports>
+                <include path="META-INF/services"/>
+                <exclude path="META-INF/beans.xml"/>
+            </exports>
+        </module>
+
+        <module name="org.apache.camel.component.cxf">
+         <exports>
+                <exclude path="*org/spring*"/>
+            </exports>
+        </module>
+
+
+        <module name="org.apache.camel"/>
+
+        <module name="javax.xml.bind.api"/>
+ 
+        <module name="javax.wsdl4j.api"/>
+
+        <module name="org.slf4j"/>
+        <module name="org.mvel"/>
+
+    </dependencies>
+</module>

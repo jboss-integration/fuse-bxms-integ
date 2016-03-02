@@ -41,6 +41,7 @@ public class FeatureConstants {
 
     // Integration Pack features
     public static final String INTEG_PACK_FEATURE_GROUP_ID = "org.jboss.integration.fuse";
+    public static final String INTEG_PACK_QUICKSTARTS_FEATURE_GROUP_ID = "org.jboss.integration.fuse.quickstarts";
     public static final String INTEG_PACK_FEATURE_ARTIFACT_ID = "karaf-features";
 
     public static final String KIE_CAMEL_FEATURE_NAME = "kie-camel";

@@ -369,6 +369,13 @@
                                     <outputDirectory>${eap.home}</outputDirectory>
                                     <destFileName>fuse-integration-eap-installer.jar</destFileName>
                                 </artifactItem>
+                               <artifactItem>
+                                    <groupId>org.kie</groupId>
+                                    <artifactId>kie-eap-installer</artifactId>
+                                    <version>${version.org.kie}</version>
+                                    <outputDirectory>${eap.home}</outputDirectory>
+                                    <destFileName>kie-eap-installer.jar</destFileName>
+                                </artifactItem>
                             </artifactItems>
                         </configuration>
                     </execution>
@@ -389,6 +396,21 @@
                             <arguments>
                                 <argument>-jar</argument>
                                 <argument>${eap.home}/fuse-eap-installer.jar</argument>
+                                <argument>${eap.home}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-kie</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>java</executable>
+                            <arguments>
+                                <argument>-jar</argument>
+                                <argument>${eap.home}/kie-eap-installer.jar</argument>
                                 <argument>${eap.home}</argument>
                             </arguments>
                         </configuration>

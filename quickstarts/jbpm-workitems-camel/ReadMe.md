@@ -29,19 +29,45 @@ JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts
 
 JBossFuse:karaf@root> features:install jbpm-workitems-camel-quickstart
 
-5. Check the output. See output at the end of the document.
+5. Make an Http Get Request:
+
+        mvn exec:java 
+
+6. Check the output. See output at the end of the document. The output is placed on ${FUSE_HOME}/data/tmp directory and also is 
+displayed as the output of the previous maven command;
 
 6. Undeploy the quickstart:
 
 JBossFuse:karaf@root> features:uninstall jbpm-workitems-camel-quickstart
 
 
+EAP
+----------
+1. Start EAP in standalone mode:
+
+        ${AS}/bin/standalone.sh
+
+2. Build and deploy the Quickstart : 
+
+        mvn install -Pdeploy
+
+3. Make an Http Get Request:
+
+        mvn exec:java -Peap 
+
+4. Check the output. See output at the end of the document. The output is placed on /tmp directory and also is 
+displayed as the output of the previous maven command;
+
+5. Undeploy the quickstart:
+
+        mvn clean -Pdeploy
+ 
 
 
-To see the results display files "acceptedApplications.txt" and "rejectedApplications.txt" in fuse tmp
-directory (<JBoss Fuse Home>/data/tmp).
 
-    cat data/tmp/acceptedApplications.txt
+To see the results display files "acceptedApplications.txt" and "rejectedApplications.txt" in tmp directory:
+
+    cat acceptedApplications.txt
     
     Application number 1 - repayment is 1224
     Application number 5 - repayment is 1335
@@ -49,7 +75,7 @@ directory (<JBoss Fuse Home>/data/tmp).
     Application number 7 - repayment is 2477
     Application number 10 - repayment is 484
 
-    cat data/tmp/rejectedApplications.txt
+    cat rejectedApplications.txt
     
     Application 2 was rejected
     Application 3 was rejected

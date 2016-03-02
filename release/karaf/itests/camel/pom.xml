@@ -12,7 +12,6 @@
     
     <name>Fuse integration: Karaf integration tests</name>
     <description>BXMS :: Karaf Integration Tests</description>
-    
     <dependencies>
         <dependency>
             <groupId>org.drools</groupId>
@@ -40,6 +39,13 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.integration.fuse</groupId>
+            <artifactId>karaf-features</artifactId>
+            <type>xml</type>
+            <classifier>features</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.integration.fuse.quickstarts</groupId>
             <artifactId>karaf-features</artifactId>
             <type>xml</type>
             <classifier>features</classifier>
@@ -86,6 +92,19 @@
             <artifactId>pax-exam-container-karaf</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- dependency>
+            <groupId>org.ops4j.pax.web.itest</groupId>
+			<artifactId>pax-web-itest-base</artifactId>
+			<version>4.2.5</version>
+			<scope>test</scope>
+		</dependency> 
+        <dependency>
+            <groupId>org.ops4j.pax.web</groupId>
+			<artifactId>pax-web-spi</artifactId>
+			<version>4.2.5</version>
+			<scope>test</scope>
+		</dependency>  		  
+		 -->     
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-junit4</artifactId>

@@ -4,21 +4,10 @@
 java -Djboss.home=. -Dlogging.configuration=file:bin/fusepatch-logging.properties -jar jboss-modules.jar -mp modules org.wildfly.extras.patch --add file:fusepatch/repository/fuse-integration-eap-distro-${project.version}.zip
 
 #
-# bin/fusepatch.sh --add file:fusepatch/repository/kie-eap-distributions-bpms-layer-${version.org.kie}.zip
-#
-java -Djboss.home=. -Dlogging.configuration=file:bin/fusepatch-logging.properties -jar jboss-modules.jar -mp modules org.wildfly.extras.patch --add file:fusepatch/repository/kie-eap-distributions-bpms-layer-${version.org.kie}.zip --force
-
-#
 # bin/fusepatch.sh --update fuse-integration-eap-distro
 #
 java -Djboss.home=. -Dlogging.configuration=file:bin/fusepatch-logging.properties -jar jboss-modules.jar -mp modules org.wildfly.extras.patch --update fuse-integration-eap-distro
 
-#
-# bin/fusepatch.sh --update kie-eap-distributions-bpms-layer
-#
-java -Djboss.home=. -Dlogging.configuration=file:bin/fusepatch-logging.properties -jar jboss-modules.jar -mp modules org.wildfly.extras.patch --update kie-eap-distributions-bpms-layer --force
+java -Djboss.home=. -jar jboss-modules.jar -mp modules org.wildfly.extras.config --configs fuse-integration --enable
 
-#
-# bin/fuseconfig.sh enable
-#
-java -Djboss.home=. -jar jboss-modules.jar -mp modules org.wildfly.extras.config --configs camel,switchyard,bpms --enable
+

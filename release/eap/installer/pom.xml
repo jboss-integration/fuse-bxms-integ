@@ -86,14 +86,6 @@
                            <type>zip</type>
                            <overWrite>true</overWrite>
                         </artifactItem>
-                        <artifactItem>
-                           <groupId>org.kie</groupId>
-                           <artifactId>kie-eap-distributions-bpms-layer</artifactId>
-                           <version>${version.org.kie}</version>
-                           <type>zip</type>
-                           <overWrite>true</overWrite>
-                           <destFileName>kie-eap-distributions-bpms-layer-${version.org.kie}.zip</destFileName>
-                        </artifactItem>
                      </artifactItems>
                   </configuration>
                </execution>

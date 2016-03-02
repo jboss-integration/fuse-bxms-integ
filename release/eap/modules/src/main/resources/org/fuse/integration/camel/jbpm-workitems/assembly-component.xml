@@ -16,8 +16,8 @@
 
     <files>
         <file>
-            <source>src/main/resources/org/wildfly/extras/config/plugin/bpms/resources/module.xml</source>
-            <outputDirectory>/modules/system/layers/fuse/org/wildfly/extras/config/plugin/bpms/main</outputDirectory>
+            <source>src/main/resources/org/fuse/integration/camel/jbpm-workitems/resources/module.xml</source>
+            <outputDirectory>/modules/system/layers/fuse-integration/org/fuse/integration/camel/jbpm-workitems/main</outputDirectory>
             <filtered>true</filtered>
         </file>
     </files>
@@ -25,9 +25,9 @@
         <dependencySet>
             <useTransitiveDependencies>false</useTransitiveDependencies>
             <includes>
-                <include>org.jboss.integration.fuse:fuse-integration-config</include>
+                <include>org.jboss.integration.fuse:jbpm-workitems-camel</include>
             </includes>
-            <outputDirectory>/modules/system/layers/fuse/org/wildfly/extras/config/plugin/bpms/main</outputDirectory>
+            <outputDirectory>/modules/system/layers/fuse-integration/org/fuse/integration/camel/jbpm-workitems/main</outputDirectory>
             <outputFileNameMapping>${artifact.artifactId}-${project.version}.${artifact.extension}</outputFileNameMapping>
         </dependencySet>
     </dependencySets>

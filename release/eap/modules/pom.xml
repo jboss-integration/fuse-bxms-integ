@@ -85,5 +85,17 @@
             <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>switchyard-component-rules</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.integration.fuse</groupId>
+            <artifactId>kie-camel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.integration.fuse</groupId>
+            <artifactId>jbpm-workitems-camel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-spring</artifactId>
+        </dependency>
     </dependencies>
 </project>

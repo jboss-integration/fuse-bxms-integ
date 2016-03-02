@@ -6,7 +6,7 @@
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
     <version>1.5.0-SNAPSHOT</version>
     <artifactId>jbpm-workitems-camel-quickstart</artifactId>
-    <packaging>bundle</packaging>
+    <packaging>war</packaging>
     <name>Fuse Integration: Quickstarts: jBPM : Work-items camel example</name>
     <description>
       Work-items camel example
@@ -49,6 +49,27 @@
            <groupId>org.apache.felix</groupId>
            <artifactId>org.osgi.core</artifactId>
        </dependency>
+
+        <!-- Import the Common Annotations API (JSR-250), we use provided scope 
+            as the API is included in JBoss EAP 6 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.annotation</groupId>
+            <artifactId>jboss-annotations-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <scope>test</scope>
+        </dependency>        
+
+        <!-- Import the Servlet API, we use provided scope as the API is included in JBoss EAP 6 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.3</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <properties>
         <version.felix.maven>2.4.0</version.felix.maven>
@@ -56,6 +77,10 @@
         <version.felix.maven>2.4.0</version.felix.maven>
         <version.org.kie>6.4.0-SNAPSHOT</version.org.kie>
         <version.org.jboss.integration-platform>6.0.0.Final</version.org.jboss.integration-platform>
+        <deploy.skip>true</deploy.skip>
+        <wildfly.port>9999</wildfly.port>
+        <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
+        <bundle.symbolic.name>${project.groupId}.camel.jbpm.workitems</bundle.symbolic.name>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -139,7 +164,7 @@
     <build>
         <resources>
             <resource>
-                <filtering>false</filtering>
+                <filtering>true</filtering>
                 <directory>src/main/resources</directory>
             </resource>
             <resource>
@@ -165,14 +190,46 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
-
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <packagingExcludes>
+              WEB-INF/lib/*.jar
+          </packagingExcludes>
+          <webResources>
+             <resource>
+                <directory>target/classes/META-INF</directory>
+                <targetPath>WEB-INF</targetPath>
+             </resource>
+           </webResources>
+           <archive>
+              <!-- add the generated manifest to the war -->
+              <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+           </archive>
+         </configuration>
+      </plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>${version.felix.maven}</version>
                 <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                    </execution>
+                </executions>                
                 <configuration>
+                    <supportedProjectTypes>
+                        <supportedProjectType>war</supportedProjectType>
+                    </supportedProjectTypes>
+                    <excludeDependencies>true</excludeDependencies>               
                     <instructions>
+                        <Bundle-SymbolicName>${bundle.symbolic.name}</Bundle-SymbolicName>                    
                         <Import-Package>
                             org.osgi.framework,
                             !org.drools.camel.example,
@@ -199,18 +256,97 @@
                             org.kie.api.runtime;version="[6.0,7)",
                             org.kie.api.runtime.rule;version="[6.0,7)",
                             org.kie.api.runtime.process;version="[6.0,7)",
-                            org.kie.internal;version="[6.0,7)",
+                            org.kie.internal;version="[6.0,7)",     
+                            javax.servlet,
+                            javax.servlet.http,                  
                             org.jbpm.process.workitem.camel
                         </Import-Package>
                         <Private-Package>
                             org.jboss.integration.fuse.quickstarts.jbpm.workitems.camel
                         </Private-Package>
-                        <Bundle-Activator>
-                            org.jboss.integration.fuse.quickstarts.jbpm.workitems.camel.Activator
-                        </Bundle-Activator>
+                   
+                         <Web-ContextPath>jbpm-workitems-camel</Web-ContextPath>
+                         <_wab>src/main/webapp</_wab>                        
                     </instructions>
+                    <archive>
+                        <manifestEntries>
+                            <Project-Artifact-Id>${project.artifactId}</Project-Artifact-Id>
+                            <Project-Group-Id>${project.groupId}</Project-Group-Id>
+                            <Project-Version>${project.version}</Project-Version>
+                        </manifestEntries>
+                    </archive>
+                    <rebuildBundle>true</rebuildBundle>                    
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven}</version>
+                <executions>
+                    <execution>
+                        <id>deploy</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>deploy-only</goal>
+                        </goals>
+                        <configuration>
+                            <filename>${project.build.finalName}.war</filename>
+                            <skip>${deploy.skip}</skip>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>undeploy</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>undeploy</goal>
+                        </goals>
+                        <configuration>
+                            <filename>${project.build.finalName}.war</filename>
+                            <skip>${deploy.skip}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <configuration>
+                    <executable>java</executable>
+                    <classpathScope>test</classpathScope>
+                    <mainClass>org.jboss.integration.fuse.quickstarts.jbpm.workitems.camel.ApplicationMain</mainClass>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+  <profiles>
+    <profile>
+      <id>deploy</id>
+      <properties>
+        <deploy.skip>false</deploy.skip>
+      </properties>
+    </profile>
+    <profile>
+      <id>eap</id>
+      <build>
+      	<plugins>
+      	  <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <configuration>
+              <executable>java</executable>
+              <classpathScope>test</classpathScope>
+              <mainClass>org.jboss.integration.fuse.quickstarts.jbpm.workitems.camel.ApplicationMain</mainClass>
+              <systemProperties>
+                <systemProperty>
+                  <key>DEFAULT_PORT</key>
+                  <value>8080</value>
+                </systemProperty>
+              </systemProperties>
+            </configuration>
+          </plugin>
+      	</plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>
