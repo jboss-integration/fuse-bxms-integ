@@ -101,9 +101,9 @@
          <url>https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352</url>
       </repository>
       <repository>
-        <id>redhat-product-ga</id>
-        <name>Red Hat Product GA</name>
-        <url>https://maven.repository.redhat.com/nexus/content/groups/product-ga</url>
+        <id>redhat-product-bxms-releases</id>
+        <name>Red Hat BXMS Product Releases</name>
+        <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-bxms-6.2-build/latest/maven/</url>
       </repository>		
       <!-- General early access -->
       <repository>
