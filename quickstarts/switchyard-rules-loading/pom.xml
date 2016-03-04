@@ -92,7 +92,7 @@
            </dependency>
            <dependency>
                <groupId>org.jbpm</groupId>
-               <artifactId>jbpm-bom</artifactId>
+               <artifactId>jbpm-bom</artifactId>CP-115
                <version>${version.org.kie}</version>
                <type>pom</type>
                <scope>import</scope>
@@ -260,6 +260,11 @@
                <enabled>false</enabled>
 			</snapshots>
 		</repository>
+        <repository>
+          <id>redhat-product-ga</id>
+          <name>Red Hat Product GA</name>
+          <url>https://maven.repository.redhat.com/ga</url>
+        </repository>		
 	</repositories>
 
     <pluginRepositories>
