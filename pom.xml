@@ -175,15 +175,6 @@
     </properties>
 
     <repositories>
-        <!-- Early access to jboss-eap -->
-        <repository>
-            <id>jboss-early-access-repository</id>
-            <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-eap-6.4-rhel-6-build/latest/maven</url>
-        </repository>
-        <repository>
-            <id>jb-ip-early-access-repository</id>
-            <url>http://download.lab.bos.redhat.com/brewroot/repos/jb-bxms-6.2-build/latest/maven</url>
-        </repository>
         <!-- Early access to fuse-eap -->
         <repository>
             <id>fuse-eap-staging-repository</id>
@@ -224,8 +215,20 @@
                 <updatePolicy>daily</updatePolicy>
             </snapshots>
         </repository>
-
-
+        <repository>
+            <id>redhat-product-ga-repository</id>
+            <name>Red Hat Product Repository</name>
+            <url>https://maven.repository.redhat.com/ga/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
         <repository>
             <id>jboss-thirdparty-uploads</id>
             <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-uploads</url>
