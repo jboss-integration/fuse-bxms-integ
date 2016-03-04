@@ -61,9 +61,9 @@
          <url>https://repository.jboss.org/nexus/content/groups/ea</url>
       </repository>
     <repository>
-      <id>redhat-product-bxms-releases</id>
-      <name>Red Hat BXMS Product Releases</name>
-      <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-bxms-6.2-build/latest/maven/</url>
+      <id>redhat-product-ga</id>
+      <name>Red Hat Product GA</name>
+      <url>https://maven.repository.redhat.com/ga</url>
     </repository>		
     <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
     <repository>
