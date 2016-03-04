@@ -101,6 +101,11 @@
         </releases>
     </repository>
     <repository>
+      <id>redhat-product-ga</id>
+      <name>Red Hat Product GA</name>
+      <url>https://maven.repository.redhat.com/nexus/content/groups/product-ga</url>
+    </repository>		
+    <repository>
       <id>redhat-m2-proxy</id>
       <name>Red Hat M2 Proxy</name>
       <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
