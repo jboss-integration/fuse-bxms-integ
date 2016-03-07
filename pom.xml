@@ -13,7 +13,7 @@
 
     <groupId>org.jboss.integration.fuse</groupId>
     <artifactId>fuse-integration-project</artifactId>
-    <version>1.4.0-SNAPSHOT</version>
+    <version>1.4.0.redhat-620000</version>
 
     <packaging>pom</packaging>
 
@@ -39,7 +39,7 @@
     </licenses>
 
     <properties>
-        <version.jboss.integration>1.4.0-SNAPSHOT</version.jboss.integration>
+        <version.jboss.integration>1.4.0.redhat-620000</version.jboss.integration>
 
         <!-- EAP early access -->
         <version.eap>7.5.0.Final-redhat-20</version.eap>
@@ -49,8 +49,8 @@
         <version.fuse.eap>${version.fuse}</version.fuse.eap>
         <version.fuse.patch>1.6.2</version.fuse.patch>
         <karaf-version>2.4.0</karaf-version>
-        <version.camelsap>${version.fuse}</version.camelsap>
-        <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>
+        <version.camelsap>6.2.1.redhat-084</version.camelsap>
+        <version.switchyard>2.0.1.redhat-621084</version.switchyard>
         <version.wildfly.camel>2.3.0.redhat-621084</version.wildfly.camel>
 
         <!-- Internal dependencies -->
