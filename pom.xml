@@ -164,7 +164,7 @@
     </properties>
 
     <repositories>
-        <!-- Early access to jboss-eap -->>
+        <!-- Early access to jboss-eap -->
         <repository>
             <id>fuse-early-access-repository</id>
             <url>https://repository.jboss.org/nexus/content/groups/ea</url>
