@@ -114,10 +114,6 @@
         <bundle>mvn:org.jboss.integration.fuse.quickstarts/jbpm-workitems-camel-quickstart/${project.version}</bundle>
     </feature>
 
-    <feature name="fuse-bxms-spring-jbpm-osgi-example" version="${project.version}">
-        <feature version="${karaf.version.org.kie}">kie-spring</feature>
-        <bundle>mvn:org.jboss.integration.fuse.quickstarts/spring-jbpm-osgi-example/${project.version}</bundle>
-    </feature>
     <feature name="fuse-bxms-switchyard-drools-channels" version="${project.version}">
         <feature version="${karaf.version.org.switchyard}">switchyard-sca</feature>
         <feature version="${karaf.version.org.switchyard}">switchyard-bean</feature>
