@@ -70,7 +70,7 @@ JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts
 
 4. Install the feature for the Rules Interview quickstart :
 
-JBossFuse:karaf@root> features:install fuse-bxms-switchyard-quickstart-rules-interview
+JBossFuse:karaf@root> features:install fuse-bxms-quickstart-switchyard-rules-interview
 
 5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
 <br/>
@@ -81,7 +81,7 @@ mvn exec:java -Pkaraf
 
 6. Undeploy the quickstart:
 
-JBossFuse:karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-rules-interview
+JBossFuse:karaf@root> features:uninstall fuse-bxms-quickstart-switchyard-rules-interview
 
 
 
@@ -105,7 +105,7 @@ karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-fea
 
 4. Install the feature for the Rules Interview quickstart :
 
-karaf@root> features:install fuse-bxms-switchyard-quickstart-rules-interview
+karaf@root> features:install fuse-bxms-quickstart-switchyard-rules-interview
 
 5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
 <br/>
@@ -116,7 +116,7 @@ mvn exec:java -Pkaraf
 
 6. Undeploy the quickstart:
 
-karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-rules-interview
+karaf@root> features:uninstall fuse-bxms-quickstart-switchyard-rules-interview
 
 
 

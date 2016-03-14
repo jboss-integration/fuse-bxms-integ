@@ -117,18 +117,18 @@
                                   <feature>jbpm-workitems-camel/${project.version}</feature>
                                   
 
-                                  <feature>fuse-bxms-switchyard-quickstart-bpm-service/${project.version}</feature>
-                                  <feature>fuse-bxms-switchyard-quickstart-rules-camel-cbr/${project.version}</feature>
-                                  <feature>fuse-bxms-switchyard-quickstart-rules-interview/${project.version}</feature>
-                                  <feature>fuse-bxms-switchyard-quickstart-rules-interview-container/${project.version}</feature>
-                                  <feature>fuse-bxms-switchyard-quickstart-rules-interview-dtable/${project.version}</feature>
-                                  <feature>fuse-bxms-switchyard-demo-library/${project.version}</feature>
-                                  <feature>fuse-bxms-switchyard-demo-helpdesk/${project.version}</feature>
-                                  <feature>fuse-bxms-switchyard-quickstart-rules-multithread/${project.version}</feature>
-                                  <feature>fuse-bxms-switchyard-quickstart-rules-csv/${project.version}</feature>
-                                  <feature>fuse-bxms-camel-blueprint-drools-decision-table/${project.version}</feature>
-                                  <feature>fuse-bxms-camel-spring-drools-decision-table/${project.version}</feature>                                  
-                                  <feature>fuse-bxms-jbpm-workitems-camel-quickstart/${project.version}</feature> 
+                                  <feature>fuse-bxms-quickstart-switchyard-bpm-service/${project.version}</feature>
+                                  <feature>fuse-bxms-quickstart-switchyard-rules-camel-cbr/${project.version}</feature>
+                                  <feature>fuse-bxms-quickstart-switchyard-rules-interview/${project.version}</feature>
+                                  <feature>fuse-bxms-quickstart-switchyard-rules-interview-container/${project.version}</feature>
+                                  <feature>fuse-bxms-quickstart-switchyard-rules-interview-dtable/${project.version}</feature>
+                                  <feature>fuse-bxms-quickstart-switchyard-library/${project.version}</feature>
+                                  <feature>fuse-bxms-quickstart-switchyard-helpdesk/${project.version}</feature>
+                                  <feature>fuse-bxms-quickstart-switchyard-rules-multithread/${project.version}</feature>
+                                  <feature>fuse-bxms-quickstart-switchyard-rules-csv/${project.version}</feature>
+                                  <feature>fuse-bxms-quickstart-camel-blueprint-drools-decision-table/${project.version}</feature>
+                                  <feature>fuse-bxms-quickstart-camel-spring-drools-decision-table/${project.version}</feature>                                  
+                                  <feature>fuse-bxms-quickstart-camel-jbpm-workitems/${project.version}</feature> 
                                </features>
                                <blackList></blackList>
                                <addTransitiveFeatures>false</addTransitiveFeatures>

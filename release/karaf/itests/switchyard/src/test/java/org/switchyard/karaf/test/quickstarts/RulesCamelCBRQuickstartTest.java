@@ -17,7 +17,7 @@ import org.junit.BeforeClass;
 
 public class RulesCamelCBRQuickstartTest extends AbstractQuickstartTest {
     private static String bundleName = "org.jboss.integration.fuse.quickstarts.switchyard.rules.camel.cbr";
-    private static String featureName = "fuse-bxms-switchyard-quickstart-rules-camel-cbr";
+    private static String featureName = "fuse-bxms-quickstart-switchyard-rules-camel-cbr";
 
     @BeforeClass
     public static void before() throws Exception {
