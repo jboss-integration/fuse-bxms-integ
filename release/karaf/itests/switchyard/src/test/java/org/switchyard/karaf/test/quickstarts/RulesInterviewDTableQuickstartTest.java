@@ -18,7 +18,7 @@ import org.junit.Test;
 
 public class RulesInterviewDTableQuickstartTest extends AbstractQuickstartTest {
     private static String bundleName = "org.jboss.integration.fuse.quickstarts.switchyard.rules.interview.dtable";
-    private static String featureName = "fuse-bxms-switchyard-quickstart-rules-interview-dtable";
+    private static String featureName = "fuse-bxms-quickstart-switchyard-rules-interview-dtable";
 
     @BeforeClass
     public static void before() throws Exception {

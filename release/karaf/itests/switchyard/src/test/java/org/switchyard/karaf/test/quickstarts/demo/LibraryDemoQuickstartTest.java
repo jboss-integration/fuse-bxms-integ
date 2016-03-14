@@ -22,7 +22,7 @@ import org.switchyard.karaf.test.quickstarts.AbstractQuickstartTest;
 
 public class LibraryDemoQuickstartTest extends AbstractQuickstartTest {
     private static String bundleName = "org.jboss.integration.fuse.quickstarts.switchyard.demo.library";
-    private static String featureName = "fuse-bxms-switchyard-demo-library";
+    private static String featureName = "fuse-bxms-quickstart-switchyard-library";
 
     @BeforeClass
     public static void before() throws Exception {

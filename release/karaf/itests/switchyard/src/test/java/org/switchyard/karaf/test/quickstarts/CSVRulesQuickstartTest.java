@@ -14,7 +14,7 @@ import org.switchyard.remote.http.HttpInvoker;
 
 public class CSVRulesQuickstartTest extends AbstractQuickstartTest {
     private static String bundleName = "org.jboss.integration.fuse.quickstarts.switchyard.rules.csv";
-    private static String featureName = "fuse-bxms-switchyard-quickstart-rules-csv";
+    private static String featureName = "fuse-bxms-quickstart-switchyard-rules-csv";
     private static final QName SERVICE = new QName("urn:switchyard-quickstart.switchyard:switchyard-rules-csv:1.0", "Service");
 
     @BeforeClass

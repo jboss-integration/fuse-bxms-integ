@@ -67,7 +67,7 @@ JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts
 
 4. Install the feature for the Rules Interview quickstart :
 
-JBossFuse:karaf@root> features:install fuse-bxms-switchyard-drools-channels
+JBossFuse:karaf@root> features:install fuse-bxms-quickstart-switchyard-drools-channels
 
 5. To submit a sca requestrun the quickstart client :
 <br/>
@@ -85,7 +85,7 @@ service: WorkerB, payload: message.B
 
 6. Undeploy the quickstart:
 
-JBossFuse:karaf@root> features:uninstall fuse-bxms-switchyard-drools-channels
+JBossFuse:karaf@root> features:uninstall fuse-bxms-quickstart-switchyard-drools-channels
 
 
 
@@ -109,7 +109,7 @@ karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-fea
 
 4. Install the feature for the Rules Interview quickstart:
 
-karaf@root> features:install fuse-bxms-switchyard-drools-channels
+karaf@root> features:install fuse-bxms-quickstart-switchyard-drools-channels
 
 5. To submit a sca request run the quickstart client:
 <br/>
@@ -126,7 +126,7 @@ service: WorkerB, payload: message.B
 
 6. Undeploy the quickstart:
 
-karaf@root> features:uninstall fuse-bxms-switchyard-drools-channels
+karaf@root> features:uninstall fuse-bxms-quickstart-switchyard-drools-channels
 
 ======================
 
