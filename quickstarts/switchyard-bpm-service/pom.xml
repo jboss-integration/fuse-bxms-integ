@@ -102,6 +102,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- TODO: remove this override once SwitchYard upgrades to ip-bom 6.0.3.Final -->
+            <dependency>
+                <groupId>org.eclipse.jdt.core.compiler</groupId>
+                <artifactId>ecj</artifactId>
+                <version>4.4.2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <repositories>
