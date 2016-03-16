@@ -39,6 +39,9 @@
             org.hibernate.*;resolution:=optional,
             *
         </switchyard.osgi.import>
+        <switchyard.osgi.private>
+            org.jboss.naming.remote.client
+        </switchyard.osgi.private>
         <switchyard.osgi.dynamic>
             org.jbpm.*,
             org.drools.*,
