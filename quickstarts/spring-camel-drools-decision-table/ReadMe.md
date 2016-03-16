@@ -37,6 +37,22 @@ JBossFuse:karaf@root> features:install fuse-bxms-quickstart-camel-spring-drools-
 JBossFuse:karaf@root> features:uninstall fuse-bxms-quickstart-camel-spring-drools-decision-table
 
 
+
+EAP
+----------
+1. Start EAP in standalone mode:
+
+        ${AS}/bin/standalone.sh
+
+2. Build and deploy the Quickstart : 
+
+        mvn install -Pdeploy
+
+3. Check the output. See output at the end of the document.
+
+4. Undeploy the quickstart:
+
+        mvn clean -Pdeploy
  
 
 

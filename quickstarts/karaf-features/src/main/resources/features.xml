@@ -103,15 +103,15 @@
     <feature name="fuse-bxms-quickstart-camel-spring-drools-decision-table" version="${project.version}" resolver="(obr)">
         <feature version="${karaf.version.org.kie}">drools-module</feature>
         <feature version="${karaf.version.org.kie}">drools-decisiontable</feature>
-        <feature version="${karaf.version.org.kie}">kie-spring</feature>
         <feature version="${project.version}">kie-camel</feature>
-        <bundle>mvn:org.jboss.integration.fuse.quickstarts/spring-camel-drools-decision-table/${project.version}</bundle>
+        <feature>spring-dm-web</feature>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/spring-camel-drools-decision-table/${project.version}/war</bundle>
     </feature>
     
     <feature name="fuse-bxms-quickstart-camel-jbpm-workitems" version="${project.version}">
         <feature version="${karaf.version.org.kie}">drools-module</feature>
         <feature version="${project.version}">jbpm-workitems-camel</feature>
-        <bundle>mvn:org.jboss.integration.fuse.quickstarts/jbpm-workitems-camel-quickstart/${project.version}</bundle>
+        <bundle>mvn:org.jboss.integration.fuse.quickstarts/jbpm-workitems-camel-quickstart/${project.version}/war</bundle>
     </feature>
 
     <feature name="fuse-bxms-quickstart-switchyard-drools-channels" version="${project.version}">

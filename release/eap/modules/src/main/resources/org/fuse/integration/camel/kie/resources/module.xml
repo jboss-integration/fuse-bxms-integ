@@ -1,0 +1,56 @@
+	<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<module xmlns="urn:jboss:module:1.0" name="org.fuse.integration.camel.kie">
+    <resources>
+        <resource-root path="kie-camel-${project.version}.jar"/>
+    </resources>
+    <dependencies>
+        <module name="javax.api" />
+        <module name="org.jboss.logging"/>
+        <module name="org.apache.cxf" slot="3.0"/>
+        <module name="org.apache.camel"/>
+        <module name="org.springframework.core" slot="3.x"/>
+        <module name="org.springframework.aop" slot="3.x"/>
+        <module name="org.kie.spring"/>
+        <module name="org.apache.camel.spring" export="true" slot="3.0">
+           <exports>
+              <exclude path="org/springframework/tx/spring-tx**" />
+              <exclude path="org/springframework/beans/spring-beans**" />
+              <exclude path="org/springframework/context/spring-context**" />
+              <exclude path="org/springframework/core/spring-core**" />
+              <exclude path="org/springframework/aop/spring-aop**" />
+              <include path="META-INF" />
+           </exports>
+         <imports>
+            <include path="META-INF" />
+         </imports>
+        </module>
+        <module name="org.apache.camel.component.cxf"/>
+        <module name="org.apache.camel.component.jaxb"/>
+        <module name="com.google.protobuf"/>
+        <module name="javax.api"/>
+        <module name="javax.enterprise.api"/>
+        <module name="javax.xml.bind.api"/>
+        <module name="org.drools"/>
+        <module name="org.apache.poi"/>
+        <module name="org.jbpm">
+        </module>
+        <module name="org.kie"/>
+        <module name="org.mvel"/>
+    </dependencies>
+  <exports>
+    <exclude path="org/springframework/**" />
+  </exports>
+</module>

@@ -5,7 +5,7 @@
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
     <version>1.5.0-SNAPSHOT</version>
     <artifactId>spring-camel-drools-decision-table</artifactId>
-    <packaging>bundle</packaging>
+    <packaging>war</packaging>
 
     <name>Fuse Integration: Quickstarts: Drools &amp; Decision Table using Kie Spring</name>
     <description>
@@ -39,6 +39,10 @@
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>	
         <version.org.kie>6.4.0-SNAPSHOT</version.org.kie>
         <version.org.jboss.integration-platform>6.0.0.Final</version.org.jboss.integration-platform>	
+        <deploy.skip>true</deploy.skip>
+        <wildfly.port>9999</wildfly.port>
+        <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
+        <bundle.symbolic.name>${project.groupId}.spring.camel.drools.decision.table</bundle.symbolic.name>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -209,6 +213,19 @@
   </dependencies>
 
   <build>
+    <resources>
+       <resource>
+         <filtering>true</filtering>
+         <directory>src/main/resources</directory>
+          <excludes>
+          <exclude>data/*</exclude>
+        </excludes>
+       </resource>
+       <resource>
+         <filtering>false</filtering>
+         <directory>src/main/resources/data</directory>
+       </resource>
+    </resources>
     <testResources>
       <testResource>
         <filtering>false</filtering>
@@ -240,47 +257,43 @@
       </plugin>
 
       <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>${version.felix.maven}</version><!--$NO-MVN-MAN-VER$-->
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Import-Package>
-              !org.drools.camel.example,
-              org.apache.camel;version="[2.10,3)",
-              org.apache.camel.spi;version="[2.10,3)",
-              org.apache.camel.model;version="[2.10,3)",
-              org.drools.core;version="[6.0,7)",
-              org.drools.core.base;version="[6.0,7)",
-              org.drools.core.base.accumulators;version="[6.0,7)",
-              org.drools.core.base.evaluators;version="[6.0,7)",
-              org.drools.core.base.extractors;version="[6.0,7)",
-              org.drools.core.command.runtime;version="[6.0,7)",
-              org.drools.core.command.runtime.rule;version="[6.0,7)",
-              org.drools.core.conflict;version="[6.0,7)",
-              org.drools.core.reteoo;version="[6.0,7)",
-              org.drools.core.rule.builder.dialect.asm;version="[6.0,7)",
-              org.drools.core.spi;version="[6.0,7)",
-              org.drools.compiler.compiler;version="[6.0,7)",
-              org.drools.compiler.rule.builder.dialect.mvel;version="[6.0,7)",
-              org.jbpm.process.instance.impl;version="[6.0,7)",
-              org.jbpm.process.instance.event;version="[6.0,7)",
-              org.jbpm.bpmn2;version="[6.0,7)",
-              org.kie.api;version="[6.0,7)",
-              org.kie.api.definition.rule;version="[6.0,7)",
-              org.kie.api.runtime.rule;version="[6.0,7)",
-              org.kie.internal;version="[6.0,7)",
-              org.kie.spring;version="[6.0,7)",
-              org.kie.camel.component;version="[1.0,2)",
-              org.drools.osgi.spring,
-              org.drools.osgi.compiler
-            </Import-Package>
-            <Private-Package>
-              org.drools.camel.example
-            </Private-Package>
-          </instructions>
-        </configuration>
+        <artifactId>maven-war-plugin</artifactId>
+        <executions>
+            <execution>
+                <id>default</id>
+                <phase>package</phase>
+                <goals>
+                    <goal>war</goal>
+                </goals>
+                <configuration>
+                  <failOnMissingWebXml>false</failOnMissingWebXml>
+                  <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+                  <packagingExcludes>
+                     WEB-INF/lib/*.jar,
+                     WEB-INF/web-eap.xml,
+                     WEB-INF/spring,
+                     WEB-INF/classes/META-INF/spring/camel-context-eap.xml
+                  </packagingExcludes>
+                  <webResources>
+                  <resource>
+                    <directory>target/classes/META-INF</directory>
+                    <targetPath>WEB-INF</targetPath>
+                  </resource>
+                  <resource>
+                    <directory>target/classes/META-INF</directory>
+                    <targetPath>META-INF</targetPath>
+                    <includes>
+                      <include>beans.xml</include>
+                    </includes>
+                  </resource>
+                </webResources>
+                <archive>
+                <!-- add the generated manifest to the war -->
+                <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
 
       <!-- allows the route to be ran via 'mvn camel:run' -->
@@ -321,11 +334,137 @@
           <scanIntervalSeconds>10</scanIntervalSeconds>
         </configuration>
       </plugin>
-
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>${version.felix.maven}</version><!--$NO-MVN-MAN-VER$-->
+        <extensions>true</extensions>
+        <executions>
+            <execution>
+                <id>bundle-manifest</id>
+                <phase>process-classes</phase>
+                <goals>
+             <goal>manifest</goal>
+                </goals>
+            </execution>
+        </executions>
+        <configuration>
+          <supportedProjectTypes>
+                <supportedProjectType>war</supportedProjectType>
+            </supportedProjectTypes>
+            <excludeDependencies>true</excludeDependencies>
+          <instructions>
+            <Bundle-SymbolicName>${bundle.symbolic.name}</Bundle-SymbolicName>
+            <Import-Package>
+              !org.drools.camel.example,
+              org.apache.camel;version="[2.10,3)",
+              org.apache.camel.spi;version="[2.10,3)",
+              org.apache.camel.model;version="[2.10,3)",
+              org.drools.core;version="[6.0,7)",
+              org.drools.core.base;version="[6.0,7)",
+              org.drools.core.base.accumulators;version="[6.0,7)",
+              org.drools.core.base.evaluators;version="[6.0,7)",
+              org.drools.core.base.extractors;version="[6.0,7)",
+              org.drools.core.command.runtime;version="[6.0,7)",
+              org.drools.core.command.runtime.rule;version="[6.0,7)",
+              org.drools.core.conflict;version="[6.0,7)",
+              org.drools.core.reteoo;version="[6.0,7)",
+              org.drools.core.rule.builder.dialect.asm;version="[6.0,7)",
+              org.drools.core.spi;version="[6.0,7)",
+              org.drools.compiler.compiler;version="[6.0,7)",
+              org.drools.compiler.rule.builder.dialect.mvel;version="[6.0,7)",
+              org.jbpm.process.instance.impl;version="[6.0,7)",
+              org.jbpm.process.instance.event;version="[6.0,7)",
+              org.jbpm.bpmn2;version="[6.0,7)",
+              org.kie.api;version="[6.0,7)",
+              org.kie.api.definition.rule;version="[6.0,7)",
+              org.kie.api.runtime.rule;version="[6.0,7)",
+              org.kie.internal;version="[6.0,7)",
+              org.kie.spring;version="[6.0,7)",
+              org.kie.camel.component;version="[1.0,2)",
+              org.drools.osgi.spring,
+              org.kie.spring.namespace;version="[6.0,7)",
+              org.springframework.osgi.web.context.support;version="[1.0,4)",
+              org.springframework.web.context;version="[3.0,4)",
+              org.apache.camel.spring.handler;version="[2.10,3)",
+              org.drools.osgi.compiler
+            </Import-Package>
+            <Private-Package>
+              org.drools.camel.example
+            </Private-Package>
+                <Web-ContextPath>cameldecisiontable</Web-ContextPath>
+            <_wab>src/main/webapp</_wab>
+          </instructions>
+            <archive>
+                <manifestEntries>
+             <Project-Artifact-Id>${project.artifactId}</Project-Artifact-Id>
+             <Project-Group-Id>${project.groupId}</Project-Group-Id>
+             <Project-Version>${project.version}</Project-Version>
+                </manifestEntries>
+            </archive>
+            <rebuildBundle>true</rebuildBundle>
+        </configuration>
+      </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <attach>true</attach>
+                            <appendAssemblyId>true</appendAssemblyId>
+                            <finalName>${project.build.finalName}</finalName>
+                            <descriptors>
+                                <descriptor>${basedir}/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+      <plugin>
+        <groupId>org.wildfly.plugins</groupId>
+        <artifactId>wildfly-maven-plugin</artifactId>
+        <version>${version.wildfly.maven}</version>
+        <executions>
+            <execution>
+                <id>deploy</id>
+                <phase>install</phase>
+                <goals>
+             <goal>deploy-only</goal>
+                </goals>
+                <configuration>
+             <filename>${project.build.finalName}-eap.war</filename>
+             <skip>${deploy.skip}</skip>
+                </configuration>
+            </execution>
+            <execution>
+                <id>undeploy</id>
+                <phase>clean</phase>
+                <goals>
+             <goal>undeploy</goal>
+                </goals>
+                <configuration>
+             <filename>${project.build.finalName}-eap.war</filename>
+             <skip>${deploy.skip}</skip>
+                </configuration>
+            </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
   <profiles>
+    <profile>
+      <id>deploy</id>
+      <properties>
+        <deploy.skip>false</deploy.skip>
+      </properties>
+    </profile>
     <profile>
       <id>simple</id>
       <build>
