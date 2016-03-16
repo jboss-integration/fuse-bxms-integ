@@ -25,13 +25,13 @@ JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts
 
 4. Install the feature for the Blueprint camel drools decision table quickstart :
 
-JBossFuse:karaf@root> features:install fuse-bxms-camel-blueprint-drools-decision-table
+JBossFuse:karaf@root> features:install fuse-bxms-quickstart-camel-blueprint-drools-decision-table
 
 5. Check the output. See output at the end of the document.
 
 6. Undeploy the quickstart:
 
-JBossFuse:karaf@root> features:uninstall fuse-bxms-camel-blueprint-drools-decision-table
+JBossFuse:karaf@root> features:uninstall fuse-bxms-quickstart-camel-blueprint-drools-decision-table
 
 
 

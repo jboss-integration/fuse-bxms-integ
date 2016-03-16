@@ -63,7 +63,7 @@ JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts
 
 4. Install the feature for the Rules Camel CBR quickstart :
 
-JBossFuse:karaf@root> features:install fuse-bxms-switchyard-quickstart-rules-camel-cbr
+JBossFuse:karaf@root> features:install fuse-bxms-quickstart-switchyard-rules-camel-cbr
 
 5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
 <br/>
@@ -79,7 +79,7 @@ karaf@root> log:display
 
 7. Undeploy the quickstart:
 
-JBossFuse:karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-rules-camel-cbr
+JBossFuse:karaf@root> features:uninstall fuse-bxms-quickstart-switchyard-rules-camel-cbr
 
 
 KARAF
@@ -102,7 +102,7 @@ karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-fea
 
 4. Install the feature for the Rules Camel CBR quickstart :
 
-karaf@root> features:install fuse-bxms-switchyard-quickstart-rules-camel-cbr
+karaf@root> features:install fuse-bxms-quickstart-switchyard-rules-camel-cbr
 
 5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
 <br/>
@@ -118,7 +118,7 @@ karaf@root> log:display
 
 7. Undeploy the quickstart:
 
-karaf@root> features:uninstall fuse-bxms-switchyard-quickstart-rules-camel-cbr
+karaf@root> features:uninstall fuse-bxms-quickstart-switchyard-rules-camel-cbr
 
 
 Expected Output

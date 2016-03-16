@@ -26,7 +26,7 @@ import org.switchyard.karaf.test.quickstarts.AbstractQuickstartTest;
 @Ignore
 public class HelpdeskDemoQuickstartTest extends AbstractQuickstartTest {
     private static String bundleName = "org.jboss.integration.fuse.quickstarts.switchyard.demo.helpdesk";
-    private static String featureName = "fuse-bxms-switchyard-demo-helpdesk";
+    private static String featureName = "fuse-bxms-quickstart-switchyard-helpdesk";
 
     @BeforeClass
     public static void before() throws Exception {

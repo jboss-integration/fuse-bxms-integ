@@ -43,7 +43,7 @@ Installation
 4.  Install the core features. You can install:  
 
            features:install 
-            fuse-bxms-jbpm-workitems-camel
+            fuse-bxms-quickstart-camel-jbpm-workitems
             fuse-bxms-kie-camel
             fuse-bxms-switchyard-bpm
             fuse-bxms-switchyard-rules
@@ -53,18 +53,18 @@ Installation
            features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${version.fuse.bxms-integration}/xml/features
            
            features:install    
-            fuse-bxms-switchyard-quickstart-rules-camel-cbr             
-            fuse-bxms-switchyard-quickstart-rules-interview          
-            fuse-bxms-switchyard-quickstart-rules-dtable      
-            fuse-bxms-switchyard-quickstart-rules-interview-container   
-            fuse-bxms-switchyard-quickstart-bpm-service
-            fuse-bxms-switchyard-demo-library
-            fuse-bxms-switchyard-demo-helpdesk
-            fuse-bxms-jbpm-workitems-camel
-            fuse-bxms-camel-spring-drools-decision-table
-            fuse-bxms-camel-blueprint-drools-decision-table
-            fuse-bxms-switchyard-quickstart-rules-csv
-            fuse-bxms-switchyard-quickstart-rules-multithread
+            fuse-bxms-quickstart-switchyard-rules-camel-cbr             
+            fuse-bxms-quickstart-switchyard-rules-interview          
+            fuse-bxms-quickstart-switchyard-rules-dtable      
+            fuse-bxms-quickstart-switchyard-rules-interview-container   
+            fuse-bxms-quickstart-switchyard-bpm-service
+            fuse-bxms-quickstart-switchyard-library
+            fuse-bxms-quickstart-switchyard-helpdesk
+            fuse-bxms-quickstart-camel-jbpm-workitems
+            fuse-bxms-quickstart-camel-spring-drools-decision-table
+            fuse-bxms-quickstart-camel-blueprint-drools-decision-table
+            fuse-bxms-quickstart-switchyard-rules-csv
+            fuse-bxms-quickstart-switchyard-rules-multithread
 
 
 Quickstarts

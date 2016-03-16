@@ -20,7 +20,7 @@ import org.switchyard.component.test.mixins.http.HTTPMixIn;
 
 public class RulesInterviewQuickstartTest extends AbstractQuickstartTest {
     private static String bundleName = "org.jboss.integration.fuse.quickstarts.switchyard.rules.interview";
-    private static String featureName = "fuse-bxms-switchyard-quickstart-rules-interview";
+    private static String featureName = "fuse-bxms-quickstart-switchyard-rules-interview";
 
     @BeforeClass
     public static void before() throws Exception {
