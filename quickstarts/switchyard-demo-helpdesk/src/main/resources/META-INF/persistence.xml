@@ -69,7 +69,6 @@
         <class>org.jbpm.services.task.impl.model.TaskImpl</class>
         <class>org.jbpm.services.task.impl.model.UserImpl</class>
         <class>org.jbpm.kie.services.impl.store.DeploymentStoreEntry</class>
-        <class>org.jbpm.kie.services.impl.query.persistence.QueryDefinitionEntity</class>
         <!-- Event Classes -->
         <class>org.jbpm.services.task.audit.impl.model.TaskEventImpl</class>
 
