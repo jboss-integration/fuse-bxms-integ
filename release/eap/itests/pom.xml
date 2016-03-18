@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-- Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
+- Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
 -
 - Licensed under the Apache License, Version 2.0 (the "License")
 - you may not use this file except in compliance with the License.
@@ -13,28 +13,25 @@
 - limitations under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>eap-release-parent</artifactId>
         <version>1.5.0-SNAPSHOT</version>
     </parent>
-
     <artifactId>fuse-integration-eap-itests</artifactId>
     <packaging>jar</packaging>
     <name>Fuse Integration: AS7 Release Distribution Tests</name>
     <description>Fuse BXMS Integration AS7 Release Distribution Tests</description>
-
     <properties>
         <temp.switchyard.unpack>${project.build.directory}/temp/switchyard-distro</temp.switchyard.unpack>
         <temp.fuse.integration.unpack>${project.build.directory}/temp/fuse-integration</temp.fuse.integration.unpack>
     </properties>
-
     <dependencyManagement>
         <dependencies>
-            <!-- We want to align with EAP deps, since that's what users will likely use when deploying to EAP. -->
+            <!-- We want to align with EAP deps, since that's what users will likely use when deploying 
+                to EAP. -->
             <dependency>
                 <groupId>org.jboss.integration-platform</groupId>
                 <artifactId>jboss-integration-platform-bom</artifactId>
@@ -42,8 +39,8 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- EAP tests need to use CXF 2.7.x, which is the one used by EAP 6.4.x. Following artifacts are not in
-                 the above jboss-integration-platform-bom, so need to be overridden directly here.-->
+            <!-- EAP tests need to use CXF 2.7.x, which is the one used by EAP 6.4.x. Following artifacts 
+                are not in the above jboss-integration-platform-bom, so need to be overridden directly here. -->
             <dependency>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-rt-bindings-coloc</artifactId>
@@ -159,7 +156,6 @@
             <groupId>org.switchyard</groupId>
             <artifactId>switchyard-release-testutil</artifactId>
         </dependency>
-
         <!-- Test Dependencies -->
         <dependency>
             <groupId>org.jboss.integration.fuse</groupId>
@@ -273,7 +269,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <profiles>
         <profile>
             <id>default</id>
@@ -323,7 +318,6 @@
             </repositories>
         </profile>
     </profiles>
-
     <build>
         <testResources>
             <testResource>
@@ -369,7 +363,7 @@
                                     <outputDirectory>${eap.home}</outputDirectory>
                                     <destFileName>fuse-integration-eap-installer.jar</destFileName>
                                 </artifactItem>
-                               <artifactItem>
+                                <artifactItem>
                                     <groupId>org.kie</groupId>
                                     <artifactId>kie-eap-installer</artifactId>
                                     <version>${version.org.kie}</version>
@@ -432,9 +426,8 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- Configure the Surefire plugin for running the tests. Be sure
-               to make these same setting if running in your IDE... -->
+            <!-- Configure the Surefire plugin for running the tests. Be sure to make these same setting 
+                if running in your IDE... -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

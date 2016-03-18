@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-- Copyright 2015 Red Hat Inc. and/or its affiliates and other contributors.
+- Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
 -
 - Licensed under the Apache License, Version 2.0 (the "License")
 - you may not use this file except in compliance with the License.
@@ -12,10 +12,9 @@
 - See the License for the specific language governing permissions and
 - limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-
     <artifactId>switchyard-demo-helpdesk</artifactId>
     <packaging>war</packaging>
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
@@ -51,65 +50,43 @@
         <wildfly.port>9999</wildfly.port>
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.source>1.6</maven.compiler.source>
-        <switchyard.osgi.import>
-            javax.el,
-            javax.faces.webapp,
-            javax.servlet;version="[3.0.0,4.0.0)",
-            javax.servlet.http;version="[3.0.0,4.0.0)",
-            javax.servlet.jsp;version="2.2.0",
-            javax.servlet.jsp.jstl.core;version="2.2",
-            javax.servlet.jsp.jstl.fmt;version="2.2",
-            javax.servlet.jsp.jstl.tlv;version="2.2",
+        <switchyard.osgi.import> javax.el, javax.faces.webapp,
+            javax.servlet;version="[3.0.0,4.0.0)", javax.servlet.http;version="[3.0.0,4.0.0)",
+            javax.servlet.jsp;version="2.2.0", javax.servlet.jsp.jstl.core;version="2.2",
+            javax.servlet.jsp.jstl.fmt;version="2.2", javax.servlet.jsp.jstl.tlv;version="2.2",
             org.apache.taglibs.standard.resources;version="1.1.2",
             org.apache.taglibs.standard.tag.common.core;version="1.1.2",
             org.apache.taglibs.standard.tag.rt.core;version="1.1.2",
             org.apache.taglibs.standard.tei;version="1.1.2",
-            org.apache.taglibs.standard.tlv;version="1.1.2"
-            com.sun.el.lang,
-            com.sun.el.parser,
-            com.sun.el,
-            com.sun.el.util,
-            javax.faces.*,
-            org.apache.log4j,
-            org.drools.persistence.info,
-            org.jbpm.executor.entities,
-            org.jbpm.persistence.correlation,
-            org.jbpm.persistence.processinstance,
-            org.jbpm.process.audit,
-            org.jbpm.runtime.manager.impl.jpa,
-            org.jbpm.services.task.audit.impl.model,
-            org.jbpm.services.task.impl.model,
-            org.jbpm.services.task.internals.lifecycle,
-            org.jbpm.services.task.persistence,
-            org.jbpm.services.task.query,
-            org.kie.api.task.model,
-            org.kie.internal.executor.api,
-            org.kie.internal.task.api,
-            org.kie.internal.task.api.model,
-            org.kie.api.executor,
-            org.w3c.dom,
-            *
+            org.apache.taglibs.standard.tlv;version="1.1.2" com.sun.el.lang, com.sun.el.parser,
+            com.sun.el, com.sun.el.util, javax.faces.*, org.apache.log4j,
+            org.drools.persistence.info, org.jbpm.executor.entities,
+            org.jbpm.persistence.correlation, org.jbpm.persistence.processinstance,
+            org.jbpm.process.audit, org.jbpm.runtime.manager.impl.jpa,
+            org.jbpm.services.task.audit.impl.model, org.jbpm.services.task.impl.model,
+            org.jbpm.services.task.internals.lifecycle, org.jbpm.services.task.persistence,
+            org.jbpm.services.task.query, org.kie.api.task.model, org.kie.internal.executor.api,
+            org.kie.internal.task.api, org.kie.internal.task.api.model, org.kie.api.executor,
+            org.w3c.dom, * 
         </switchyard.osgi.import>
-        <switchyard.osgi.require.capability>
-            org.ops4j.pax.cdi.extension; filter:="(extension=switchyard-component-bean)",
-            org.ops4j.pax.cdi.extension; filter:="(extension=deltaspike-core-api)",
-            osgi.extender; filter:="(osgi.extender=pax.cdi)"
+        <switchyard.osgi.require.capability> org.ops4j.pax.cdi.extension;
+            filter:="(extension=switchyard-component-bean)", org.ops4j.pax.cdi.extension;
+            filter:="(extension=deltaspike-core-api)", osgi.extender;
+            filter:="(osgi.extender=pax.cdi)" 
         </switchyard.osgi.require.capability>
-        <switchyard.osgi.require.bundle>
-            org.apache.myfaces.core.bundle
+        <switchyard.osgi.require.bundle> org.apache.myfaces.core.bundle 
         </switchyard.osgi.require.bundle>
-        <switchyard.osgi.dynamic>
-            org.switchyard,org.switchyard.*
+        <switchyard.osgi.dynamic> org.switchyard,org.switchyard.* 
         </switchyard.osgi.dynamic>
         <version.enforcer.maven>1.3.1</version.enforcer.maven>
         <version.felix.maven>2.4.0</version.felix.maven>
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <enforcer.skip>true</enforcer.skip>
-        <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>	
+        <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <version.org.kie>6.4.0-SNAPSHOT</version.org.kie>
-        <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>	
+        <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>
     </properties>
-      <dependencyManagement>
+    <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.jboss.integration.fuse</groupId>
@@ -149,44 +126,44 @@
         </dependencies>
     </dependencyManagement>
     <repositories>
-      <!-- Early access to fuse-eap -->
-      <repository>
-         <id>fuse-eap-staging-repository</id>
-         <url>https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352</url>
-      </repository>
-      <!-- General early access -->
-      <repository>
-         <id>fuse-early-access-repository</id>
-         <url>https://repository.jboss.org/nexus/content/groups/ea</url>
-      </repository>
-    <repository>
-      <id>redhat-product-ga</id>
-      <name>Red Hat Product GA</name>
-      <url>https://maven.repository.redhat.com/ga</url>
-    </repository>		
-    <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
-    <repository>
-        <id>fusesource.ea</id>
-        <name>JBoss Community Early Access Release Repository</name>
-        <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
-    </repository>
-    <repository>
-	<id>jboss-public-repository-group</id>
-	<name>JBoss Public Repository Group</name>
-        <url>https://repository.jboss.org/nexus/content/groups/public/</url>
-	<layout>default</layout>
-    </repository>
-    <repository>
-      <id>redhat-m2-proxy</id>
-      <name>Red Hat M2 Proxy</name>
-      <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
-    </repository>
-    <repository>
-      <id>redhat-techpreview-all-repository</id>
-      <name>Red Hat Tech Preview repository (all)</name>
-      <url>http://maven.repository.redhat.com/techpreview/all/</url>
-      <layout>default</layout>
-    </repository>
+        <!-- Early access to fuse-eap -->
+        <repository>
+            <id>fuse-eap-staging-repository</id>
+            <url>https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352</url>
+        </repository>
+        <!-- General early access -->
+        <repository>
+            <id>fuse-early-access-repository</id>
+            <url>https://repository.jboss.org/nexus/content/groups/ea</url>
+        </repository>
+        <repository>
+            <id>redhat-product-ga</id>
+            <name>Red Hat Product GA</name>
+            <url>https://maven.repository.redhat.com/ga</url>
+        </repository>
+        <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
+        <repository>
+            <id>fusesource.ea</id>
+            <name>JBoss Community Early Access Release Repository</name>
+            <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
+        </repository>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>redhat-m2-proxy</id>
+            <name>Red Hat M2 Proxy</name>
+            <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
+        </repository>
+        <repository>
+            <id>redhat-techpreview-all-repository</id>
+            <name>Red Hat Tech Preview repository (all)</name>
+            <url>http://maven.repository.redhat.com/techpreview/all/</url>
+            <layout>default</layout>
+        </repository>
     </repositories>
     <dependencies>
         <dependency>
@@ -224,7 +201,8 @@
             <artifactId>cdi-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Import the Common Annotations API (JSR-250), we use provided scope as the API is included in JBoss AS 7 -->
+        <!-- Import the Common Annotations API (JSR-250), we use provided scope as the API is included 
+            in JBoss AS 7 -->
         <dependency>
             <groupId>org.jboss.spec.javax.annotation</groupId>
             <artifactId>jboss-annotations-api_1.1_spec</artifactId>
@@ -273,24 +251,24 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-	</dependency>
+        </dependency>
         <dependency>
-	    <groupId>org.jboss.spec.javax.servlet</groupId>
-	    <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_3.0_spec</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
         <pluginManagement>
-           <plugins>
-             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                 <version>${maven.surefire.plugin.version}</version>
-             </plugin>
-           </plugins>
-        </pluginManagement> 
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.switchyard</groupId>
@@ -331,10 +309,10 @@
                         <Bundle-SymbolicName>${bundle.symbolic.name}</Bundle-SymbolicName>
                         <DynamicImport-Package>${switchyard.osgi.dynamic}</DynamicImport-Package>
                         <Embed-Dependency>!*</Embed-Dependency>
-                        <Import-Package>${switchyard.osgi.import},
-                                        org.eclipse.jetty.jndi 
+                        <Import-Package>${switchyard.osgi.import}, org.eclipse.jetty.jndi 
                         </Import-Package>
-                        <Include-Resource>{maven-resources}, WEB-INF/switchyard.xml=target/classes/META-INF/switchyard.xml</Include-Resource>
+                        <Include-Resource>{maven-resources},
+                            WEB-INF/switchyard.xml=target/classes/META-INF/switchyard.xml</Include-Resource>
                         <Require-Capability>${switchyard.osgi.require.capability}</Require-Capability>
                         <Require-Bundle>${switchyard.osgi.require.bundle}</Require-Bundle>
                         <Meta-Persistence>WEB-INF/classes/META-INF/persistence-osgi.xml</Meta-Persistence>
@@ -355,11 +333,8 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <packagingExcludes>
-                        WEB-INF/lib/*.jar,
-                        WEB-INF/classes/META-INF/switchyard.xml,
-                        WEB-INF/classes/META-INF/MANIFEST.MF,
-                        WEB-INF/classes/META-INF/beans.xml
+                    <packagingExcludes> WEB-INF/lib/*.jar, WEB-INF/classes/META-INF/switchyard.xml,
+                        WEB-INF/classes/META-INF/MANIFEST.MF, WEB-INF/classes/META-INF/beans.xml 
                     </packagingExcludes>
                     <webResources>
                         <resource>
@@ -491,7 +466,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.1</version><!--$NO-MVN-MAN-VER$-->
+                <version>2.1.1</version><!--$NO-MVN-MAN-VER$ -->
                 <executions>
                     <execution>
                         <id>attach-sources</id>
