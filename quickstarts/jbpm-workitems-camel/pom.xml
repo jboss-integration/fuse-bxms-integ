@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--
+- Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
+-
+- Licensed under the Apache License, Version 2.0 (the "License")
+- you may not use this file except in compliance with the License.
+- You may obtain a copy of the License at
+- http://www.apache.org/licenses/LICENSE-2.0
+- Unless required by applicable law or agreed to in writing, software
+- distributed under the License is distributed on an "AS IS" BASIS,
+- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- See the License for the specific language governing permissions and
+- limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
     <version>1.4.0-SNAPSHOT</version>
     <artifactId>jbpm-workitems-camel-quickstart</artifactId>
@@ -12,7 +24,6 @@
       Work-items camel example
     </description>
     <url>https://github.com/jboss-integration/fuse-bxms-integ</url>
-
     <organization>
         <name>JBoss by Red Hat</name>
         <url>http://jboss.org</url>
@@ -33,25 +44,22 @@
             <distribution>repo</distribution>
             <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
         </license>
-    </licenses>    
+    </licenses>
     <dependencies>
         <dependency>
             <groupId>org.kie</groupId>
             <artifactId>kie-api</artifactId>
         </dependency>
-        
         <dependency>
             <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>jbpm-workitems-camel</artifactId>
         </dependency>
-        
         <dependency>
-           <groupId>org.apache.felix</groupId>
-           <artifactId>org.osgi.core</artifactId>
-       </dependency>
-
-        <!-- Import the Common Annotations API (JSR-250), we use provided scope 
-            as the API is included in JBoss EAP 6 -->
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.osgi.core</artifactId>
+        </dependency>
+        <!-- Import the Common Annotations API (JSR-250), we use provided scope as the API is included 
+            in JBoss EAP 6 -->
         <dependency>
             <groupId>org.jboss.spec.javax.annotation</groupId>
             <artifactId>jboss-annotations-api_1.1_spec</artifactId>
@@ -61,8 +69,7 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <scope>test</scope>
-        </dependency>        
-
+        </dependency>
         <!-- Import the Servlet API, we use provided scope as the API is included in JBoss EAP 6 -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -127,40 +134,40 @@
         </dependencies>
     </dependencyManagement>
     <repositories>
-      <!-- Early access to fuse-eap -->
-      <repository>
-         <id>fuse-eap-staging-repository</id>
-         <url>https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352</url>
-      </repository>
-      <!-- General early access -->
-      <repository>
-         <id>fuse-early-access-repository</id>
-         <url>https://repository.jboss.org/nexus/content/groups/ea</url>
-      </repository>
-    <repository>
-      <id>redhat-product-ga</id>
-      <name>Red Hat Product GA</name>
-      <url>https://maven.repository.redhat.com/ga</url>
-    </repository>		
-    <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
-    <repository>
-        <id>fusesource.ea</id>
-        <name>JBoss Community Early Access Release Repository</name>
-        <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-        <releases>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-        </releases>
-    </repository>
-    <repository>
-      <id>redhat-m2-proxy</id>
-      <name>Red Hat M2 Proxy</name>
-      <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
-    </repository>
-    </repositories> 
+        <!-- Early access to fuse-eap -->
+        <repository>
+            <id>fuse-eap-staging-repository</id>
+            <url>https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352</url>
+        </repository>
+        <!-- General early access -->
+        <repository>
+            <id>fuse-early-access-repository</id>
+            <url>https://repository.jboss.org/nexus/content/groups/ea</url>
+        </repository>
+        <repository>
+            <id>redhat-product-ga</id>
+            <name>Red Hat Product GA</name>
+            <url>https://maven.repository.redhat.com/ga</url>
+        </repository>
+        <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
+        <repository>
+            <id>fusesource.ea</id>
+            <name>JBoss Community Early Access Release Repository</name>
+            <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>redhat-m2-proxy</id>
+            <name>Red Hat M2 Proxy</name>
+            <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
+        </repository>
+    </repositories>
     <build>
         <resources>
             <resource>
@@ -173,14 +180,14 @@
             </resource>
         </resources>
         <pluginManagement>
-           <plugins>
-             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                 <version>${maven.surefire.plugin.version}</version>
-             </plugin>
-           </plugins>
-        </pluginManagement> 
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -190,25 +197,24 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-          <packagingExcludes>
-              WEB-INF/lib/*.jar
-          </packagingExcludes>
-          <webResources>
-             <resource>
-                <directory>target/classes/META-INF</directory>
-                <targetPath>WEB-INF</targetPath>
-             </resource>
-           </webResources>
-           <archive>
-              <!-- add the generated manifest to the war -->
-              <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-           </archive>
-         </configuration>
-      </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <packagingExcludes> WEB-INF/lib/*.jar 
+                    </packagingExcludes>
+                    <webResources>
+                        <resource>
+                            <directory>target/classes/META-INF</directory>
+                            <targetPath>WEB-INF</targetPath>
+                        </resource>
+                    </webResources>
+                    <archive>
+                        <!-- add the generated manifest to the war -->
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
@@ -222,17 +228,15 @@
                             <goal>manifest</goal>
                         </goals>
                     </execution>
-                </executions>                
+                </executions>
                 <configuration>
                     <supportedProjectTypes>
                         <supportedProjectType>war</supportedProjectType>
                     </supportedProjectTypes>
-                    <excludeDependencies>true</excludeDependencies>               
+                    <excludeDependencies>true</excludeDependencies>
                     <instructions>
-                        <Bundle-SymbolicName>${bundle.symbolic.name}</Bundle-SymbolicName>                    
-                        <Import-Package>
-                            org.osgi.framework,
-                            !org.drools.camel.example,
+                        <Bundle-SymbolicName>${bundle.symbolic.name}</Bundle-SymbolicName>
+                        <Import-Package> org.osgi.framework, !org.drools.camel.example,
                             org.apache.camel;version="[2.10,3)",
                             org.apache.camel.spi;version="[2.10,3)",
                             org.apache.camel.model;version="[2.10,3)",
@@ -251,22 +255,18 @@
                             org.drools.compiler.rule.builder.dialect.mvel;version="[6.0,7)",
                             org.jbpm.process.instance.impl;version="[6.0,7)",
                             org.jbpm.process.instance.event;version="[6.0,7)",
-                            org.jbpm.bpmn2;version="[6.0,7)",
-                            org.kie.api;version="[6.0,7)",
+                            org.jbpm.bpmn2;version="[6.0,7)", org.kie.api;version="[6.0,7)",
                             org.kie.api.runtime;version="[6.0,7)",
                             org.kie.api.runtime.rule;version="[6.0,7)",
                             org.kie.api.runtime.process;version="[6.0,7)",
-                            org.kie.internal;version="[6.0,7)",     
-                            javax.servlet,
-                            javax.servlet.http,                  
-                            org.jbpm.process.workitem.camel
+                            org.kie.internal;version="[6.0,7)", javax.servlet, javax.servlet.http,
+                            org.jbpm.process.workitem.camel 
                         </Import-Package>
                         <Private-Package>
-                            org.jboss.integration.fuse.quickstarts.jbpm.workitems.camel
+                            org.jboss.integration.fuse.quickstarts.jbpm.workitems.camel 
                         </Private-Package>
-                   
-                         <Web-ContextPath>jbpm-workitems-camel</Web-ContextPath>
-                         <_wab>src/main/webapp</_wab>                        
+                        <Web-ContextPath>jbpm-workitems-camel</Web-ContextPath>
+                        <_wab>src/main/webapp</_wab>
                     </instructions>
                     <archive>
                         <manifestEntries>
@@ -275,7 +275,7 @@
                             <Project-Version>${project.version}</Project-Version>
                         </manifestEntries>
                     </archive>
-                    <rebuildBundle>true</rebuildBundle>                    
+                    <rebuildBundle>true</rebuildBundle>
                 </configuration>
             </plugin>
             <plugin>
@@ -318,35 +318,34 @@
             </plugin>
         </plugins>
     </build>
-  <profiles>
-    <profile>
-      <id>deploy</id>
-      <properties>
-        <deploy.skip>false</deploy.skip>
-      </properties>
-    </profile>
-    <profile>
-      <id>eap</id>
-      <build>
-      	<plugins>
-      	  <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <configuration>
-              <executable>java</executable>
-              <classpathScope>test</classpathScope>
-              <mainClass>org.jboss.integration.fuse.quickstarts.jbpm.workitems.camel.ApplicationMain</mainClass>
-              <systemProperties>
-                <systemProperty>
-                  <key>DEFAULT_PORT</key>
-                  <value>8080</value>
-                </systemProperty>
-              </systemProperties>
-            </configuration>
-          </plugin>
-      	</plugins>
-      </build>
-    </profile>
-  </profiles>
-
+    <profiles>
+        <profile>
+            <id>deploy</id>
+            <properties>
+                <deploy.skip>false</deploy.skip>
+            </properties>
+        </profile>
+        <profile>
+            <id>eap</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <executable>java</executable>
+                            <classpathScope>test</classpathScope>
+                            <mainClass>org.jboss.integration.fuse.quickstarts.jbpm.workitems.camel.ApplicationMain</mainClass>
+                            <systemProperties>
+                                <systemProperty>
+                                    <key>DEFAULT_PORT</key>
+                                    <value>8080</value>
+                                </systemProperty>
+                            </systemProperties>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

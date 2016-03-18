@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--
+- Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
+-
+- Licensed under the Apache License, Version 2.0 (the "License")
+- you may not use this file except in compliance with the License.
+- You may obtain a copy of the License at
+- http://www.apache.org/licenses/LICENSE-2.0
+- Unless required by applicable law or agreed to in writing, software
+- distributed under the License is distributed on an "AS IS" BASIS,
+- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+- See the License for the specific language governing permissions and
+- limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
@@ -7,9 +21,7 @@
         <version>1.4.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
-    
     <artifactId>kie-camel-karaf-itest</artifactId>
-    
     <name>Fuse integration: Karaf integration tests</name>
     <description>BXMS :: Karaf Integration Tests</description>
     <dependencies>
@@ -28,7 +40,6 @@
             <artifactId>kie-spring</artifactId>
             <scope>test</scope>
         </dependency>
-        
         <!-- Features XML Dependencies used by pax-exam to resolve features to be deployed during test -->
         <dependency>
             <groupId>org.drools</groupId>
@@ -58,7 +69,6 @@
             <classifier>features</classifier>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.apache.karaf.assemblies.features</groupId>
             <artifactId>standard</artifactId>
@@ -66,8 +76,7 @@
             <classifier>features</classifier>
             <scope>test</scope>
         </dependency>
-
-        <!-- Karaf distribution-->
+        <!-- Karaf distribution -->
         <dependency>
             <groupId>org.apache.karaf</groupId>
             <artifactId>apache-karaf</artifactId>
@@ -80,31 +89,19 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <dependency>
             <groupId>org.apache.karaf.features</groupId>
             <artifactId>org.apache.karaf.features.core</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-container-karaf</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- dependency>
-            <groupId>org.ops4j.pax.web.itest</groupId>
-			<artifactId>pax-web-itest-base</artifactId>
-			<version>4.2.5</version>
-			<scope>test</scope>
-		</dependency> 
-        <dependency>
-            <groupId>org.ops4j.pax.web</groupId>
-			<artifactId>pax-web-spi</artifactId>
-			<version>4.2.5</version>
-			<scope>test</scope>
-		</dependency>  		  
-		 -->     
+        <!-- dependency> <groupId>org.ops4j.pax.web.itest</groupId> <artifactId>pax-web-itest-base</artifactId> 
+            <version>4.2.5</version> <scope>test</scope> </dependency> <dependency> <groupId>org.ops4j.pax.web</groupId> 
+            <artifactId>pax-web-spi</artifactId> <version>4.2.5</version> <scope>test</scope> </dependency> -->
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-junit4</artifactId>
@@ -125,7 +122,6 @@
             <artifactId>jbpm-workitems-camel</artifactId>
             <scope>test</scope>
         </dependency>
-
         <!-- Unit Test -->
         <dependency>
             <groupId>junit</groupId>
@@ -135,8 +131,6 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
         </dependency>
-
-
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -152,22 +146,20 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>provided</scope>
         </dependency>
-
-        <!-- Temporary workaround. This should be removed once the Karaf is properly configured with the remote repos,
-             so that it can download the kie-ci-osgi itself (instead of relying on the outer Maven test build). -->
+        <!-- Temporary workaround. This should be removed once the Karaf is properly configured with 
+            the remote repos, so that it can download the kie-ci-osgi itself (instead of relying on the outer Maven 
+            test build). -->
         <dependency>
             <groupId>org.kie</groupId>
             <artifactId>kie-ci-osgi</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
-    
     <build>
         <testResources>
             <testResource>
@@ -179,7 +171,6 @@
                 <directory>src/test/filtered-resources</directory>
             </testResource>
         </testResources>
-
         <plugins>
             <plugin>
                 <!--TODO - Version number should be moved to BOM, ... -->

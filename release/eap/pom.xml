@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-- Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
+- Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
 -
 - Licensed under the Apache License, Version 2.0 (the "License")
 - you may not use this file except in compliance with the License.
@@ -12,20 +12,18 @@
 - See the License for the specific language governing permissions and
 - limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>release-parent</artifactId>
         <version>1.4.0-SNAPSHOT</version>
     </parent>
-
     <artifactId>eap-release-parent</artifactId>
     <packaging>pom</packaging>
-
     <name>Fuse Integration: AS7 Parent</name>
     <description>Fuse BXMS Integration Release JBossAS7 Container Parent</description>
-
     <modules>
         <module>config</module>
         <module>modules</module>
@@ -33,15 +31,12 @@
         <module>installer</module>
         <module>itests</module>
     </modules>
-    
     <dependencies>
         <dependency>
             <groupId>org.switchyard</groupId>
             <artifactId>switchyard-release-distribution</artifactId>
         </dependency>
-        <!--
-        Test dependencies...
-        -->
+        <!-- Test dependencies... -->
         <dependency>
             <groupId>org.jvnet.mock-javamail</groupId>
             <artifactId>mock-javamail</artifactId>
@@ -97,7 +92,6 @@
             <artifactId>activemq-mqtt</artifactId>
         </dependency>
         <!-- Quickstart dependencies -->
-      
         <dependency>
             <groupId>org.jboss.integration.fuse.quickstarts</groupId>
             <artifactId>switchyard-rules-camel-cbr</artifactId>

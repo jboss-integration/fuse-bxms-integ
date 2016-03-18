@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-- Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
+- Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
 -
 - Licensed under the Apache License, Version 2.0 (the "License")
 - you may not use this file except in compliance with the License.
@@ -13,8 +13,7 @@
 - limitations under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
@@ -22,13 +21,10 @@
         <version>1.4.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
-
     <artifactId>fuse-integration-karaf-tests-switchyard</artifactId>
     <packaging>jar</packaging>
-
     <name>Fuse Integration: Release: Karaf: Tests: Switchyard</name>
     <description>Fuse Integration: Release: Switchyard Karaf Tests</description>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -115,7 +111,6 @@
             <classifier>features</classifier>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>karaf-features</artifactId>
@@ -123,7 +118,6 @@
             <classifier>features</classifier>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.drools</groupId>
             <artifactId>drools-karaf-features</artifactId>
@@ -203,7 +197,8 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <!-- 2.18.1 is failing with "When writing xml report stdout/stderr: /tmp/stdout (No such file or directory)" -->
+                <!-- 2.18.1 is failing with "When writing xml report stdout/stderr: /tmp/stdout (No such 
+                    file or directory)" -->
                 <version>2.16</version>
                 <configuration>
                     <systemPropertyVariables>
@@ -234,20 +229,19 @@
                             <karafVersion>${version.org.apache.karaf}</karafVersion>
                             <descriptors>
                                 <descriptor>
-                                    mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features
+                                    mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features 
                                 </descriptor>
-                                <descriptor>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
+                                <descriptor>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features 
                                 </descriptor>
-                                <descriptor>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features
+                                <descriptor>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features 
                                 </descriptor>
                                 <descriptor>
-                                    mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features
+                                    mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features 
                                 </descriptor>
                             </descriptors>
                             <features>
                                 <feature version="${project.version}">fuse-bxms-switchyard-bpm</feature>
                                 <feature version="${project.version}">fuse-bxms-switchyard-rules</feature>
-
                             </features>
                             <repository>target/dependencies/apache-karaf-${version.org.apache.karaf}/system</repository>
                         </configuration>
