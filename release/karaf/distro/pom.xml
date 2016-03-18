@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-- Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
+- Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
 -
 - Licensed under the Apache License, Version 2.0 (the "License")
 - you may not use this file except in compliance with the License.
@@ -12,7 +12,8 @@
 - See the License for the specific language governing permissions and
 - limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
@@ -20,13 +21,10 @@
         <version>1.5.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
     <artifactId>fuse-integration-karaf-distro</artifactId>
     <packaging>pom</packaging>
-
     <name>Fuse Integration: Release: Karaf Distro</name>
     <description>Fuse Integration: Release: Karaf Distro</description>
-    
     <build>
         <plugins>
             <plugin>
@@ -89,61 +87,58 @@
                     </execution>
                 </executions>
             </plugin>
-               <plugin>
-                   <groupId>org.apache.karaf.tooling</groupId>
-                   <artifactId>features-maven-plugin</artifactId>
-                   <version>2.4.0</version>
-                   <executions>
-                       <execution>
-                           <id>add-features-to-repo</id>
-                           <phase>generate-resources</phase>
-                           <goals>
-                               <goal>add-features-to-repo</goal>
-                           </goals>
-                           <configuration>
-                               <descriptors>
+            <plugin>
+                <groupId>org.apache.karaf.tooling</groupId>
+                <artifactId>features-maven-plugin</artifactId>
+                <version>2.4.0</version>
+                <executions>
+                    <execution>
+                        <id>add-features-to-repo</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-features-to-repo</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
                                 <descriptor>mvn:org.jboss.integration.fuse/karaf-features/${project.version}/xml/features</descriptor>
                                 <descriptor>mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features</descriptor>
                                 <descriptor>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</descriptor>
                                 <descriptor>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/features</descriptor>
                                 <descriptor>mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features</descriptor>
-                               </descriptors>
-                               <features>
-                                   
-                                  <feature>fuse-bxms-switchyard-common-knowledge/${project.version}</feature>
-                                  <feature>fuse-bxms-switchyard-rules/${project.version}</feature>
-                                  <feature>fuse-bxms-switchyard-bpm/${project.version}</feature>
-                                  <feature>kie-camel/${project.version}</feature>
-                                  <feature>jbpm-workitems-camel/${project.version}</feature>
-                                  
-
-                                  <feature>fuse-bxms-quickstart-switchyard-bpm-service/${project.version}</feature>
-                                  <feature>fuse-bxms-quickstart-switchyard-rules-camel-cbr/${project.version}</feature>
-                                  <feature>fuse-bxms-quickstart-switchyard-rules-interview/${project.version}</feature>
-                                  <feature>fuse-bxms-quickstart-switchyard-rules-interview-container/${project.version}</feature>
-                                  <feature>fuse-bxms-quickstart-switchyard-rules-interview-dtable/${project.version}</feature>
-                                  <feature>fuse-bxms-quickstart-switchyard-library/${project.version}</feature>
-                                  <feature>fuse-bxms-quickstart-switchyard-helpdesk/${project.version}</feature>
-                                  <feature>fuse-bxms-quickstart-switchyard-rules-multithread/${project.version}</feature>
-                                  <feature>fuse-bxms-quickstart-switchyard-rules-csv/${project.version}</feature>
-                                  <feature>fuse-bxms-quickstart-camel-blueprint-drools-decision-table/${project.version}</feature>
-                                  <feature>fuse-bxms-quickstart-camel-spring-drools-decision-table/${project.version}</feature>                                  
-                                  <feature>fuse-bxms-quickstart-camel-jbpm-workitems/${project.version}</feature> 
-                               </features>
-                               <blackList></blackList>
-                               <addTransitiveFeatures>false</addTransitiveFeatures>
-                               <repository>target/features-repo</repository>
-                           </configuration>
-                       </execution>
-                   </executions>
-                   <dependencies>
-                       <dependency>
-                           <groupId>org.apache.maven.wagon</groupId>
-                           <artifactId>wagon-http</artifactId>
-                           <version>2.8</version>
-                       </dependency>
-                   </dependencies>
-               </plugin>
+                            </descriptors>
+                            <features>
+                                <feature>fuse-bxms-switchyard-common-knowledge/${project.version}</feature>
+                                <feature>fuse-bxms-switchyard-rules/${project.version}</feature>
+                                <feature>fuse-bxms-switchyard-bpm/${project.version}</feature>
+                                <feature>kie-camel/${project.version}</feature>
+                                <feature>jbpm-workitems-camel/${project.version}</feature>
+                                <feature>fuse-bxms-quickstart-switchyard-bpm-service/${project.version}</feature>
+                                <feature>fuse-bxms-quickstart-switchyard-rules-camel-cbr/${project.version}</feature>
+                                <feature>fuse-bxms-quickstart-switchyard-rules-interview/${project.version}</feature>
+                                <feature>fuse-bxms-quickstart-switchyard-rules-interview-container/${project.version}</feature>
+                                <feature>fuse-bxms-quickstart-switchyard-rules-interview-dtable/${project.version}</feature>
+                                <feature>fuse-bxms-quickstart-switchyard-library/${project.version}</feature>
+                                <feature>fuse-bxms-quickstart-switchyard-helpdesk/${project.version}</feature>
+                                <feature>fuse-bxms-quickstart-switchyard-rules-multithread/${project.version}</feature>
+                                <feature>fuse-bxms-quickstart-switchyard-rules-csv/${project.version}</feature>
+                                <feature>fuse-bxms-quickstart-camel-blueprint-drools-decision-table/${project.version}</feature>
+                                <feature>fuse-bxms-quickstart-camel-spring-drools-decision-table/${project.version}</feature>
+                                <feature>fuse-bxms-quickstart-camel-jbpm-workitems/${project.version}</feature>
+                            </features>
+                            <blackList></blackList>
+                            <addTransitiveFeatures>false</addTransitiveFeatures>
+                            <repository>target/features-repo</repository>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.wagon</groupId>
+                        <artifactId>wagon-http</artifactId>
+                        <version>2.8</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
 </project>

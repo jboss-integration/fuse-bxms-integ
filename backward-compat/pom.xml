@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-- Copyright 2015 Red Hat Inc. and/or its affiliates and other contributors.
+- Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
 -
 - Licensed under the Apache License, Version 2.0 (the "License")
 - you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
 - limitations under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
@@ -25,7 +25,6 @@
     <artifactId>backwards-compat-parent</artifactId>
     <packaging>pom</packaging>
     <version>2.0.1-redhat-SNAPSHOT</version>
-
     <name>Fuse Integration: Backwards Compat: Parent</name>
     <description>Fuse BXMS Integration Backwards Compat Parent</description>
     <dependencyManagement>
@@ -47,7 +46,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <modules>
         <module>switchyard-component-common-knowledge</module>
         <module>switchyard-component-rules</module>

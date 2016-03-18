@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-- Copyright 2015 Red Hat Inc. and/or its affiliates and other contributors.
+- Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
 -
 - Licensed under the Apache License, Version 2.0 (the "License")
 - you may not use this file except in compliance with the License.
@@ -13,24 +13,20 @@
 - limitations under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>fuse-integration-project</artifactId>
         <version>1.5.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
-
     <artifactId>camel-parent</artifactId>
     <packaging>pom</packaging>
-
     <name>Fuse Integration: Camel: Parent</name>
     <description>Fuse Integration Camel Parent</description>
     <modules>
         <module>kie-camel</module>
         <module>jbpm-workitems-camel</module>
     </modules>
-
 </project>

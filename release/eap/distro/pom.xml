@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-- Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
+- Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
 -
 - Licensed under the Apache License, Version 2.0 (the "License")
 - you may not use this file except in compliance with the License.
@@ -12,25 +12,21 @@
 - See the License for the specific language governing permissions and
 - limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>eap-release-parent</artifactId>
         <version>1.5.0-SNAPSHOT</version>
     </parent>
-
     <artifactId>fuse-integration-eap-distro</artifactId>
     <packaging>pom</packaging>
-
     <name>Fuse Integration: EAP Distribution</name>
     <description>Fuse BXMS Integration EAP Distribution</description>
-    
     <properties>
         <staging.dir>${project.build.directory}/fuse-integration</staging.dir>
     </properties>
-    
     <dependencies>
         <dependency>
             <groupId>org.jboss.integration.fuse</groupId>
@@ -47,16 +43,15 @@
             <artifactId>fuse-integration-config</artifactId>
         </dependency>
     </dependencies>
-    
     <build>
-       <resources>
-          <resource>
-            <directory>src/main/resources</directory>
-            <filtering>true</filtering>
-         </resource>
-       </resources>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
-           <plugin>
+            <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-- Copyright 2015 Red Hat Inc. and/or its affiliates and other contributors.
+- Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
 -
 - Licensed under the Apache License, Version 2.0 (the "License")
 - you may not use this file except in compliance with the License.
@@ -12,16 +12,15 @@
 - See the License for the specific language governing permissions and
 - limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>switchyard-rules-interview</artifactId>
     <packaging>bundle</packaging>
-     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
+    <groupId>org.jboss.integration.fuse.quickstarts</groupId>
     <version>1.5.0-SNAPSHOT</version>
     <name>Fuse Integration: Quickstarts: SwitchYard: rules-interview</name>
     <description>Fuse Integration: Quickstarts: Switchyard Quickstart : Rules Interview</description>
-
     <url>https://github.com/jboss-integration/fuse-bxms-integ</url>
     <organization>
         <name>JBoss by Red Hat</name>
@@ -52,22 +51,20 @@
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.source>1.6</maven.compiler.source>
         <switchyard.osgi.import>*</switchyard.osgi.import>
-        <switchyard.osgi.require.capability>
-	    org.ops4j.pax.cdi.extension; filter:="(extension=switchyard-component-bean)",
-            org.ops4j.pax.cdi.extension; filter:="(extension=deltaspike-core-api)",
-            osgi.extender; filter:="(osgi.extender=pax.cdi)"
+        <switchyard.osgi.require.capability> org.ops4j.pax.cdi.extension;
+            filter:="(extension=switchyard-component-bean)", org.ops4j.pax.cdi.extension;
+            filter:="(extension=deltaspike-core-api)", osgi.extender;
+            filter:="(osgi.extender=pax.cdi)" 
         </switchyard.osgi.require.capability>
-        <switchyard.osgi.dynamic>
-            org.switchyard,org.switchyard.*
+        <switchyard.osgi.dynamic> org.switchyard,org.switchyard.* 
         </switchyard.osgi.dynamic>
         <version.enforcer.maven>1.3.1</version.enforcer.maven>
         <version.felix.maven>2.4.0</version.felix.maven>
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
-	<maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
+        <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <version.org.kie>6.4.0-SNAPSHOT</version.org.kie>
         <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>
     </properties>
-   
     <dependencies>
         <dependency>
             <groupId>org.switchyard</groupId>
@@ -105,8 +102,8 @@
             <artifactId>switchyard-component-soap</artifactId>
         </dependency>
         <dependency>
-	    <groupId>org.jboss.spec.javax.servlet</groupId>
-	    <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_3.0_spec</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -150,51 +147,51 @@
         </dependencies>
     </dependencyManagement>
     <repositories>
-      <!-- Early access to fuse-eap -->
-      <repository>
-         <id>fuse-eap-staging-repository</id>
-         <url>https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352</url>
-      </repository>
-      <!-- General early access -->
-      <repository>
-         <id>fuse-early-access-repository</id>
-         <url>https://repository.jboss.org/nexus/content/groups/ea</url>
-      </repository>
-    <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
-    <repository>
-        <id>fusesource.ea</id>
-        <name>JBoss Community Early Access Release Repository</name>
-        <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-        <releases>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-        </releases>
-    </repository>
-    <repository>
-      <id>redhat-product-ga</id>
-      <name>Red Hat Product GA</name>
-      <url>https://maven.repository.redhat.com/ga</url>
-    </repository>		
-    <repository>
-      <id>redhat-m2-proxy</id>
-      <name>Red Hat M2 Proxy</name>
-      <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
-    </repository>
+        <!-- Early access to fuse-eap -->
+        <repository>
+            <id>fuse-eap-staging-repository</id>
+            <url>https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352</url>
+        </repository>
+        <!-- General early access -->
+        <repository>
+            <id>fuse-early-access-repository</id>
+            <url>https://repository.jboss.org/nexus/content/groups/ea</url>
+        </repository>
+        <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
+        <repository>
+            <id>fusesource.ea</id>
+            <name>JBoss Community Early Access Release Repository</name>
+            <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>redhat-product-ga</id>
+            <name>Red Hat Product GA</name>
+            <url>https://maven.repository.redhat.com/ga</url>
+        </repository>
+        <repository>
+            <id>redhat-m2-proxy</id>
+            <name>Red Hat M2 Proxy</name>
+            <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
+        </repository>
     </repositories>
     <build>
         <finalName>${project.artifactId}</finalName>
         <pluginManagement>
-           <plugins>
-             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                 <version>${maven.surefire.plugin.version}</version>
-             </plugin>
-           </plugins>
-        </pluginManagement> 
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.switchyard</groupId>
@@ -215,7 +212,7 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>${version.felix.maven}</version><!--$NO-MVN-MAN-VER$-->
+                <version>${version.felix.maven}</version><!--$NO-MVN-MAN-VER$ -->
                 <extensions>true</extensions>
                 <configuration>
                     <excludeDependencies>true</excludeDependencies>
@@ -224,7 +221,8 @@
                         <DynamicImport-Package>${switchyard.osgi.dynamic}</DynamicImport-Package>
                         <Embed-Dependency>!*</Embed-Dependency>
                         <Import-Package>${switchyard.osgi.import}</Import-Package>
-                        <Include-Resource>{maven-resources}, META-INF/switchyard.xml=target/classes/META-INF/switchyard.xml</Include-Resource>
+                        <Include-Resource>{maven-resources},
+                            META-INF/switchyard.xml=target/classes/META-INF/switchyard.xml</Include-Resource>
                         <Require-Capability>${switchyard.osgi.require.capability}</Require-Capability>
                     </instructions>
                     <archive>
