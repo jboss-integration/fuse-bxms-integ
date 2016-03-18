@@ -76,6 +76,11 @@
          <id>fuse-eap-staging-repository</id>
          <url>https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352</url>
       </repository>
+      <repository>
+        <id>redhat-product-ga</id>
+        <name>Red Hat Product GA</name>
+        <url>https://maven.repository.redhat.com/ga</url>
+      </repository>		
       <!-- General early access -->
       <repository>
          <id>fuse-early-access-repository</id>

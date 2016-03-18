@@ -177,4 +177,43 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>redhat-product-ga-repository</id>
+            <name>Red Hat Product Repository</name>
+            <url>https://maven.repository.redhat.com/ga/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+          <id>redhat-product-ga</id>
+          <name>Red Hat Product GA</name>
+          <url>https://maven.repository.redhat.com/ga</url>
+        </repository>		
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>redhat-product-ga-repository</id>
+            <name>Red Hat Product Repository</name>
+            <url>https://maven.repository.redhat.com/ga/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
 </project>
