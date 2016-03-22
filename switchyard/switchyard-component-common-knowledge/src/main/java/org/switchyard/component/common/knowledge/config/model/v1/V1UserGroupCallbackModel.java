@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,46 +21,38 @@ import org.switchyard.config.model.BaseModel;
 import org.switchyard.config.model.Descriptor;
 import org.switchyard.config.model.property.PropertiesModel;
 
-/**
- * The 1st version UserGroupCallbackModel.
+/** The 1st version UserGroupCallbackModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class V1UserGroupCallbackModel extends BaseModel implements UserGroupCallbackModel {
 
     private PropertiesModel _properties;
 
-    /**
-     * Creates a new UserGroupCallbackModel.
-     * @param namespace namespace
-     */
+    /** Creates a new UserGroupCallbackModel.
+     * 
+     * @param namespace namespace */
     public V1UserGroupCallbackModel(String namespace) {
         super(namespace, USER_GROUP_CALLBACK);
         setModelChildrenOrder(PROPERTIES);
     }
 
-    /**
-     * Creates a new UserGroupCallbackModel with the specified configuration and descriptor.
+    /** Creates a new UserGroupCallbackModel with the specified configuration and descriptor.
+     * 
      * @param config the configuration
-     * @param desc the descriptor
-     */
+     * @param desc the descriptor */
     public V1UserGroupCallbackModel(Configuration config, Descriptor desc) {
         super(config, desc);
         setModelChildrenOrder(PROPERTIES);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Class<?> getClazz(ClassLoader loader) {
         String c = getModelAttribute("class");
         return c != null ? Classes.forName(c, loader) : null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UserGroupCallbackModel setClazz(Class<?> clazz) {
         String c = clazz != null ? clazz.getName() : null;
@@ -69,9 +60,7 @@ public class V1UserGroupCallbackModel extends BaseModel implements UserGroupCall
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public PropertiesModel getProperties() {
         if (_properties == null) {
@@ -80,9 +69,7 @@ public class V1UserGroupCallbackModel extends BaseModel implements UserGroupCall
         return _properties;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UserGroupCallbackModel setProperties(PropertiesModel properties) {
         setChildModel(properties);

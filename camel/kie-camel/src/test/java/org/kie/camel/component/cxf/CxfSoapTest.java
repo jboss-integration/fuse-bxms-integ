@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,11 +36,9 @@ public class CxfSoapTest extends CamelSpringTestSupport {
     public void test1() throws Exception {
         SOAPMessage soapMessage = MessageFactory.newInstance().createMessage();
         SOAPBody body = soapMessage.getSOAPPart().getEnvelope().getBody();
-        QName payloadName = new QName( "http://soap.jax.drools.org",
-                                       "execute",
-                                       "ns1" );
+        QName payloadName = new QName("http://soap.jax.drools.org", "execute", "ns1");
 
-        body.addBodyElement( payloadName );
+        body.addBodyElement(payloadName);
 
         String cmd = "";
         cmd += "<batch-execution lookup=\"ksession1\">\n";
@@ -56,16 +51,15 @@ public class CxfSoapTest extends CamelSpringTestSupport {
         cmd += "   <fire-all-rules/>\n";
         cmd += "</batch-execution>\n";
 
-        body.addTextNode( cmd );
+        body.addTextNode(cmd);
 
-        Object object = this.context.createProducerTemplate().requestBody( "direct://http",
-                                                                           soapMessage );
+        Object object = this.context.createProducerTemplate().requestBody("direct://http", soapMessage);
         OutputStream out = new ByteArrayOutputStream();
         out = new ByteArrayOutputStream();
-        soapMessage = (SOAPMessage) object;
-        soapMessage.writeTo( out );
+        soapMessage = (SOAPMessage)object;
+        soapMessage.writeTo(out);
         String response = out.toString();
-        assertTrue( response.contains( "fact-handle identifier=\"salaboy\"" ) );
+        assertTrue(response.contains("fact-handle identifier=\"salaboy\""));
     }
 
 }

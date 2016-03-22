@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,42 +19,34 @@ import org.switchyard.config.Configuration;
 import org.switchyard.config.model.BaseModel;
 import org.switchyard.config.model.Descriptor;
 
-/**
- * The 1st version ListenerModel.
+/** The 1st version ListenerModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class V1ListenerModel extends BaseModel implements ListenerModel {
 
-    /**
-     * Creates a new ListenerModel in the specified namespace.
-     * @param namespace the namespace
-     */
+    /** Creates a new ListenerModel in the specified namespace.
+     * 
+     * @param namespace the namespace */
     public V1ListenerModel(String namespace) {
         super(XMLHelper.createQName(namespace, LISTENER));
     }
 
-    /**
-     * Creates a new ListenerModel with the specified configuration and descriptor.
+    /** Creates a new ListenerModel with the specified configuration and descriptor.
+     * 
      * @param config the configuration
-     * @param desc the descriptor
-     */
+     * @param desc the descriptor */
     public V1ListenerModel(Configuration config, Descriptor desc) {
         super(config, desc);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Class<?> getClazz(ClassLoader loader) {
         String c = getModelAttribute("class");
         return c != null ? Classes.forName(c, loader) : null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ListenerModel setClazz(Class<?> clazz) {
         String c = clazz != null ? clazz.getName() : null;

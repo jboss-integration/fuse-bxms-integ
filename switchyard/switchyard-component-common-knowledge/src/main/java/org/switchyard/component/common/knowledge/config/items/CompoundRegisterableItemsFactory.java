@@ -1,12 +1,11 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, 
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -31,30 +30,26 @@ import org.kie.api.task.TaskLifeCycleEventListener;
 import org.kie.internal.runtime.manager.InternalRegisterableItemsFactory;
 import org.kie.internal.runtime.manager.InternalRuntimeManager;
 
-/**
- * CompoundRegisterableItemsFactory.
+/** CompoundRegisterableItemsFactory.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class CompoundRegisterableItemsFactory implements ExtendedRegisterableItemsFactory {
 
     private final InternalRegisterableItemsFactory _rootFactory;
     private final List<RegisterableItemsFactory> _factories;
 
-    /**
-     * Creates a new CompoundRegisterableItemsFactory.
+    /** Creates a new CompoundRegisterableItemsFactory.
+     * 
      * @param rootFactory the root InternalRegisterableItemsFactory
-     * @param factories any additional RegisterableItemsFactory instances
-     */
+     * @param factories any additional RegisterableItemsFactory instances */
     public CompoundRegisterableItemsFactory(InternalRegisterableItemsFactory rootFactory, RegisterableItemsFactory... factories) {
         this(rootFactory, (factories != null ? Arrays.asList(factories) : null));
     }
 
-    /**
-     * Creates a new CompoundRegisterableItemsFactory.
+    /** Creates a new CompoundRegisterableItemsFactory.
+     * 
      * @param rootFactory the root InternalRegisterableItemsFactory
-     * @param factories any additional RegisterableItemsFactory instances
-     */
+     * @param factories any additional RegisterableItemsFactory instances */
     public CompoundRegisterableItemsFactory(InternalRegisterableItemsFactory rootFactory, Collection<RegisterableItemsFactory> factories) {
         _rootFactory = rootFactory;
         _factories = new ArrayList<RegisterableItemsFactory>();
@@ -67,9 +62,7 @@ public class CompoundRegisterableItemsFactory implements ExtendedRegisterableIte
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<AgendaEventListener> getAgendaEventListeners(RuntimeEngine runtime) {
         List<AgendaEventListener> list = new ArrayList<AgendaEventListener>();
@@ -80,9 +73,7 @@ public class CompoundRegisterableItemsFactory implements ExtendedRegisterableIte
         return list;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Map<String, Object> getGlobals(RuntimeEngine runtime) {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -93,9 +84,7 @@ public class CompoundRegisterableItemsFactory implements ExtendedRegisterableIte
         return map;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<ProcessEventListener> getProcessEventListeners(RuntimeEngine runtime) {
         List<ProcessEventListener> list = new ArrayList<ProcessEventListener>();
@@ -106,9 +95,7 @@ public class CompoundRegisterableItemsFactory implements ExtendedRegisterableIte
         return list;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<RuleRuntimeEventListener> getRuleRuntimeEventListeners(RuntimeEngine runtime) {
         List<RuleRuntimeEventListener> list = new ArrayList<RuleRuntimeEventListener>();
@@ -119,9 +106,7 @@ public class CompoundRegisterableItemsFactory implements ExtendedRegisterableIte
         return list;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<TaskLifeCycleEventListener> getTaskListeners() {
         List<TaskLifeCycleEventListener> list = new ArrayList<TaskLifeCycleEventListener>();
@@ -132,9 +117,7 @@ public class CompoundRegisterableItemsFactory implements ExtendedRegisterableIte
         return list;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Map<String, WorkItemHandler> getWorkItemHandlers(RuntimeEngine runtime) {
         Map<String, WorkItemHandler> map = new HashMap<String, WorkItemHandler>();
@@ -145,9 +128,7 @@ public class CompoundRegisterableItemsFactory implements ExtendedRegisterableIte
         return map;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<KieBaseEventListener> getKieBaseEventListeners(RuntimeEngine runtime) {
         List<KieBaseEventListener> list = new ArrayList<KieBaseEventListener>();
@@ -160,17 +141,13 @@ public class CompoundRegisterableItemsFactory implements ExtendedRegisterableIte
         return list;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public InternalRuntimeManager getRuntimeManager() {
         return _rootFactory.getRuntimeManager();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setRuntimeManager(InternalRuntimeManager manager) {
         _rootFactory.setRuntimeManager(manager);

@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,11 +19,9 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-/**
- * Channel.
+/** Channel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 @Target(TYPE)
 @Retention(RUNTIME)
 @Documented
@@ -46,8 +43,11 @@ public @interface Channel {
     public String reference() default "";
 
     /** Undefined channel. */
-    public static interface UndefinedChannel extends org.kie.api.runtime.Channel {};
+    public static interface UndefinedChannel extends org.kie.api.runtime.Channel {
+    };
+
     /** Undefined interface. */
-    public static interface UndefinedInterface {};
+    public static interface UndefinedInterface {
+    };
 
 }

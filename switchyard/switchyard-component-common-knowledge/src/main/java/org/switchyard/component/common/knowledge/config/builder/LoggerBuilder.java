@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,22 +25,19 @@ import org.switchyard.component.common.knowledge.config.model.KnowledgeComponent
 import org.switchyard.component.common.knowledge.config.model.LoggerModel;
 import org.switchyard.component.common.knowledge.config.model.LoggersModel;
 
-/**
- * LoggerBuilder.
+/** LoggerBuilder.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class LoggerBuilder extends KnowledgeBuilder {
 
     private LoggerType _loggerType;
     private String _log;
     private Integer _interval;
 
-    /**
-     * Creates a new LoggerBuilder.
+    /** Creates a new LoggerBuilder.
+     * 
      * @param classLoader classLoader
-     * @param loggerModel loggerModel
-     */
+     * @param loggerModel loggerModel */
     public LoggerBuilder(ClassLoader classLoader, LoggerModel loggerModel) {
         super(classLoader);
         if (loggerModel != null) {
@@ -60,36 +56,34 @@ public class LoggerBuilder extends KnowledgeBuilder {
         }
     }
 
-    /**
-     * Builds a KieRuntimeLogger.
+    /** Builds a KieRuntimeLogger.
+     * 
      * @param runtimeEventManager runtimeEventManager
-     * @return a KieRuntimeLogger
-     */
+     * @return a KieRuntimeLogger */
     public KieRuntimeLogger build(KieRuntimeEventManager runtimeEventManager) {
         KieRuntimeLogger logger = null;
         if (_loggerType != null && runtimeEventManager != null) {
             KieLoggers loggers = KieServices.Factory.get().getLoggers();
             switch (_loggerType) {
-                case CONSOLE:
-                    logger = loggers.newConsoleLogger(runtimeEventManager);
-                    break;
-                case FILE:
-                    logger = loggers.newFileLogger(runtimeEventManager, _log);
-                    break;
-                case THREADED_FILE:
-                    logger = loggers.newThreadedFileLogger(runtimeEventManager, _log, _interval);
-                    break;
+            case CONSOLE:
+                logger = loggers.newConsoleLogger(runtimeEventManager);
+                break;
+            case FILE:
+                logger = loggers.newFileLogger(runtimeEventManager, _log);
+                break;
+            case THREADED_FILE:
+                logger = loggers.newThreadedFileLogger(runtimeEventManager, _log, _interval);
+                break;
             }
         }
         return logger;
     }
 
-    /**
-     * Creates LoggerBuilders.
+    /** Creates LoggerBuilders.
+     * 
      * @param classLoader classLoader
      * @param implementationModel implementationModel
-     * @return LoggerBuilders
-     */
+     * @return LoggerBuilders */
     public static List<LoggerBuilder> builders(ClassLoader classLoader, KnowledgeComponentImplementationModel implementationModel) {
         List<LoggerBuilder> builders = new ArrayList<LoggerBuilder>();
         if (implementationModel != null) {

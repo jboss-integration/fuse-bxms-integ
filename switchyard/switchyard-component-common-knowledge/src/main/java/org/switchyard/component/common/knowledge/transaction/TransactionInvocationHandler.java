@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,37 +15,31 @@ package org.switchyard.component.common.knowledge.transaction;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-/**
- * TransactionInvocationHandler.
+/** TransactionInvocationHandler.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class TransactionInvocationHandler implements InvocationHandler {
 
     private final Object _target;
     private final boolean _enabled;
 
-    /**
-     * Creates a new, enabled TransactionInvocationHandler.
-     * @param target the target object
-     */
+    /** Creates a new, enabled TransactionInvocationHandler.
+     * 
+     * @param target the target object */
     public TransactionInvocationHandler(Object target) {
         this(target, true);
     }
 
-    /**
-     * Creates a new TransactionInvocationHandler.
+    /** Creates a new TransactionInvocationHandler.
+     * 
      * @param target the target object
-     * @param enabled whether transactions are enabled or not
-     */
+     * @param enabled whether transactions are enabled or not */
     public TransactionInvocationHandler(Object target, boolean enabled) {
         _target = target;
         _enabled = enabled;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if (_target == null) {

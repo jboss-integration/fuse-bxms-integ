@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,11 +41,10 @@ public class CxfRestTestWithLookup extends CamelSpringTestSupport {
         cmd += "   <fire-all-rules/>\n";
         cmd += "</batch-execution>\n";
 
-        Object object = this.context.createProducerTemplate().requestBody( "direct://http",
-                                                                           cmd );
-        logger.debug( "{}", object );
+        Object object = this.context.createProducerTemplate().requestBody("direct://http", cmd);
+        logger.debug("{}", object);
 
-        assertTrue( object.toString().contains( "fact-handle identifier=\"salaboy\"" ) );
+        assertTrue(object.toString().contains("fact-handle identifier=\"salaboy\""));
         String cmd2 = "";
         cmd2 += "<batch-execution lookup=\"ksession2\">\n";
         cmd2 += "  <insert out-identifier=\"salaboy\">\n";
@@ -59,10 +55,9 @@ public class CxfRestTestWithLookup extends CamelSpringTestSupport {
         cmd2 += "   <fire-all-rules/>\n";
         cmd2 += "</batch-execution>\n";
 
-        Object object2 = this.context.createProducerTemplate().requestBody( "direct://http",
-                                                                           cmd2 );
-        logger.debug( "{}", object2 );
-        assertTrue( object2.toString().contains( "fact-handle identifier=\"salaboy\"" ) );
+        Object object2 = this.context.createProducerTemplate().requestBody("direct://http", cmd2);
+        logger.debug("{}", object2);
+        assertTrue(object2.toString().contains("fact-handle identifier=\"salaboy\""));
     }
 
 }

@@ -37,41 +37,82 @@ import org.kie.api.task.model.TaskSummary;
 import org.switchyard.component.bpm.runtime.BPMTaskService;
 import org.switchyard.component.bpm.runtime.BPMTaskServiceRegistry;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Class HelpDesk.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 @ManagedBean(name = "helpDesk")
 @SessionScoped
 public class HelpDesk {
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = Logger.getLogger(HelpDesk.class);
+    
+    /** The Constant TICKET. */
     private static final String TICKET = "ticket";
+    
+    /** The Constant EN_UK. */
     private static final String EN_UK = "en-UK";
 
+    /** The _task service. */
     private final BPMTaskService _taskService;
+    
+    /** The _user tasks. */
     private final List<TaskSummary> _userTasks;
+    
+    /** The _user tickets. */
     private final Map<Long, Ticket> _userTickets;
+    
+    /** The _user id. */
     private String _userId = "krisv";
 
+    /**
+     * Instantiates a new help desk.
+     */
     public HelpDesk() {
-        _taskService = BPMTaskServiceRegistry.getTaskService(new QName(null, "helpdesk"), new QName("urn:switchyard-quickstart-demo:helpdesk:0.1.0", "HelpDeskService"));
+        _taskService = BPMTaskServiceRegistry.getTaskService(new QName(null, "helpdesk"), new QName(
+                "urn:switchyard-quickstart-demo:helpdesk:0.1.0", "HelpDeskService"));
         _userTasks = Collections.synchronizedList(new ArrayList<TaskSummary>());
         _userTickets = Collections.synchronizedMap(new LinkedHashMap<Long, Ticket>());
     }
 
+    /**
+     * Gets the user id.
+     *
+     * @return the user id
+     */
     public String getUserId() {
         return _userId;
     }
 
+    /**
+     * Sets the user id.
+     *
+     * @param userId the new user id
+     */
     public void setUserId(String userId) {
         _userId = userId;
     }
 
+    /**
+     * Gets the group id.
+     *
+     * @return the group id
+     */
     public String getGroupId() {
         List<String> groups = USERS_GROUPS.get(_userId);
         return (groups != null && groups.size() > 0) ? groups.get(0) : null;
     }
 
+    /**
+     * Gets the users groups.
+     *
+     * @return the users groups
+     */
     public Map<String, String> getUsersGroups() {
         Map<String, String> usersGroups = new LinkedHashMap<String, String>();
         for (Map.Entry<String, List<String>> entry : USERS_GROUPS.entrySet()) {
@@ -81,19 +122,37 @@ public class HelpDesk {
         return usersGroups;
     }
 
+    /**
+     * Gets the user tasks.
+     *
+     * @return the user tasks
+     */
     public List<TaskSummary> getUserTasks() {
         return _userTasks;
     }
 
+    /**
+     * Gets the user tickets.
+     *
+     * @return the user tickets
+     */
     public Map<Long, Ticket> getUserTickets() {
         return _userTickets;
     }
 
+    /**
+     * Select user.
+     *
+     * @param vce the vce
+     */
     public void selectUser(ValueChangeEvent vce) {
         setUserId((String) vce.getNewValue());
         fetchTasks();
     }
 
+    /**
+     * Fetch tasks.
+     */
     private void fetchTasks() {
         synchronized (_userTasks) {
             _userTasks.clear();
@@ -108,6 +167,9 @@ public class HelpDesk {
         }
     }
 
+    /**
+     * Complete tasks.
+     */
     private void completeTasks() {
         synchronized (_userTasks) {
             if (_userTasks.size() > 0) {
@@ -123,6 +185,9 @@ public class HelpDesk {
         }
     }
 
+    /**
+     * Submit.
+     */
     public void submit() {
         try {
             completeTasks();

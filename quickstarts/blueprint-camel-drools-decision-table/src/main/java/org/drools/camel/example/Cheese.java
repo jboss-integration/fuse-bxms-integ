@@ -16,36 +16,71 @@
 
 package org.drools.camel.example;
 
+
+/**
+ * The Class Cheese.
+ */
 public class Cheese {
 
+    /** The type. */
     private String type;
+
+    /** The price. */
     private int price;
 
+    /**
+     * Instantiates a new cheese.
+     */
     public Cheese() {
 
     }
-    public Cheese(final String type,
-            final int price) {
+
+    /**
+     * Instantiates a new cheese.
+     *
+     * @param type the type
+     * @param price the price
+     */
+    public Cheese(final String type, final int price) {
         super();
         this.type = type;
         this.price = price;
     }
 
+    /**
+     * Gets the price.
+     *
+     * @return the price
+     */
     public int getPrice() {
         return this.price;
     }
 
+    /**
+     * Gets the type.
+     *
+     * @return the type
+     */
     public String getType() {
         return this.type;
     }
 
+    /**
+     * Sets the price.
+     *
+     * @param price the new price
+     */
     public void setPrice(final int price) {
         this.price = price;
     }
 
+    /**
+     * Sets the type.
+     *
+     * @param type the new type
+     */
     public void setType(String type) {
         this.type = type;
     }
-
 
 }

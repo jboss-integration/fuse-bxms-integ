@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class CxfRestTestWithImport extends CamelSpringTestSupport {
 
     private static final Logger logger = LoggerFactory.getLogger(CxfRestTestWithImport.class);
@@ -34,7 +32,7 @@ public class CxfRestTestWithImport extends CamelSpringTestSupport {
 
     @Test
     public void test1() throws Exception {
-        KieSession kieSession = (KieSession) applicationContext.getBean("ksession1");
+        KieSession kieSession = (KieSession)applicationContext.getBean("ksession1");
         kieSession.setGlobal("out", System.out);
 
         String cmd = "";
@@ -48,9 +46,8 @@ public class CxfRestTestWithImport extends CamelSpringTestSupport {
         cmd += "   <fire-all-rules/>\n";
         cmd += "</batch-execution>\n";
 
-        Object object = this.context.createProducerTemplate().requestBody( "direct://http",
-                                                                           cmd );
-        logger.debug( object.toString() );
+        Object object = this.context.createProducerTemplate().requestBody("direct://http", cmd);
+        logger.debug(object.toString());
     }
 
 }

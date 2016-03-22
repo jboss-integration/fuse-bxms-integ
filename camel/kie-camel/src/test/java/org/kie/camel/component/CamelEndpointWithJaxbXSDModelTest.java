@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -49,64 +46,48 @@ import com.sun.tools.xjc.Options;
 
 public class CamelEndpointWithJaxbXSDModelTest extends KieCamelTestSupport {
 
-    private ClassLoader    classLoader;
+    private ClassLoader classLoader;
 
     @Test
     public void testSessionInsert() throws Exception {
         // These 2 classes around defined by person.xsd, not as a class file
-        Class< ? > personClass = classLoader.loadClass( "org.drools.model.Person" );
-        assertNotNull( personClass.getPackage() );
-        Class< ? > addressClass = classLoader.loadClass( "org.drools.model.AddressType" );
-        assertNotNull( addressClass.getPackage() );
+        Class<?> personClass = classLoader.loadClass("org.drools.model.Person");
+        assertNotNull(personClass.getPackage());
+        Class<?> addressClass = classLoader.loadClass("org.drools.model.AddressType");
+        assertNotNull(addressClass.getPackage());
         Object baunax = personClass.newInstance();
         Object lucaz = personClass.newInstance();
 
-        Method setName = personClass.getMethod( "setName",
-                                                String.class );
-        setName.invoke( baunax,
-                        "baunax" );
-        setName.invoke( lucaz,
-                        "lucaz" );
+        Method setName = personClass.getMethod("setName", String.class);
+        setName.invoke(baunax, "baunax");
+        setName.invoke(lucaz, "lucaz");
 
-        Method setAddress = personClass.getMethod( "setAddress",
-                                                   addressClass );
-        Method setStreet = addressClass.getMethod( "setStreet",
-                                                   String.class );
-        Method setPostalCode = addressClass.getMethod( "setPostalCode",
-                                                       BigInteger.class );
+        Method setAddress = personClass.getMethod("setAddress", addressClass);
+        Method setStreet = addressClass.getMethod("setStreet", String.class);
+        Method setPostalCode = addressClass.getMethod("setPostalCode", BigInteger.class);
         Object lucazAddress = addressClass.newInstance();
-        setStreet.invoke( lucazAddress,
-                          "Unknow 342" );
-        setPostalCode.invoke( lucazAddress,
-                              new BigInteger( "1234" ) );
+        setStreet.invoke(lucazAddress, "Unknow 342");
+        setPostalCode.invoke(lucazAddress, new BigInteger("1234"));
 
         Object baunaxAddress = addressClass.newInstance();
-        setStreet.invoke( baunaxAddress,
-                          "New Street 123" );
-        setPostalCode.invoke( baunaxAddress,
-                              new BigInteger( "5678" ) );
+        setStreet.invoke(baunaxAddress, "New Street 123");
+        setPostalCode.invoke(baunaxAddress, new BigInteger("5678"));
 
-        setAddress.invoke( lucaz,
-                           lucazAddress );
-        setAddress.invoke( baunax,
-                           baunaxAddress );
+        setAddress.invoke(lucaz, lucazAddress);
+        setAddress.invoke(baunax, baunaxAddress);
 
         BatchExecutionCommandImpl cmd = new BatchExecutionCommandImpl();
-        cmd.setLookup( "ksession1" );
-        cmd.getCommands().add( new InsertObjectCommand( lucaz,
-                                                        "lucaz" ) );
-        cmd.getCommands().add( new InsertObjectCommand( baunax,
-                                                        "baunax" ) );
-        cmd.getCommands().add( new FireAllRulesCommand() );
+        cmd.setLookup("ksession1");
+        cmd.getCommands().add(new InsertObjectCommand(lucaz, "lucaz"));
+        cmd.getCommands().add(new InsertObjectCommand(baunax, "baunax"));
+        cmd.getCommands().add(new FireAllRulesCommand());
 
         StringWriter xmlReq = new StringWriter();
         Marshaller marshaller = getJaxbContext().createMarshaller();
-        marshaller.setProperty( "jaxb.formatted.output",
-                                true );
-        marshaller.marshal( cmd,
-                            xmlReq );
+        marshaller.setProperty("jaxb.formatted.output", true);
+        marshaller.marshal(cmd, xmlReq);
 
-        logger.debug( xmlReq.toString() );
+        logger.debug(xmlReq.toString());
 
         String xmlCmd = "";
         xmlCmd += "<batch-execution lookup='ksession1'>\n";
@@ -129,21 +110,19 @@ public class CamelEndpointWithJaxbXSDModelTest extends KieCamelTestSupport {
         xmlCmd += "   <fire-all-rules />";
         xmlCmd += "</batch-execution>\n";
 
-        byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
-                                                        xmlReq.toString() );
-        assertNotNull( xmlResp );
-        logger.debug( new String( xmlResp ) );
+        byte[] xmlResp = (byte[])template.requestBody("direct:test-with-session", xmlReq.toString());
+        assertNotNull(xmlResp);
+        logger.debug(new String(xmlResp));
 
-        ExecutionResults resp = (ExecutionResults) getJaxbContext().createUnmarshaller().unmarshal( new ByteArrayInputStream( xmlResp ) );
-        assertNotNull( resp );
+        ExecutionResults resp = (ExecutionResults)getJaxbContext().createUnmarshaller().unmarshal(new ByteArrayInputStream(xmlResp));
+        assertNotNull(resp);
 
-        assertEquals( 2,
-                      resp.getIdentifiers().size() );
-        assertNotNull( resp.getValue( "lucaz" ) );
-        assertNotNull( resp.getValue( "baunax" ) );
+        assertEquals(2, resp.getIdentifiers().size());
+        assertNotNull(resp.getValue("lucaz"));
+        assertNotNull(resp.getValue("baunax"));
 
-        assertNotNull( resp.getFactHandle( "lucaz" ) );
-        assertNotNull( resp.getFactHandle( "baunax" ) );
+        assertNotNull(resp.getFactHandle("lucaz"));
+        assertNotNull(resp.getFactHandle("baunax"));
     }
 
     @Override
@@ -154,8 +133,7 @@ public class CamelEndpointWithJaxbXSDModelTest extends KieCamelTestSupport {
                 def.setPrettyPrint(true);
                 def.setContextPath("org.kie.pipeline.camel");
 
-                from("direct:test-with-session").policy(new KiePolicy()).
-                        unmarshal(def).to("kie:ksession1").marshal(def);
+                from("direct:test-with-session").policy(new KiePolicy()).unmarshal(def).to("kie:ksession1").marshal(def);
             }
         };
         return routeBuilder;
@@ -181,8 +159,7 @@ public class CamelEndpointWithJaxbXSDModelTest extends KieCamelTestSupport {
         rule += "    System.out.println(\"executed\"); \n";
         rule += "end\n";
 
-        registerKnowledgeRuntime( "ksession1",
-                                  rule );
+        registerKnowledgeRuntime("ksession1", rule);
     }
 
     @Override
@@ -192,19 +169,17 @@ public class CamelEndpointWithJaxbXSDModelTest extends KieCamelTestSupport {
         KieResources kieResources = ks.getResources();
 
         Options xjcOpts = new Options();
-        xjcOpts.setSchemaLanguage( Language.XMLSCHEMA );
+        xjcOpts.setSchemaLanguage(Language.XMLSCHEMA);
 
         JaxbConfiguration jaxbConfiguration = KnowledgeBuilderFactory.newJaxbConfiguration(xjcOpts, "xsd");
 
-        kfs.write(kieResources.newClassPathResource("person.xsd", getClass())
-                              .setResourceType(ResourceType.XSD)
-                              .setConfiguration(jaxbConfiguration));
+        kfs.write(kieResources.newClassPathResource("person.xsd", getClass()).setResourceType(ResourceType.XSD).setConfiguration(jaxbConfiguration));
 
-        if ( rule != null && rule.length() > 0 ) {
-            kfs.write( "src/main/resources/rule.drl", rule );
+        if (rule != null && rule.length() > 0) {
+            kfs.write("src/main/resources/rule.drl", rule);
         }
 
-        KieBuilder kieBuilder = ks.newKieBuilder( kfs ).buildAll();
+        KieBuilder kieBuilder = ks.newKieBuilder(kfs).buildAll();
 
         List<Message> errors = kieBuilder.getResults().getMessages(Message.Level.ERROR);
         if (!errors.isEmpty()) {
@@ -212,10 +187,10 @@ public class CamelEndpointWithJaxbXSDModelTest extends KieCamelTestSupport {
         }
 
         KieSession ksession = ks.newKieContainer(ks.getRepository().getDefaultReleaseId()).newKieSession();
-        classLoader = ((KnowledgeBaseImpl) ksession.getKieBase()).getRootClassLoader();
+        classLoader = ((KnowledgeBaseImpl)ksession.getKieBase()).getRootClassLoader();
 
         try {
-            jndiContext.bind( identifier, ksession );
+            jndiContext.bind(identifier, ksession);
         } catch (NamingException e) {
             throw new RuntimeException(e);
         }

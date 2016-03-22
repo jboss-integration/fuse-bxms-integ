@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,11 +29,9 @@ import org.switchyard.component.common.knowledge.service.SwitchYardServiceInvoke
 import org.switchyard.config.model.composite.ComponentModel;
 import org.switchyard.deploy.ComponentNames;
 
-/**
- * ChannelBuilder.
+/** ChannelBuilder.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class ChannelBuilder extends KnowledgeBuilder {
 
     private Class<? extends Channel> _channelClass;
@@ -43,12 +40,11 @@ public class ChannelBuilder extends KnowledgeBuilder {
     private String _operationName;
     private String _targetNamespace;
 
-    /**
-     * Creates a new ChannelBuilder.
+    /** Creates a new ChannelBuilder.
+     * 
      * @param classLoader classLoader
      * @param serviceDomain serviceDomain
-     * @param channelModel channelModel
-     */
+     * @param channelModel channelModel */
     @SuppressWarnings("unchecked")
     public ChannelBuilder(ClassLoader classLoader, ServiceDomain serviceDomain, ChannelModel channelModel) {
         super(classLoader, serviceDomain);
@@ -56,8 +52,8 @@ public class ChannelBuilder extends KnowledgeBuilder {
             ChannelsModel channelsModel = (ChannelsModel)channelModel.getModelParent();
             KnowledgeComponentImplementationModel implementationModel = (KnowledgeComponentImplementationModel)channelsModel.getModelParent();
             ComponentModel componentModel = implementationModel.getComponent();
-            QName componentName =  componentModel.getQName();
-            _targetNamespace =  componentModel.getTargetNamespace();
+            QName componentName = componentModel.getQName();
+            _targetNamespace = componentModel.getTargetNamespace();
             _channelClass = (Class<? extends Channel>)channelModel.getClazz(getClassLoader());
             if (_channelClass == null) {
                 _channelClass = SwitchYardServiceChannel.class;
@@ -74,18 +70,16 @@ public class ChannelBuilder extends KnowledgeBuilder {
         }
     }
 
-    /**
-     * Gets the channel name.
-     * @return the channel name
-     */
+    /** Gets the channel name.
+     * 
+     * @return the channel name */
     public String getChannelName() {
         return _channelName;
     }
 
-    /**
-     * Builds a Channel.
-     * @return a Channel
-     */
+    /** Builds a Channel.
+     * 
+     * @return a Channel */
     public Channel build() {
         Channel channel = null;
         if (_channelClass != null) {
@@ -100,13 +94,12 @@ public class ChannelBuilder extends KnowledgeBuilder {
         return channel;
     }
 
-    /**
-     * Creates ChannelBuilders.
+    /** Creates ChannelBuilders.
+     * 
      * @param classLoader classLoader
      * @param serviceDomain serviceDomain
      * @param implementationModel implementationModel
-     * @return ChannelBuilders
-     */
+     * @return ChannelBuilders */
     public static List<ChannelBuilder> builders(ClassLoader classLoader, ServiceDomain serviceDomain, KnowledgeComponentImplementationModel implementationModel) {
         List<ChannelBuilder> builders = new ArrayList<ChannelBuilder>();
         if (implementationModel != null) {

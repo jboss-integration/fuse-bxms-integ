@@ -18,11 +18,13 @@ package org.switchyard.quickstarts.bpm.service;
 
 import org.switchyard.component.test.mixins.http.HTTPMixIn;
 
+
 /**
  * Simple client to send a SOAP message.
  */
 public final class BPMClient {
 
+    /** The Constant XML. */
     private static final String XML = "src/test/resources/xml/soap-request.xml";
 
     /**
@@ -33,6 +35,7 @@ public final class BPMClient {
 
     /**
      * Only execution point for this application.
+     * 
      * @param ignored not used.
      * @throws Exception if something goes wrong.
      */

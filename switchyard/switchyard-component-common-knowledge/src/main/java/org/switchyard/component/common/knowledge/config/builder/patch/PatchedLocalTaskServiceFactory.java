@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,24 +16,19 @@ import org.jbpm.runtime.manager.impl.factory.LocalTaskServiceFactory;
 import org.kie.api.runtime.manager.RuntimeEnvironment;
 import org.kie.api.task.TaskService;
 
-/**
- * PatchedLocalTaskServiceFactory.
+/** PatchedLocalTaskServiceFactory.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class PatchedLocalTaskServiceFactory extends LocalTaskServiceFactory {
 
-    /**
-     * Creates a new PatchedLocalTaskServiceFactory.
-     * @param runtimeEnvironment the RuntimeEnvironment
-     */
+    /** Creates a new PatchedLocalTaskServiceFactory.
+     * 
+     * @param runtimeEnvironment the RuntimeEnvironment */
     public PatchedLocalTaskServiceFactory(RuntimeEnvironment runtimeEnvironment) {
         super(runtimeEnvironment);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public TaskService newTaskService() {
         TaskService taskService;

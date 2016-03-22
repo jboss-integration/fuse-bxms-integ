@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,17 +19,13 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 
-/**
- * TransactionManagerLocator for OSGi environments.
- */
+/** TransactionManagerLocator for OSGi environments. */
 public class OSGiTransactionManagerLocator extends TransactionManagerLocator {
 
     private TransactionManager _transactionManager;
     private UserTransaction _userTransaction;
 
-    /**
-     * Create a new OsgiTransactionManagerLocator.
-     */
+    /** Create a new OsgiTransactionManagerLocator. */
     public OSGiTransactionManagerLocator() {
         final Bundle bundle = FrameworkUtil.getBundle(getClass());
         final BundleContext context = bundle.getBundleContext();

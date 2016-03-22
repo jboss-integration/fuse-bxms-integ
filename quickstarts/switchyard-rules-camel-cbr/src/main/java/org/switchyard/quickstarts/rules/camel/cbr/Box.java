@@ -18,38 +18,73 @@ package org.switchyard.quickstarts.rules.camel.cbr;
 
 import java.io.Serializable;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Class Box.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 @SuppressWarnings("serial")
 public class Box implements Serializable {
 
+    /** The _widget. */
     private Widget _widget;
+
+    /** The _destination. */
     private String _destination;
-    
+
+    /**
+     * Instantiates a new box.
+     */
     public Box() {
-    
+
     }
 
+    /**
+     * Instantiates a new box.
+     *
+     * @param widget the widget
+     */
     public Box(Widget widget) {
         _widget = widget;
         _widget.setBox(this);
     }
-    
-    public void setWidget(Widget widget)
-    {
+
+    /**
+     * Sets the widget.
+     *
+     * @param widget the new widget
+     */
+    public void setWidget(Widget widget) {
         _widget = widget;
         _widget.setBox(this);
     }
 
+    /**
+     * Gets the widget.
+     *
+     * @return the widget
+     */
     public Widget getWidget() {
         return _widget;
     }
 
+    /**
+     * Gets the destination.
+     *
+     * @return the destination
+     */
     public String getDestination() {
         return _destination;
     }
 
+    /**
+     * Sets the destination.
+     *
+     * @param destination the new destination
+     */
     public void setDestination(String destination) {
         _destination = destination;
     }

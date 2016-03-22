@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,29 +27,24 @@ import org.switchyard.component.common.knowledge.config.model.KnowledgeComponent
 import org.switchyard.component.common.knowledge.config.model.UserGroupCallbackModel;
 import org.switchyard.component.common.knowledge.task.PropertiesUserGroupCallback;
 
-/**
- * UserGroupCallbackBuilder.
+/** UserGroupCallbackBuilder.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class UserGroupCallbackBuilder extends KnowledgeBuilder {
 
     private static final String USER_CALLBACK_IMPL = System.getProperty("org.jbpm.ht.callback");
-    private static final String DEFAULT_PROPERTIES_LOCATION = System.getProperty("jbpm.user.group.mapping", System.getProperty("jboss.server.config.dir", "target/classes") + "/roles.properties");
+    private static final String DEFAULT_PROPERTIES_LOCATION = System.getProperty("jbpm.user.group.mapping", System.getProperty("jboss.server.config.dir", "target/classes")
+                                                                                                            + "/roles.properties");
 
-    private static final Class<?>[][] PARAMETER_TYPES = new Class<?>[][]{
-        new Class<?>[]{Properties.class},
-        new Class<?>[0]
-    };
+    private static final Class<?>[][] PARAMETER_TYPES = new Class<?>[][] {new Class<?>[] {Properties.class}, new Class<?>[0]};
 
     private Class<? extends UserGroupCallback> _userGroupCallbackClass;
     private final PropertiesBuilder _propertiesBuilder;
 
-    /**
-     * Creates a UserGroupCallbackBuilder.
+    /** Creates a UserGroupCallbackBuilder.
+     * 
      * @param classLoader classLoader
-     * @param userGroupCallbackModel userGroupCallbackModel
-     */
+     * @param userGroupCallbackModel userGroupCallbackModel */
     @SuppressWarnings("unchecked")
     public UserGroupCallbackBuilder(ClassLoader classLoader, UserGroupCallbackModel userGroupCallbackModel) {
         super(classLoader);
@@ -73,10 +67,9 @@ public class UserGroupCallbackBuilder extends KnowledgeBuilder {
         }
     }
 
-    /**
-     * Builds a UserGroupCallback.
-     * @return a UserGroupCallback
-     */
+    /** Builds a UserGroupCallback.
+     * 
+     * @return a UserGroupCallback */
     public UserGroupCallback build() {
         UserGroupCallback callback = null;
         Properties properties = _propertiesBuilder.build();
@@ -121,7 +114,7 @@ public class UserGroupCallbackBuilder extends KnowledgeBuilder {
             if (parameterTypes.length == 0) {
                 userGroupCallback = Construction.construct(_userGroupCallbackClass);
             } else if (parameterTypes.length == 1) {
-                userGroupCallback = Construction.construct(_userGroupCallbackClass, parameterTypes, new Object[]{properties});
+                userGroupCallback = Construction.construct(_userGroupCallbackClass, parameterTypes, new Object[] {properties});
             }
         } catch (Throwable t) {
             throw CommonKnowledgeMessages.MESSAGES.couldNotInstantiateUserGroupCallbackClass(_userGroupCallbackClass.getName());
@@ -129,12 +122,11 @@ public class UserGroupCallbackBuilder extends KnowledgeBuilder {
         return userGroupCallback;
     }
 
-    /**
-     * Creates a UserGroupCallbackBuilder.
+    /** Creates a UserGroupCallbackBuilder.
+     * 
      * @param classLoader classLoader
      * @param implementationModel implementationModel
-     * @return a UserGroupCallbackBuilder
-     */
+     * @return a UserGroupCallbackBuilder */
     public static UserGroupCallbackBuilder builder(ClassLoader classLoader, KnowledgeComponentImplementationModel implementationModel) {
         UserGroupCallbackModel userGroupCallbackModel = implementationModel != null ? implementationModel.getUserGroupCallback() : null;
         return new UserGroupCallbackBuilder(classLoader, userGroupCallbackModel);

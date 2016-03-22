@@ -1,3 +1,15 @@
+/*
+ * Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.kie.camel.component;
 
 import org.apache.camel.builder.RouteBuilder;
@@ -67,8 +79,8 @@ import java.util.Set;
 @RunWith(JUnit4.class)
 public abstract class BatchTest extends CamelTestSupport {
     protected CommandExecutor exec;
-    protected String          dataformat;
-    protected String          copyToDataFormat;
+    protected String dataformat;
+    protected String copyToDataFormat;
 
     public BatchTest() {
     }
@@ -77,14 +89,14 @@ public abstract class BatchTest extends CamelTestSupport {
         return new RouteBuilder() {
             public void configure() throws Exception {
                 JaxbDataFormat jaxbDf = new JaxbDataFormat();
-                jaxbDf.setContextPath( "org.kie.camel.testdomain" );
+                jaxbDf.setContextPath("org.kie.camel.testdomain");
 
-                from( "direct:exec" ).policy( new KiePolicy() ).unmarshal( dataformat ).to( "kie://ksession1" ).marshal( dataformat );
-                from( "direct:execWithLookup" ).policy( new KiePolicy() ).unmarshal( dataformat ).to( "kie://dynamic" ).marshal( dataformat );
-                from( "direct:unmarshal" ).policy( new KiePolicy() ).unmarshal( dataformat );
-                from( "direct:marshal" ).policy( new KiePolicy() ).marshal( dataformat );
-                from( "direct:to-xstream" ).policy( new KiePolicy() ).unmarshal( dataformat ).marshal( "xstream" );
-                from( "direct:to-jaxb" ).policy( new KiePolicy() ).unmarshal( dataformat ).marshal( jaxbDf );
+                from("direct:exec").policy(new KiePolicy()).unmarshal(dataformat).to("kie://ksession1").marshal(dataformat);
+                from("direct:execWithLookup").policy(new KiePolicy()).unmarshal(dataformat).to("kie://dynamic").marshal(dataformat);
+                from("direct:unmarshal").policy(new KiePolicy()).unmarshal(dataformat);
+                from("direct:marshal").policy(new KiePolicy()).marshal(dataformat);
+                from("direct:to-xstream").policy(new KiePolicy()).unmarshal(dataformat).marshal("xstream");
+                from("direct:to-jaxb").policy(new KiePolicy()).unmarshal(dataformat).marshal(jaxbDf);
             }
         };
     }
@@ -93,29 +105,25 @@ public abstract class BatchTest extends CamelTestSupport {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse( new InputSource( new StringReader( xmlSource ) ) );
+            Document doc = builder.parse(new InputSource(new StringReader(xmlSource)));
 
             TransformerFactory tfactory = TransformerFactory.newInstance();
-            tfactory.setAttribute( "indent-number",
-                                   4 );
+            tfactory.setAttribute("indent-number", 4);
             Transformer serializer;
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
             serializer = tfactory.newTransformer();
-            serializer.setOutputProperty( OutputKeys.INDENT,
-                                          "yes" );
-            serializer.transform( new DOMSource( doc ),
-                                  new StreamResult( new OutputStreamWriter( baos,
-                                                                            "UTF-8" ) ) );
-            return new String( baos.toByteArray() );
-        } catch ( Exception e ) {
-            throw new RuntimeException( e );
+            serializer.setOutputProperty(OutputKeys.INDENT, "yes");
+            serializer.transform(new DOMSource(doc), new StreamResult(new OutputStreamWriter(baos, "UTF-8")));
+            return new String(baos.toByteArray());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
     protected Context createJndiContext() throws Exception {
         Context context = super.createJndiContext();
-        context.bind( "ksession1", this.exec );
+        context.bind("ksession1", this.exec);
         return context;
     }
 
@@ -127,147 +135,108 @@ public abstract class BatchTest extends CamelTestSupport {
         this.exec = exec;
         try {
             super.setUp();
-        } catch ( Exception e ) {
-            throw new RuntimeException( e );
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
     protected final TemplateRegistry tempReg = new SimpleTemplateRegistry();
 
-    protected PrintWriter            writer;
+    protected PrintWriter writer;
 
     @Before
     public void before() throws Exception {
-        tempReg.addNamedTemplate( "tempReg",
-                                  TemplateCompiler.compileTemplate( getClass().getResourceAsStream( dataformat + ".mvt" ),
-                                                                    (Map<String, Class<? extends Node>>) null ) );
-        TemplateRuntime.execute( tempReg.getNamedTemplate( "tempReg" ),
-                                 null,
-                                 tempReg );
+        tempReg.addNamedTemplate("tempReg", TemplateCompiler.compileTemplate(getClass().getResourceAsStream(dataformat + ".mvt"), (Map<String, Class<? extends Node>>)null));
+        TemplateRuntime.execute(tempReg.getNamedTemplate("tempReg"), null, tempReg);
 
-        XMLUnit.setIgnoreComments( true );
-        XMLUnit.setIgnoreWhitespace( true );
-        XMLUnit.setIgnoreAttributeOrder( true );
-        XMLUnit.setNormalizeWhitespace( true );
-        XMLUnit.setNormalize( true );
+        XMLUnit.setIgnoreComments(true);
+        XMLUnit.setIgnoreWhitespace(true);
+        XMLUnit.setIgnoreAttributeOrder(true);
+        XMLUnit.setNormalizeWhitespace(true);
+        XMLUnit.setNormalize(true);
 
-        if ( !StringUtils.isEmpty( copyToDataFormat ) ) {
-            writer = new PrintWriter( new BufferedWriter( new FileWriter( copyToDataFormat + ".mvt",
-                                                                          true ) ) );
+        if (!StringUtils.isEmpty(copyToDataFormat)) {
+            writer = new PrintWriter(new BufferedWriter(new FileWriter(copyToDataFormat + ".mvt", true)));
         }
     }
 
     @After
     public void after() throws Exception {
-        if ( !StringUtils.isEmpty( copyToDataFormat ) ) {
+        if (!StringUtils.isEmpty(copyToDataFormat)) {
             writer.close();
         }
     }
 
-    public String getContent(String name,
-                             String... vars) {
+    public String getContent(String name, String... vars) {
         Map<String, String> map = new HashMap<String, String>();
         int counter = 1;
-        for ( String var : vars ) {
-            map.put( "var" + counter++,
-                     var );
+        for (String var : vars) {
+            map.put("var" + counter++, var);
         }
 
-        if ( !StringUtils.isEmpty( copyToDataFormat ) ) {
+        if (!StringUtils.isEmpty(copyToDataFormat)) {
             writer.println();
-            writer.println( "@declare{\"" + name + "\"}" );
+            writer.println("@declare{\"" + name + "\"}");
         }
-        String s = (String) TemplateRuntime.execute( tempReg.getNamedTemplate( name ),
-                                                     map );
-        if ( !StringUtils.isEmpty( copyToDataFormat ) ) {
-            writer.print( prettyPrintXml( template.requestBody( "direct:to-" + copyToDataFormat,
-                                                                s,
-                                                                String.class ) ) );
-            writer.println( "@end{}" );
+        String s = (String)TemplateRuntime.execute(tempReg.getNamedTemplate(name), map);
+        if (!StringUtils.isEmpty(copyToDataFormat)) {
+            writer.print(prettyPrintXml(template.requestBody("direct:to-" + copyToDataFormat, s, String.class)));
+            writer.println("@end{}");
         }
 
-        return roundTripFromXml( s.trim() );
+        return roundTripFromXml(s.trim());
     }
 
     public String execContent(String name) {
-        return execContent( name,
-                            String.class );
+        return execContent(name, String.class);
     }
 
-    public <T> T execContent(String name,
-                             Class<T> cls) {
-        return execContent( name,
-                            cls,
-                            new String[0] );
+    public <T> T execContent(String name, Class<T> cls) {
+        return execContent(name, cls, new String[0]);
     }
 
-    public <T> T execContent(String name,
-                             Class<T> cls,
-                             String... vars) {
-        String s = execContent( name,
-                                vars );
-        if ( cls.isAssignableFrom( String.class ) ) {
-            return (T) s;
+    public <T> T execContent(String name, Class<T> cls, String... vars) {
+        String s = execContent(name, vars);
+        if (cls.isAssignableFrom(String.class)) {
+            return (T)s;
         } else {
-            return unmarshalOutXml( s,
-                                    cls );
+            return unmarshalOutXml(s, cls);
         }
     }
 
-    public String execContent(String name,
-                              String... vars) {
-        String inXml = getContent( name,
-                                   vars );
-        return execInXml( inXml );
+    public String execContent(String name, String... vars) {
+        String inXml = getContent(name, vars);
+        return execInXml(inXml);
     }
 
     public String execInXml(String inXml) {
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
-        return roundTripFromXml( outXml );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
+        return roundTripFromXml(outXml);
     }
 
-    public <T> T unmarshalOutXml(String outXml,
-                                 Class<T> cls) {
-        Object object = template.requestBody( "direct:unmarshal",
-                                              outXml,
-                                              Object.class );
-        return (T) roundTripFromObject( object );
+    public <T> T unmarshalOutXml(String outXml, Class<T> cls) {
+        Object object = template.requestBody("direct:unmarshal", outXml, Object.class);
+        return (T)roundTripFromObject(object);
     }
 
-    public abstract void assertXMLEqual(String expectedXml,
-                                        String resultXml);
+    public abstract void assertXMLEqual(String expectedXml, String resultXml);
 
     public String roundTripFromXml(String inXml) {
-        Object object = template.requestBody( "direct:unmarshal",
-                                              inXml );
-        inXml = template.requestBody( "direct:marshal",
-                                      object,
-                                      String.class );
-        object = template.requestBody( "direct:unmarshal",
-                                       inXml );
-        return template.requestBody( "direct:marshal",
-                                     object,
-                                     String.class );
+        Object object = template.requestBody("direct:unmarshal", inXml);
+        inXml = template.requestBody("direct:marshal", object, String.class);
+        object = template.requestBody("direct:unmarshal", inXml);
+        return template.requestBody("direct:marshal", object, String.class);
     }
 
     public Object roundTripFromObject(Object object) {
-        String inXml = template.requestBody( "direct:marshal",
-                                             object,
-                                             String.class );
-        object = template.requestBody( "direct:unmarshal",
-                                       inXml );
-        inXml = template.requestBody( "direct:marshal",
-                                      object,
-                                      String.class );
-        return template.requestBody( "direct:unmarshal",
-                                     inXml );
+        String inXml = template.requestBody("direct:marshal", object, String.class);
+        object = template.requestBody("direct:unmarshal", inXml);
+        inXml = template.requestBody("direct:marshal", object, String.class);
+        return template.requestBody("direct:unmarshal", inXml);
     }
 
     private StatelessKieSession getStatelessKieSession(Resource resource) throws Exception {
-        return getStatelessKieSessionFromResource(resource.setSourcePath("src/main/resources/rule.drl")
-                                                          .setResourceType(ResourceType.DRL));
+        return getStatelessKieSessionFromResource(resource.setSourcePath("src/main/resources/rule.drl").setResourceType(ResourceType.DRL));
     }
 
     private StatelessKieSession getStatelessKieSessionFromResource(Resource resource) throws Exception {
@@ -276,7 +245,7 @@ public abstract class BatchTest extends CamelTestSupport {
 
         kfs.write(resource);
 
-        KieBuilder kieBuilder = ks.newKieBuilder( kfs ).buildAll();
+        KieBuilder kieBuilder = ks.newKieBuilder(kfs).buildAll();
 
         List<Message> errors = kieBuilder.getResults().getMessages(Message.Level.ERROR);
         if (!errors.isEmpty()) {
@@ -287,8 +256,7 @@ public abstract class BatchTest extends CamelTestSupport {
     }
 
     private KieSession getKieSession(Resource resource) throws Exception {
-        return getKieSessionFromResource(resource.setSourcePath("src/main/resources/rule.drl")
-                                                 .setResourceType(ResourceType.DRL));
+        return getKieSessionFromResource(resource.setSourcePath("src/main/resources/rule.drl").setResourceType(ResourceType.DRL));
     }
 
     private KieSession getKieSessionFromResource(Resource resource) throws Exception {
@@ -297,7 +265,7 @@ public abstract class BatchTest extends CamelTestSupport {
 
         kfs.write(resource);
 
-        KieBuilder kieBuilder = ks.newKieBuilder( kfs ).buildAll();
+        KieBuilder kieBuilder = ks.newKieBuilder(kfs).buildAll();
 
         List<Message> errors = kieBuilder.getResults().getMessages(Message.Level.ERROR);
         if (!errors.isEmpty()) {
@@ -359,30 +327,24 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = execContent( "testListenForChanges.in.1" );
+        String outXml = execContent("testListenForChanges.in.1");
 
-        outXml = execContent( "testListenForChanges.in.2" );
-        ExecutionResults result = unmarshalOutXml( outXml,
-                                                   ExecutionResults.class );
+        outXml = execContent("testListenForChanges.in.2");
+        ExecutionResults result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        assertXMLEqual( getContent( "testListenForChanges.expected.1",
-                                    ((FactHandle) result.getFactHandle( "changes" )).toExternalForm(),
-                                    ((FactHandle) result.getFactHandle( "person" )).toExternalForm() ),
-                        outXml );
+        assertXMLEqual(getContent("testListenForChanges.expected.1", ((FactHandle)result.getFactHandle("changes")).toExternalForm(),
+                                  ((FactHandle)result.getFactHandle("person")).toExternalForm()), outXml);
 
-        ChangeCollector collector = (ChangeCollector) result.getValue( "changes" );
-        Cheese c = (Cheese) collector.getChanges().get( 0 );
-        assertEquals( 42,
-                      c.getPrice() );
+        ChangeCollector collector = (ChangeCollector)result.getValue("changes");
+        Cheese c = (Cheese)collector.getChanges().get(0);
+        assertEquals(42, c.getPrice());
 
-        result = execContent( "testListenForChanges.in.3",
-                              ExecutionResults.class );
+        result = execContent("testListenForChanges.in.3", ExecutionResults.class);
 
-        collector = (ChangeCollector) result.getValue( "changes" );
-        assertEquals( "stilton",
-                      collector.getRetracted().get( 0 ) );
+        collector = (ChangeCollector)result.getValue("changes");
+        assertEquals("stilton", collector.getRetracted().get(0));
 
     }
 
@@ -401,27 +363,22 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = execContent( "testInsertWithDefaults.in.1" );
+        String outXml = execContent("testInsertWithDefaults.in.1");
 
-        ExecutionResults result = unmarshalOutXml( outXml,
-                                                   ExecutionResults.class );
+        ExecutionResults result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        Cheese stilton = (Cheese) result.getValue( "outStilton" );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        Cheese stilton = (Cheese)result.getValue("outStilton");
+        assertEquals(30, stilton.getPrice());
 
-        FactHandle factHandle = (FactHandle) result.getFactHandle( "outStilton" );
-        stilton = (Cheese) ksession.getObject( factHandle );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        FactHandle factHandle = (FactHandle)result.getFactHandle("outStilton");
+        stilton = (Cheese)ksession.getObject(factHandle);
+        assertEquals(30, stilton.getPrice());
 
-        String expectedXml = getContent( "testInsertWithDefaults.expected.1",
-                                         ((FactHandle) result.getFactHandle( "outStilton" )).toExternalForm() );
+        String expectedXml = getContent("testInsertWithDefaults.expected.1", ((FactHandle)result.getFactHandle("outStilton")).toExternalForm());
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
     }
 
     @Test
@@ -438,17 +395,14 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = execContent( "testInsertWithReturnObjectFalse.in.1" );
-        ExecutionResults result = unmarshalOutXml( outXml,
-                                                   ExecutionResults.class );
+        String outXml = execContent("testInsertWithReturnObjectFalse.in.1");
+        ExecutionResults result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        String expectedXml = getContent( "testInsertWithReturnObjectFalse.expected.1",
-                                         ((FactHandle) result.getFactHandle( "outStilton" )).toExternalForm() );
+        String expectedXml = getContent("testInsertWithReturnObjectFalse.expected.1", ((FactHandle)result.getFactHandle("outStilton")).toExternalForm());
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
     }
 
     @Test
@@ -466,32 +420,24 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        FactHandle fh = ksession.insert( new Person( "mic",
-                                                     42 ) );
+        FactHandle fh = ksession.insert(new Person("mic", 42));
         List<FactHandle> list = new ArrayList<FactHandle>();
-        list.add( fh );
+        list.add(fh);
 
-        ksession.setGlobal( "list1",
-                            list );
+        ksession.setGlobal("list1", list);
 
-        String outXml = execContent( "testFactHandleReturn.in.1" );
+        String outXml = execContent("testFactHandleReturn.in.1");
 
-        assertXMLEqual( getContent( "testFactHandleReturn.expected.1",
-                                    fh.toExternalForm() ),
-                        outXml );
+        assertXMLEqual(getContent("testFactHandleReturn.expected.1", fh.toExternalForm()), outXml);
 
-        ExecutionResults result = unmarshalOutXml( outXml,
-                                                   ExecutionResults.class );
+        ExecutionResults result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        List outList = (List) result.getValue( "out-list" );
-        assertEquals( 1,
-                      outList.size() );
-        assertEquals( fh.toExternalForm(),
-                      ((FactHandle) outList.get( 0 )).toExternalForm() );
-        assertNotSame( fh,
-                       outList.get( 0 ) );
+        List outList = (List)result.getValue("out-list");
+        assertEquals(1, outList.size());
+        assertEquals(fh.toExternalForm(), ((FactHandle)outList.get(0)).toExternalForm());
+        assertNotSame(fh, outList.get(0));
     }
 
     @Test
@@ -508,23 +454,18 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        ExecutionResults result = execContent( "testGetObject.in.1",
-                                               ExecutionResults.class );
+        ExecutionResults result = execContent("testGetObject.in.1", ExecutionResults.class);
 
-        Cheese stilton = (Cheese) result.getValue( "outStilton" );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        Cheese stilton = (Cheese)result.getValue("outStilton");
+        assertEquals(30, stilton.getPrice());
 
-        String outXml = execContent( "testGetObject.in.2",
-                                     ((FactHandle) result.getFactHandle( "outStilton" )).toExternalForm() );
-        result = unmarshalOutXml( outXml,
-                                  ExecutionResults.class );
+        String outXml = execContent("testGetObject.in.2", ((FactHandle)result.getFactHandle("outStilton")).toExternalForm());
+        result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        stilton = (Cheese) result.getValue( "outStilton" );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        stilton = (Cheese)result.getValue("outStilton");
+        assertEquals(30, stilton.getPrice());
     }
 
     @Test
@@ -541,24 +482,19 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        ExecutionResults result = execContent( "testRetractObject.in.1",
-                                               ExecutionResults.class );
+        ExecutionResults result = execContent("testRetractObject.in.1", ExecutionResults.class);
 
-        Cheese stilton = (Cheese) result.getValue( "outStilton" );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        Cheese stilton = (Cheese)result.getValue("outStilton");
+        assertEquals(30, stilton.getPrice());
 
-        String outXml = execContent( "testRetractObject.in.2",
-                                     ((FactHandle) result.getFactHandle( "outStilton" )).toExternalForm() );
+        String outXml = execContent("testRetractObject.in.2", ((FactHandle)result.getFactHandle("outStilton")).toExternalForm());
 
-        outXml = execContent( "testRetractObject.in.3",
-                              ((FactHandle) result.getFactHandle( "outStilton" )).toExternalForm() );
-        result = unmarshalOutXml( outXml,
-                                  ExecutionResults.class );
+        outXml = execContent("testRetractObject.in.3", ((FactHandle)result.getFactHandle("outStilton")).toExternalForm());
+        result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        assertNull( result.getValue( "outStilton" ) );
+        assertNull(result.getValue("outStilton"));
     }
 
     @Test
@@ -575,52 +511,37 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = execContent( "testModifyObject.in.1" );
-        ExecutionResults result = unmarshalOutXml( outXml,
-                                                   ExecutionResults.class );
+        String outXml = execContent("testModifyObject.in.1");
+        ExecutionResults result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        String stiltonfh = ((FactHandle) result.getFactHandle( "outStilton" )).toExternalForm();
+        String stiltonfh = ((FactHandle)result.getFactHandle("outStilton")).toExternalForm();
 
-        Cheese stilton = (Cheese) result.getValue( "outStilton" );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        Cheese stilton = (Cheese)result.getValue("outStilton");
+        assertEquals(30, stilton.getPrice());
 
-        String expectedXml = getContent( "testModifyObject.expected.1",
-                                         stiltonfh );
+        String expectedXml = getContent("testModifyObject.expected.1", stiltonfh);
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
 
-        execContent( "testModifyObject.in.2",
-                     ExecutionResults.class,
-                     stiltonfh );
+        execContent("testModifyObject.in.2", ExecutionResults.class, stiltonfh);
 
-        result = execContent( "testModifyObject.in.3",
-                              ExecutionResults.class,
-                              stiltonfh );
+        result = execContent("testModifyObject.in.3", ExecutionResults.class, stiltonfh);
 
-        stilton = (Cheese) result.getValue( "outStilton" );
-        assertEquals( 42,
-                      stilton.getOldPrice() );
-        assertEquals( 55,
-                      stilton.getPrice() );
+        stilton = (Cheese)result.getValue("outStilton");
+        assertEquals(42, stilton.getOldPrice());
+        assertEquals(55, stilton.getPrice());
 
-        //now test for code injection:
-        execContent( "testModifyObject.in.4",
-                     ExecutionResults.class,
-                     stiltonfh );
+        // now test for code injection:
+        execContent("testModifyObject.in.4", ExecutionResults.class, stiltonfh);
 
         // should be the same as before
-        result = execContent( "testModifyObject.in.5",
-                              ExecutionResults.class,
-                              stiltonfh );
+        result = execContent("testModifyObject.in.5", ExecutionResults.class, stiltonfh);
 
         // The value gets turned into a literal to avoid injection
-        stilton = (Cheese) result.getValue( "outStilton" );
-        assertEquals( "throwException()",
-                      stilton.getType() );
+        stilton = (Cheese)result.getValue("outStilton");
+        assertEquals("throwException()", stilton.getType());
 
     }
 
@@ -639,28 +560,23 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "     list1.add( $c );";
         str += "end\n";
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = execContent( "testInsertElements.in.1" );
+        String outXml = execContent("testInsertElements.in.1");
 
-        assertXMLEqual( getContent( "testInsertElements.expected.1" ),
-                        outXml );
+        assertXMLEqual(getContent("testInsertElements.expected.1"), outXml);
 
-        ExecutionResults result = unmarshalOutXml( outXml,
-                                                   ExecutionResults.class );
+        ExecutionResults result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        List list = (List) result.getValue( "list1" );
-        Cheese stilton25 = new Cheese( "stilton",
-                                       30 );
-        Cheese stilton30 = new Cheese( "stilton",
-                                       35 );
+        List list = (List)result.getValue("list1");
+        Cheese stilton25 = new Cheese("stilton", 30);
+        Cheese stilton30 = new Cheese("stilton", 35);
 
         Set expectedList = new HashSet();
-        expectedList.add( stilton25 );
-        expectedList.add( stilton30 );
+        expectedList.add(stilton25);
+        expectedList.add(stilton30);
 
-        assertEquals( expectedList,
-                      new HashSet( list ) );
+        assertEquals(expectedList, new HashSet(list));
     }
 
     @Test
@@ -679,42 +595,30 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = execContent( "testInsertElementsWithReturnObjects.in.1" );
+        String outXml = execContent("testInsertElementsWithReturnObjects.in.1");
 
-        ExecutionResults result = unmarshalOutXml( outXml,
-                                                   ExecutionResults.class );
+        ExecutionResults result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        List list1 = (List) result.getValue( "list1" );
-        assertEquals( 2,
-                      list1.size() );
-        assertTrue( list1.contains( new Cheese( "stilton",
-                                                35 ) ) );
-        assertTrue( list1.contains( new Cheese( "stilton",
-                                                30 ) ) );
+        List list1 = (List)result.getValue("list1");
+        assertEquals(2, list1.size());
+        assertTrue(list1.contains(new Cheese("stilton", 35)));
+        assertTrue(list1.contains(new Cheese("stilton", 30)));
 
-        List myFacts = (List) result.getValue( "myfacts" );
-        assertEquals( 2,
-                      list1.size() );
-        assertTrue( myFacts.contains( new Cheese( "stilton",
-                                                  35 ) ) );
-        assertTrue( myFacts.contains( new Cheese( "stilton",
-                                                  30 ) ) );
+        List myFacts = (List)result.getValue("myfacts");
+        assertEquals(2, list1.size());
+        assertTrue(myFacts.contains(new Cheese("stilton", 35)));
+        assertTrue(myFacts.contains(new Cheese("stilton", 30)));
 
-        List<FactHandle> factHandles = (List<FactHandle>) result.getFactHandle( "myfacts" );
+        List<FactHandle> factHandles = (List<FactHandle>)result.getFactHandle("myfacts");
         List list = new ArrayList();
-        list.add( ksession.getObject( ((InternalFactHandle) factHandles.get( 0 )) ) );
-        list.add( ksession.getObject( ((InternalFactHandle) factHandles.get( 1 )) ) );
-        assertTrue( list.contains( new Cheese( "stilton",
-                                               35 ) ) );
-        assertTrue( list.contains( new Cheese( "stilton",
-                                               30 ) ) );
+        list.add(ksession.getObject(((InternalFactHandle)factHandles.get(0))));
+        list.add(ksession.getObject(((InternalFactHandle)factHandles.get(1))));
+        assertTrue(list.contains(new Cheese("stilton", 35)));
+        assertTrue(list.contains(new Cheese("stilton", 30)));
 
-        assertXMLEqual( getContent( "testInsertElementsWithReturnObjects.expected.1",
-                                    factHandles.get( 0 ).toExternalForm(),
-                                    factHandles.get( 1 ).toExternalForm() ),
-                        outXml );
+        assertXMLEqual(getContent("testInsertElementsWithReturnObjects.expected.1", factHandles.get(0).toExternalForm(), factHandles.get(1).toExternalForm()), outXml);
     }
 
     @Test
@@ -737,33 +641,25 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = execContent( "testSetGlobal.in.1" );
+        String outXml = execContent("testSetGlobal.in.1");
 
-        ExecutionResults result = unmarshalOutXml( outXml,
-                                                   ExecutionResults.class );
+        ExecutionResults result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        assertXMLEqual( getContent( "testSetGlobal.expected.1",
-                                    ((FactHandle) result.getFactHandle( "outStilton" )).toExternalForm() ),
-                        outXml );
+        assertXMLEqual(getContent("testSetGlobal.expected.1", ((FactHandle)result.getFactHandle("outStilton")).toExternalForm()), outXml);
 
-        Cheese stilton = new Cheese( "stilton",
-                                     30 );
+        Cheese stilton = new Cheese("stilton", 30);
 
-        assertNull( result.getValue( "list1" ) );
+        assertNull(result.getValue("list1"));
 
-        List list2 = (List) result.getValue( "list2" );
-        assertEquals( 1,
-                      list2.size() );
-        assertEquals( stilton,
-                      list2.get( 0 ) );
+        List list2 = (List)result.getValue("list2");
+        assertEquals(1, list2.size());
+        assertEquals(stilton, list2.get(0));
 
-        List list3 = (List) result.getValue( "outList3" );
-        assertEquals( 1,
-                      list3.size() );
-        assertEquals( stilton,
-                      list3.get( 0 ) );
+        List list3 = (List)result.getValue("outList3");
+        assertEquals(1, list3.size());
+        assertEquals(stilton, list3.get(0));
     }
 
     @Test
@@ -781,23 +677,17 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = execContent( "testGetGlobal.in.1" );
+        String outXml = execContent("testGetGlobal.in.1");
 
-        ExecutionResults result = unmarshalOutXml( outXml,
-                                                   ExecutionResults.class );
+        ExecutionResults result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        assertXMLEqual( getContent( "testGetGlobal.expected.1",
-                                    ((FactHandle) result.getFactHandle( "outStilton" )).toExternalForm() ),
-                        outXml );
+        assertXMLEqual(getContent("testGetGlobal.expected.1", ((FactHandle)result.getFactHandle("outStilton")).toExternalForm()), outXml);
 
-        List resultsList = (List) result.getValue( "out-list" );
-        assertEquals( 1,
-                      resultsList.size() );
-        assertEquals( new Cheese( "stilton",
-                                  25 ),
-                      resultsList.get( 0 ) );
+        List resultsList = (List)result.getValue("out-list");
+        assertEquals(1, resultsList.size());
+        assertEquals(new Cheese("stilton", 25), resultsList.get(0));
 
     }
 
@@ -824,29 +714,25 @@ public abstract class BatchTest extends CamelTestSupport {
         inXml += "]}}";
 
         StatelessKieSession ksession = getStatelessKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = execContent( "testGetObjects.in.1" );
+        String outXml = execContent("testGetObjects.in.1");
 
         // Can't compare content a hashmap of objects keeps changing order
         // assertXMLEqual( getContent( "testGetObjects.expected.1" ),
-        //                outXml );
+        // outXml );
 
-        ExecutionResults result = unmarshalOutXml( outXml,
-                                                   ExecutionResults.class );
+        ExecutionResults result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        List list = (List) result.getValue( "list1" );
-        Cheese stilton25 = new Cheese( "stilton",
-                                       30 );
-        Cheese stilton30 = new Cheese( "stilton",
-                                       35 );
+        List list = (List)result.getValue("list1");
+        Cheese stilton25 = new Cheese("stilton", 30);
+        Cheese stilton30 = new Cheese("stilton", 35);
 
         Set expectedList = new HashSet();
-        expectedList.add( stilton25 );
-        expectedList.add( stilton30 );
+        expectedList.add(stilton25);
+        expectedList.add(stilton30);
 
-        assertEquals( expectedList,
-                      new HashSet( list ) );
+        assertEquals(expectedList, new HashSet(list));
     }
 
     @Test
@@ -864,52 +750,44 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = execContent( "testQuery.in.1" );
+        String outXml = execContent("testQuery.in.1");
 
         // Order is not determinstic, so can't test.
-        //         assertXMLEqual( getContent( "testQuery.expected.1" ),
-        //                        outXml );
-        getContent( "testQuery.expected.1" ); // just to force a tostring for comparison
+        // assertXMLEqual( getContent( "testQuery.expected.1" ),
+        // outXml );
+        getContent("testQuery.expected.1"); // just to force a tostring for comparison
 
-        ExecutionResults batchResult = unmarshalOutXml( outXml,
-                                                        ExecutionResults.class );
+        ExecutionResults batchResult = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        Cheese stilton1 = new Cheese( "stilton",
-                                      1 );
-        Cheese cheddar1 = new Cheese( "cheddar",
-                                      1 );
-        Cheese stilton2 = new Cheese( "stilton",
-                                      2 );
-        Cheese cheddar2 = new Cheese( "cheddar",
-                                      2 );
+        Cheese stilton1 = new Cheese("stilton", 1);
+        Cheese cheddar1 = new Cheese("cheddar", 1);
+        Cheese stilton2 = new Cheese("stilton", 2);
+        Cheese cheddar2 = new Cheese("cheddar", 2);
 
         Set set = new HashSet();
         List list = new ArrayList();
-        list.add( stilton1 );
-        list.add( cheddar1 );
-        set.add( list );
+        list.add(stilton1);
+        list.add(cheddar1);
+        set.add(list);
 
         list = new ArrayList();
-        list.add( stilton2 );
-        list.add( cheddar2 );
-        set.add( list );
+        list.add(stilton2);
+        list.add(cheddar2);
+        set.add(list);
 
-        org.kie.api.runtime.rule.QueryResults results = (org.kie.api.runtime.rule.QueryResults) batchResult.getValue( "cheeses" );
-        assertEquals( 2,
-                      results.size() );
-        assertEquals( 2,
-                      results.getIdentifiers().length );
+        org.kie.api.runtime.rule.QueryResults results = (org.kie.api.runtime.rule.QueryResults)batchResult.getValue("cheeses");
+        assertEquals(2, results.size());
+        assertEquals(2, results.getIdentifiers().length);
         Set newSet = new HashSet();
-        for ( org.kie.api.runtime.rule.QueryResultsRow result : results ) {
+        for (org.kie.api.runtime.rule.QueryResultsRow result : results) {
             list = new ArrayList();
-            list.add( result.get( "stilton" ) );
-            list.add( result.get( "cheddar" ) );
-            newSet.add( list );
+            list.add(result.get("stilton"));
+            list.add(result.get("cheddar"));
+            newSet.add(list);
         }
-        assertEquals( set,
-                      newSet );
+        assertEquals(set, newSet);
     }
 
     @Test
@@ -928,37 +806,29 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         StatelessKieSession ksession = getStatelessKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = execContent( "testManualFireAllRules.in.1" );
+        String outXml = execContent("testManualFireAllRules.in.1");
 
-        ExecutionResults result = unmarshalOutXml( outXml,
-                                                   ExecutionResults.class );
+        ExecutionResults result = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        assertXMLEqual( getContent( "testManualFireAllRules.expected.1",
-                                    ((FactHandle) result.getFactHandle( "outBrie" )).toExternalForm() ),
-                        outXml );
+        assertXMLEqual(getContent("testManualFireAllRules.expected.1", ((FactHandle)result.getFactHandle("outBrie")).toExternalForm()), outXml);
 
         // brie should not have been added to the list
-        List list = (List) result.getValue( "list1" );
-        Cheese stilton25 = new Cheese( "stilton",
-                                       30 );
-        Cheese stilton30 = new Cheese( "stilton",
-                                       35 );
+        List list = (List)result.getValue("list1");
+        Cheese stilton25 = new Cheese("stilton", 30);
+        Cheese stilton30 = new Cheese("stilton", 35);
 
         Set expectedList = new HashSet();
-        expectedList.add( stilton25 );
-        expectedList.add( stilton30 );
+        expectedList.add(stilton25);
+        expectedList.add(stilton30);
 
-        assertEquals( expectedList,
-                      new HashSet( list ) );
+        assertEquals(expectedList, new HashSet(list));
 
         // brie should not have changed
-        Cheese brie10 = new Cheese( "brie",
-                                    10 );
-        brie10.setOldPrice( 5 );
-        assertEquals( brie10,
-                      result.getValue( "outBrie" ) );
+        Cheese brie10 = new Cheese("brie", 10);
+        brie10.setOldPrice(5);
+        assertEquals(brie10, result.getValue("outBrie"));
     }
 
     @Test
@@ -1000,28 +870,22 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "  </connections>\n" + "\n";
         str += "</process>";
 
-        StatelessKieSession ksession = getStatelessKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes())
-                                                                                         .setSourcePath("src/main/resources/rule.rf")
-                                                                                         .setResourceType(ResourceType.DRF));
+        StatelessKieSession ksession = getStatelessKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes()).setSourcePath("src/main/resources/rule.rf")
+            .setResourceType(ResourceType.DRF));
         List<String> list = new ArrayList<String>();
-        ksession.setGlobal( "list1",
-                            list );
-        setExec( ksession );
+        ksession.setGlobal("list1", list);
+        setExec(ksession);
 
-        String outXml = execContent( "testProcess.in.1" );
+        String outXml = execContent("testProcess.in.1");
 
-        assertXMLEqual( getContent( "testProcess.expected.1" ),
-                        outXml );
+        assertXMLEqual(getContent("testProcess.expected.1"), outXml);
 
-        ExecutionResults results = unmarshalOutXml( outXml,
-                                                    ExecutionResults.class );
+        ExecutionResults results = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        list = (List) results.getValue( "out-list" );
+        list = (List)results.getValue("out-list");
 
-        assertEquals( 1,
-                      list.size() );
-        assertEquals( "John Doe",
-                      list.get( 0 ) );
+        assertEquals(1, list.size());
+        assertEquals("John Doe", list.get(0));
     }
 
     @Test
@@ -1061,21 +925,18 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "\n";
         str += "</process>";
 
-        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes())
-                                                                       .setSourcePath("src/main/resources/rule.rf")
-                                                                       .setResourceType(ResourceType.DRF));
-        setExec( ksession );
+        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes()).setSourcePath("src/main/resources/rule.rf")
+            .setResourceType(ResourceType.DRF));
+        setExec(ksession);
 
-        ProcessInstance processInstance = ksession.startProcess( "org.drools.core.event" );
-        assertEquals( ProcessInstance.STATE_ACTIVE,
-                      processInstance.getState() );
+        ProcessInstance processInstance = ksession.startProcess("org.drools.core.event");
+        assertEquals(ProcessInstance.STATE_ACTIVE, processInstance.getState());
 
-        execContent( "testProcessInstanceSignalEvent.in.1" );
+        execContent("testProcessInstanceSignalEvent.in.1");
 
-        assertEquals( ProcessInstance.STATE_COMPLETED,
-                      processInstance.getState() );
-        assertEquals( "MyValue",
-                      ((VariableScopeInstance) ((org.jbpm.process.instance.ProcessInstance) processInstance).getContextInstance( VariableScope.VARIABLE_SCOPE )).getVariable( "MyVar" ) );
+        assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.getState());
+        assertEquals("MyValue",
+                     ((VariableScopeInstance)((org.jbpm.process.instance.ProcessInstance)processInstance).getContextInstance(VariableScope.VARIABLE_SCOPE)).getVariable("MyVar"));
     }
 
     @Test
@@ -1115,21 +976,18 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "\n";
         str += "</process>";
 
-        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes())
-                                                                       .setSourcePath("src/main/resources/rule.rf")
-                                                                       .setResourceType(ResourceType.DRF));
-        setExec( ksession );
+        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes()).setSourcePath("src/main/resources/rule.rf")
+            .setResourceType(ResourceType.DRF));
+        setExec(ksession);
 
-        ProcessInstance processInstance = ksession.startProcess( "org.drools.core.event" );
-        assertEquals( ProcessInstance.STATE_ACTIVE,
-                      processInstance.getState() );
+        ProcessInstance processInstance = ksession.startProcess("org.drools.core.event");
+        assertEquals(ProcessInstance.STATE_ACTIVE, processInstance.getState());
 
-        execContent( "testProcessRuntimeSignalEvent.in.1" );
+        execContent("testProcessRuntimeSignalEvent.in.1");
 
-        assertEquals( ProcessInstance.STATE_COMPLETED,
-                      processInstance.getState() );
-        assertEquals( "MyValue",
-                      ((VariableScopeInstance) ((org.jbpm.process.instance.ProcessInstance) processInstance).getContextInstance( VariableScope.VARIABLE_SCOPE )).getVariable( "MyVar" ) );
+        assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.getState());
+        assertEquals("MyValue",
+                     ((VariableScopeInstance)((org.jbpm.process.instance.ProcessInstance)processInstance).getContextInstance(VariableScope.VARIABLE_SCOPE)).getVariable("MyVar"));
     }
 
     @Test
@@ -1200,85 +1058,57 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "\n";
         str += "</process>";
 
-        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes())
-                                                                       .setSourcePath("src/main/resources/rule.rf")
-                                                                       .setResourceType(ResourceType.DRF));
-        setExec( ksession );
+        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes()).setSourcePath("src/main/resources/rule.rf")
+            .setResourceType(ResourceType.DRF));
+        setExec(ksession);
 
         TestWorkItemHandler handler = new TestWorkItemHandler();
-        ksession.getWorkItemManager().registerWorkItemHandler( "Human Task",
-                                                               handler );
+        ksession.getWorkItemManager().registerWorkItemHandler("Human Task", handler);
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put( "UserName",
-                        "John Doe" );
+        parameters.put("UserName", "John Doe");
         Person person = new Person();
-        person.setName( "John Doe" );
-        parameters.put( "Person",
-                        person );
-        WorkflowProcessInstance processInstance = (WorkflowProcessInstance) ksession.startProcess( "org.drools.actions",
-                                                                                                   parameters );
-        assertEquals( ProcessInstance.STATE_ACTIVE,
-                      processInstance.getState() );
+        person.setName("John Doe");
+        parameters.put("Person", person);
+        WorkflowProcessInstance processInstance = (WorkflowProcessInstance)ksession.startProcess("org.drools.actions", parameters);
+        assertEquals(ProcessInstance.STATE_ACTIVE, processInstance.getState());
         WorkItem workItem = handler.getWorkItem();
-        assertNotNull( workItem );
-        assertEquals( "John Doe",
-                      workItem.getParameter( "ActorId" ) );
-        assertEquals( "John Doe",
-                      workItem.getParameter( "Content" ) );
-        assertEquals( "John Doe",
-                      workItem.getParameter( "Comment" ) );
+        assertNotNull(workItem);
+        assertEquals("John Doe", workItem.getParameter("ActorId"));
+        assertEquals("John Doe", workItem.getParameter("Content"));
+        assertEquals("John Doe", workItem.getParameter("Comment"));
 
-        assertEquals( WorkItem.PENDING,
-                      workItem.getState() );
+        assertEquals(WorkItem.PENDING, workItem.getState());
 
-        execContent( "testCompleteWorkItem.in.1",
-                     Long.toString( workItem.getId() ) );
+        execContent("testCompleteWorkItem.in.1", Long.toString(workItem.getId()));
 
-        assertEquals( WorkItem.COMPLETED,
-                      workItem.getState() );
+        assertEquals(WorkItem.COMPLETED, workItem.getState());
 
-        assertEquals( ProcessInstance.STATE_COMPLETED,
-                      processInstance.getState() );
+        assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.getState());
 
         parameters = new HashMap<String, Object>();
-        parameters.put( "UserName",
-                        "Jane Doe" );
-        parameters.put( "MyObject",
-                        "SomeString" );
+        parameters.put("UserName", "Jane Doe");
+        parameters.put("MyObject", "SomeString");
         person = new Person();
-        person.setName( "Jane Doe" );
-        parameters.put( "Person",
-                        person );
-        processInstance = (WorkflowProcessInstance) ksession.startProcess( "org.drools.actions",
-                                                                           parameters );
-        assertEquals( ProcessInstance.STATE_ACTIVE,
-                      processInstance.getState() );
+        person.setName("Jane Doe");
+        parameters.put("Person", person);
+        processInstance = (WorkflowProcessInstance)ksession.startProcess("org.drools.actions", parameters);
+        assertEquals(ProcessInstance.STATE_ACTIVE, processInstance.getState());
         workItem = handler.getWorkItem();
-        assertNotNull( workItem );
-        assertEquals( "Jane Doe",
-                      workItem.getParameter( "ActorId" ) );
-        assertEquals( "SomeString",
-                      workItem.getParameter( "Attachment" ) );
-        assertEquals( "Jane Doe",
-                      workItem.getParameter( "Content" ) );
-        assertEquals( "Jane Doe",
-                      workItem.getParameter( "Comment" ) );
+        assertNotNull(workItem);
+        assertEquals("Jane Doe", workItem.getParameter("ActorId"));
+        assertEquals("SomeString", workItem.getParameter("Attachment"));
+        assertEquals("Jane Doe", workItem.getParameter("Content"));
+        assertEquals("Jane Doe", workItem.getParameter("Comment"));
 
-        assertEquals( WorkItem.PENDING,
-                      workItem.getState() );
+        assertEquals(WorkItem.PENDING, workItem.getState());
 
-        execContent( "testCompleteWorkItem.in.2",
-                     Long.toString( workItem.getId() ) );
+        execContent("testCompleteWorkItem.in.2", Long.toString(workItem.getId()));
 
-        assertEquals( WorkItem.COMPLETED,
-                      workItem.getState() );
+        assertEquals(WorkItem.COMPLETED, workItem.getState());
 
-        assertEquals( ProcessInstance.STATE_COMPLETED,
-                      processInstance.getState() );
-        assertEquals( "SomeOtherString",
-                      processInstance.getVariable( "MyObject" ) );
-        assertEquals( 15,
-                      processInstance.getVariable( "Number" ) );
+        assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.getState());
+        assertEquals("SomeOtherString", processInstance.getVariable("MyObject"));
+        assertEquals(15, processInstance.getVariable("Number"));
     }
 
     @Test
@@ -1349,36 +1179,27 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "\n";
         str += "</process>";
 
-        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes())
-                                                                       .setSourcePath("src/main/resources/rule.rf")
-                                                                       .setResourceType(ResourceType.DRF));
-        setExec( ksession );
+        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes()).setSourcePath("src/main/resources/rule.rf")
+            .setResourceType(ResourceType.DRF));
+        setExec(ksession);
 
         TestWorkItemHandler handler = new TestWorkItemHandler();
-        ksession.getWorkItemManager().registerWorkItemHandler( "Human Task",
-                                                               handler );
+        ksession.getWorkItemManager().registerWorkItemHandler("Human Task", handler);
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put( "UserName",
-                        "John Doe" );
+        parameters.put("UserName", "John Doe");
         Person person = new Person();
-        person.setName( "John Doe" );
-        parameters.put( "Person",
-                        person );
-        WorkflowProcessInstance processInstance = (WorkflowProcessInstance) ksession.startProcess( "org.drools.actions",
-                                                                                                   parameters );
-        assertEquals( ProcessInstance.STATE_ACTIVE,
-                      processInstance.getState() );
+        person.setName("John Doe");
+        parameters.put("Person", person);
+        WorkflowProcessInstance processInstance = (WorkflowProcessInstance)ksession.startProcess("org.drools.actions", parameters);
+        assertEquals(ProcessInstance.STATE_ACTIVE, processInstance.getState());
         WorkItem workItem = handler.getWorkItem();
-        assertNotNull( workItem );
+        assertNotNull(workItem);
 
-        assertEquals( WorkItem.PENDING,
-                      workItem.getState() );
+        assertEquals(WorkItem.PENDING, workItem.getState());
 
-        execContent( "testAbortWorkItem.in.1",
-                     Long.toString( workItem.getId() ) );
+        execContent("testAbortWorkItem.in.1", Long.toString(workItem.getId()));
 
-        assertEquals( WorkItem.ABORTED,
-                      workItem.getState() );
+        assertEquals(WorkItem.ABORTED, workItem.getState());
     }
 
     @Test
@@ -1395,29 +1216,25 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
         ExecutionResults results = null;
         String outXml = null;
         ClassLoader orig = null;
-        ClassLoader cl = ((StatefulKnowledgeSessionImpl) ksession).getKnowledgeBase().getRootClassLoader();
+        ClassLoader cl = ((StatefulKnowledgeSessionImpl)ksession).getKnowledgeBase().getRootClassLoader();
         try {
             orig = Thread.currentThread().getContextClassLoader();
-            Thread.currentThread().setContextClassLoader( cl );
-            outXml = execContent( "testInsertObjectWithDeclaredFact.in.1" );
-            results = unmarshalOutXml( outXml,
-                                       ExecutionResults.class );
+            Thread.currentThread().setContextClassLoader(cl);
+            outXml = execContent("testInsertObjectWithDeclaredFact.in.1");
+            results = unmarshalOutXml(outXml, ExecutionResults.class);
         } finally {
-            Thread.currentThread().setContextClassLoader( orig );
+            Thread.currentThread().setContextClassLoader(orig);
         }
-        FactHandle factHandle = (FactHandle) results.getFactHandle( "outStilton" );
-        Object object = results.getValue( "outStilton" );
+        FactHandle factHandle = (FactHandle)results.getFactHandle("outStilton");
+        Object object = results.getValue("outStilton");
 
-        assertEquals( "org.foo.Whee",
-                      object.getClass().getName() );
-        assertXMLEqual( getContent( "testInsertObjectWithDeclaredFact.expected.1",
-                                    factHandle.toExternalForm() ),
-                        outXml );
+        assertEquals("org.foo.Whee", object.getClass().getName());
+        assertXMLEqual(getContent("testInsertObjectWithDeclaredFact.expected.1", factHandle.toExternalForm()), outXml);
 
     }
 
@@ -1437,26 +1254,23 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
-        ClassLoader cl = ((StatefulKnowledgeSessionImpl) ksession).getKnowledgeBase().getRootClassLoader();
+        setExec(ksession);
+        ClassLoader cl = ((StatefulKnowledgeSessionImpl)ksession).getKnowledgeBase().getRootClassLoader();
         ClassLoader orig = null;
         try {
             orig = Thread.currentThread().getContextClassLoader();
-            Thread.currentThread().setContextClassLoader( cl );
+            Thread.currentThread().setContextClassLoader(cl);
 
-            String outXml = execContent( "testInsertObjectWithDeclaredFactAndQuery.in.1" );
+            String outXml = execContent("testInsertObjectWithDeclaredFactAndQuery.in.1");
 
-            ExecutionResults results = unmarshalOutXml( outXml,
-                                                        ExecutionResults.class );
-            FactHandle fh = (FactHandle) results.getFactHandle( "outStilton" );
+            ExecutionResults results = unmarshalOutXml(outXml, ExecutionResults.class);
+            FactHandle fh = (FactHandle)results.getFactHandle("outStilton");
 
-            outXml = execContent( "testInsertObjectWithDeclaredFactAndQuery.in.2" );
+            outXml = execContent("testInsertObjectWithDeclaredFactAndQuery.in.2");
 
-            assertXMLEqual( getContent( "testInsertObjectWithDeclaredFactAndQuery.expected.1",
-                                        fh.toExternalForm() ),
-                            outXml );
+            assertXMLEqual(getContent("testInsertObjectWithDeclaredFactAndQuery.expected.1", fh.toExternalForm()), outXml);
         } finally {
-            Thread.currentThread().setContextClassLoader( orig );
+            Thread.currentThread().setContextClassLoader(orig);
         }
     }
 
@@ -1474,38 +1288,29 @@ public abstract class BatchTest extends CamelTestSupport {
         str += "end\n";
 
         KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = execContent( "testExecutionNodeLookup.in.1" );
-        ExecutionResults results = unmarshalOutXml( outXml,
-                                                    ExecutionResults.class );
+        String outXml = execContent("testExecutionNodeLookup.in.1");
+        ExecutionResults results = unmarshalOutXml(outXml, ExecutionResults.class);
 
-        Cheese stilton = (Cheese) results.getValue( "outStilton" );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        Cheese stilton = (Cheese)results.getValue("outStilton");
+        assertEquals(30, stilton.getPrice());
 
-        FactHandle factHandle = (FactHandle) results.getFactHandle( "outStilton" );
-        stilton = (Cheese) ksession.getObject( factHandle );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        FactHandle factHandle = (FactHandle)results.getFactHandle("outStilton");
+        stilton = (Cheese)ksession.getObject(factHandle);
+        assertEquals(30, stilton.getPrice());
 
-        assertXMLEqual( getContent( "testExecutionNodeLookup.expected.1",
-                                    factHandle.toExternalForm() ),
-                        outXml );
+        assertXMLEqual(getContent("testExecutionNodeLookup.expected.1", factHandle.toExternalForm()), outXml);
     }
 
-    public static class TestWorkItemHandler
-        implements
-        WorkItemHandler {
+    public static class TestWorkItemHandler implements WorkItemHandler {
         private WorkItem workItem;
 
-        public void executeWorkItem(WorkItem workItem,
-                                    WorkItemManager manager) {
+        public void executeWorkItem(WorkItem workItem, WorkItemManager manager) {
             this.workItem = workItem;
         }
 
-        public void abortWorkItem(WorkItem workItem,
-                                  WorkItemManager manager) {
+        public void abortWorkItem(WorkItem workItem, WorkItemManager manager) {
         }
 
         public WorkItem getWorkItem() {

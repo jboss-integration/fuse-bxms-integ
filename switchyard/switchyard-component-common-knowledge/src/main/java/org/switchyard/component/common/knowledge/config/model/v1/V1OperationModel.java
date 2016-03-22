@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,11 +27,9 @@ import org.switchyard.config.Configuration;
 import org.switchyard.config.model.BaseNamedModel;
 import org.switchyard.config.model.Descriptor;
 
-/**
- * The 1st version OperationModel.
+/** The 1st version OperationModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public abstract class V1OperationModel extends BaseNamedModel implements OperationModel {
 
     private GlobalsModel _globals;
@@ -40,54 +37,44 @@ public abstract class V1OperationModel extends BaseNamedModel implements Operati
     private OutputsModel _outputs;
     private FaultsModel _faults;
 
-    /**
-     * Creates a new V1OperationModel in the specified namespace.
-     * @param namespace the namespace
-     */
+    /** Creates a new V1OperationModel in the specified namespace.
+     * 
+     * @param namespace the namespace */
     public V1OperationModel(String namespace) {
         super(namespace, OPERATION);
         setModelChildrenOrder(GLOBALS, INPUTS, OUTPUTS, FAULTS);
     }
 
-    /**
-     * Creates a new V1OperationModel with the specified configuration and descriptor.
+    /** Creates a new V1OperationModel with the specified configuration and descriptor.
+     * 
      * @param config the configuration
-     * @param desc the descriptor
-     */
+     * @param desc the descriptor */
     public V1OperationModel(Configuration config, Descriptor desc) {
         super(config, desc);
         setModelChildrenOrder(GLOBALS, INPUTS, OUTPUTS, FAULTS);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getEventId() {
         return getModelAttribute("eventId");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public OperationModel setEventId(String eventId) {
         setModelAttribute("eventId", eventId);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public OperationModel setType(KnowledgeOperationType type) {
         setModelAttribute("type", type != null ? type.name() : null);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public GlobalsModel getGlobals() {
         if (_globals == null) {
@@ -96,9 +83,7 @@ public abstract class V1OperationModel extends BaseNamedModel implements Operati
         return _globals;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public OperationModel setGlobals(GlobalsModel globals) {
         setChildModel(globals);
@@ -106,9 +91,7 @@ public abstract class V1OperationModel extends BaseNamedModel implements Operati
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public InputsModel getInputs() {
         if (_inputs == null) {
@@ -117,9 +100,7 @@ public abstract class V1OperationModel extends BaseNamedModel implements Operati
         return _inputs;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public OperationModel setInputs(InputsModel inputs) {
         setChildModel(inputs);
@@ -127,9 +108,7 @@ public abstract class V1OperationModel extends BaseNamedModel implements Operati
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public OutputsModel getOutputs() {
         if (_outputs == null) {
@@ -138,9 +117,7 @@ public abstract class V1OperationModel extends BaseNamedModel implements Operati
         return _outputs;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public OperationModel setOutputs(OutputsModel outputs) {
         setChildModel(outputs);
@@ -148,9 +125,7 @@ public abstract class V1OperationModel extends BaseNamedModel implements Operati
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public FaultsModel getFaults() {
         if (_faults == null) {
@@ -159,9 +134,7 @@ public abstract class V1OperationModel extends BaseNamedModel implements Operati
         return _faults;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public OperationModel setFaults(FaultsModel faults) {
         setChildModel(faults);

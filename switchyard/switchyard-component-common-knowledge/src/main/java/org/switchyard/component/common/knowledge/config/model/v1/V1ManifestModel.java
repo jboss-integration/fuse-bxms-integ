@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,38 +24,32 @@ import org.switchyard.config.model.BaseModel;
 import org.switchyard.config.model.Descriptor;
 import org.switchyard.config.model.resource.ResourcesModel;
 
-/**
- * The 1st version ManifestModel.
+/** The 1st version ManifestModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class V1ManifestModel extends BaseModel implements ManifestModel {
 
     private ContainerModel _container;
     private ResourcesModel _resources;
 
-    /**
-     * Constructs a new V1ManifestModel of the specified namespace.
-     * @param namespace the namespace
-     */
+    /** Constructs a new V1ManifestModel of the specified namespace.
+     * 
+     * @param namespace the namespace */
     public V1ManifestModel(String namespace) {
         super(XMLHelper.createQName(namespace, MANIFEST));
         setModelChildrenOrder(CONTAINER, RESOURCES);
     }
 
-    /**
-     * Constructs a new V1ManifestModel with the specified Configuration and Descriptor.
+    /** Constructs a new V1ManifestModel with the specified Configuration and Descriptor.
+     * 
      * @param config the Configuration
-     * @param desc the Descriptor
-     */
+     * @param desc the Descriptor */
     public V1ManifestModel(Configuration config, Descriptor desc) {
         super(config, desc);
         setModelChildrenOrder(CONTAINER, RESOURCES);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ContainerModel getContainer() {
         if (_container == null) {
@@ -65,9 +58,7 @@ public class V1ManifestModel extends BaseModel implements ManifestModel {
         return _container;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ManifestModel setContainer(ContainerModel container) {
         setChildModel(container);
@@ -75,9 +66,7 @@ public class V1ManifestModel extends BaseModel implements ManifestModel {
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ResourcesModel getResources() {
         if (_resources == null) {
@@ -86,9 +75,7 @@ public class V1ManifestModel extends BaseModel implements ManifestModel {
         return _resources;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ManifestModel setResources(ResourcesModel resources) {
         setChildModel(resources);
@@ -96,17 +83,13 @@ public class V1ManifestModel extends BaseModel implements ManifestModel {
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteModel getRemote() {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ManifestModel setRemote(RemoteModel remote) {
         return this;

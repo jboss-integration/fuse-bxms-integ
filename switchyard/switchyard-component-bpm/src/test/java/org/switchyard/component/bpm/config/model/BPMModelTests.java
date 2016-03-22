@@ -1,12 +1,11 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -70,11 +69,9 @@ import org.switchyard.config.model.resource.ResourceModel;
 import org.switchyard.config.model.resource.ResourcesModel;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 
-/**
- * Tests BPM models.
+/** Tests BPM models.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class BPMModelTests {
 
     private static final String CONTAINER_XML = "/org/switchyard/component/bpm/config/model/BPMModelTests-Container.xml";
@@ -188,9 +185,10 @@ public class BPMModelTests {
             ResourceDetail dtableDetail = dtableResource.getDetail();
             Assert.assertEquals("XLS", dtableDetail.getInputType());
             Assert.assertEquals("MySheet", dtableDetail.getWorksheetName());
-            /* SWITCHYARD-1662
-            Assert.assertEquals(true, dtableDetail.isUsingExternalTypes());
-            */
+            /*
+             * SWITCHYARD-1662
+             * Assert.assertEquals(true, dtableDetail.isUsingExternalTypes());
+             */
         } else if (REMOTEJMS_XML.equals(xml) || REMOTEREST_XML.equals(xml)) {
             Assert.assertNull(container);
             Assert.assertNull(resources);
@@ -349,11 +347,13 @@ public class BPMModelTests {
             System.out.println(userId);
             return false;
         }
+
         @Override
         public boolean existsGroup(String groupId) {
             System.out.println(groupId);
             return false;
         }
+
         @Override
         public List<String> getGroupsForUser(String userId, List<String> groupIds, List<String> allExistingGroupIds) {
             System.out.println(userId);
@@ -369,6 +369,7 @@ public class BPMModelTests {
             System.out.println(workItem);
             System.out.println(manager);
         }
+
         @Override
         public void abortWorkItem(WorkItem workItem, WorkItemManager manager) {
             System.out.println(workItem);

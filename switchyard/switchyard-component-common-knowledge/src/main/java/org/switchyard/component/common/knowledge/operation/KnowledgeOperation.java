@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,11 +20,9 @@ import java.util.Map;
 
 import org.switchyard.component.common.knowledge.expression.ExpressionMapping;
 
-/**
- * A Knowledge operation.
+/** A Knowledge operation.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class KnowledgeOperation {
 
     private final KnowledgeOperationType _type;
@@ -36,60 +33,53 @@ public class KnowledgeOperation {
     private final List<ExpressionMapping> _outputExpressionMappings = new ArrayList<ExpressionMapping>();
     private final List<ExpressionMapping> _faultExpressionMappings = new ArrayList<ExpressionMapping>();
 
-    /**
-     * Constructs a new knowledge operation.
-     * @param type the operation type
-     */
+    /** Constructs a new knowledge operation.
+     * 
+     * @param type the operation type */
     public KnowledgeOperation(KnowledgeOperationType type) {
         this(type, null);
     }
 
-    /**
-     * Constructs a new knowledge operation.
+    /** Constructs a new knowledge operation.
+     * 
      * @param type the operation type
-     * @param eventId the event id
-     */
+     * @param eventId the event id */
     public KnowledgeOperation(KnowledgeOperationType type, String eventId) {
         _type = type;
         _eventId = eventId;
     }
 
-    /**
-     * Gets the operation type.
-     * @return the operation type
-     */
+    /** Gets the operation type.
+     * 
+     * @return the operation type */
     public KnowledgeOperationType getType() {
         return _type;
     }
 
-    /**
-     * Gets the event id.
-     * @return the event id
-     */
+    /** Gets the event id.
+     * 
+     * @return the event id */
     public String getEventId() {
         return _eventId;
     }
 
-    /**
-     * Gets the global expression mappings.
-     * @return the global expression mappings
-     */
+    /** Gets the global expression mappings.
+     * 
+     * @return the global expression mappings */
     public List<ExpressionMapping> getGlobalExpressionMappings() {
         return _globalExpressionMappings;
     }
 
-    /**
-     * Gets the input expression mappings.
-     * @return the input expression mappings
-     */
+    /** Gets the input expression mappings.
+     * 
+     * @return the input expression mappings */
     public List<ExpressionMapping> getInputExpressionMappings() {
         return _inputExpressionMappings;
     }
 
-    /**
-     * Gets the input-only expression mappings.
-     * @return the input-only expression mappings
-     */
+    /** Gets the input-only expression mappings.
+     * 
+     * @return the input-only expression mappings */
     public List<ExpressionMapping> getInputOnlyExpressionMappings() {
         List<ExpressionMapping> list = new LinkedList<ExpressionMapping>();
         for (ExpressionMapping em : _inputExpressionMappings) {
@@ -100,10 +90,9 @@ public class KnowledgeOperation {
         return list;
     }
 
-    /**
-     * Gets the input-output expression mappings.
-     * @return the input-output expression mappings
-     */
+    /** Gets the input-output expression mappings.
+     * 
+     * @return the input-output expression mappings */
     public Map<String, ExpressionMapping> getInputOutputExpressionMappings() {
         Map<String, ExpressionMapping> map = new LinkedHashMap<String, ExpressionMapping>();
         for (ExpressionMapping em : _inputExpressionMappings) {
@@ -119,18 +108,16 @@ public class KnowledgeOperation {
         return map;
     }
 
-    /**
-     * Gets the output expression mappings.
-     * @return the output expression mappings.
-     */
+    /** Gets the output expression mappings.
+     * 
+     * @return the output expression mappings. */
     public List<ExpressionMapping> getOutputExpressionMappings() {
         return _outputExpressionMappings;
     }
 
-    /**
-     * Gets the fault expression mappings.
-     * @return the fault expression mappings.
-     */
+    /** Gets the fault expression mappings.
+     * 
+     * @return the fault expression mappings. */
     public List<ExpressionMapping> getFaultExpressionMappings() {
         return _faultExpressionMappings;
     }

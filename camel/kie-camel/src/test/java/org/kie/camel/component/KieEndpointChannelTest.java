@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,18 +12,16 @@
  */
 
 /*
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- * 
- *       http://www.apache.org/licenses/LICENSE-2.0
- * 
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *  under the License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * under the License.
  */
 
 package org.kie.camel.component;
@@ -45,40 +40,39 @@ public class KieEndpointChannelTest extends KieCamelTestSupport {
 
     @Test
     public void testChannelSupport() throws Exception {
-        Person bob1 = new Person( "bob" );
-        Person bob2 = new Person( "bob" );
-        Person bob3 = new Person( "bob" );
-        Person mark1 = new Person( "mark" );
-        
+        Person bob1 = new Person("bob");
+        Person bob2 = new Person("bob");
+        Person bob3 = new Person("bob");
+        Person mark1 = new Person("mark");
+
         MockEndpoint bobs = getMockEndpoint("mock:bobs");
         bobs.expectedMessageCount(3);
-        bobs.expectedBodiesReceived( bob1, bob2, bob3 );
-        
+        bobs.expectedBodiesReceived(bob1, bob2, bob3);
+
         MockEndpoint marks = getMockEndpoint("mock:marks");
         marks.expectedMessageCount(1);
-        marks.expectedBodiesReceived( mark1 );
+        marks.expectedBodiesReceived(mark1);
 
-        ksession.insert( bob1 );
-        ksession.insert( mark1 );
+        ksession.insert(bob1);
+        ksession.insert(mark1);
         ksession.fireAllRules();
 
-        ksession.insert( bob2 );
+        ksession.insert(bob2);
         ksession.fireAllRules();
 
-        ksession.insert( bob3 );
+        ksession.insert(bob3);
         ksession.fireAllRules();
 
         bobs.assertIsSatisfied();
         marks.assertIsSatisfied();
     }
 
-
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
         return new RouteBuilder() {
             public void configure() throws Exception {
-                from( "kie://ksession1?channel=bobs" ).to( "mock:bobs" );
-                from( "kie://ksession1?channel=marks" ).to( "mock:marks" );
+                from("kie://ksession1?channel=bobs").to("mock:bobs");
+                from("kie://ksession1?channel=marks").to("mock:marks");
             }
         };
     }
@@ -100,6 +94,6 @@ public class KieEndpointChannelTest extends KieCamelTestSupport {
         rule += "    channels[\"marks\"].send( $p ); \n";
         rule += "end\n";
 
-        ksession = registerKnowledgeRuntime( "ksession1", rule );
+        ksession = registerKnowledgeRuntime("ksession1", rule);
     }
 }

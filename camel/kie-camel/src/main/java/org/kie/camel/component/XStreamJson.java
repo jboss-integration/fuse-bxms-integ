@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,50 +45,45 @@ import java.util.List;
 
 public class XStreamJson {
     public static XStreamDataFormat newJSonMarshaller(XStreamDataFormat xstreamDataFormat) {
-        xstreamDataFormat.setDriver( "json" );
+        xstreamDataFormat.setDriver("json");
 
-        XStreamHelper.setAliases( xstreamDataFormat );
+        XStreamHelper.setAliases(xstreamDataFormat);
 
-        xstreamDataFormat.getAliases().put( "commands",
-                                            CommandsObjectContainer.class.getName() );
-        xstreamDataFormat.getAliases().put( "objects",
-                                            ObjectsObjectContainer.class.getName() );
-        xstreamDataFormat.getAliases().put( "item",
-                                            RowItemContainer.class.getName() );
-        xstreamDataFormat.getAliases().put( "parameters",
-                                            ParameterContainer.class.getName() );
-        xstreamDataFormat.getAliases().put( "results",
-                                            WorkItemResultsContainer.class.getName() );
+        xstreamDataFormat.getAliases().put("commands", CommandsObjectContainer.class.getName());
+        xstreamDataFormat.getAliases().put("objects", ObjectsObjectContainer.class.getName());
+        xstreamDataFormat.getAliases().put("item", RowItemContainer.class.getName());
+        xstreamDataFormat.getAliases().put("parameters", ParameterContainer.class.getName());
+        xstreamDataFormat.getAliases().put("results", WorkItemResultsContainer.class.getName());
 
-        //xstream.setMode( XStream.NO_REFERENCES );
+        // xstream.setMode( XStream.NO_REFERENCES );
 
         List<String> converters = xstreamDataFormat.getConverters();
-        if ( converters == null ) {
+        if (converters == null) {
             converters = new ArrayList<String>();
         }
 
-        converters.add( JSonFactHandleConverter.class.getName() );
-        converters.add( JSonBatchExecutionResultConverter.class.getName() );
-        converters.add( JSonInsertConverter.class.getName() );
-        converters.add( JSonFireAllRulesConverter.class.getName() );
-        converters.add( JSonBatchExecutionCommandConverter.class.getName() );
-        converters.add( CommandsContainerConverter.class.getName() );
-        converters.add( JSonGetObjectConverter.class.getName() );
-        converters.add( JSonRetractConverter.class.getName() );
-        converters.add( JSonModifyConverter.class.getName() );
-        converters.add( JSonSetGlobalConverter.class.getName() );
-        converters.add( JSonInsertElementsConverter.class.getName() );
-        converters.add( JSonGetGlobalConverter.class.getName() );
-        converters.add( JSonGetObjectsConverter.class.getName() );
-        converters.add( JSonQueryConverter.class.getName() );
-        converters.add( JSonQueryResultsConverter.class.getName() );
-        converters.add( RowItemConverter.class.getName() );
-        converters.add( JSonStartProcessConvert.class.getName() );
-        converters.add( JSonSignalEventConverter.class.getName() );
-        converters.add( JSonCompleteWorkItemConverter.class.getName() );
-        converters.add( JSonAbortWorkItemConverter.class.getName() );
+        converters.add(JSonFactHandleConverter.class.getName());
+        converters.add(JSonBatchExecutionResultConverter.class.getName());
+        converters.add(JSonInsertConverter.class.getName());
+        converters.add(JSonFireAllRulesConverter.class.getName());
+        converters.add(JSonBatchExecutionCommandConverter.class.getName());
+        converters.add(CommandsContainerConverter.class.getName());
+        converters.add(JSonGetObjectConverter.class.getName());
+        converters.add(JSonRetractConverter.class.getName());
+        converters.add(JSonModifyConverter.class.getName());
+        converters.add(JSonSetGlobalConverter.class.getName());
+        converters.add(JSonInsertElementsConverter.class.getName());
+        converters.add(JSonGetGlobalConverter.class.getName());
+        converters.add(JSonGetObjectsConverter.class.getName());
+        converters.add(JSonQueryConverter.class.getName());
+        converters.add(JSonQueryResultsConverter.class.getName());
+        converters.add(RowItemConverter.class.getName());
+        converters.add(JSonStartProcessConvert.class.getName());
+        converters.add(JSonSignalEventConverter.class.getName());
+        converters.add(JSonCompleteWorkItemConverter.class.getName());
+        converters.add(JSonAbortWorkItemConverter.class.getName());
 
-        xstreamDataFormat.setConverters( converters );
+        xstreamDataFormat.setConverters(converters);
 
         return xstreamDataFormat;
     }

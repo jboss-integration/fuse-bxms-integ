@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -61,63 +58,54 @@ public class JaxbTest {
     public void test1() throws Exception {
         JAXBContext jaxbContext = getJaxbContext();
 
-        List<GenericCommand< ? >> cmds = new ArrayList<GenericCommand< ? >>();
-        cmds.add( new InsertObjectCommand( new Person( "darth",
-                                                       21 ),
-                                           "p" ) );
-        cmds.add( new GetGlobalCommand( "xxx" ) );
-        cmds.add( new SetGlobalCommand( "yyy",
-                                        new Person( "yoda",
-                                                    21 ) ) );
-        BatchExecutionCommandImpl batch = new BatchExecutionCommandImpl( cmds );
+        List<GenericCommand<?>> cmds = new ArrayList<GenericCommand<?>>();
+        cmds.add(new InsertObjectCommand(new Person("darth", 21), "p"));
+        cmds.add(new GetGlobalCommand("xxx"));
+        cmds.add(new SetGlobalCommand("yyy", new Person("yoda", 21)));
+        BatchExecutionCommandImpl batch = new BatchExecutionCommandImpl(cmds);
 
         Marshaller marshaller = jaxbContext.createMarshaller();
-        marshaller.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT,
-                                Boolean.TRUE );
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        marshaller.marshal( batch,
-                            baos );
+        marshaller.marshal(batch, baos);
 
-        logger.debug( "{}", baos );
+        logger.debug("{}", baos);
 
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        BatchExecutionCommandImpl batch2 = (BatchExecutionCommandImpl) unmarshaller.unmarshal( new ByteArrayInputStream( baos.toByteArray() ) );
+        BatchExecutionCommandImpl batch2 = (BatchExecutionCommandImpl)unmarshaller.unmarshal(new ByteArrayInputStream(baos.toByteArray()));
         baos = new ByteArrayOutputStream();
-        marshaller.marshal( batch2,
-                            baos );
-        logger.debug( "{}", baos );
+        marshaller.marshal(batch2, baos);
+        logger.debug("{}", baos);
     }
 
     private JAXBContext getJaxbContext() throws JAXBException {
         List<String> classesName = new ArrayList();
-        //        classesName.add("org.kie.drools.AddressType");
-        //        classesName.add("org.kie.drools.ObjectFactory");
-        //        classesName.add("org.kie.drools.Person");
-        classesName.add( "org.kie.pipeline.camel.Person" );
+        // classesName.add("org.kie.drools.AddressType");
+        // classesName.add("org.kie.drools.ObjectFactory");
+        // classesName.add("org.kie.drools.Person");
+        classesName.add("org.kie.pipeline.camel.Person");
 
-        //jaxbDataFormat = new JaxbDataFormat();
-        //jaxbDataFormat.setContextPath( contextPath )
+        // jaxbDataFormat = new JaxbDataFormat();
+        // jaxbDataFormat.setContextPath( contextPath )
         Set<String> set = new HashSet<String>();
-        for ( String clsName : DroolsJaxbHelperProviderImpl.JAXB_ANNOTATED_CMD ) {
-            set.add( clsName.substring( 0,
-                                        clsName.lastIndexOf( '.' ) ) );
+        for (String clsName : DroolsJaxbHelperProviderImpl.JAXB_ANNOTATED_CMD) {
+            set.add(clsName.substring(0, clsName.lastIndexOf('.')));
         }
 
-        for ( String clsName : classesName ) {
-            set.add( clsName.substring( 0,
-                                        clsName.lastIndexOf( '.' ) ) );
+        for (String clsName : classesName) {
+            set.add(clsName.substring(0, clsName.lastIndexOf('.')));
         }
 
         StringBuilder sb = new StringBuilder();
-        for ( String pkgName : set ) {
-            sb.append( pkgName );
-            sb.append( ':' );
+        for (String pkgName : set) {
+            sb.append(pkgName);
+            sb.append(':');
         }
 
-        logger.debug( "context path: " + sb.toString() );
-        //        jaxbDataFormat.setContextPath( sb.toString() );
-        //        jaxbDataFormat.setPrettyPrint( true );
-        return JAXBContext.newInstance( sb.toString() );
+        logger.debug("context path: " + sb.toString());
+        // jaxbDataFormat.setContextPath( sb.toString() );
+        // jaxbDataFormat.setPrettyPrint( true );
+        return JAXBContext.newInstance(sb.toString());
     }
 
     @Test
@@ -127,20 +115,19 @@ public class JaxbTest {
         KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
-        FactHandle fh1 = ksession.insert( new Person( "darth", 105 ) );
+        FactHandle fh1 = ksession.insert(new Person("darth", 105));
 
         Marshaller marshaller = jaxbContext.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,
-                Boolean.TRUE);
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        marshaller.marshal( fh1,
-                baos );
+        marshaller.marshal(fh1, baos);
 
-        assertXMLEqual("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<fact-handle external-form=\"" + fh1.toExternalForm() + "\"/>", new String(baos.toByteArray()));
+        assertXMLEqual("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<fact-handle external-form=\"" + fh1.toExternalForm() + "\"/>",
+                       new String(baos.toByteArray()));
 
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        FactHandle fh2 = ( FactHandle ) unmarshaller.unmarshal( new StringReader( baos.toString() ) );
-        assertEquals( fh1, fh2);
+        FactHandle fh2 = (FactHandle)unmarshaller.unmarshal(new StringReader(baos.toString()));
+        assertEquals(fh1, fh2);
     }
 
     @Test
@@ -154,33 +141,27 @@ public class JaxbTest {
         commands.add(CommandFactory.newInsert(new Person("darth", 105), "p"));
         commands.add(CommandFactory.newFireAllRules());
 
-        ExecutionResults res1 = ksession.execute( CommandFactory.newBatchExecution(commands) );
+        ExecutionResults res1 = ksession.execute(CommandFactory.newBatchExecution(commands));
 
         Marshaller marshaller = jaxbContext.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,
-                Boolean.TRUE);
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        marshaller.marshal( res1,
-                baos );
+        marshaller.marshal(res1, baos);
 
         // note it's using xsi:type
         logger.debug(new String(baos.toByteArray()));
 
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        ExecutionResults res2 = ( ExecutionResults ) unmarshaller.unmarshal( new StringReader( baos.toString() ) );
+        ExecutionResults res2 = (ExecutionResults)unmarshaller.unmarshal(new StringReader(baos.toString()));
     }
 
-    public void assertXMLEqual(String expectedXml,
-                               String resultXml) {
+    public void assertXMLEqual(String expectedXml, String resultXml) {
         try {
-            Diff diff = new Diff( expectedXml,
-                    resultXml );
-            diff.overrideElementQualifier( new RecursiveElementNameAndTextQualifier() );
-            XMLAssert.assertXMLEqual(diff,
-                    true);
-        } catch ( Exception e ) {
-            throw new RuntimeException( "XML Assertion failure",
-                    e );
+            Diff diff = new Diff(expectedXml, resultXml);
+            diff.overrideElementQualifier(new RecursiveElementNameAndTextQualifier());
+            XMLAssert.assertXMLEqual(diff, true);
+        } catch (Exception e) {
+            throw new RuntimeException("XML Assertion failure", e);
         }
     }
 }

@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,34 +21,30 @@ import org.switchyard.component.common.knowledge.config.model.KnowledgeComponent
 import org.switchyard.component.common.knowledge.runtime.KnowledgeRuntimeManagerType;
 import org.switchyard.component.common.knowledge.runtime.remote.RemoteRuntimeManager;
 
-/**
- * RuntimeManagerBuilder.
+/** RuntimeManagerBuilder.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class RuntimeManagerBuilder extends KnowledgeBuilder {
 
     private final RuntimeManagerFactory _runtimeManagerFactory;
     private final RuntimeEnvironmentBuilder _runtimeEnvironmentBuilder;
 
-    /**
-     * Creates a RuntimeManagerBuilder.
+    /** Creates a RuntimeManagerBuilder.
+     * 
      * @param classLoader classLoader
      * @param serviceDomain serviceDomain
-     * @param implementationModel implementationModel
-     */
+     * @param implementationModel implementationModel */
     public RuntimeManagerBuilder(ClassLoader classLoader, ServiceDomain serviceDomain, KnowledgeComponentImplementationModel implementationModel) {
         super(classLoader, serviceDomain);
         _runtimeManagerFactory = RuntimeManagerFactory.Factory.get(classLoader);
         _runtimeEnvironmentBuilder = new RuntimeEnvironmentBuilder(getClassLoader(), serviceDomain, implementationModel);
     }
 
-    /**
-     * Builds a RuntimeManager.
+    /** Builds a RuntimeManager.
+     * 
      * @param type type
      * @param identifier identifier
-     * @return a RuntimeManager
-     */
+     * @return a RuntimeManager */
     public RuntimeManager build(KnowledgeRuntimeManagerType type, String identifier) {
         final RuntimeManager runtimeManager;
         final RuntimeEnvironment runtimeEnvironment = _runtimeEnvironmentBuilder.build();
@@ -58,18 +53,18 @@ public class RuntimeManagerBuilder extends KnowledgeBuilder {
             runtimeManager = new RemoteRuntimeManager(remoteManifest.buildConfiguration(), identifier);
         } else {
             switch (type) {
-                case SINGLETON:
-                    runtimeManager = _runtimeManagerFactory.newSingletonRuntimeManager(runtimeEnvironment, identifier);
-                    break;
-                case PER_REQUEST:
-                    runtimeManager = _runtimeManagerFactory.newPerRequestRuntimeManager(runtimeEnvironment, identifier);
-                    break;
-                case PER_PROCESS_INSTANCE:
-                    runtimeManager = _runtimeManagerFactory.newPerProcessInstanceRuntimeManager(runtimeEnvironment, identifier);
-                    break;
-                default:
-                    runtimeManager = null;
-                    break;
+            case SINGLETON:
+                runtimeManager = _runtimeManagerFactory.newSingletonRuntimeManager(runtimeEnvironment, identifier);
+                break;
+            case PER_REQUEST:
+                runtimeManager = _runtimeManagerFactory.newPerRequestRuntimeManager(runtimeEnvironment, identifier);
+                break;
+            case PER_PROCESS_INSTANCE:
+                runtimeManager = _runtimeManagerFactory.newPerProcessInstanceRuntimeManager(runtimeEnvironment, identifier);
+                break;
+            default:
+                runtimeManager = null;
+                break;
             }
         }
         return runtimeManager;

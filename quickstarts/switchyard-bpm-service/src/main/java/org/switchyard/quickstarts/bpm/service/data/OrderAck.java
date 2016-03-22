@@ -23,10 +23,14 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -45,27 +49,26 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "orderId",
-    "accepted",
-    "status"
-})
+@XmlType(name = "", propOrder = { "orderId", "accepted", "status" })
 @XmlRootElement(name = "submitOrderResponse")
 public class OrderAck {
 
+    /** The order id. */
     @XmlElement(required = true)
-    protected String orderId;
-    protected boolean accepted;
+    private String orderId;
+
+    /** The accepted. */
+    private boolean accepted;
+
+    /** The status. */
     @XmlElement(required = true)
-    protected String status;
+    private String status;
 
     /**
      * Gets the value of the orderId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getOrderId() {
         return orderId;
@@ -74,10 +77,8 @@ public class OrderAck {
     /**
      * Sets the value of the orderId property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setOrderId(String value) {
         this.orderId = value;
@@ -85,7 +86,8 @@ public class OrderAck {
 
     /**
      * Gets the value of the accepted property.
-     * 
+     *
+     * @return true, if is accepted
      */
     public boolean isAccepted() {
         return accepted;
@@ -93,7 +95,8 @@ public class OrderAck {
 
     /**
      * Sets the value of the accepted property.
-     * 
+     *
+     * @param value the new accepted
      */
     public void setAccepted(boolean value) {
         this.accepted = value;
@@ -102,10 +105,8 @@ public class OrderAck {
     /**
      * Gets the value of the status property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getStatus() {
         return status;
@@ -114,10 +115,8 @@ public class OrderAck {
     /**
      * Sets the value of the status property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setStatus(String value) {
         this.status = value;

@@ -27,11 +27,22 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc.
+ * The Class Transformers.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red
+ *         Hat Inc.
  */
 public class Transformers {
 
+    /**
+     * Transform verify to applicant.
+     *
+     * @param e the e
+     * @return the applicant
+     */
     @Transformer(from = "{urn:switchyard-quickstart:rules-interview-container:0.1.0}verify")
     public Applicant transformVerifyToApplicant(Element e) {
         String name = getElementValue(e, "name");
@@ -39,16 +50,27 @@ public class Transformers {
         return new Applicant(name, age);
     }
 
+    /**
+     * Transform boolean to verify response.
+     *
+     * @param b the b
+     * @return the element
+     */
     @Transformer(to = "{urn:switchyard-quickstart:rules-interview-container:0.1.0}verifyResponse")
     public Element transformBooleanToVerifyResponse(boolean b) {
         String xml = new StringBuilder()
-            .append("<urn:verifyResponse xmlns:urn='urn:switchyard-quickstart:rules-interview-container:0.1.0'>")
-            .append("<return>").append(b).append("</return>")
-            .append("</urn:verifyResponse>")
-            .toString();
+                .append("<urn:verifyResponse xmlns:urn='urn:switchyard-quickstart:rules-interview-container:0.1.0'>")
+                .append("<return>").append(b).append("</return>").append("</urn:verifyResponse>").toString();
         return toElement(xml);
     }
 
+    /**
+     * Gets the element value.
+     *
+     * @param parent the parent
+     * @param elementName the element name
+     * @return the element value
+     */
     private String getElementValue(Element parent, String elementName) {
         String value = null;
         NodeList nodes = parent.getElementsByTagName(elementName);
@@ -58,6 +80,12 @@ public class Transformers {
         return value;
     }
 
+    /**
+     * To element.
+     *
+     * @param xml the xml
+     * @return the element
+     */
     private Element toElement(String xml) {
         DOMResult dom = new DOMResult();
         try {

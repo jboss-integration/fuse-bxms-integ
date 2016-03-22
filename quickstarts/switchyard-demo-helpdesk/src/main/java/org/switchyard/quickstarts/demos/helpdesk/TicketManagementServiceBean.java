@@ -19,12 +19,18 @@ package org.switchyard.quickstarts.demos.helpdesk;
 import org.apache.log4j.Logger;
 import org.switchyard.component.bean.Service;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Class TicketManagementServiceBean.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 @Service(TicketManagementService.class)
 public class TicketManagementServiceBean implements TicketManagementService {
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = Logger.getLogger(TicketManagementServiceBean.class);
 
     @Override
@@ -58,6 +64,11 @@ public class TicketManagementServiceBean implements TicketManagementService {
         ticket.setStatus("rejected");
     }
 
+    /**
+     * Log.
+     *
+     * @param msg the msg
+     */
     private void log(String msg) {
         LOGGER.info("********** " + msg + " **********");
     }

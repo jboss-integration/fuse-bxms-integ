@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,19 +22,17 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.soap.SOAPMessage;
 
-public class PreCxfSoapProcessor
-    implements
-    Processor {
+public class PreCxfSoapProcessor implements Processor {
 
-    private static final transient Logger LOGGER = LoggerFactory.getLogger( PreCxfSoapProcessor.class );
+    private static final transient Logger LOGGER = LoggerFactory.getLogger(PreCxfSoapProcessor.class);
 
     public void process(Exchange exchange) throws Exception {
-        exchange.setPattern( ExchangePattern.InOut );
-        BindingOperationInfo boi = (BindingOperationInfo) exchange.getProperty( BindingOperationInfo.class.toString() );
-        if ( boi != null ) {
-            LOGGER.info( "boi.isUnwrapped" + boi.isUnwrapped() );
+        exchange.setPattern(ExchangePattern.InOut);
+        BindingOperationInfo boi = (BindingOperationInfo)exchange.getProperty(BindingOperationInfo.class.toString());
+        if (boi != null) {
+            LOGGER.info("boi.isUnwrapped" + boi.isUnwrapped());
         }
-        SOAPMessage soapMessage = (SOAPMessage) exchange.getIn().getBody();
-        exchange.getOut().setBody( soapMessage.getSOAPBody().getTextContent() );
+        SOAPMessage soapMessage = (SOAPMessage)exchange.getIn().getBody();
+        exchange.getOut().setBody(soapMessage.getSOAPBody().getTextContent());
     }
 }

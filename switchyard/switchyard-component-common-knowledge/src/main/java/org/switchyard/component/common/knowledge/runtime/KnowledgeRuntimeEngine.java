@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,88 +26,74 @@ import org.kie.internal.task.api.InternalTaskService;
 import org.kie.services.client.api.command.RemoteRuntimeEngine;
 import org.switchyard.component.common.knowledge.transaction.TransactionInvocationHandler;
 
-/**
- * KnowledgeRuntimeEngine.
+/** KnowledgeRuntimeEngine.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class KnowledgeRuntimeEngine implements RuntimeEngine {
 
     private final RuntimeEngine _wrapped;
     private final boolean _persistent;
 
-    /**
-     * Constructs a new knowledge runtime.
+    /** Constructs a new knowledge runtime.
+     * 
      * @param wrapped the wrapped RuntimeEngine
-     * @param persistent if persistence is enabled
-     */
+     * @param persistent if persistence is enabled */
     public KnowledgeRuntimeEngine(RuntimeEngine wrapped, boolean persistent) {
         _wrapped = wrapped;
         _persistent = persistent;
     }
 
-    /**
-     * Gets the RuntimeEngine.
-     * @return the RuntimeEngine
-     */
+    /** Gets the RuntimeEngine.
+     * 
+     * @return the RuntimeEngine */
     public RuntimeEngine getWrapped() {
         return _wrapped;
     }
 
-    /**
-     * If the wrapped KieSession is remote.
-     * @return if so
-     */
+    /** If the wrapped KieSession is remote.
+     * 
+     * @return if so */
     public boolean isRemote() {
         return _wrapped instanceof RemoteRuntimeEngine;
     }
 
-    /**
-     * If persistence is enabled.
-     * @return true if persistence is enabled
-     */
+    /** If persistence is enabled.
+     * 
+     * @return true if persistence is enabled */
     public boolean isPersistent() {
         return _persistent;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public KieSession getKieSession() {
         return _wrapped.getKieSession();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public TaskService getTaskService() {
         InvocationHandler ih = new TransactionInvocationHandler(_wrapped.getTaskService(), _persistent);
-        return (TaskService)Proxy.newProxyInstance(getClass().getClassLoader(), new Class[]{InternalTaskService.class, EventService.class}, ih);
+        return (TaskService)Proxy.newProxyInstance(getClass().getClassLoader(), new Class[] {InternalTaskService.class, EventService.class}, ih);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public AuditService getAuditService() {
         InvocationHandler ih = new TransactionInvocationHandler(_wrapped.getAuditService(), _persistent);
-        return (AuditService)Proxy.newProxyInstance(getClass().getClassLoader(), new Class[]{AuditLogService.class}, ih);
+        return (AuditService)Proxy.newProxyInstance(getClass().getClassLoader(), new Class[] {AuditLogService.class}, ih);
     }
 
-    /**
-     * Gets the wrapped KieSession identifier.
-     * @return the id
-     */
+    /** Gets the wrapped KieSession identifier.
+     * 
+     * @return the id */
     public Long getSessionIdentifier() {
         return Long.valueOf(getKieSession().getIdentifier());
     }
 
-    /**
-     * Gets the wrapped globals.
-     * @return the globals
-     */
+    /** Gets the wrapped globals.
+     * 
+     * @return the globals */
     public Globals getSessionGlobals() {
         return isRemote() ? null : getKieSession().getGlobals();
     }
