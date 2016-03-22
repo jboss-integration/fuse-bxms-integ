@@ -29,18 +29,29 @@ import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 import org.switchyard.component.test.mixins.cdi.CDIMixIn;
 
+
+/**
+ * The Class ProcessOrderTest.
+ */
 @RunWith(SwitchYardRunner.class)
 @SwitchYardTestCaseConfig(mixins = CDIMixIn.class, config = SwitchYardTestCaseConfig.SWITCHYARD_XML)
 public class ProcessOrderTest {
 
+    /** The service. */
     @ServiceOperation("ProcessOrder.submitOrder")
     private Invoker service;
 
+    /**
+     * Sets the properties.
+     */
     @BeforeDeploy
     public void setProperties() {
         System.setProperty("org.switchyard.component.http.standalone.port", "18001");
     }
 
+    /**
+     * Order shipped.
+     */
     @Test
     public void orderShipped() {
         Order order = new Order();
@@ -54,6 +65,9 @@ public class ProcessOrderTest {
         System.out.println(ack.getStatus());
     }
 
+    /**
+     * Order on hold.
+     */
     @Test
     public void orderOnHold() {
         Order order = new Order();

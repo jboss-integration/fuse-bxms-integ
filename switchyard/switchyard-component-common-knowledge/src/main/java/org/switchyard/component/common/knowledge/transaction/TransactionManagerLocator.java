@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,26 +15,20 @@ package org.switchyard.component.common.knowledge.transaction;
 import javax.transaction.TransactionManager;
 import javax.transaction.UserTransaction;
 
-/**
- * Interface providing location services for transaction managers.
- */
+/** Interface providing location services for transaction managers. */
 public abstract class TransactionManagerLocator {
 
     /** The locator instance. */
     public static final TransactionManagerLocator INSTANCE;
 
-    /**
-     * Get the TransactionManager, if possible.
+    /** Get the TransactionManager, if possible.
      * 
-     * @return the TransactionManager
-     */
+     * @return the TransactionManager */
     public abstract TransactionManager getTransactionManager();
 
-    /**
-     * Get the UserTransaction, if possible.
+    /** Get the UserTransaction, if possible.
      * 
-     * @return the UserTransaction
-     */
+     * @return the UserTransaction */
     public abstract UserTransaction getUserTransaction();
 
     static {
@@ -44,6 +37,7 @@ public abstract class TransactionManagerLocator {
             public UserTransaction getUserTransaction() {
                 return TransactionHelper.getUserTransaction();
             }
+
             @Override
             public TransactionManager getTransactionManager() {
                 return TransactionHelper.getTransactionManager();

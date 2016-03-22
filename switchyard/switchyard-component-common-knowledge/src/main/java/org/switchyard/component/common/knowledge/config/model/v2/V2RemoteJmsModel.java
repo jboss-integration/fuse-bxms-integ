@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,59 +17,47 @@ import org.switchyard.component.common.knowledge.config.model.RemoteModel;
 import org.switchyard.config.Configuration;
 import org.switchyard.config.model.Descriptor;
 
-/**
- * The 2nd version RemoteJmsModel.
+/** The 2nd version RemoteJmsModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class V2RemoteJmsModel extends V2RemoteModel implements RemoteJmsModel {
 
-    /**
-     * Constructs a new V2JmsRemoteModel of the specified namespace.
-     * @param namespace the namespace
-     */
+    /** Constructs a new V2JmsRemoteModel of the specified namespace.
+     * 
+     * @param namespace the namespace */
     public V2RemoteJmsModel(String namespace) {
         super(namespace, REMOTE_JMS);
     }
 
-    /**
-     * Constructs a new V2RemoteJmsModel with the specified Configuration and Descriptor.
+    /** Constructs a new V2RemoteJmsModel with the specified Configuration and Descriptor.
+     * 
      * @param config the Configuration
-     * @param desc the Descriptor
-     */
+     * @param desc the Descriptor */
     public V2RemoteJmsModel(Configuration config, Descriptor desc) {
         super(config, desc);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getHostName() {
         return getModelAttribute("hostName");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteJmsModel setHostName(String hostName) {
         setModelAttribute("hostName", hostName);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Integer getRemotingPort() {
         String rp = getModelAttribute("remotingPort");
         return rp != null ? Integer.valueOf(rp) : null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteModel setRemotingPort(Integer remotingPort) {
         String rp = remotingPort != null ? remotingPort.toString() : null;
@@ -78,18 +65,14 @@ public class V2RemoteJmsModel extends V2RemoteModel implements RemoteJmsModel {
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Integer getMessagingPort() {
         String mp = getModelAttribute("messagingPort");
         return mp != null ? Integer.valueOf(mp) : null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteModel setMessagingPort(Integer messagingPort) {
         String mp = messagingPort != null ? messagingPort.toString() : null;
@@ -97,87 +80,66 @@ public class V2RemoteJmsModel extends V2RemoteModel implements RemoteJmsModel {
         return this;
     }
 
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isUseSsl() {
         String useSsl = getModelAttribute("useSsl");
         return useSsl != null ? Boolean.parseBoolean(useSsl) : false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteJmsModel setUseSsl(boolean useSsl) {
         setModelAttribute("useSsl", String.valueOf(useSsl));
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getKeystorePassword() {
         return getModelAttribute("keystorePassword");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteJmsModel setKeystorePassword(String keystorePassword) {
         setModelAttribute("keystorePassword", keystorePassword);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getKeystoreLocation() {
         return getModelAttribute("keystoreLocation");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteJmsModel setKeystoreLocation(String keystoreLocation) {
         setModelAttribute("keystoreLocation", keystoreLocation);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getTruststorePassword() {
         return getModelAttribute("truststorePassword");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteJmsModel setTruststorePassword(String truststorePassword) {
         setModelAttribute("truststorePassword", truststorePassword);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getTruststoreLocation() {
         return getModelAttribute("truststoreLocation");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteJmsModel setTruststoreLocation(String truststoreLocation) {
         setModelAttribute("truststoreLocation", truststoreLocation);

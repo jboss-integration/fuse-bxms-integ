@@ -19,12 +19,18 @@ package org.switchyard.quickstarts.rules.camel.cbr;
 import org.apache.log4j.Logger;
 import org.switchyard.component.bean.Service;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Class BlueServiceBean.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 @Service(BlueService.class)
 public class BlueServiceBean implements BlueService {
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = Logger.getLogger(BlueServiceBean.class);
 
     @Override

@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -37,20 +36,17 @@ import org.switchyard.component.common.knowledge.config.model.RemoteJmsModel;
 import org.switchyard.component.common.knowledge.config.model.RemoteModel;
 import org.switchyard.component.common.knowledge.config.model.RemoteRestModel;
 
-/**
- * RemoteConfigurationBuilder.
+/** RemoteConfigurationBuilder.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class RemoteConfigurationBuilder extends KnowledgeBuilder {
 
     private final RemoteConfiguration _remoteConfiguration;
 
-    /**
-     * Creates a new RemoteConfigurationBuilder.
+    /** Creates a new RemoteConfigurationBuilder.
+     * 
      * @param classLoader classLoader
-     * @param remoteModel remoteModel
-     */
+     * @param remoteModel remoteModel */
     public RemoteConfigurationBuilder(ClassLoader classLoader, RemoteModel remoteModel) {
         super(classLoader);
         _remoteConfiguration = buildRemoteConfiguration(remoteModel);
@@ -99,7 +95,7 @@ public class RemoteConfigurationBuilder extends KnowledgeBuilder {
                     // default EAP remoting port
                     remotingPort = Integer.valueOf(4447);
                 }
-                props.setProperty(InitialContext.PROVIDER_URL, "remote://"+ hostName + ":" + remotingPort);
+                props.setProperty(InitialContext.PROVIDER_URL, "remote://" + hostName + ":" + remotingPort);
                 String userName = model.getUserName();
                 if (userName != null) {
                     props.setProperty(InitialContext.SECURITY_PRINCIPAL, userName);
@@ -192,10 +188,9 @@ public class RemoteConfigurationBuilder extends KnowledgeBuilder {
         }
     }
 
-    /**
-     * Builds a RemoteConfiguration.
-     * @return a RemoteConfiguration
-     */
+    /** Builds a RemoteConfiguration.
+     * 
+     * @return a RemoteConfiguration */
     public RemoteConfiguration build() {
         return _remoteConfiguration.clone();
     }

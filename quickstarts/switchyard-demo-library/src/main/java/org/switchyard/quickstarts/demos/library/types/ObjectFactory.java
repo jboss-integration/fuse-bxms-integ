@@ -5,8 +5,8 @@
 // Generated on: 2014.09.04 at 12:38:20 PM EDT 
 //
 
-
 package org.switchyard.quickstarts.demos.library.types;
+
 import java.io.Serializable;
 
 import javax.xml.bind.JAXBElement;
@@ -16,191 +16,244 @@ import javax.xml.namespace.QName;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the org.switchyard.quickstarts.demos.library.types package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
- * provided in this class.
+ * This object contains factory methods for each Java content interface and Java
+ * element interface generated in the
+ * org.switchyard.quickstarts.demos.library.types package.
+ * <p>
+ * An ObjectFactory allows you to programatically construct new instances of the
+ * Java representation for XML content. The Java representation of XML content
+ * can consist of schema derived interfaces and classes representing the binding
+ * of schema type definitions, element declarations and model groups. Factory
+ * methods for each of these are provided in this class.
  * 
  */
 @SuppressWarnings("serial")
 @XmlRegistry
 public class ObjectFactory implements Serializable {
 
-    private final static QName _Book_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "book");
-    private final static QName _Loan_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "loan");
-    private final static QName _LoanRequest_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "loanRequest");
-    private final static QName _LoanResponse_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "loanResponse");
-    private final static QName _ReturnRequest_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "returnRequest");
-    private final static QName _ReturnResponse_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "returnResponse");
-    private final static QName _Suggestion_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "suggestion");
-    private final static QName _SuggestionRequest_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "suggestionRequest");
-    private final static QName _SuggestionResponse_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "suggestionResponse");
+    /** The Constant _Book_QNAME. */
+    private final static QName BOOK_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "book");
+
+    /** The Constant _Loan_QNAME. */
+    private final static QName LOAN_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "loan");
+
+    /** The Constant _LoanRequest_QNAME. */
+    private final static QName LOAN_REQUEST_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "loanRequest");
+
+    /** The Constant _LoanResponse_QNAME. */
+    private final static QName LOAN_RESPONSE_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "loanResponse");
+
+    /** The Constant _ReturnRequest_QNAME. */
+    private final static QName RETURN_REQUEST_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "returnRequest");
+
+    /** The Constant _ReturnResponse_QNAME. */
+    private final static QName RETURN_RESPONSE_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "returnResponse");
+
+    /** The Constant _Suggestion_QNAME. */
+    private final static QName SUGGESTION_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "suggestion");
+
+    /** The Constant _SuggestionRequest_QNAME. */
+    private final static QName SUGGESTION_REQUEST_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0",
+            "suggestionRequest");
+
+    /** The Constant _SuggestionResponse_QNAME. */
+    private final static QName SUGGESTION_RESPONSE_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0",
+            "suggestionResponse");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.switchyard.quickstarts.demos.library.types
+     * Create a new ObjectFactory that can be used to create new instances of
+     * schema derived classes for package:
+     * org.switchyard.quickstarts.demos.library.types.
      * 
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link Book }
-     * 
+     * Create an instance of {@link Book }.
+     *
+     * @return the book
      */
     public Book createBook() {
         return new Book();
     }
 
     /**
-     * Create an instance of {@link Loan }
-     * 
+     * Create an instance of {@link Loan }.
+     *
+     * @return the loan
      */
     public Loan createLoan() {
         return new Loan();
     }
 
     /**
-     * Create an instance of {@link LoanRequest }
-     * 
+     * Create an instance of {@link LoanRequest }.
+     *
+     * @return the loan request
      */
     public LoanRequest createLoanRequest() {
         return new LoanRequest();
     }
 
     /**
-     * Create an instance of {@link LoanResponse }
-     * 
+     * Create an instance of {@link LoanResponse }.
+     *
+     * @return the loan response
      */
     public LoanResponse createLoanResponse() {
         return new LoanResponse();
     }
 
     /**
-     * Create an instance of {@link ReturnRequest }
-     * 
+     * Create an instance of {@link ReturnRequest }.
+     *
+     * @return the return request
      */
     public ReturnRequest createReturnRequest() {
         return new ReturnRequest();
     }
 
     /**
-     * Create an instance of {@link ReturnResponse }
-     * 
+     * Create an instance of {@link ReturnResponse }.
+     *
+     * @return the return response
      */
     public ReturnResponse createReturnResponse() {
         return new ReturnResponse();
     }
 
     /**
-     * Create an instance of {@link Suggestion }
-     * 
+     * Create an instance of {@link Suggestion }.
+     *
+     * @return the suggestion
      */
     public Suggestion createSuggestion() {
         return new Suggestion();
     }
 
     /**
-     * Create an instance of {@link SuggestionRequest }
-     * 
+     * Create an instance of {@link SuggestionRequest }.
+     *
+     * @return the suggestion request
      */
     public SuggestionRequest createSuggestionRequest() {
         return new SuggestionRequest();
     }
 
     /**
-     * Create an instance of {@link SuggestionResponse }
-     * 
+     * Create an instance of {@link SuggestionResponse }.
+     *
+     * @return the suggestion response
      */
     public SuggestionResponse createSuggestionResponse() {
         return new SuggestionResponse();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Book }{@code >}}
-     * 
+     * Create an instance of {@link JAXBElement }{@code <}{@link Book }{@code >} .
+     *
+     * @param value the value
+     * @return the JAXB element< book>
      */
     @XmlElementDecl(namespace = "urn:switchyard-quickstart-demo:library:1.0", name = "book")
     public JAXBElement<Book> createBook(Book value) {
-        return new JAXBElement<Book>(_Book_QNAME, Book.class, null, value);
+        return new JAXBElement<Book>(BOOK_QNAME, Book.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Loan }{@code >}}
-     * 
+     * Create an instance of {@link JAXBElement }{@code <}{@link Loan }{@code >} .
+     *
+     * @param value the value
+     * @return the JAXB element< loan>
      */
     @XmlElementDecl(namespace = "urn:switchyard-quickstart-demo:library:1.0", name = "loan")
     public JAXBElement<Loan> createLoan(Loan value) {
-        return new JAXBElement<Loan>(_Loan_QNAME, Loan.class, null, value);
+        return new JAXBElement<Loan>(LOAN_QNAME, Loan.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LoanRequest }{@code >}}
-     * 
+     * Create an instance of {@link JAXBElement }{@code <}{@link LoanRequest }
+     * {@code >} .
+     *
+     * @param value the value
+     * @return the JAXB element< loan request>
      */
     @XmlElementDecl(namespace = "urn:switchyard-quickstart-demo:library:1.0", name = "loanRequest")
     public JAXBElement<LoanRequest> createLoanRequest(LoanRequest value) {
-        return new JAXBElement<LoanRequest>(_LoanRequest_QNAME, LoanRequest.class, null, value);
+        return new JAXBElement<LoanRequest>(LOAN_REQUEST_QNAME, LoanRequest.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LoanRequest }{@code >}}
-     * 
+     * Create an instance of {@link JAXBElement }{@code <}{@link LoanRequest }
+     * {@code >} .
+     *
+     * @param value the value
+     * @return the JAXB element< loan response>
      */
     @XmlElementDecl(namespace = "urn:switchyard-quickstart-demo:library:1.0", name = "loanResponse")
     public JAXBElement<LoanResponse> createLoanResponse(LoanResponse value) {
-        return new JAXBElement<LoanResponse>(_LoanResponse_QNAME, LoanResponse.class, null, value);
+        return new JAXBElement<LoanResponse>(LOAN_RESPONSE_QNAME, LoanResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnRequest }{@code >}}
-     * 
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnRequest }
+     * {@code >} .
+     *
+     * @param value the value
+     * @return the JAXB element< return request>
      */
     @XmlElementDecl(namespace = "urn:switchyard-quickstart-demo:library:1.0", name = "returnRequest")
     public JAXBElement<ReturnRequest> createReturnRequest(ReturnRequest value) {
-        return new JAXBElement<ReturnRequest>(_ReturnRequest_QNAME, ReturnRequest.class, null, value);
+        return new JAXBElement<ReturnRequest>(RETURN_REQUEST_QNAME, ReturnRequest.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnResponse }{@code >}}
-     * 
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnResponse }
+     * {@code >} .
+     *
+     * @param value the value
+     * @return the JAXB element< return response>
      */
     @XmlElementDecl(namespace = "urn:switchyard-quickstart-demo:library:1.0", name = "returnResponse")
     public JAXBElement<ReturnResponse> createReturnResponse(ReturnResponse value) {
-        return new JAXBElement<ReturnResponse>(_ReturnResponse_QNAME, ReturnResponse.class, null, value);
+        return new JAXBElement<ReturnResponse>(RETURN_RESPONSE_QNAME, ReturnResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Suggestion }{@code >}}
-     * 
+     * Create an instance of {@link JAXBElement }{@code <}{@link Suggestion }
+     * {@code >} .
+     *
+     * @param value the value
+     * @return the JAXB element< suggestion>
      */
     @XmlElementDecl(namespace = "urn:switchyard-quickstart-demo:library:1.0", name = "suggestion")
     public JAXBElement<Suggestion> createSuggestion(Suggestion value) {
-        return new JAXBElement<Suggestion>(_Suggestion_QNAME, Suggestion.class, null, value);
+        return new JAXBElement<Suggestion>(SUGGESTION_QNAME, Suggestion.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SuggestionRequest }{@code >}}
-     * 
+     * Create an instance of {@link JAXBElement }{@code <}
+     * {@link SuggestionRequest }{@code >} .
+     *
+     * @param value the value
+     * @return the JAXB element< suggestion request>
      */
     @XmlElementDecl(namespace = "urn:switchyard-quickstart-demo:library:1.0", name = "suggestionRequest")
     public JAXBElement<SuggestionRequest> createSuggestionRequest(SuggestionRequest value) {
-        return new JAXBElement<SuggestionRequest>(_SuggestionRequest_QNAME, SuggestionRequest.class, null, value);
+        return new JAXBElement<SuggestionRequest>(SUGGESTION_REQUEST_QNAME, SuggestionRequest.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SuggestionResponse }{@code >}}
-     * 
+     * Create an instance of {@link JAXBElement }{@code <}
+     * {@link SuggestionResponse }{@code >} .
+     *
+     * @param value the value
+     * @return the JAXB element< suggestion response>
      */
     @XmlElementDecl(namespace = "urn:switchyard-quickstart-demo:library:1.0", name = "suggestionResponse")
     public JAXBElement<SuggestionResponse> createSuggestionResponse(SuggestionResponse value) {
-        return new JAXBElement<SuggestionResponse>(_SuggestionResponse_QNAME, SuggestionResponse.class, null, value);
+        return new JAXBElement<SuggestionResponse>(SUGGESTION_RESPONSE_QNAME, SuggestionResponse.class, null, value);
     }
 
 }

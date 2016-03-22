@@ -1,3 +1,15 @@
+/*
+ * Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jbpm.process.workitem.camel;
 
 import org.apache.commons.io.FileUtils;
@@ -23,9 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-/**
- * Uploading a file via File endpoint.
- * */
+/** Uploading a file via File endpoint. */
 public class CamelFileTest extends AbstractBaseTest {
 
     private static final String PROCESS_DEFINITION = "/BPMN2-CamelFileProcess.bpmn2";
@@ -47,9 +57,7 @@ public class CamelFileTest extends AbstractBaseTest {
         FileUtils.deleteDirectory(testDir);
     }
 
-    /**
-     * Test with entire BPMN process.
-     * */
+    /** Test with entire BPMN process. */
     @Test
     public void testSingleFileProcess() throws IOException {
         final String testData = "test-data";
@@ -79,9 +87,7 @@ public class CamelFileTest extends AbstractBaseTest {
         Assert.assertEquals(resultText, testData);
     }
 
-    /**
-     * File to upload has been specified by Camel header.
-     * */
+    /** File to upload has been specified by Camel header. */
     @Test
     public void testSingleFileWithHeaders() throws IOException {
         Set<String> headers = new HashSet<String>();

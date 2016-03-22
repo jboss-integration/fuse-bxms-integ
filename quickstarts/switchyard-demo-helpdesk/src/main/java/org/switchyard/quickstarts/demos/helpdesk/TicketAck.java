@@ -18,28 +18,58 @@ package org.switchyard.quickstarts.demos.helpdesk;
 
 import java.io.Serializable;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Class TicketAck.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 @SuppressWarnings("serial")
 public class TicketAck implements Serializable {
 
+    /** The _id. */
     private String _id;
+    
+    /** The _received. */
     private boolean _received;
 
+    /**
+     * Gets the id.
+     *
+     * @return the id
+     */
     public String getId() {
         return _id;
     }
 
+    /**
+     * Sets the id.
+     *
+     * @param id the id
+     * @return the ticket ack
+     */
     public TicketAck setId(String id) {
         _id = id;
         return this;
     }
 
+    /**
+     * Checks if is received.
+     *
+     * @return true, if is received
+     */
     public boolean isReceived() {
         return _received;
     }
 
+    /**
+     * Sets the received.
+     *
+     * @param received the received
+     * @return the ticket ack
+     */
     public TicketAck setReceived(boolean received) {
         _received = received;
         return this;

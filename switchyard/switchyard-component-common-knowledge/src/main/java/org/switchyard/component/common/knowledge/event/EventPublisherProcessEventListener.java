@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,89 +23,66 @@ import org.kie.api.event.process.ProcessStartedEvent;
 import org.kie.api.event.process.ProcessVariableChangedEvent;
 import org.switchyard.event.EventPublisher;
 
-/**
- * This process event listener routes select events to the switchyard service domain's event publisher.
- */
+/** This process event listener routes select events to the switchyard service domain's event publisher. */
 public class EventPublisherProcessEventListener implements ProcessEventListener {
 
     private final EventPublisher _eventPublisher;
 
-    /**
-     * Constructs a BPMProcessEventListener with an EventPublisher.
-     * @param eventPublisher the EventPublisher
-     */
+    /** Constructs a BPMProcessEventListener with an EventPublisher.
+     * 
+     * @param eventPublisher the EventPublisher */
     public EventPublisherProcessEventListener(EventPublisher eventPublisher) {
         _eventPublisher = eventPublisher;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void beforeProcessStarted(ProcessStartedEvent event) {
         publish(event);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void afterProcessStarted(ProcessStartedEvent event) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void beforeProcessCompleted(ProcessCompletedEvent event) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void afterProcessCompleted(ProcessCompletedEvent event) {
         publish(event);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void beforeNodeTriggered(ProcessNodeTriggeredEvent event) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void afterNodeTriggered(ProcessNodeTriggeredEvent event) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void beforeNodeLeft(ProcessNodeLeftEvent event) {
-     }
+    }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void afterNodeLeft(ProcessNodeLeftEvent event) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void beforeVariableChanged(ProcessVariableChangedEvent event) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void afterVariableChanged(ProcessVariableChangedEvent event) {
         publish(event);

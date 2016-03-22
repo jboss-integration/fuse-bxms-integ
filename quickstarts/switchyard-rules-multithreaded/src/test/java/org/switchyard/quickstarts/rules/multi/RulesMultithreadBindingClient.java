@@ -1,3 +1,16 @@
+/*
+ * Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,  
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.switchyard.quickstarts.rules.multi;
 
 import java.io.BufferedReader;
@@ -12,10 +25,21 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 
+
+/**
+ * The Class RulesMultithreadBindingClient.
+ */
 public class RulesMultithreadBindingClient implements Runnable {
 
+    /** The url base. */
     private final String URL_BASE;
 
+    /**
+     * Instantiates a new rules multithread binding client.
+     *
+     * @param items the items
+     * @param threadNumber the thread number
+     */
     public RulesMultithreadBindingClient(List<Item> items, int threadNumber) {
         super();
         this.THREAD_NUMBER = threadNumber;
@@ -24,17 +48,25 @@ public class RulesMultithreadBindingClient implements Runnable {
         URL_BASE = "http://localhost:" + port + "/rules-multi/";
     }
 
+    /** The user agent. */
     private final String USER_AGENT = "Mozilla/5.0";
+    
+    /** The Constant THREADS. */
     private final static int THREADS = 5;
 
+    /** The items. */
     private final List<Item> items;
 
+    /** The thread number. */
     int THREAD_NUMBER;
 
-
-	public static void main(String[] args) throws Exception {
-
-
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     * @throws Exception the exception
+     */
+    public static void main(String[] args) throws Exception {
 
         List<List<Item>> items = new ArrayList<List<Item>>();
 
@@ -70,13 +102,13 @@ public class RulesMultithreadBindingClient implements Runnable {
         items.add(items3);
         items.add(items4);
 
-		for (int i = 0; i < THREADS; i++) {
+        for (int i = 0; i < THREADS; i++) {
             (new Thread(new RulesMultithreadBindingClient(items.get(i), i))).start();
-		}
-	}
+        }
+    }
 
-	@Override
-	public void run() {
+    @Override
+    public void run() {
         if (THREAD_NUMBER == 2) {
             try {
                 Thread.sleep(2000);
@@ -120,40 +152,31 @@ public class RulesMultithreadBindingClient implements Runnable {
         }
 
         String url = URL_BASE + "order/bestOption";
-		try {
-			//HttpClient client = new DefaultHttpClient();
+        try {
+            // HttpClient client = new DefaultHttpClient();
 
             HttpClient client = RulesMultiThreadBindingUtils.getClient();
-			HttpGet request = new HttpGet(url);
+            HttpGet request = new HttpGet(url);
 
-			request.addHeader("User-Agent", USER_AGENT);
-			HttpResponse response = client.execute(request);
+            request.addHeader("User-Agent", USER_AGENT);
+            HttpResponse response = client.execute(request);
             // System.out.println("Back!");
 
-			//System.out.println("\nSending 'GET' request to URL : " + url);
+            // System.out.println("\nSending 'GET' request to URL : " + url);
             // System.out.println("Response Code : " +
             // response.getStatusLine().getStatusCode());
 
-			BufferedReader rd = new BufferedReader(new InputStreamReader(
-					response.getEntity().getContent()));
-			StringBuffer result = new StringBuffer();
-			String line = "";
-			while ((line = rd.readLine()) != null) {
-				result.append(line);
-			}
+            BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+            StringBuffer result = new StringBuffer();
+            String line = "";
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
             System.out.println("THREAD: " + THREAD_NUMBER + " ITEM SELECTED: " + result.toString());
 
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-	}
-
-
-
-
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
 }
-
-
-
-

@@ -5,7 +5,6 @@
 // Generated on: 2014.09.04 at 12:38:20 PM EDT 
 //
 
-
 package org.switchyard.quickstarts.demos.library.types;
 
 import java.io.Serializable;
@@ -18,9 +17,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -38,22 +40,19 @@ import javax.xml.bind.annotation.XmlType;
  */
 @SuppressWarnings("serial")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "suggestionResponse", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = {
-    "suggestion"
-})
+@XmlType(name = "suggestionResponse", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = { "suggestion" })
 @XmlRootElement(name = "suggestionResponse", namespace = "urn:switchyard-quickstart-demo:library:1.0")
 public class SuggestionResponse implements Serializable {
 
+    /** The suggestion. */
     @XmlElement(namespace = "urn:switchyard-quickstart-demo:library:1.0")
-    protected Suggestion suggestion;
+    private Suggestion suggestion;
 
     /**
      * Gets the value of the suggestion property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Suggestion }
-     *     
+     * @return possible object is {@link Suggestion }
+     * 
      */
     public Suggestion getSuggestion() {
         return suggestion;
@@ -62,10 +61,8 @@ public class SuggestionResponse implements Serializable {
     /**
      * Sets the value of the suggestion property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Suggestion }
-     *     
+     * @param value allowed object is {@link Suggestion }
+     * 
      */
     public void setSuggestion(Suggestion value) {
         this.suggestion = value;

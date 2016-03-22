@@ -1,12 +1,11 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, 
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -19,11 +18,9 @@ import org.kie.api.runtime.Environment;
 import org.kie.api.runtime.KieContainer;
 import org.switchyard.component.common.knowledge.CommonKnowledgeMessages;
 
-/**
- * ContainerManifest.
+/** ContainerManifest.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public final class ContainerManifest extends Manifest {
 
     private final String _baseName;
@@ -34,33 +31,29 @@ public final class ContainerManifest extends Manifest {
 
     private KieContainer _kieContainer;
 
-    /**
-     * Creates a new, empty ContainerManifest.
-     */
+    /** Creates a new, empty ContainerManifest. */
     public ContainerManifest() {
         this(null, (ReleaseId)null, false, null, null);
     }
 
-    /**
-     * Creates a new ContainerManifest.
+    /** Creates a new ContainerManifest.
+     * 
      * @param baseName the base name
      * @param releaseId the release id
      * @param scan if scanning is enabled
      * @param scanInterval the scan interval
-     * @param sessionName the session name
-     */
+     * @param sessionName the session name */
     public ContainerManifest(String baseName, String releaseId, boolean scan, Long scanInterval, String sessionName) {
         this(baseName, toReleaseId(releaseId), scan, scanInterval, sessionName);
     }
 
-    /**
-     * Creates a new ContainerManifest.
+    /** Creates a new ContainerManifest.
+     * 
      * @param baseName the base name
      * @param releaseId the release id
      * @param scan if scanning is enabled
      * @param scanInterval the scan interval
-     * @param sessionName the session name
-     */
+     * @param sessionName the session name */
     public ContainerManifest(String baseName, ReleaseId releaseId, boolean scan, Long scanInterval, String sessionName) {
         _baseName = baseName;
         _releaseId = releaseId;
@@ -76,76 +69,67 @@ public final class ContainerManifest extends Manifest {
         _sessionName = sessionName;
     }
 
-    /**
-     * Gets the base name.
-     * @return the base name
-     */
+    /** Gets the base name.
+     * 
+     * @return the base name */
     public String getBaseName() {
         return _baseName;
     }
 
-    /**
-     * Gets the release id.
-     * @return the release id
-     */
+    /** Gets the release id.
+     * 
+     * @return the release id */
     public ReleaseId getReleaseId() {
         return _releaseId;
     }
 
-    /**
-     * If scanning is enabled.
-     * @return if scanning is enabled
-     */
+    /** If scanning is enabled.
+     * 
+     * @return if scanning is enabled */
     public boolean isScan() {
         return _scan;
     }
 
-    /**
-     * Gets the scan interval.
-     * @return the scan interval
-     */
+    /** Gets the scan interval.
+     * 
+     * @return the scan interval */
     public Long getScanInterval() {
         return _scanInterval;
     }
 
-    /**
-     * Gets the session name.
-     * @return the session name
-     */
+    /** Gets the session name.
+     * 
+     * @return the session name */
     public String getSessionName() {
         return _sessionName;
     }
 
-    /**
-     * Gets the kie container.
-     * @return the kie container
-     */
+    /** Gets the kie container.
+     * 
+     * @return the kie container */
     public KieContainer getKieContainer() {
         return _kieContainer;
     }
 
-    /**
-     * Sets the kie container.
-     * @param kieContainer the kie container
-     */
+    /** Sets the kie container.
+     * 
+     * @param kieContainer the kie container */
     public void setKieContainer(KieContainer kieContainer) {
         _kieContainer = kieContainer;
     }
 
-    /**
-     * Removes a ContainerManifest from the Environment.
+    /** Removes a ContainerManifest from the Environment.
+     * 
      * @param environment the Environment
-     * @return the ContainerManifest
-     */
+     * @return the ContainerManifest */
     public static ContainerManifest removeFromEnvironment(Environment environment) {
         return Manifest.removeFromEnvironment(environment, ContainerManifest.class);
     }
 
-    /**
-     * Converts a colon (':') separated string into a ReleaseId.
+    /** Converts a colon (':') separated string into a ReleaseId.
+     * 
      * @param releaseId the string
-     * @return the ReleaseId
-     */
+     * @return the ReleaseId */
     public static ReleaseId toReleaseId(String releaseId) {
         if (releaseId != null) {
             String[] gav = releaseId.split(":", 3);

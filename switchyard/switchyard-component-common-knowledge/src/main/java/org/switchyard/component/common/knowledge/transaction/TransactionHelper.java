@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,15 +30,13 @@ import org.jboss.logging.Logger;
 import org.switchyard.HandlerException;
 import org.switchyard.component.common.knowledge.CommonKnowledgeMessages;
 
-/**
- * TransactionHelper.
+/** TransactionHelper.
  *
  * @author Tomohisa Igarashi &lt;<a href="mailto:tigarash@redhat.com">tigarash@redhat.com</a>&gt; &copy; 2012 Red Hat Inc.
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class TransactionHelper {
     private static final Logger LOGGER = Logger.getLogger(TransactionHelper.class);
-    
+
     /** java:jboss/TransactionManager . */
     public static final String JNDI_TRANSACTION_MANAGER = "java:jboss/TransactionManager";
     /** java:jboss/UserTransaction . */
@@ -49,18 +46,16 @@ public class TransactionHelper {
     private UserTransaction _userTx = null;
     private boolean _isInitiator = false;
 
-    /**
-     * Constructs a new utx helper.
-     * @param enabled if enabled
-     */
+    /** Constructs a new utx helper.
+     * 
+     * @param enabled if enabled */
     public TransactionHelper(boolean enabled) {
         _enabled = enabled;
     }
 
-    /**
-     * Begin.
-     * @throws HandlerException oops
-     */
+    /** Begin.
+     * 
+     * @throws HandlerException oops */
     public void begin() throws HandlerException {
         if (_enabled) {
             try {
@@ -77,10 +72,9 @@ public class TransactionHelper {
         }
     }
 
-    /**
-     * Commit.
-     * @throws HandlerException oops
-     */
+    /** Commit.
+     * 
+     * @throws HandlerException oops */
     public void commit() throws HandlerException {
         if (_isInitiator) {
             try {
@@ -97,10 +91,9 @@ public class TransactionHelper {
         }
     }
 
-    /**
-     * Rollback.
-     * @throws HandlerException oops
-     */
+    /** Rollback.
+     * 
+     * @throws HandlerException oops */
     public void rollback() throws HandlerException {
         if (_isInitiator) {
             try {
@@ -117,27 +110,24 @@ public class TransactionHelper {
         }
     }
 
-    /**
-     * Helper method to get the TransactionManager, if possible.
-     * @return the TransactionManager
-     */
+    /** Helper method to get the TransactionManager, if possible.
+     * 
+     * @return the TransactionManager */
     public static TransactionManager getTransactionManager() {
         return getTransactionManager(null);
     }
 
-    /**
-     * Helper method to get the TransactionManager, if possible.
+    /** Helper method to get the TransactionManager, if possible.
+     * 
      * @param properties optional jndi initial context properties, or null
-     * @return the TransactionManager
-     */
+     * @return the TransactionManager */
     public static TransactionManager getTransactionManager(Properties properties) {
         return (TransactionManager)jndiLookup(JNDI_TRANSACTION_MANAGER, properties);
     }
 
-    /**
-     * Helper method to get the UserTransaction, if possible.
-     * @return the UserTransaction
-     */
+    /** Helper method to get the UserTransaction, if possible.
+     * 
+     * @return the UserTransaction */
     public static UserTransaction getUserTransaction() {
         return (UserTransaction)jndiLookup(JNDI_USER_TRANSACTION, null);
     }

@@ -1,12 +1,11 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, 
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -63,25 +62,23 @@ import org.switchyard.config.model.resource.v1.V1ResourcesModel;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.config.model.switchyard.SwitchYardNamespace;
 
-/**
- * KnowledgeSwitchYardScanner.
+/** KnowledgeSwitchYardScanner.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public abstract class KnowledgeSwitchYardScanner implements Scanner<SwitchYardModel> {
 
     /** Undefined String value. */
     protected static final String UNDEFINED = "";
 
-    /**
-     * Converts channel annotations to a channels model.
+    /** Converts channel annotations to a channels model.
+     * 
      * @param channelAnnotations channelAnnotations
      * @param knowledgeNamespace knowledgeNamespace
      * @param componentModel componentModel
      * @param switchyardNamespace switchyardNamespace
-     * @return a channels model
-     */
-    protected ChannelsModel toChannelsModel(Channel[] channelAnnotations, KnowledgeNamespace knowledgeNamespace, ComponentModel componentModel, SwitchYardNamespace switchyardNamespace) {
+     * @return a channels model */
+    protected ChannelsModel toChannelsModel(Channel[] channelAnnotations, KnowledgeNamespace knowledgeNamespace, ComponentModel componentModel,
+                                            SwitchYardNamespace switchyardNamespace) {
         if (channelAnnotations == null || channelAnnotations.length == 0) {
             return null;
         }
@@ -125,12 +122,11 @@ public abstract class KnowledgeSwitchYardScanner implements Scanner<SwitchYardMo
         return channelsModel;
     }
 
-    /**
-     * Converts container annotation to container model
+    /** Converts container annotation to container model
+     * 
      * @param containerAnnotation annotation
      * @param knowledgeNamespace knowledgeNamespace
-     * @return model
-     */
+     * @return model */
     protected ContainerModel toContainerModel(Container containerAnnotation, KnowledgeNamespace knowledgeNamespace) {
         if (containerAnnotation == null) {
             return null;
@@ -159,12 +155,11 @@ public abstract class KnowledgeSwitchYardScanner implements Scanner<SwitchYardMo
         return containerModel;
     }
 
-    /**
-     * Converts listener annotations to listeners model.
+    /** Converts listener annotations to listeners model.
+     * 
      * @param listenerAnnotations annotations
      * @param knowledgeNamespace knowledgeNamespace
-     * @return model
-     */
+     * @return model */
     protected ListenersModel toListenersModel(Listener[] listenerAnnotations, KnowledgeNamespace knowledgeNamespace) {
         if (listenerAnnotations == null || listenerAnnotations.length == 0) {
             return null;
@@ -178,12 +173,11 @@ public abstract class KnowledgeSwitchYardScanner implements Scanner<SwitchYardMo
         return listenersModel;
     }
 
-    /**
-     * Converts logger annotations to loggers model.
+    /** Converts logger annotations to loggers model.
+     * 
      * @param loggerAnnotations annotations
      * @param knowledgeNamespace knowledgeNamespace
-     * @return model
-     */
+     * @return model */
     protected LoggersModel toLoggersModel(Logger[] loggerAnnotations, KnowledgeNamespace knowledgeNamespace) {
         if (loggerAnnotations == null || loggerAnnotations.length == 0) {
             return null;
@@ -208,12 +202,11 @@ public abstract class KnowledgeSwitchYardScanner implements Scanner<SwitchYardMo
         return loggersModel;
     }
 
-    /**
-     * Converts manifest annotations to manifest model.
+    /** Converts manifest annotations to manifest model.
+     * 
      * @param manifestAnnotations annotations
      * @param knowledgeNamespace knowledgeNamespace
-     * @return model
-     */
+     * @return model */
     protected ManifestModel toManifestModel(Manifest[] manifestAnnotations, KnowledgeNamespace knowledgeNamespace) {
         if (manifestAnnotations == null || manifestAnnotations.length == 0) {
             return null;
@@ -228,12 +221,11 @@ public abstract class KnowledgeSwitchYardScanner implements Scanner<SwitchYardMo
         return manifestModel;
     }
 
-    /**
-     * Converts globals to mappings model.
+    /** Converts globals to mappings model.
+     * 
      * @param globals globals
      * @param knowledgeNamespace knowledgeNamespace
-     * @return mappings model
-     */
+     * @return mappings model */
     protected GlobalsModel toGlobalsModel(Global[] globals, KnowledgeNamespace knowledgeNamespace) {
         GlobalsModel globalsModel = null;
         if (globals != null) {
@@ -258,12 +250,11 @@ public abstract class KnowledgeSwitchYardScanner implements Scanner<SwitchYardMo
         return globalsModel;
     }
 
-    /**
-     * Converts inputs to mappings model.
+    /** Converts inputs to mappings model.
+     * 
      * @param inputs inputs
      * @param knowledgeNamespace knowledgeNamespace
-     * @return mappings model
-     */
+     * @return mappings model */
     protected InputsModel toInputsModel(Input[] inputs, KnowledgeNamespace knowledgeNamespace) {
         InputsModel inputsModel = null;
         if (inputs != null) {
@@ -288,12 +279,11 @@ public abstract class KnowledgeSwitchYardScanner implements Scanner<SwitchYardMo
         return inputsModel;
     }
 
-    /**
-     * Converts outputs to mappings model.
+    /** Converts outputs to mappings model.
+     * 
      * @param outputs outputs
      * @param knowledgeNamespace knowledgeNamespace
-     * @return mappings model
-     */
+     * @return mappings model */
     protected OutputsModel toOutputsModel(Output[] outputs, KnowledgeNamespace knowledgeNamespace) {
         OutputsModel outputsModel = null;
         if (outputs != null) {
@@ -318,12 +308,11 @@ public abstract class KnowledgeSwitchYardScanner implements Scanner<SwitchYardMo
         return outputsModel;
     }
 
-    /**
-     * Converts faults to mappings model.
+    /** Converts faults to mappings model.
+     * 
      * @param faults faults
      * @param knowledgeNamespace knowledgeNamespace
-     * @return mappings model
-     */
+     * @return mappings model */
     protected FaultsModel toFaultsModel(Fault[] faults, KnowledgeNamespace knowledgeNamespace) {
         FaultsModel faultsModel = null;
         if (faults != null) {
@@ -348,12 +337,11 @@ public abstract class KnowledgeSwitchYardScanner implements Scanner<SwitchYardMo
         return faultsModel;
     }
 
-    /**
-     * Converts property annotations to properties model.
+    /** Converts property annotations to properties model.
+     * 
      * @param propertyAnnotations propertyAnnotations
      * @param knowledgeNamespace knowledgeNamespace
-     * @return model
-     */
+     * @return model */
     protected PropertiesModel toPropertiesModel(Property[] propertyAnnotations, KnowledgeNamespace knowledgeNamespace) {
         if (propertyAnnotations == null || propertyAnnotations.length == 0) {
             return null;
@@ -374,12 +362,11 @@ public abstract class KnowledgeSwitchYardScanner implements Scanner<SwitchYardMo
         return propertiesModel;
     }
 
-    /**
-     * Converts resource annotations to resources model.
+    /** Converts resource annotations to resources model.
+     * 
      * @param resourceAnnotations resourceAnnotations
      * @param knowledgeNamespace knowledgeNamespace
-     * @return model
-     */
+     * @return model */
     protected ResourcesModel toResourcesModel(Resource[] resourceAnnotations, KnowledgeNamespace knowledgeNamespace) {
         if (resourceAnnotations == null || resourceAnnotations.length == 0) {
             return null;
@@ -419,10 +406,11 @@ public abstract class KnowledgeSwitchYardScanner implements Scanner<SwitchYardMo
             if (!UNDEFINED.equals(worksheetName)) {
                 resourceDetailModel.setWorksheetName(worksheetName);
             }
-            /* SWITCHYARD-1662
-            boolean usingExternalTypes = resourceDetailAnnotation.usingExternalTypes();
-            resourceDetailModel.setUsingExternalTypes(usingExternalTypes);
-            */
+            /*
+             * SWITCHYARD-1662
+             * boolean usingExternalTypes = resourceDetailAnnotation.usingExternalTypes();
+             * resourceDetailModel.setUsingExternalTypes(usingExternalTypes);
+             */
             break;
         }
         return resourceDetailModel;

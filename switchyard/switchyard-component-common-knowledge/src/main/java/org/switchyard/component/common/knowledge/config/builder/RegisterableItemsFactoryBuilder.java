@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -36,23 +35,20 @@ import org.switchyard.component.common.knowledge.config.items.NoopExtendedRegist
 import org.switchyard.component.common.knowledge.config.model.KnowledgeComponentImplementationModel;
 import org.switchyard.component.common.knowledge.event.EventPublisherProcessEventListener;
 
-/**
- * RegisterableItemsFactoryBuilder.
+/** RegisterableItemsFactoryBuilder.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class RegisterableItemsFactoryBuilder extends KnowledgeBuilder {
 
     private final List<ListenerBuilder> _listenerBuilders;
     private final boolean _bpm;
     private final List<WorkItemHandlerBuilder> _workItemHandlerBuilders;
 
-    /**
-     * Creates a new RegisterableItemsFactoryBuilder.
+    /** Creates a new RegisterableItemsFactoryBuilder.
+     * 
      * @param classLoader classLoader
      * @param serviceDomain serviceDomain
-     * @param implementationModel implementationModel
-     */
+     * @param implementationModel implementationModel */
     public RegisterableItemsFactoryBuilder(ClassLoader classLoader, ServiceDomain serviceDomain, KnowledgeComponentImplementationModel implementationModel) {
         super(classLoader, serviceDomain);
         _listenerBuilders = ListenerBuilder.builders(getClassLoader(), implementationModel);
@@ -64,14 +60,14 @@ public class RegisterableItemsFactoryBuilder extends KnowledgeBuilder {
         }
     }
 
-    /**
-     * Builds a ExtendedRegisterableItemsFactory.
-     * @return a ExtendedRegisterableItemsFactory
-     */
+    /** Builds a ExtendedRegisterableItemsFactory.
+     * 
+     * @return a ExtendedRegisterableItemsFactory */
     public ExtendedRegisterableItemsFactory build() {
         return new NoopExtendedRegisterableItemsFactory() {
             private RuntimeEngine _runtime;
             private List<EventListener> _listeners = new ArrayList<EventListener>();
+
             private synchronized List<EventListener> listeners(RuntimeEngine runtime) {
                 if (_runtime != runtime) {
                     _runtime = runtime;
@@ -86,6 +82,7 @@ public class RegisterableItemsFactoryBuilder extends KnowledgeBuilder {
                 }
                 return new ArrayList<EventListener>(_listeners);
             }
+
             @Override
             public List<AgendaEventListener> getAgendaEventListeners(RuntimeEngine runtime) {
                 List<AgendaEventListener> list = new ArrayList<AgendaEventListener>();
@@ -96,6 +93,7 @@ public class RegisterableItemsFactoryBuilder extends KnowledgeBuilder {
                 }
                 return list;
             }
+
             @Override
             public List<ProcessEventListener> getProcessEventListeners(RuntimeEngine runtime) {
                 List<ProcessEventListener> list = new ArrayList<ProcessEventListener>();
@@ -110,6 +108,7 @@ public class RegisterableItemsFactoryBuilder extends KnowledgeBuilder {
                 }
                 return list;
             }
+
             @Override
             public List<RuleRuntimeEventListener> getRuleRuntimeEventListeners(RuntimeEngine runtime) {
                 List<RuleRuntimeEventListener> list = new ArrayList<RuleRuntimeEventListener>();
@@ -120,6 +119,7 @@ public class RegisterableItemsFactoryBuilder extends KnowledgeBuilder {
                 }
                 return list;
             }
+
             @Override
             public Map<String, WorkItemHandler> getWorkItemHandlers(RuntimeEngine runtime) {
                 Map<String, WorkItemHandler> map = new LinkedHashMap<String, WorkItemHandler>();
@@ -136,6 +136,7 @@ public class RegisterableItemsFactoryBuilder extends KnowledgeBuilder {
                 }
                 return map;
             }
+
             @Override
             public List<KieBaseEventListener> getKieBaseEventListeners(RuntimeEngine runtime) {
                 List<KieBaseEventListener> list = new ArrayList<KieBaseEventListener>();

@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -55,19 +54,16 @@ import org.switchyard.component.common.knowledge.expression.ExpressionFactory;
 import org.switchyard.component.common.knowledge.expression.ExpressionMapping;
 import org.switchyard.component.common.knowledge.runtime.KnowledgeRuntimeEngine;
 
-/**
- * KnowledgeOperation functions.
+/** KnowledgeOperation functions.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public final class KnowledgeOperations {
 
-    /**
-     * Registers operations.
+    /** Registers operations.
+     * 
      * @param model the model
      * @param operations the operations
-     * @param defaultOperation the default operation
-     */
+     * @param defaultOperation the default operation */
     public static void registerOperations(KnowledgeComponentImplementationModel model, Map<String, KnowledgeOperation> operations, KnowledgeOperation defaultOperation) {
         OperationsModel operationsModel = model.getOperations();
         if (operationsModel != null) {
@@ -124,13 +120,12 @@ public final class KnowledgeOperations {
         }
     }
 
-    /**
-     * Sets the globals.
+    /** Sets the globals.
+     * 
      * @param message the message
      * @param operation the operation
      * @param runtime the runtime engine
-     * @param singleton singleton
-     */
+     * @param singleton singleton */
     public static void setGlobals(Message message, KnowledgeOperation operation, KnowledgeRuntimeEngine runtime, boolean singleton) {
         Globals globals = runtime.getSessionGlobals();
         if (globals != null) {
@@ -145,9 +140,7 @@ public final class KnowledgeOperations {
                     globals.set(globalsEntry.getKey(), globalsEntry.getValue());
                 } else {
                     if (globals.get(globalsEntry.getKey()) == null
-                            || (globalsEntry.getValue() != null && (globalsEntry
-                                    .getValue() instanceof Map && !((Map) globalsEntry
-                                    .getValue()).isEmpty()))) {
+                        || (globalsEntry.getValue() != null && (globalsEntry.getValue() instanceof Map && !((Map)globalsEntry.getValue()).isEmpty()))) {
                         globals.set(globalsEntry.getKey(), globalsEntry.getValue());
                     }
                 }
@@ -155,8 +148,7 @@ public final class KnowledgeOperations {
         }
     }
 
-    /**
-     * Contains the globals.
+    /** Contains the globals.
      *
      * @param message
      *            the message
@@ -164,51 +156,47 @@ public final class KnowledgeOperations {
      *            the operation
      * @param runtime
      *            the runtime engine
-     * @return containsGlobal
-     */
+     * @return containsGlobal */
     public static boolean containsGlobals(Message message, KnowledgeOperation operation, KnowledgeRuntimeEngine runtime) {
         Map<String, Object> expressionMap = getMap(message, operation.getGlobalExpressionMappings(), null);
         return expressionMap != null && expressionMap.size() > 0;
 
     }
 
-    /**
-     * Gets the input.
+    /** Gets the input.
+     * 
      * @param message the message
      * @param operation the operation
      * @param runtime the runtime engine
-     * @return the input
-     */
+     * @return the input */
     public static Object getInput(Message message, KnowledgeOperation operation, KnowledgeRuntimeEngine runtime) {
         List<Object> list = getList(message, operation.getInputExpressionMappings());
         switch (list.size()) {
-            case 0:
-                return filterRemoteDefaultInputContent(message.getContent(), runtime);
-            case 1:
-                return list.get(0);
-            default:
-                return list;
+        case 0:
+            return filterRemoteDefaultInputContent(message.getContent(), runtime);
+        case 1:
+            return list.get(0);
+        default:
+            return list;
         }
     }
 
-    /**
-     * Gets an input (all) list.
+    /** Gets an input (all) list.
+     * 
      * @param message the message
      * @param operation the operation
      * @param runtime the runtime engine
-     * @return the input (all) list
-     */
+     * @return the input (all) list */
     public static List<Object> getInputList(Message message, KnowledgeOperation operation, KnowledgeRuntimeEngine runtime) {
         return getInputList(message, operation.getInputExpressionMappings(), runtime);
     }
 
-    /**
-     * Gets an input-only list.
+    /** Gets an input-only list.
+     * 
      * @param message the message
      * @param operation the operation
      * @param runtime the runtime engine
-     * @return the input-only list
-     */
+     * @return the input-only list */
     public static List<Object> getInputOnlyList(Message message, KnowledgeOperation operation, KnowledgeRuntimeEngine runtime) {
         return getInputList(message, operation.getInputOnlyExpressionMappings(), runtime);
     }
@@ -223,13 +211,12 @@ public final class KnowledgeOperations {
         return list;
     }
 
-    /**
-     * Gets an input-output map.
+    /** Gets an input-output map.
+     * 
      * @param message the message
      * @param operation the operation
      * @param runtime the runtime engine
-     * @return the input-output map
-     */
+     * @return the input-output map */
     public static Map<String, Object> getInputOutputMap(Message message, KnowledgeOperation operation, KnowledgeRuntimeEngine runtime) {
         Map<String, Object> map = new LinkedHashMap<String, Object>();
         Map<String, ExpressionMapping> inputs = operation.getInputOutputExpressionMappings();
@@ -237,27 +224,26 @@ public final class KnowledgeOperations {
             List<Object> list = getList(message, Collections.singletonList(entry.getValue()));
             final Object output;
             switch (list.size()) {
-                case 0:
-                    output = null;
-                    break;
-                case 1:
-                    output = list.get(0);
-                    break;
-                default:
-                    output = list;
+            case 0:
+                output = null;
+                break;
+            case 1:
+                output = list.get(0);
+                break;
+            default:
+                output = list;
             }
             map.put(entry.getKey(), output);
         }
         return map;
     }
 
-    /**
-     * Gets an input map.
+    /** Gets an input map.
+     * 
      * @param message the message
      * @param operation the operation
      * @param runtime the runtime engine
-     * @return the input map
-     */
+     * @return the input map */
     public static Map<String, Object> getInputMap(Message message, KnowledgeOperation operation, KnowledgeRuntimeEngine runtime) {
         Map<String, Object> map = new HashMap<String, Object>();
         List<ExpressionMapping> inputs = operation.getInputExpressionMappings();
@@ -279,12 +265,11 @@ public final class KnowledgeOperations {
         return content;
     }
 
-    /**
-     * Sets the outputs.
+    /** Sets the outputs.
+     * 
      * @param message the message
      * @param operation the operation
-     * @param contextOverrides the context overrides
-     */
+     * @param contextOverrides the context overrides */
     public static void setOutputs(Message message, KnowledgeOperation operation, Map<String, Object> contextOverrides) {
         try {
             setOutputsOrFaults(message, operation.getOutputExpressionMappings(), contextOverrides, RESULT, false);
@@ -293,18 +278,17 @@ public final class KnowledgeOperations {
         }
     }
 
-    /**
-     * Sets the faults.
+    /** Sets the faults.
+     * 
      * @param message the message
      * @param operation the operation
-     * @param contextOverrides the context overrides
-     */
+     * @param contextOverrides the context overrides */
     public static void setFaults(Message message, KnowledgeOperation operation, Map<String, Object> contextOverrides) {
-            setOutputsOrFaults(message, operation.getFaultExpressionMappings(), contextOverrides, FAULT, false);
+        setOutputsOrFaults(message, operation.getFaultExpressionMappings(), contextOverrides, FAULT, false);
     }
 
-    private static void setOutputsOrFaults(Message message, List<ExpressionMapping> expressionMappings, Map<String, Object> expressionVariables,
-            String defaultReturnVariable, boolean addGlobalsPrefix) {
+    private static void setOutputsOrFaults(Message message, List<ExpressionMapping> expressionMappings, Map<String, Object> expressionVariables, String defaultReturnVariable,
+                                           boolean addGlobalsPrefix) {
         Map<String, List<ExpressionMapping>> toListMap = new HashMap<String, List<ExpressionMapping>>();
         for (ExpressionMapping expressionMapping : expressionMappings) {
             String to = expressionMapping.getTo();
@@ -353,15 +337,15 @@ public final class KnowledgeOperations {
                 }
                 final Object output;
                 switch (from_list.size()) {
-                    case 0:
-                        output = null;
-                        break;
-                    case 1:
-                        output = from_list.get(0);
-                        break;
-                    default:
-                        output = from_list;
-                        break;
+                case 0:
+                    output = null;
+                    break;
+                case 1:
+                    output = from_list.get(0);
+                    break;
+                default:
+                    output = from_list;
+                    break;
                 }
                 String output_var = toVariable(output);
                 expressionVariables.put(output_var, output);
@@ -410,19 +394,19 @@ public final class KnowledgeOperations {
         return map;
     }
 
-    /**
-     * Gets a list map.
+    /** Gets a list map.
+     * 
      * @param message the message
      * @param expressionMappings the expression mappings
      * @param expand whether to expand
      * @param undefinedVariable the undefined variable name
-     * @return the list map
-     */
+     * @return the list map */
     public static Map<String, List<Object>> getListMap(Message message, List<ExpressionMapping> expressionMappings, boolean expand, String undefinedVariable) {
         return getListMap(message, expressionMappings, expand, undefinedVariable, null);
     }
 
-    private static Map<String, List<Object>> getListMap(Message message, List<ExpressionMapping> expressionMappings, boolean expand, String undefinedVariable, Map<String, Object> expressionVariables) {
+    private static Map<String, List<Object>> getListMap(Message message, List<ExpressionMapping> expressionMappings, boolean expand, String undefinedVariable,
+                                                        Map<String, Object> expressionVariables) {
         Map<String, List<Object>> map = new HashMap<String, List<Object>>();
         if (expressionMappings != null) {
             for (ExpressionMapping em : expressionMappings) {
@@ -473,15 +457,15 @@ public final class KnowledgeOperations {
         }
     }
 
-    /**
-     * Converts an object to a variable name.
+    /** Converts an object to a variable name.
+     * 
      * @param object the object
-     * @return the variable name
-     */
+     * @return the variable name */
     public static String toVariable(Object object) {
         return ("_var" + System.identityHashCode(object)).replaceFirst("-", "_");
     }
 
-    private KnowledgeOperations() {}
+    private KnowledgeOperations() {
+    }
 
 }

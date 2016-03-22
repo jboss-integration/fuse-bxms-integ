@@ -20,11 +20,15 @@ import org.switchyard.component.bean.Service;
 import org.switchyard.quickstarts.bpm.service.data.Order;
 import org.switchyard.quickstarts.bpm.service.data.OrderAck;
 
+
+/**
+ * The Class ShippingBean.
+ */
 @Service(Shipping.class)
 public class ShippingBean implements org.switchyard.quickstarts.bpm.service.Shipping {
 
-    public static final String SHIPPED_STATUS =
-        "Thanks for your order, it has been shipped!";
+    /** The Constant SHIPPED_STATUS. */
+    public static final String SHIPPED_STATUS = "Thanks for your order, it has been shipped!";
 
     @Override
     public OrderAck ship(Order order) {

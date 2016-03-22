@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 /**
  * Item for WarehouseService.
  *
@@ -30,43 +31,87 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "item")
 public class Item {
 
+    /** The _item id. */
     @XmlElement(name = "itemId", required = true)
     private Integer _itemId;
+    
+    /** The _name. */
     @XmlElement(name = "name", required = false)
     private String _name;
 
+    /** The _price. */
     @XmlElement(name = "price", required = true)
     private Integer _price;
 
+    /**
+     * Instantiates a new item.
+     */
     public Item() {
     }
 
+    /**
+     * Instantiates a new item.
+     *
+     * @param itemId the item id
+     * @param name the name
+     * @param price the price
+     */
     public Item(Integer itemId, String name, Integer price) {
         _itemId = itemId;
         _name = name;
         _price = price;
     }
 
+    /**
+     * Gets the item id.
+     *
+     * @return the item id
+     */
     public Integer getItemId() {
         return _itemId;
     }
 
+    /**
+     * Sets the item id.
+     *
+     * @param itemId the new item id
+     */
     public void setItemId(Integer itemId) {
         _itemId = itemId;
     }
 
+    /**
+     * Gets the name.
+     *
+     * @return the name
+     */
     public String getName() {
         return _name;
     }
 
+    /**
+     * Sets the name.
+     *
+     * @param name the new name
+     */
     public void setName(String name) {
         _name = name;
     }
 
+    /**
+     * Gets the price.
+     *
+     * @return the price
+     */
     public Integer getPrice() {
         return _price;
     }
 
+    /**
+     * Sets the price.
+     *
+     * @param _price the new price
+     */
     public void setPrice(Integer _price) {
         this._price = _price;
     }

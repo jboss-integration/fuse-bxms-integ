@@ -25,19 +25,26 @@ import java.util.Properties;
 
 import org.switchyard.component.bpm.runtime.BPMUserGroupCallback;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc.
+ * The Class HelpDeskUserGroupCallback.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red
+ *         Hat Inc.
  */
 public final class HelpDeskUserGroupCallback extends BPMUserGroupCallback {
 
+    /** The Constant USERS_GROUPS. */
     public static final Map<String, List<String>> USERS_GROUPS;
     static {
         Map<String, List<String>> ugm = new LinkedHashMap<String, List<String>>();
-        ugm.put("krisv", Arrays.asList(new String[] {"developers"}));
-        ugm.put("david", Arrays.asList(new String[] {"users"}));
+        ugm.put("krisv", Arrays.asList(new String[] { "developers" }));
+        ugm.put("david", Arrays.asList(new String[] { "users" }));
         USERS_GROUPS = Collections.unmodifiableMap(ugm);
     }
 
+    /** The Constant USERS_GROUPS_PROPERTIES. */
     private static final Properties USERS_GROUPS_PROPERTIES = new Properties();
     static {
         USERS_GROUPS_PROPERTIES.setProperty("Administrator", "Administrators,users,developers");
@@ -45,6 +52,9 @@ public final class HelpDeskUserGroupCallback extends BPMUserGroupCallback {
         USERS_GROUPS_PROPERTIES.setProperty("david", "users");
     }
 
+    /**
+     * Instantiates a new help desk user group callback.
+     */
     public HelpDeskUserGroupCallback() {
         super(USERS_GROUPS_PROPERTIES);
     }

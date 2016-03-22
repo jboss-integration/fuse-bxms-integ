@@ -19,12 +19,14 @@ import org.switchyard.remote.RemoteInvoker;
 import org.switchyard.remote.RemoteMessage;
 import org.switchyard.remote.http.HttpInvoker;
 
+
 /**
  * Test client which uses RemoteInvoker to invoke a service with an SCA binding.
  */
 public final class RulesCamelCBRClient {
 
-    private static final QName SERVICE = new QName( "urn:switchyard-quickstart:rules-camel-cbr:0.1.0", "RoutingService");
+    /** The Constant SERVICE. */
+    private static final QName SERVICE = new QName("urn:switchyard-quickstart:rules-camel-cbr:0.1.0", "RoutingService");
 
     /**
      * Private no-args constructor.
@@ -34,6 +36,7 @@ public final class RulesCamelCBRClient {
 
     /**
      * Only execution point for this application.
+     * 
      * @param ignored not used.
      * @throws Exception if something goes wrong.
      */

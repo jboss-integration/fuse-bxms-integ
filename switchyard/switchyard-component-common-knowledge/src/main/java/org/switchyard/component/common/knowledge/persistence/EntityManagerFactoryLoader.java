@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,17 +19,13 @@ import javax.persistence.Persistence;
 
 import org.switchyard.ServiceDomain;
 
-/**
- * Loads the EntityManagerFactory used for BPM.
- */
+/** Loads the EntityManagerFactory used for BPM. */
 public class EntityManagerFactoryLoader {
 
     protected static final String UNIT_NAME = "org.jbpm.persistence.jpa";
 
-    /**
-     * @param domain the service domain
-     * @return the BPM EMF associated with the specified domain.
-     */
+    /** @param domain the service domain
+     * @return the BPM EMF associated with the specified domain. */
     public EntityManagerFactory getEntityManagerFactory(ServiceDomain domain) {
         return Persistence.createEntityManagerFactory(UNIT_NAME, new HashMap());
     }

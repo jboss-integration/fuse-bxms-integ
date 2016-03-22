@@ -38,9 +38,9 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
             return local.get(getIdentifier()).get();
         }
         if (engineInitEager) {
-            InternalTaskService internalTaskService = (InternalTaskService) getTaskServiceFactory().newTaskService();
+            InternalTaskService internalTaskService = (InternalTaskService)getTaskServiceFactory().newTaskService();
             runtime = new RuntimeEngineImpl(getFactory().newKieSession(), internalTaskService);
-            ((RuntimeEngineImpl) runtime).setManager(this);
+            ((RuntimeEngineImpl)runtime).setManager(this);
 
             configureRuntimeOnTaskService(internalTaskService, runtime);
             registerDisposeCallback(runtime, new DisposeSessionTransactionSynchronization(this, runtime));
@@ -49,7 +49,7 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
             attachManager(runtime);
         } else {
             runtime = new RuntimeEngineImpl(context, new PerRequestInitializer());
-            ((RuntimeEngineImpl) runtime).setManager(this);
+            ((RuntimeEngineImpl)runtime).setManager(this);
         }
         ThreadLocal<RuntimeEngine> loc = new ThreadLocal<RuntimeEngine>();
         loc.set(runtime);
@@ -62,11 +62,11 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
         @Override
         public KieSession initKieSession(Context<?> context, InternalRuntimeManager manager, RuntimeEngine engine) {
             RuntimeEngine inUse = local.get(getIdentifier()).get();
-            if (inUse != null && ((RuntimeEngineImpl) inUse).internalGetKieSession() != null) {
+            if (inUse != null && ((RuntimeEngineImpl)inUse).internalGetKieSession() != null) {
                 return inUse.getKieSession();
             }
             KieSession ksession = getFactory().newKieSession();
-            ((RuntimeEngineImpl) engine).internalSetKieSession(ksession);
+            ((RuntimeEngineImpl)engine).internalSetKieSession(ksession);
             registerDisposeCallback(engine, new DisposeSessionTransactionSynchronization(manager, engine));
             registerDisposeCallback(engine, new DestroySessionTransactionSynchronization(ksession));
             registerItems(engine);
@@ -76,7 +76,7 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
 
         @Override
         public TaskService initTaskService(Context<?> context, InternalRuntimeManager manager, RuntimeEngine engine) {
-            InternalTaskService internalTaskService = (InternalTaskService) getTaskServiceFactory().newTaskService();
+            InternalTaskService internalTaskService = (InternalTaskService)getTaskServiceFactory().newTaskService();
             configureRuntimeOnTaskService(internalTaskService, engine);
 
             return internalTaskService;
@@ -106,13 +106,13 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
                 runtime.getKieSession().destroy();
             } else {
                 if (runtime instanceof Disposable) {
-                    ((Disposable) runtime).dispose();
+                    ((Disposable)runtime).dispose();
                 }
             }
         } catch (Exception e) {
             // do nothing
             if (runtime instanceof Disposable) {
-                ((Disposable) runtime).dispose();
+                ((Disposable)runtime).dispose();
             }
         }
     }

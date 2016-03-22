@@ -26,6 +26,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+
 /**
  * REST interface for WarehouseService.
  *
@@ -34,24 +35,59 @@ import javax.ws.rs.core.Response;
 @Path("/warehouse")
 public interface WarehouseResource {
 
+    /**
+     * Gets the item.
+     *
+     * @param itemId the item id
+     * @return the item
+     */
     @GET
     @Path("{itemId}")
     @Produces({ "text/xml" })
     public Response getItem(@PathParam("itemId") Integer itemId);
 
+    /**
+     * Adds the item.
+     *
+     * @param itemId the item id
+     * @param description the description
+     * @param price the price
+     * @return the string
+     * @throws Exception the exception
+     */
     @PUT
     @Path("{itemId}/{desc}/{price}")
-    public String addItem(@PathParam("itemId") Integer itemId, @PathParam("desc") String description, @PathParam("price") Integer price) throws Exception;
+    public String addItem(@PathParam("itemId") Integer itemId, @PathParam("desc") String description,
+            @PathParam("price") Integer price) throws Exception;
 
+    /**
+     * Update item.
+     *
+     * @param item the item
+     * @return the string
+     * @throws Exception the exception
+     */
     @POST
     @Path("/")
     @Consumes({ "text/xml" })
     public String updateItem(Item item) throws Exception;
 
+    /**
+     * Removes the item.
+     *
+     * @param itemId the item id
+     * @return the string
+     * @throws Exception the exception
+     */
     @DELETE
     @Path("{itemId}")
     public String removeItem(@PathParam("itemId") Integer itemId) throws Exception;
 
+    /**
+     * Gets the item count.
+     *
+     * @return the item count
+     */
     @GET
     @Path("/count/")
     public Integer getItemCount();

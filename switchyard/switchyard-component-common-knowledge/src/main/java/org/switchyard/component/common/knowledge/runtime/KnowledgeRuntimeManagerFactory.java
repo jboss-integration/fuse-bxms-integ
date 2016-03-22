@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,11 +27,9 @@ import org.switchyard.component.common.knowledge.config.builder.LoggerBuilder;
 import org.switchyard.component.common.knowledge.config.builder.RuntimeManagerBuilder;
 import org.switchyard.component.common.knowledge.config.model.KnowledgeComponentImplementationModel;
 
-/**
- * KnowledgeRuntimeManagerFactory.
+/** KnowledgeRuntimeManagerFactory.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class KnowledgeRuntimeManagerFactory {
 
     private static final AtomicInteger IDENTIFIER_COUNT = new AtomicInteger();
@@ -46,18 +43,13 @@ public class KnowledgeRuntimeManagerFactory {
     private final QName _serviceName;
     private final String _identifierRoot;
 
-    /**
-     * Creates a new KnowledgeRuntimeManagerFactory.
+    /** Creates a new KnowledgeRuntimeManagerFactory.
+     * 
      * @param classLoader the classLoader
      * @param serviceDomain the serviceDomain
      * @param serviceName the serviceName
-     * @param implementationModel the implementationModel
-     */
-    public KnowledgeRuntimeManagerFactory(
-            ClassLoader classLoader,
-            ServiceDomain serviceDomain,
-            QName serviceName,
-            KnowledgeComponentImplementationModel implementationModel) {
+     * @param implementationModel the implementationModel */
+    public KnowledgeRuntimeManagerFactory(ClassLoader classLoader, ServiceDomain serviceDomain, QName serviceName, KnowledgeComponentImplementationModel implementationModel) {
         _classLoader = classLoader;
         _runtimeManagerBuilder = new RuntimeManagerBuilder(classLoader, serviceDomain, implementationModel);
         _persistent = implementationModel.isPersistent();
@@ -68,11 +60,10 @@ public class KnowledgeRuntimeManagerFactory {
         _identifierRoot = _serviceDomainName.toString() + "/" + _serviceName.toString() + "/";
     }
 
-    /**
-     * Creates a new KnowledgeRuntimeManager.
+    /** Creates a new KnowledgeRuntimeManager.
+     * 
      * @param type the KnowledgeRuntimeManagerType
-     * @return the new KnowledgeRuntimeManager
-     */
+     * @return the new KnowledgeRuntimeManager */
     public KnowledgeRuntimeManager newRuntimeManager(KnowledgeRuntimeManagerType type) {
         RuntimeManager runtimeManager;
         final String identifier = _identifierRoot + IDENTIFIER_COUNT.incrementAndGet();
@@ -82,8 +73,7 @@ public class KnowledgeRuntimeManagerFactory {
         } finally {
             Classes.setTCCL(origTCCL);
         }
-        return new KnowledgeRuntimeManager(
-                _classLoader, type, _serviceDomainName, _serviceName, runtimeManager, _persistent, _channelBuilders, _loggerBuilders);
+        return new KnowledgeRuntimeManager(_classLoader, type, _serviceDomainName, _serviceName, runtimeManager, _persistent, _channelBuilders, _loggerBuilders);
     }
 
 }

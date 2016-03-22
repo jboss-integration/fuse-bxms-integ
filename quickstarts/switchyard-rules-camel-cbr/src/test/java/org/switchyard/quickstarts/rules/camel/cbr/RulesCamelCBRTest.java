@@ -25,22 +25,31 @@ import org.switchyard.test.ServiceOperation;
 import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Class RulesCamelCBRTest.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 @RunWith(SwitchYardRunner.class)
 @SwitchYardTestCaseConfig(config = SwitchYardTestCaseConfig.SWITCHYARD_XML, mixins = CDIMixIn.class)
 public class RulesCamelCBRTest {
 
-    private static final String[][] TESTS = new String[][] {
-        new String[] { "FF0000-ABC-123", "Red" },
-        new String[] { "00FF00-DEF-456", "Green" },
-        new String[] { "0000FF-GHI-789", "Blue" }
-    };
+    /** The Constant TESTS. */
+    private static final String[][] TESTS = new String[][] { new String[] { "FF0000-ABC-123", "Red" },
+            new String[] { "00FF00-DEF-456", "Green" }, new String[] { "0000FF-GHI-789", "Blue" } };
 
+    /** The router. */
     @ServiceOperation("RoutingService.processRoute")
     private Invoker router;
 
+    /**
+     * Test rgb widgets.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testRGBWidgets() throws Exception {
         for (String[] test : TESTS) {

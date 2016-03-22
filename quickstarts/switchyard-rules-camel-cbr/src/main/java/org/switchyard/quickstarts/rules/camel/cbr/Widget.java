@@ -18,35 +18,71 @@ package org.switchyard.quickstarts.rules.camel.cbr;
 
 import java.io.Serializable;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Class Widget.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 @SuppressWarnings("serial")
 public class Widget implements Serializable {
 
+    /** The _id. */
     private String _id;
+
+    /** The _box. */
     private Box _box;
-    
+
+    /**
+     * Instantiates a new widget.
+     */
     public Widget() {
-    
+
     }
 
+    /**
+     * Instantiates a new widget.
+     *
+     * @param id the id
+     */
     public Widget(String id) {
         _id = id;
     }
-    
+
+    /**
+     * Sets the id.
+     *
+     * @param id the new id
+     */
     public void setId(String id) {
         _id = id;
     }
 
+    /**
+     * Gets the id.
+     *
+     * @return the id
+     */
     public String getId() {
         return _id;
     }
 
+    /**
+     * Gets the box.
+     *
+     * @return the box
+     */
     public Box getBox() {
         return _box;
     }
 
+    /**
+     * Sets the box.
+     *
+     * @param box the new box
+     */
     public void setBox(Box box) {
         _box = box;
     }

@@ -25,14 +25,26 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Collection;
 
+
+/**
+ * The Class CamelContextXmlTest.
+ */
 public class CamelContextXmlTest extends CamelSpringTestSupport {
 
+    /** The rule on body endpoint. */
     // templates to send to input endpoints
     @Produce(uri = "direct://ruleOnBody")
     protected ProducerTemplate ruleOnBodyEndpoint;
+
+    /** The rule on command endpoint. */
     @Produce(uri = "direct://ruleOnCommand")
     protected ProducerTemplate ruleOnCommandEndpoint;
 
+    /**
+     * Test rule on body.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testRuleOnBody() throws Exception {
         Person person = new Person();
@@ -55,6 +67,11 @@ public class CamelContextXmlTest extends CamelSpringTestSupport {
         assertTrue(person.isCanDrink());
     }
 
+    /**
+     * Test rule on command.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testRuleOnCommand() throws Exception {
         Person person = new Person();

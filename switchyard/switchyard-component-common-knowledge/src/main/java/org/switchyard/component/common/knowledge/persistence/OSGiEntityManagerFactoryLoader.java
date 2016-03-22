@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,21 +20,17 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
 import org.switchyard.ServiceDomain;
 
-/**
- * Retrieves the EMF from the bundle context.
- */
+/** Retrieves the EMF from the bundle context. */
 public class OSGiEntityManagerFactoryLoader extends EntityManagerFactoryLoader {
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public EntityManagerFactory getEntityManagerFactory(ServiceDomain domain) {
         try {
             final Bundle bundle = getApplicationBundle(domain);
             if (bundle != null) {
-                Collection<ServiceReference<EntityManagerFactory>> refs = bundle.getBundleContext()
-                        .getServiceReferences(EntityManagerFactory.class, "(osgi.unit.name=org.jbpm.persistence.jpa)");
+                Collection<ServiceReference<EntityManagerFactory>> refs = bundle.getBundleContext().getServiceReferences(EntityManagerFactory.class,
+                                                                                                                         "(osgi.unit.name=org.jbpm.persistence.jpa)");
                 if (refs != null && refs.size() > 0) {
                     EntityManagerFactory emf = bundle.getBundleContext().getService(refs.iterator().next());
                     if (emf != null) {

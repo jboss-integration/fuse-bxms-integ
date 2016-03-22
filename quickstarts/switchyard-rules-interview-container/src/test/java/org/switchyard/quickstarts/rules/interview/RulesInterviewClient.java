@@ -18,11 +18,13 @@ package org.switchyard.quickstarts.rules.interview;
 
 import org.switchyard.component.test.mixins.http.HTTPMixIn;
 
+
 /**
  * Test client which uses RemoteInvoker to invoke a service with an SCA binding.
  */
 public final class RulesInterviewClient {
 
+    /** The Constant XML. */
     private static final String XML = "src/test/resources/xml/soap-request-pass.xml";
 
     /**
@@ -33,6 +35,7 @@ public final class RulesInterviewClient {
 
     /**
      * Only execution point for this application.
+     * 
      * @param ignored not used.
      * @throws Exception if something goes wrong.
      */

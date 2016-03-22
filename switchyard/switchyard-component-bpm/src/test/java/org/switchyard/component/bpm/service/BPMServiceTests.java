@@ -1,12 +1,11 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -62,11 +61,9 @@ import org.switchyard.test.Invoker;
 import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.TestDataSource;
 
-/**
- * Tests the BPM implementation.
+/** Tests the BPM implementation.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 @RunWith(SwitchYardRunner.class)
 public class BPMServiceTests {
 
@@ -86,7 +83,7 @@ public class BPMServiceTests {
     @Test
     public void testCallService() throws Exception {
         final Holder holder = new Holder();
-        serviceDomain.registerService(new QName("CallService"), new InOnlyService(), new BaseHandler(){
+        serviceDomain.registerService(new QName("CallService"), new InOnlyService(), new BaseHandler() {
             public void handleMessage(Exchange exchange) throws HandlerException {
                 holder.setValue("message handled");
             }
@@ -106,12 +103,9 @@ public class BPMServiceTests {
         Assert.assertEquals("message handled", holder.getValue());
     }
 
-    @BPM(processId="AccessAttachment", manifest=@Manifest(resources=@Resource(location=ACCESS_ATTACHMENT_BPMN, type="BPMN2")))
+    @BPM(processId = "AccessAttachment", manifest = @Manifest(resources = @Resource(location = ACCESS_ATTACHMENT_BPMN, type = "BPMN2")))
     public interface AccessAttachment {
-        @StartProcess(inputs={
-            @Input(from="message.attachmentMap['someAttach']", to="attachment"),
-            @Input(from="message.content", to="holder")
-        })
+        @StartProcess(inputs = {@Input(from = "message.attachmentMap['someAttach']", to = "attachment"), @Input(from = "message.content", to = "holder")})
         public Object process(Object content);
     }
 
@@ -130,18 +124,19 @@ public class BPMServiceTests {
         Assert.assertEquals("someAttachData", holder.getValue());
     }
 
-    @BPM(processId="ControlProcess", manifest=@Manifest(resources=@Resource(location=CONTROL_PROCESS_BPMN, type="BPMN2")))
+    @BPM(processId = "ControlProcess", manifest = @Manifest(resources = @Resource(location = CONTROL_PROCESS_BPMN, type = "BPMN2")))
     public interface ControlProcess {
         @StartProcess
         public Object process(Object content);
-        @SignalEvent(eventId="test")
+
+        @SignalEvent(eventId = "test")
         public void signal(Object content);
     }
 
     @Test
     public void testControlProcess() throws Exception {
         final Holder holder = new Holder();
-        Service callService = serviceDomain.registerService(new QName("CallService"), new InOnlyService(), new BaseHandler(){
+        Service callService = serviceDomain.registerService(new QName("CallService"), new InOnlyService(), new BaseHandler() {
             public void handleMessage(Exchange exchange) throws HandlerException {
                 holder.setValue("message handled");
             }
@@ -177,7 +172,7 @@ public class BPMServiceTests {
     private void runCorrelateProcess(final boolean bomb) throws Exception {
         final AtomicInteger counter = new AtomicInteger();
         final Holder holder = new Holder();
-        Service callService = serviceDomain.registerService(new QName("CallService"), new InOnlyService(), new BaseHandler(){
+        Service callService = serviceDomain.registerService(new QName("CallService"), new InOnlyService(), new BaseHandler() {
             public void handleMessage(Exchange exchange) throws HandlerException {
                 int count = counter.incrementAndGet();
                 holder.setValue(String.valueOf(count));
@@ -211,11 +206,12 @@ public class BPMServiceTests {
         }
     }
 
-    @BPM(processId="ControlProcess", manifest=@Manifest(resources=@Resource(location=CONTROL_PROCESS_BPMN, type="BPMN2")))
+    @BPM(processId = "ControlProcess", manifest = @Manifest(resources = @Resource(location = CONTROL_PROCESS_BPMN, type = "BPMN2")))
     public interface SignalAllProcesses {
         @StartProcess
         public Object process(Object content);
-        @SignalEventAll(eventId="test")
+
+        @SignalEventAll(eventId = "test")
         public void signal(Object content);
     }
 
@@ -223,7 +219,7 @@ public class BPMServiceTests {
     public void testSignalAllProcesses() throws Exception {
         final AtomicInteger counter = new AtomicInteger();
         final Holder holder = new Holder();
-        Service callService = serviceDomain.registerService(new QName("CallService"), new InOnlyService(), new BaseHandler(){
+        Service callService = serviceDomain.registerService(new QName("CallService"), new InOnlyService(), new BaseHandler() {
             public void handleMessage(Exchange exchange) throws HandlerException {
                 int count = counter.incrementAndGet();
                 holder.setValue(String.valueOf(count));
@@ -256,7 +252,7 @@ public class BPMServiceTests {
     }
 
     private void runFaultResultProcess(final boolean bomb) throws Exception {
-        serviceDomain.registerService(new QName("TestService"), new InOnlyService(), new BaseHandler(){
+        serviceDomain.registerService(new QName("TestService"), new InOnlyService(), new BaseHandler() {
             public void handleMessage(Exchange exchange) throws HandlerException {
                 if (bomb) {
                     throw new HandlerException("BOOM!");
@@ -295,7 +291,7 @@ public class BPMServiceTests {
     }
 
     private void runFaultEventProcess(final boolean bomb) throws Exception {
-        serviceDomain.registerService(new QName("TestService"), new InOnlyService(), new BaseHandler(){
+        serviceDomain.registerService(new QName("TestService"), new InOnlyService(), new BaseHandler() {
             public void handleMessage(Exchange exchange) throws HandlerException {
                 if (bomb) {
                     throw new HandlerException("BOOM!");
@@ -334,7 +330,7 @@ public class BPMServiceTests {
     }
 
     private void runFaultBoundaryProcess(final boolean bomb) throws Exception {
-        serviceDomain.registerService(new QName("TestService"), new InOnlyService(), new BaseHandler(){
+        serviceDomain.registerService(new QName("TestService"), new InOnlyService(), new BaseHandler() {
             public void handleMessage(Exchange exchange) throws HandlerException {
                 if (bomb) {
                     throw new HandlerException("BOOM!");
@@ -357,10 +353,9 @@ public class BPMServiceTests {
         ksession.dispose();
     }
 
-    @BPM(processId="ReuseHandler", manifest=@Manifest(resources=@Resource(location=REUSE_HANDLER_BPMN, type="BPMN2")),
-            workItemHandlers=@WorkItemHandler(name="ReuseHandler", value=ReuseHandler.class))
+    @BPM(processId = "ReuseHandler", manifest = @Manifest(resources = @Resource(location = REUSE_HANDLER_BPMN, type = "BPMN2")), workItemHandlers = @WorkItemHandler(name = "ReuseHandler", value = ReuseHandler.class))
     public interface ReuseHandlerProcess {
-        @StartProcess(inputs=@Input(from="message.content", to="holder"))
+        @StartProcess(inputs = @Input(from = "message.content", to = "holder"))
         public void process(Object content);
     }
 
@@ -378,11 +373,9 @@ public class BPMServiceTests {
         ReuseHandler._holder.setValue(null);
     }
 
-    @BPM(processId="RulesFired", manifest=@Manifest(resources={
-            @Resource(location=RULES_FIRED_BPMN, type="BPMN2"),
-            @Resource(location=RULES_FIRED_DRL, type="DRL")}))
+    @BPM(processId = "RulesFired", manifest = @Manifest(resources = {@Resource(location = RULES_FIRED_BPMN, type = "BPMN2"), @Resource(location = RULES_FIRED_DRL, type = "DRL")}))
     public interface RulesFiredProcess {
-        @StartProcess(inputs=@Input(from="message.content", to="holder"))
+        @StartProcess(inputs = @Input(from = "message.content", to = "holder"))
         public void process(Object content);
     }
 
@@ -400,31 +393,25 @@ public class BPMServiceTests {
         Assert.assertEquals("rules fired", holder.getValue());
     }
 
-    @BPM(processId="SignalProcess", manifest=@Manifest(resources=@Resource(location=SIGNAL_PROCESS_BPMN, type="BPMN2")))
+    @BPM(processId = "SignalProcess", manifest = @Manifest(resources = @Resource(location = SIGNAL_PROCESS_BPMN, type = "BPMN2")))
     public interface SignalProcess {
-        @StartProcess(
-            inputs={@Input(from="message.content", to="Parameter")},
-            outputs={@Output(from="Result", to="message.content")}
-        )
+        @StartProcess(inputs = {@Input(from = "message.content", to = "Parameter")}, outputs = {@Output(from = "Result", to = "message.content")})
         public Object process(Object content);
-        @SignalEvent(
-            eventId="TestSignal1",
-            inputs={@Input(from="message.content", to="Parameter")},
-            outputs={@Output(from="Result", to="message.content")}
-        )
+
+        @SignalEvent(eventId = "TestSignal1", inputs = {@Input(from = "message.content", to = "Parameter")}, outputs = {@Output(from = "Result", to = "message.content")})
         public Object signal(Object content);
     }
 
     @Test
     public void testSignalProcess() throws Exception {
-        final Map<String,String> testAssertionMap = new HashMap<String,String>();
-        Service serviceOne = serviceDomain.registerService(new QName("ServiceOne"), new InOutService(), new BaseHandler(){
+        final Map<String, String> testAssertionMap = new HashMap<String, String>();
+        Service serviceOne = serviceDomain.registerService(new QName("ServiceOne"), new InOutService(), new BaseHandler() {
             public void handleMessage(Exchange exchange) throws HandlerException {
                 Holder h = exchange.getMessage().getContent(Holder.class);
                 testAssertionMap.put("ServiceOne", h.getValue());
             }
         });
-        Service serviceTwo = serviceDomain.registerService(new QName("ServiceTwo"), new InOutService(), new BaseHandler(){
+        Service serviceTwo = serviceDomain.registerService(new QName("ServiceTwo"), new InOutService(), new BaseHandler() {
             public void handleMessage(Exchange exchange) throws HandlerException {
                 Holder h = exchange.getMessage().getContent(Holder.class);
                 testAssertionMap.put("ServiceTwo", h.getValue());
@@ -458,9 +445,18 @@ public class BPMServiceTests {
 
     public static final class Holder {
         private String _value;
-        public String getValue() { return _value; }
-        public void setValue(String value) { _value = value; }
-        public String toString() { return _value; }
+
+        public String getValue() {
+            return _value;
+        }
+
+        public void setValue(String value) {
+            _value = value;
+        }
+
+        public String toString() {
+            return _value;
+        }
     }
 
 }

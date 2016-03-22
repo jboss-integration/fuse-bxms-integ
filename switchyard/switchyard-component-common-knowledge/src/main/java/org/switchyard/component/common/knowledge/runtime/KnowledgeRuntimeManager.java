@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -41,11 +40,9 @@ import org.switchyard.component.common.knowledge.config.builder.ChannelBuilder;
 import org.switchyard.component.common.knowledge.config.builder.LoggerBuilder;
 import org.switchyard.component.common.knowledge.config.items.ExtendedRegisterableItemsFactory;
 
-/**
- * KnowledgeRuntimeManager.
+/** KnowledgeRuntimeManager.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class KnowledgeRuntimeManager implements RuntimeManager {
 
     private final KieServices _kieServices;
@@ -59,8 +56,8 @@ public class KnowledgeRuntimeManager implements RuntimeManager {
     private final boolean _persistent;
     private final Set<Long> _sessionIds = Collections.synchronizedSet(new LinkedHashSet<Long>());
 
-    /**
-     * Creates a new KnowledgeRuntimeManager.
+    /** Creates a new KnowledgeRuntimeManager.
+     * 
      * @param classLoader the classLoader
      * @param type the type
      * @param serviceDomainName the serviceDomainName
@@ -68,17 +65,9 @@ public class KnowledgeRuntimeManager implements RuntimeManager {
      * @param runtimeManager the runtimeManager
      * @param persistent if persistent
      * @param channelBuilders the channelBuilders
-     * @param loggerBuilders the loggerBuilders
-     */
-    KnowledgeRuntimeManager(
-            ClassLoader classLoader,
-            KnowledgeRuntimeManagerType type,
-            QName serviceDomainName,
-            QName serviceName,
-            RuntimeManager runtimeManager,
-            boolean persistent,
-            List<ChannelBuilder> channelBuilders,
-            List<LoggerBuilder> loggerBuilders) {
+     * @param loggerBuilders the loggerBuilders */
+    KnowledgeRuntimeManager(ClassLoader classLoader, KnowledgeRuntimeManagerType type, QName serviceDomainName, QName serviceName, RuntimeManager runtimeManager,
+                            boolean persistent, List<ChannelBuilder> channelBuilders, List<LoggerBuilder> loggerBuilders) {
         _kieServices = KieServices.Factory.get();
         _classLoader = classLoader;
         _type = type;
@@ -90,75 +79,64 @@ public class KnowledgeRuntimeManager implements RuntimeManager {
         _loggerBuilders = loggerBuilders;
     }
 
-    /**
-     * Gets the type.
-     * @return the type
-     */
+    /** Gets the type.
+     * 
+     * @return the type */
     public KnowledgeRuntimeManagerType getType() {
         return _type;
     }
 
-    /**
-     * Gets the serviceDomainName.
-     * @return serviceDomainName
-     */
+    /** Gets the serviceDomainName.
+     * 
+     * @return serviceDomainName */
     public QName getServiceDomainName() {
         return _serviceDomainName;
     }
 
-    /**
-     * Gets the serviceName.
-     * @return the serviceName
-     */
+    /** Gets the serviceName.
+     * 
+     * @return the serviceName */
     public QName getServiceName() {
         return _serviceName;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getIdentifier() {
         return _runtimeManager.getIdentifier();
     }
 
-    /**
-     * If persistent.
-     * @return if persistent
-     */
+    /** If persistent.
+     * 
+     * @return if persistent */
     public boolean isPersistent() {
         return _persistent;
     }
 
-    /**
-     * Gets a RuntimeEngine for an undefined {@link Context}.
-     * @return the RuntimeEngine
-     */
+    /** Gets a RuntimeEngine for an undefined {@link Context}.
+     * 
+     * @return the RuntimeEngine */
     public RuntimeEngine getRuntimeEngine() {
         return getRuntimeEngine((Context<?>)null);
     }
 
-    /**
-     * Gets a RuntimeEngine for a {@link Context} associated with the processInstanceId.
+    /** Gets a RuntimeEngine for a {@link Context} associated with the processInstanceId.
+     * 
      * @param processInstanceId the processInstanceId
-     * @return the RuntimeEngine
-     */
+     * @return the RuntimeEngine */
     public RuntimeEngine getRuntimeEngine(Long processInstanceId) {
         return getRuntimeEngine(ProcessInstanceIdContext.get(processInstanceId));
     }
 
-    /**
-     * Gets a RuntimeEngine for a {@link Context} associated with the correlationKey.
+    /** Gets a RuntimeEngine for a {@link Context} associated with the correlationKey.
+     * 
      * @param correlationKey the correlationKey
-     * @return the RuntimeEngine
-     */
+     * @return the RuntimeEngine */
     public RuntimeEngine getRuntimeEngine(CorrelationKey correlationKey) {
         return getRuntimeEngine(CorrelationKeyContext.get(correlationKey));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RuntimeEngine getRuntimeEngine(Context<?> context) {
         KnowledgeRuntimeEngine runtimeEngine;
@@ -242,7 +220,6 @@ public class KnowledgeRuntimeManager implements RuntimeManager {
                          * KieScanner scanner = new //
                          * KnowledgeScanner(kieContainer);
                          * disposable.addDisposeListener(new DisposeListener() {
-                         * 
                          * @Override public void onDispose(RuntimeEngine
                          * runtime) { try { scanner.stop(); scanner.shutdown();
                          * } catch (Throwable t) {
@@ -254,7 +231,6 @@ public class KnowledgeRuntimeManager implements RuntimeManager {
                          * (releaseId); } } } });
                          * scanner.start(containerManifest
                          * .getScanInterval().longValue()); }
-                         * 
                          * }
                          */
                     }
@@ -263,9 +239,7 @@ public class KnowledgeRuntimeManager implements RuntimeManager {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void disposeRuntimeEngine(RuntimeEngine runtime) {
         if (runtime instanceof KnowledgeRuntimeEngine) {
@@ -274,9 +248,7 @@ public class KnowledgeRuntimeManager implements RuntimeManager {
         _runtimeManager.disposeRuntimeEngine(runtime);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void close() {
         _runtimeManager.close();
@@ -288,48 +260,49 @@ public class KnowledgeRuntimeManager implements RuntimeManager {
 
     }
 
-    /* attempt at fixing SWITCHYARD-2240
-    private static final class KnowledgeScanner extends KieRepositoryScannerImpl {
-        private ReleaseId _originalReleaseId = null;
-        private KnowledgeScanner(KieContainer kieContainer) {
-            setKieContainer(kieContainer);
-        }
-        @Override
-        public synchronized void setKieContainer(KieContainer kieContainer) {
-            _originalReleaseId = kieContainer != null ? kieContainer.getReleaseId() : null;
-            super.setKieContainer(kieContainer);
-        }
-        @Override
-        @SuppressWarnings("unchecked")
-        public synchronized void scanNow() {
-            Set<ReleaseId> releaseIds = new HashSet<ReleaseId>();
-            try {
-                Method scanForUpdates = KieRepositoryScannerImpl.class.getDeclaredMethod("scanForUpdates", new Class[0]);
-                scanForUpdates.setAccessible(true);
-                Map<DependencyDescriptor, Artifact> updatedArtifacts = (Map<DependencyDescriptor, Artifact>)scanForUpdates.invoke(this, (Object[])null);
-                if (!updatedArtifacts.isEmpty()) {
-                    if (_originalReleaseId != null) {
-                        releaseIds.add(_originalReleaseId);
-                    }
-                    for (DependencyDescriptor dd : updatedArtifacts.keySet()) {
-                        releaseIds.add(dd.getReleaseId());
-                        releaseIds.add(dd.getArtifactReleaseId());
-                    }
-                    //KieRepository kieRepository = KieServices.Factory.get().getRepository();
-                    //for (ReleaseId releaseId : releaseIds) {
-                    //    kieRepository.removeKieModule(releaseId);
-                    //}
-                }
-            } catch (Throwable t) {
-                t.printStackTrace();
-            }
-            super.scanNow();
-            //KieRepository kieRepository = KieServices.Factory.get().getRepository();
-            //for (ReleaseId releaseId : releaseIds) {
-            //    kieRepository.removeKieModule(releaseId);
-            //}
-        }
-    }
-    */
+    /*
+     * attempt at fixing SWITCHYARD-2240
+     * private static final class KnowledgeScanner extends KieRepositoryScannerImpl {
+     * private ReleaseId _originalReleaseId = null;
+     * private KnowledgeScanner(KieContainer kieContainer) {
+     * setKieContainer(kieContainer);
+     * }
+     * @Override
+     * public synchronized void setKieContainer(KieContainer kieContainer) {
+     * _originalReleaseId = kieContainer != null ? kieContainer.getReleaseId() : null;
+     * super.setKieContainer(kieContainer);
+     * }
+     * @Override
+     * @SuppressWarnings("unchecked")
+     * public synchronized void scanNow() {
+     * Set<ReleaseId> releaseIds = new HashSet<ReleaseId>();
+     * try {
+     * Method scanForUpdates = KieRepositoryScannerImpl.class.getDeclaredMethod("scanForUpdates", new Class[0]);
+     * scanForUpdates.setAccessible(true);
+     * Map<DependencyDescriptor, Artifact> updatedArtifacts = (Map<DependencyDescriptor, Artifact>)scanForUpdates.invoke(this, (Object[])null);
+     * if (!updatedArtifacts.isEmpty()) {
+     * if (_originalReleaseId != null) {
+     * releaseIds.add(_originalReleaseId);
+     * }
+     * for (DependencyDescriptor dd : updatedArtifacts.keySet()) {
+     * releaseIds.add(dd.getReleaseId());
+     * releaseIds.add(dd.getArtifactReleaseId());
+     * }
+     * //KieRepository kieRepository = KieServices.Factory.get().getRepository();
+     * //for (ReleaseId releaseId : releaseIds) {
+     * // kieRepository.removeKieModule(releaseId);
+     * //}
+     * }
+     * } catch (Throwable t) {
+     * t.printStackTrace();
+     * }
+     * super.scanNow();
+     * //KieRepository kieRepository = KieServices.Factory.get().getRepository();
+     * //for (ReleaseId releaseId : releaseIds) {
+     * // kieRepository.removeKieModule(releaseId);
+     * //}
+     * }
+     * }
+     */
 
 }

@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,32 +22,25 @@ import org.switchyard.component.common.knowledge.config.model.ManifestModel;
 import org.switchyard.component.common.knowledge.config.model.RemoteModel;
 import org.switchyard.config.model.resource.ResourcesModel;
 
-/**
- * ManifestBuilder.
+/** ManifestBuilder.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class ManifestBuilder extends KnowledgeBuilder {
 
     private final Manifest _manifest;
 
-    /**
-     * Creates a new ManifestBuilder.
+    /** Creates a new ManifestBuilder.
+     * 
      * @param classLoader classLoader
-     * @param manifestModel manifestModel
-     */
+     * @param manifestModel manifestModel */
     public ManifestBuilder(ClassLoader classLoader, ManifestModel manifestModel) {
         super(classLoader);
         Manifest manifest = null;
         if (manifestModel != null) {
             ContainerModel containerModel = manifestModel.getContainer();
             if (containerModel != null) {
-                manifest = new ContainerManifest(
-                        containerModel.getBaseName(),
-                        containerModel.getReleaseId(),
-                        containerModel.isScan(),
-                        containerModel.getScanInterval(),
-                        containerModel.getSessionName());
+                manifest = new ContainerManifest(containerModel.getBaseName(), containerModel.getReleaseId(), containerModel.isScan(), containerModel.getScanInterval(),
+                                                 containerModel.getSessionName());
             } else {
                 ResourcesModel resourcesModel = manifestModel.getResources();
                 if (resourcesModel != null) {
@@ -67,20 +59,18 @@ public class ManifestBuilder extends KnowledgeBuilder {
         _manifest = manifest;
     }
 
-    /**
-     * Builds a Manifest.
-     * @return a Manifest
-     */
+    /** Builds a Manifest.
+     * 
+     * @return a Manifest */
     public Manifest build() {
         return _manifest;
     }
 
-    /**
-     * Creates a ManifestBuilder.
+    /** Creates a ManifestBuilder.
+     * 
      * @param classLoader classLoader
      * @param implementationModel implementationModel
-     * @return a ManifestBuilder
-     */
+     * @return a ManifestBuilder */
     public static ManifestBuilder builder(ClassLoader classLoader, KnowledgeComponentImplementationModel implementationModel) {
         ManifestModel manifestModel = implementationModel != null ? implementationModel.getManifest() : null;
         return new ManifestBuilder(classLoader, manifestModel);

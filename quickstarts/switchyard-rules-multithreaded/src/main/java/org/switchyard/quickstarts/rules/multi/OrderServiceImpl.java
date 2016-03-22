@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import org.switchyard.component.bean.Reference;
 import org.switchyard.component.bean.Service;
 
+
 /**
  * An OrderService implementation.
  *
@@ -29,23 +30,23 @@ import org.switchyard.component.bean.Service;
 @Service(OrderService.class)
 public class OrderServiceImpl implements OrderService {
 
-	@Inject
-	@Reference
+    /** The order decision. */
+    @Inject
+    @Reference
     private OrderDecision orderDecision;
 
-	@Override
+    @Override
     public void throwError() {
-		throw new RuntimeException();
-	}
+        throw new RuntimeException();
+    }
 
-	@Override
+    @Override
     public Item getOrder() {
-		System.out.println("### Hey, getOrder invoked! ###");
+        System.out.println("### Hey, getOrder invoked! ###");
 
         Item ret = orderDecision.getBestItem();
         System.out.println("ITEM: " + ret);
-		return ret;
-	}
-
+        return ret;
+    }
 
 }

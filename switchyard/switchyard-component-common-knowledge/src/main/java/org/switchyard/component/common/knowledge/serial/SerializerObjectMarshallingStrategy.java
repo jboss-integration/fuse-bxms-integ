@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,30 +19,23 @@ import java.io.ObjectOutputStream;
 import org.kie.api.marshalling.ObjectMarshallingStrategy;
 import org.switchyard.serial.Serializer;
 
-/**
- * SerializerObjectMarshallingStrategy.
+/** SerializerObjectMarshallingStrategy.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class SerializerObjectMarshallingStrategy implements ObjectMarshallingStrategy {
 
-    private static final String[] IGNORE_PKGS = new String[] {
-        "java.", "javax.", "org.w3c.dom.", "org.jbpm.", "org.drools.", "org.kie."
-    };
+    private static final String[] IGNORE_PKGS = new String[] {"java.", "javax.", "org.w3c.dom.", "org.jbpm.", "org.drools.", "org.kie."};
 
     private final Serializer _serializer;
 
-    /**
-     * Constructs a new SerializerObjectMarshallingStrategy with the specified Serializer.
-     * @param serializer the specified Serializer
-     */
+    /** Constructs a new SerializerObjectMarshallingStrategy with the specified Serializer.
+     * 
+     * @param serializer the specified Serializer */
     public SerializerObjectMarshallingStrategy(Serializer serializer) {
         _serializer = serializer;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean accept(Object object) {
         if (object != null) {
@@ -59,41 +51,31 @@ public class SerializerObjectMarshallingStrategy implements ObjectMarshallingStr
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void write(ObjectOutputStream os, Object object) throws IOException {
         os.writeObject(_serializer.serialize(object, Object.class));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Object read(ObjectInputStream os) throws IOException, ClassNotFoundException {
         return _serializer.deserialize((byte[])os.readObject(), Object.class);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public byte[] marshal(Context context, ObjectOutputStream os, Object object) throws IOException {
         return _serializer.serialize(object, Object.class);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Object unmarshal(Context context, ObjectInputStream is, byte[] object, ClassLoader classloader) throws IOException, ClassNotFoundException {
         return _serializer.deserialize(object, Object.class);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Context createContext() {
         return null;

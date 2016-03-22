@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -67,11 +66,9 @@ import org.switchyard.component.common.knowledge.transaction.TransactionManagerL
 import org.switchyard.serial.FormatType;
 import org.switchyard.serial.SerializerFactory;
 
-/**
- * RuntimeEnvironmentBuilder.
+/** RuntimeEnvironmentBuilder.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
     private final KieServices _kieServices;
     private final RuntimeEnvironmentBuilderFactory _runtimeEnvironmentBuilderFactory;
@@ -82,16 +79,15 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
     private final UserGroupCallbackBuilder _userGroupCallbackBuilder;
     private final RegisterableItemsFactoryBuilder _registerableItemsFactoryBuilder;
 
-    /**
-     * Creates a new RuntimeEnvironmentBuilder.
+    /** Creates a new RuntimeEnvironmentBuilder.
+     * 
      * @param classLoader classLoader
      * @param serviceDomain serviceDomain
-     * @param implementationModel implementationModel
-     */
+     * @param implementationModel implementationModel */
     public RuntimeEnvironmentBuilder(ClassLoader classLoader, ServiceDomain serviceDomain, KnowledgeComponentImplementationModel implementationModel) {
         super(classLoader, serviceDomain);
         _kieServices = KieServices.Factory.get();
-        //_runtimeEnvironmentBuilderFactory = org.kie.api.runtime.manager.RuntimeEnvironmentBuilder.Factory.get();
+        // _runtimeEnvironmentBuilderFactory = org.kie.api.runtime.manager.RuntimeEnvironmentBuilder.Factory.get();
         _runtimeEnvironmentBuilderFactory = new PatchedRuntimeEnvironmentBuilder();
         _persistent = implementationModel != null ? implementationModel.isPersistent() : false;
         _entityManagerFactoryBuilder = new EntityManagerFactoryBuilder(serviceDomain, _persistent);
@@ -102,10 +98,9 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
 
     }
 
-    /**
-     * Builds a RuntimeEnvironment.
-     * @return a RuntimeEnvironment
-     */
+    /** Builds a RuntimeEnvironment.
+     * 
+     * @return a RuntimeEnvironment */
     public RuntimeEnvironment build() {
         final org.kie.api.runtime.manager.RuntimeEnvironmentBuilder jbpmRuntimeEnvironmentBuilder;
         Manifest manifest = _manifestBuilder.build();
@@ -176,62 +171,61 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
         }
         // things that need to be done to the original RuntimeEnvironment before the jBPM RuntimeEnvironmentBuilder is built (get->init)
         /*
-        Access<SimpleRuntimeEnvironment> simpleREAccess = new FieldAccess<SimpleRuntimeEnvironment>(
-                org.jbpm.runtime.manager.impl.RuntimeEnvironmentBuilder.class, "runtimeEnvironment");
-        if (simpleREAccess.isReadable()) {
-            SimpleRuntimeEnvironment originalRE = simpleREAccess.read(jbpmRuntimeEnvironmentBuilder);
-        */
+         * Access<SimpleRuntimeEnvironment> simpleREAccess = new FieldAccess<SimpleRuntimeEnvironment>(
+         * org.jbpm.runtime.manager.impl.RuntimeEnvironmentBuilder.class, "runtimeEnvironment");
+         * if (simpleREAccess.isReadable()) {
+         * SimpleRuntimeEnvironment originalRE = simpleREAccess.read(jbpmRuntimeEnvironmentBuilder);
+         */
         KieScanner scanner = null;
-            SimpleRuntimeEnvironment originalRE = ((PatchedRuntimeEnvironmentBuilder)jbpmRuntimeEnvironmentBuilder).getRuntimeEnvironment();
-            if (originalRE != null) {
-                RegisterableItemsFactory originalRIF = originalRE.getRegisterableItemsFactory();
-                if (originalRIF instanceof InternalRegisterableItemsFactory) {
-                    ExtendedRegisterableItemsFactory extendedRIF = _registerableItemsFactoryBuilder.build();
-                    CompoundRegisterableItemsFactory compoundRIF = new CompoundRegisterableItemsFactory(
-                            (InternalRegisterableItemsFactory)originalRIF, extendedRIF);
-                    jbpmRuntimeEnvironmentBuilder.registerableItemsFactory(compoundRIF);
-                    ExtendedRegisterableItemsFactory.Env.addToEnvironment(jbpmRuntimeEnvironmentBuilder, compoundRIF);
-                    if (manifest instanceof ContainerManifest && originalRIF instanceof KModuleRegisterableItemsFactory) {
-                        Access<KieContainer> kieContainerAccess = new FieldAccess<KieContainer>(KModuleRegisterableItemsFactory.class, "kieContainer");
-                        if (kieContainerAccess.isReadable()) {
-                            KieContainer kieContainer = kieContainerAccess.read(originalRIF);
-                            ((ContainerManifest)manifest).setKieContainer(kieContainer);
-                        if (((ContainerManifest) manifest).isScan()) {
+        SimpleRuntimeEnvironment originalRE = ((PatchedRuntimeEnvironmentBuilder)jbpmRuntimeEnvironmentBuilder).getRuntimeEnvironment();
+        if (originalRE != null) {
+            RegisterableItemsFactory originalRIF = originalRE.getRegisterableItemsFactory();
+            if (originalRIF instanceof InternalRegisterableItemsFactory) {
+                ExtendedRegisterableItemsFactory extendedRIF = _registerableItemsFactoryBuilder.build();
+                CompoundRegisterableItemsFactory compoundRIF = new CompoundRegisterableItemsFactory((InternalRegisterableItemsFactory)originalRIF, extendedRIF);
+                jbpmRuntimeEnvironmentBuilder.registerableItemsFactory(compoundRIF);
+                ExtendedRegisterableItemsFactory.Env.addToEnvironment(jbpmRuntimeEnvironmentBuilder, compoundRIF);
+                if (manifest instanceof ContainerManifest && originalRIF instanceof KModuleRegisterableItemsFactory) {
+                    Access<KieContainer> kieContainerAccess = new FieldAccess<KieContainer>(KModuleRegisterableItemsFactory.class, "kieContainer");
+                    if (kieContainerAccess.isReadable()) {
+                        KieContainer kieContainer = kieContainerAccess.read(originalRIF);
+                        ((ContainerManifest)manifest).setKieContainer(kieContainer);
+                        if (((ContainerManifest)manifest).isScan()) {
                             scanner = _kieServices.newKieScanner(kieContainer);
-                            scanner.start(((ContainerManifest) manifest).getScanInterval().longValue());
-                        }
+                            scanner.start(((ContainerManifest)manifest).getScanInterval().longValue());
                         }
                     }
                 }
-                Mapper mapper;
-                AuditMode auditMode;
-                if (_persistent) {
-                    mapper = new JPAMapper(entityManagerFactory);
-                    auditMode = AuditMode.JPA;
-                } else {
-                    mapper = new InMemoryMapper();
-                    auditMode = AuditMode.NONE;
-                }
-                originalRE.setMapper(mapper);
-                Environment environmentTemplate = originalRE.getEnvironmentTemplate();
-                // set the patched LocalTaskServiceFactory
+            }
+            Mapper mapper;
+            AuditMode auditMode;
+            if (_persistent) {
+                mapper = new JPAMapper(entityManagerFactory);
+                auditMode = AuditMode.JPA;
+            } else {
+                mapper = new InMemoryMapper();
+                auditMode = AuditMode.NONE;
+            }
+            originalRE.setMapper(mapper);
+            Environment environmentTemplate = originalRE.getEnvironmentTemplate();
+            // set the patched LocalTaskServiceFactory
             originalRE.addToEnvironment(TaskServiceFactory.class.getName(), new PatchedLocalTaskServiceFactory(originalRE));
-                // TODO: why, when no persistence, do we have to do all this?
-                DeploymentDescriptor deploymentDescriptor = (DeploymentDescriptor)environmentTemplate.get("KieDeploymentDescriptor");
-                if (deploymentDescriptor == null) {
-                    deploymentDescriptor = new DeploymentDescriptorManager().getDefaultDescriptor();
+            // TODO: why, when no persistence, do we have to do all this?
+            DeploymentDescriptor deploymentDescriptor = (DeploymentDescriptor)environmentTemplate.get("KieDeploymentDescriptor");
+            if (deploymentDescriptor == null) {
+                deploymentDescriptor = new DeploymentDescriptorManager().getDefaultDescriptor();
                 originalRE.addToEnvironment("KieDeploymentDescriptor", deploymentDescriptor);
-                }
+            }
             originalRE.addToEnvironment(manifest.getClass().getName(), manifest);
-                ((DeploymentDescriptorImpl)deploymentDescriptor).setAuditMode(auditMode);
+            ((DeploymentDescriptorImpl)deploymentDescriptor).setAuditMode(auditMode);
             if (scanner != null) {
                 originalRE.addToEnvironment("KieScanner", scanner);
             }
-            }
+        }
 
         /*
-        }
-        */
+         * }
+         */
         RuntimeEnvironment runtimeEnvironment = jbpmRuntimeEnvironmentBuilder.get();
         Environment environment = originalRE.getEnvironmentTemplate();
         // our ObjectMarshallingStrategy can be added to the Environment after the jBPM RuntimeEnvironmentBuilder is built (get->init)
@@ -239,7 +233,7 @@ public class RuntimeEnvironmentBuilder extends KnowledgeBuilder {
         new_oms.add(new SerializerObjectMarshallingStrategy(SerializerFactory.create(FormatType.JSON, null, true)));
         ObjectMarshallingStrategy[] old_oms = (ObjectMarshallingStrategy[])environment.get(EnvironmentName.OBJECT_MARSHALLING_STRATEGIES);
         if (old_oms != null) {
-            for (int i=0; i < old_oms.length; i++) {
+            for (int i = 0; i < old_oms.length; i++) {
                 if (old_oms[i] != null) {
                     new_oms.add(old_oms[i]);
                 }

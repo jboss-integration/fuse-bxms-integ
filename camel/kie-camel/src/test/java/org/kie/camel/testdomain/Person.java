@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,53 +22,51 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Person
-    implements
-    Serializable {
+public class Person implements Serializable {
     private static final long serialVersionUID = 510l;
-    private String            name;
-    private String            likes;
-    private int               age;
-    private BigDecimal        bigDecimal;
-    private BigInteger        bigInteger;
-    private String            hair;
+    private String name;
+    private String likes;
+    private int age;
+    private BigDecimal bigDecimal;
+    private BigInteger bigInteger;
+    private String hair;
 
-    private char              sex;
+    private char sex;
 
-    private boolean           alive;
+    private boolean alive;
 
-    private String            status;
+    private String status;
 
     private Cheese cheese;
 
-    private List              addresses        = new ArrayList();
+    private List addresses = new ArrayList();
 
-    //    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-    //        name    = (String)in.readObject();
-    //        likes    = (String)in.readObject();
-    //        age     = in.readInt();
-    //        bigDecimal    = (BigDecimal)in.readObject();
-    //        bigInteger    = (BigInteger)in.readObject();
-    //        hair    = (String)in.readObject();
-    //        sex     = in.readChar();
-    //        alive   = in.readBoolean();
-    //        status    = (String)in.readObject();
-    //        cheese    = (Cheese)in.readObject();
-    //        addresses    = (List)in.readObject();
-    //    }
+    // public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    // name = (String)in.readObject();
+    // likes = (String)in.readObject();
+    // age = in.readInt();
+    // bigDecimal = (BigDecimal)in.readObject();
+    // bigInteger = (BigInteger)in.readObject();
+    // hair = (String)in.readObject();
+    // sex = in.readChar();
+    // alive = in.readBoolean();
+    // status = (String)in.readObject();
+    // cheese = (Cheese)in.readObject();
+    // addresses = (List)in.readObject();
+    // }
     //
-    //    public void writeExternal(ObjectOutput out) throws IOException {
-    //        out.writeObject(name);
-    //        out.writeObject(likes);
-    //        out.writeObject(bigDecimal);
-    //        out.writeObject(bigInteger);
-    //        out.writeObject(hair);
-    //        out.writeChar(sex);
-    //        out.writeBoolean(alive);
-    //        out.writeObject(status);
-    //        out.writeObject(cheese);
-    //        out.writeObject(addresses);
-    //    }
+    // public void writeExternal(ObjectOutput out) throws IOException {
+    // out.writeObject(name);
+    // out.writeObject(likes);
+    // out.writeObject(bigDecimal);
+    // out.writeObject(bigInteger);
+    // out.writeObject(hair);
+    // out.writeChar(sex);
+    // out.writeBoolean(alive);
+    // out.writeObject(status);
+    // out.writeObject(cheese);
+    // out.writeObject(addresses);
+    // }
 
     public List getAddresses() {
         return addresses;
@@ -85,56 +80,52 @@ public class Person
 
     }
 
-    public Person(String name,
-                  int age) {
+    public Person(String name, int age) {
         super();
         this.name = name;
         this.age = age;
     }
 
     public Person(final String name) {
-        this( name,
-              "",
-              0 );
+        this(name, "", 0);
     }
 
-    public Person(final String name,
-                  final String likes) {
-        this( name,
-              likes,
-              0 );
+    public Person(final String name, final String likes) {
+        this(name, likes, 0);
     }
 
-    public Person(final String name,
-                  final String likes,
-                  final int age) {
+    public Person(final String name, final String likes, final int age) {
         this.name = name;
         this.likes = likes;
         this.age = age;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#getStatus()
      */
     public String getStatus() {
         return this.status;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#setStatus(java.lang.String)
      */
     public void setStatus(final String status) {
         this.status = status;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#getLikes()
      */
     public String getLikes() {
         return this.likes;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#getName()
      */
     public String getName() {
@@ -145,7 +136,8 @@ public class Person
         this.name = name;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#getAge()
      */
     public int getAge() {
@@ -156,28 +148,32 @@ public class Person
         this.age = age;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#isAlive()
      */
     public boolean isAlive() {
         return this.alive;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#setAlive(boolean)
      */
     public void setAlive(final boolean alive) {
         this.alive = alive;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#getSex()
      */
     public char getSex() {
         return this.sex;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#setSex(char)
      */
     public void setSex(final char sex) {
@@ -196,9 +192,7 @@ public class Person
         return "[Person name='" + this.name + "']";
     }
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public int hashCode() {
         final int PRIME = 31;
         int result = 1;
@@ -209,61 +203,63 @@ public class Person
         return result;
     }
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public boolean equals(final Object obj) {
-        if ( this == obj ) {
+        if (this == obj) {
             return true;
         }
-        if ( obj == null ) {
+        if (obj == null) {
             return false;
         }
-        if ( getClass() != obj.getClass() ) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        final Person other = (Person) obj;
-        if ( this.age != other.age ) {
+        final Person other = (Person)obj;
+        if (this.age != other.age) {
             return false;
         }
-        if ( this.alive != other.alive ) {
+        if (this.alive != other.alive) {
             return false;
         }
-        if ( this.name == null ) {
-            if ( other.name != null ) {
+        if (this.name == null) {
+            if (other.name != null) {
                 return false;
             }
-        } else if ( !this.name.equals( other.name ) ) {
+        } else if (!this.name.equals(other.name)) {
             return false;
         }
-        if ( this.sex != other.sex ) {
+        if (this.sex != other.sex) {
             return false;
         }
         return true;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#getBigDecimal()
      */
     public BigDecimal getBigDecimal() {
         return this.bigDecimal;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#setBigDecimal(java.math.BigDecimal)
      */
     public void setBigDecimal(final BigDecimal bigDecimal) {
         this.bigDecimal = bigDecimal;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#getBigInteger()
      */
     public BigInteger getBigInteger() {
         return this.bigInteger;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.kie.camel.testdomain.PersonInterface#setBigInteger(java.math.BigInteger)
      */
     public void setBigInteger(final BigInteger bigInteger) {

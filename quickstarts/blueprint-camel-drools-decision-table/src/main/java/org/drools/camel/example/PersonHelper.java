@@ -18,10 +18,20 @@ package org.drools.camel.example;
 
 import java.util.Random;
 
+
+/**
+ * The Class PersonHelper.
+ */
 public class PersonHelper {
 
+    /** The random. */
     private final Random random = new Random();
 
+    /**
+     * Creates the test person.
+     *
+     * @return the person
+     */
     public Person createTestPerson() {
         Person person = new Person();
         if (random.nextBoolean()) {

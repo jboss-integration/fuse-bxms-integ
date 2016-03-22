@@ -1,12 +1,9 @@
 /*
  * Copyright 2012 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,7 +11,6 @@
  * limitations under the License.
  */
 package org.kie.camel.component;
-
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -43,11 +39,9 @@ import org.kie.api.runtime.ExecutionResults;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 import org.kie.api.runtime.rule.FactHandle;
 
-/**
- * Camel - JAXB reproducer test
+/** Camel - JAXB reproducer test
  * https://bugzilla.redhat.com/show_bug.cgi?id=771203
- * https://bugzilla.redhat.com/show_bug.cgi?id=771209
- */
+ * https://bugzilla.redhat.com/show_bug.cgi?id=771209 */
 public class JaxbInsertTest {
 
     private StatefulKnowledgeSession ksession;
@@ -60,21 +54,17 @@ public class JaxbInsertTest {
         initializeTemplate(ksession);
     }
 
-    /**
-     * camel context startup and template creation
-     */
+    /** camel context startup and template creation */
     private void initializeTemplate(StatefulKnowledgeSession session) throws Exception {
         CamelContext context = configure(session);
         this.template = context.createProducerTemplate();
         context.start();
     }
 
-    /**
-     * configures camel-drools integration and defines 3 routes:
+    /** configures camel-drools integration and defines 3 routes:
      * 1) testing route (connection to drools with JAXB command format)
      * 2) unmarshalling route (for unmarshalling command results)
-     * 3) marshalling route (enables creating commands through API and converting to XML)
-     */
+     * 3) marshalling route (enables creating commands through API and converting to XML) */
     private CamelContext configure(StatefulKnowledgeSession session) throws Exception {
         Context context = new JndiContext();
         context.bind("ksession", session);
@@ -87,25 +77,18 @@ public class JaxbInsertTest {
                 jdf.setContextPath("org.kie.camel.testdomain");
                 jdf.setPrettyPrint(true);
 
-                from("direct:test-session").policy(new KiePolicy())
-                        .unmarshal(jdf)
-                        .to("kie://ksession")
-                        .marshal(jdf);
-                from("direct:unmarshall").policy(new KiePolicy())
-                        .unmarshal(jdf);
-                from("direct:marshall").policy(new KiePolicy())
-                        .marshal(jdf);
+                from("direct:test-session").policy(new KiePolicy()).unmarshal(jdf).to("kie://ksession").marshal(jdf);
+                from("direct:unmarshall").policy(new KiePolicy()).unmarshal(jdf);
+                from("direct:marshall").policy(new KiePolicy()).marshal(jdf);
             }
         });
 
         return camelContext;
     }
 
-    /**
-     * bz771203
+    /** bz771203
      * creates batch-execution command with insert. Marshalls it to XML
-     * and send to drools
-     */
+     * and send to drools */
     @Test
     public void testInsert() throws Exception {
         Person p = new Person("Alice", "spicy meals", 30);
@@ -115,7 +98,7 @@ public class JaxbInsertTest {
         String xmlCommand = template.requestBody("direct:marshall", command, String.class);
 
         String xml = template.requestBody("direct:test-session", xmlCommand, String.class);
-        ExecutionResults res = (ExecutionResults) template.requestBody("direct:unmarshall", xml);
+        ExecutionResults res = (ExecutionResults)template.requestBody("direct:unmarshall", xml);
 
         Object o = res.getFactHandle("tempPerson");
         assertTrue("returned String instead of FactHandle instance", o instanceof FactHandle);
@@ -132,23 +115,12 @@ public class JaxbInsertTest {
     }
 
     private void insertElements(List<Person> objects) {
-        String insertElements =
-            "<batch-execution>\n"
-            + "  <insert-elements return-objects=\"true\">\n"
-            + "    <list>\n"
-            + "      <type>LIST</type>\n";
-        for(Person p : objects) {
-            insertElements
-           += "        <element xsi:type=\"person\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n"
-            + "          <age>" + p.getAge() + "</age>\n"
-            + "          <likes>" + p.getLikes() + "</likes>\n"
-            + "          <name>" + p.getName() + "</name>\n"
-            + "        </element>\n";
+        String insertElements = "<batch-execution>\n" + "  <insert-elements return-objects=\"true\">\n" + "    <list>\n" + "      <type>LIST</type>\n";
+        for (Person p : objects) {
+            insertElements += "        <element xsi:type=\"person\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" + "          <age>" + p.getAge() + "</age>\n"
+                              + "          <likes>" + p.getLikes() + "</likes>\n" + "          <name>" + p.getName() + "</name>\n" + "        </element>\n";
         }
-        insertElements +=
-            "      </list>\n"
-            + "  </insert-elements>\n"
-            + "</batch-execution>";
+        insertElements += "      </list>\n" + "  </insert-elements>\n" + "</batch-execution>";
         template.requestBody("direct:test-session", insertElements, String.class);
     }
 
