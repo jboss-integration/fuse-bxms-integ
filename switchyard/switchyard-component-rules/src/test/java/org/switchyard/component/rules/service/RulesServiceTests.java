@@ -1,12 +1,11 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -41,11 +40,9 @@ import org.switchyard.test.Invoker;
 import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.TestDataSource;
 
-/**
- * Tests the Rules implementation.
+/** Tests the Rules implementation.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc. */
 @RunWith(SwitchYardRunner.class)
 public class RulesServiceTests {
 
@@ -55,12 +52,9 @@ public class RulesServiceTests {
 
     private ServiceDomain serviceDomain;
 
-    @Rules(manifest=@Manifest(resources=@Resource(location=ACCESS_ATTACHMENT_DRL, type="DRL")))
+    @Rules(manifest = @Manifest(resources = @Resource(location = ACCESS_ATTACHMENT_DRL, type = "DRL")))
     public interface AccessAttachment {
-        @Execute(inputs={
-            @Input(from="message.attachmentMap['someAttach']"),
-            @Input(from="message.content")
-        })
+        @Execute(inputs = {@Input(from = "message.attachmentMap['someAttach']"), @Input(from = "message.content")})
         public Object process(Object content);
     }
 
@@ -79,10 +73,11 @@ public class RulesServiceTests {
         Assert.assertEquals("someAttachData", holder.getValue());
     }
 
-    @Rules(manifest=@Manifest(resources=@Resource(location=DECISION_TABLE_XLS, type="DTABLE")))
+    @Rules(manifest = @Manifest(resources = @Resource(location = DECISION_TABLE_XLS, type = "DTABLE")))
     public interface DecisionTable {
-        @Insert(globals=@Global(from="context['list']", to="list"), inputs=@Input(from="message.content"))
+        @Insert(globals = @Global(from = "context['list']", to = "list"), inputs = @Input(from = "message.content"))
         public Object insert(Object content);
+
         @FireAllRules
         public Object fireAllRules();
     }
@@ -105,11 +100,11 @@ public class RulesServiceTests {
         handler.stop();
     }
 
-    @Rules(manifest=@Manifest(resources=@Resource(location=DECISION_TABLE_XLS, type="DTABLE",
-            detail=@ResourceDetail(inputType="XLS", worksheetName="Tables_2"))))
+    @Rules(manifest = @Manifest(resources = @Resource(location = DECISION_TABLE_XLS, type = "DTABLE", detail = @ResourceDetail(inputType = "XLS", worksheetName = "Tables_2"))))
     public interface NamedWorksheet {
-        @Insert(globals=@Global(from="context['list']", to="list"), inputs=@Input(from="message.content"))
+        @Insert(globals = @Global(from = "context['list']", to = "list"), inputs = @Input(from = "message.content"))
         public Object insert(Object content);
+
         @FireAllRules
         public Object fireAllRules();
     }
@@ -132,11 +127,9 @@ public class RulesServiceTests {
         handler.stop();
     }
 
-    @Rules(manifest=@Manifest(resources=@Resource(location=DECLARE_FACTS_DRL, type="DRL")))
+    @Rules(manifest = @Manifest(resources = @Resource(location = DECLARE_FACTS_DRL, type = "DRL")))
     public interface DeclareFacts {
-        @Execute(inputs={
-            @Input(from="message.content")
-        })
+        @Execute(inputs = {@Input(from = "message.content")})
         public Object process(Object content);
     }
 
@@ -156,9 +149,18 @@ public class RulesServiceTests {
 
     public static final class Holder {
         private String _value;
-        public String getValue() { return _value; }
-        public void setValue(String value) { _value = value; }
-        public String toString() { return _value; }
+
+        public String getValue() {
+            return _value;
+        }
+
+        public void setValue(String value) {
+            _value = value;
+        }
+
+        public String toString() {
+            return _value;
+        }
     }
 
 }

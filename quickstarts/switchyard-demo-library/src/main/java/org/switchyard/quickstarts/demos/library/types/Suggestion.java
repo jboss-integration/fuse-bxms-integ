@@ -5,7 +5,6 @@
 // Generated on: 2014.09.04 at 12:38:20 PM EDT 
 //
 
-
 package org.switchyard.quickstarts.demos.library.types;
 
 import java.io.Serializable;
@@ -17,9 +16,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for suggestion complex type.
+ * <p>
+ * Java class for suggestion complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="suggestion">
@@ -37,21 +39,18 @@ import javax.xml.bind.annotation.XmlType;
  */
 @SuppressWarnings("serial")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "suggestion", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = {
-    "book"
-})
+@XmlType(name = "suggestion", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = { "book" })
 public class Suggestion implements Serializable {
 
+    /** The book. */
     @XmlElement(namespace = "urn:switchyard-quickstart-demo:library:1.0")
-    protected Book book;
+    private Book book;
 
     /**
      * Gets the value of the book property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Book }
-     *     
+     * @return possible object is {@link Book }
+     * 
      */
     public Book getBook() {
         return book;
@@ -60,10 +59,8 @@ public class Suggestion implements Serializable {
     /**
      * Sets the value of the book property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Book }
-     *     
+     * @param value allowed object is {@link Book }
+     * 
      */
     public void setBook(Book value) {
         this.book = value;

@@ -23,10 +23,14 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -45,27 +49,26 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "orderId",
-    "itemId",
-    "quantity"
-})
+@XmlType(name = "", propOrder = { "orderId", "itemId", "quantity" })
 @XmlRootElement(name = "submitOrder")
 public class Order {
 
+    /** The order id. */
     @XmlElement(required = true)
-    protected String orderId;
+    private String orderId;
+
+    /** The item id. */
     @XmlElement(required = true)
-    protected String itemId;
-    protected int quantity;
+    private String itemId;
+
+    /** The quantity. */
+    private int quantity;
 
     /**
      * Gets the value of the orderId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getOrderId() {
         return orderId;
@@ -74,10 +77,8 @@ public class Order {
     /**
      * Sets the value of the orderId property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setOrderId(String value) {
         this.orderId = value;
@@ -86,10 +87,8 @@ public class Order {
     /**
      * Gets the value of the itemId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getItemId() {
         return itemId;
@@ -98,10 +97,8 @@ public class Order {
     /**
      * Sets the value of the itemId property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setItemId(String value) {
         this.itemId = value;
@@ -109,7 +106,8 @@ public class Order {
 
     /**
      * Gets the value of the quantity property.
-     * 
+     *
+     * @return the quantity
      */
     public int getQuantity() {
         return quantity;
@@ -117,7 +115,8 @@ public class Order {
 
     /**
      * Sets the value of the quantity property.
-     * 
+     *
+     * @param value the new quantity
      */
     public void setQuantity(int value) {
         this.quantity = value;

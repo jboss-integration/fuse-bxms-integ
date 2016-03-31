@@ -25,12 +25,18 @@ import org.drools.core.command.runtime.BatchExecutionCommandImpl;
 import org.drools.core.command.runtime.rule.FireAllRulesCommand;
 import org.drools.core.command.runtime.rule.InsertObjectCommand;
 
+
 /**
  * Class to help create wrapper Drools Expert Command for use with
  * org.drools/drools-camel component.
  */
 public class DroolsCommandHelper {
 
+    /**
+     * Insert and fire all.
+     *
+     * @param exchange the exchange
+     */
     public void insertAndFireAll(Exchange exchange) {
         final Message in = exchange.getIn();
         final Object body = in.getBody();

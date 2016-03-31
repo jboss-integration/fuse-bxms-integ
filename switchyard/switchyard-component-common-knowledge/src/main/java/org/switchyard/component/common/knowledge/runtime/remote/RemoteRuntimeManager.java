@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,11 +20,9 @@ import org.kie.api.runtime.manager.RuntimeEngine;
 import org.kie.api.runtime.manager.RuntimeManager;
 import org.kie.services.client.api.command.RemoteConfiguration;
 
-/**
- * RemoteRuntimeManager.
+/** RemoteRuntimeManager.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class RemoteRuntimeManager implements RuntimeManager {
 
     private static final String NULL_CONTEXT_ID = "NullContext";
@@ -34,19 +31,16 @@ public class RemoteRuntimeManager implements RuntimeManager {
     private final String _identifier;
     private final Map<Object, RuntimeEngine> _engines = new WeakHashMap<Object, RuntimeEngine>();
 
-    /**
-     * Creates a new RemoteRuntimeManager.
+    /** Creates a new RemoteRuntimeManager.
+     * 
      * @param configuration the RemoteConfiguration
-     * @param identifier the identifier
-     */
+     * @param identifier the identifier */
     public RemoteRuntimeManager(RemoteConfiguration configuration, String identifier) {
         _configuration = configuration;
         _identifier = identifier;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public synchronized RuntimeEngine getRuntimeEngine(Context<?> context) {
         Object contextId = context != null ? context.getContextId() : null;
@@ -61,25 +55,19 @@ public class RemoteRuntimeManager implements RuntimeManager {
         return engine;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getIdentifier() {
         return _identifier;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void disposeRuntimeEngine(RuntimeEngine runtime) {
         // no-op
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void close() {
         // no-op

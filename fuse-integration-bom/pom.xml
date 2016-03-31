@@ -140,7 +140,7 @@
                     <groupId>org.switchyard</groupId>
                     <artifactId>switchyard-plugin</artifactId>
                     <version>${version.switchyard}</version>
-                </plugin>
+                </plugin>   	
             </plugins>
         </pluginManagement>
     </build>

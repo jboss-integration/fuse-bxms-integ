@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -33,11 +32,9 @@ import org.switchyard.component.common.knowledge.config.model.ManifestModel;
 import org.switchyard.config.model.resource.ResourceModel;
 import org.switchyard.config.model.resource.ResourcesModel;
 
-/**
- * ResourceBuilder.
+/** ResourceBuilder.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class ResourceBuilder extends KnowledgeBuilder {
 
     private final KieResources _kieResources;
@@ -45,11 +42,10 @@ public class ResourceBuilder extends KnowledgeBuilder {
     private ResourceType _resourceType;
     private ResourceConfiguration _resourceConfiguration;
 
-    /**
-     * Creates a new ResourceBuilder.
+    /** Creates a new ResourceBuilder.
+     * 
      * @param classLoader classLoader
-     * @param resourceModel resourceModel
-     */
+     * @param resourceModel resourceModel */
     public ResourceBuilder(ClassLoader classLoader, ResourceModel resourceModel) {
         super(classLoader);
         _kieResources = KieServices.Factory.get().getResources();
@@ -60,40 +56,39 @@ public class ResourceBuilder extends KnowledgeBuilder {
             if (syResourceDetail != null) {
                 if (ResourceType.DTABLE.equals(_resourceType)) {
                     String inputType;
-                    if(syResourceDetail.getInputType().toLowerCase().endsWith("csv")) {
+                    if (syResourceDetail.getInputType().toLowerCase().endsWith("csv")) {
                         inputType = getInputType(syResourceDetail, DecisionTableInputType.CSV.toString());
-                    }
-                    else{
+                    } else {
                         inputType = getInputType(syResourceDetail, DecisionTableInputType.XLS.toString());
                     }
 
                     DecisionTableConfiguration dtc = KnowledgeBuilderFactory.newDecisionTableConfiguration();
                     dtc.setInputType(DecisionTableInputType.valueOf(inputType));
                     dtc.setWorksheetName(getWorksheetName(syResourceDetail));
-                    //dtc.setUsingExternalTypes(syResourceDetail.isUsingExternalTypes());
+                    // dtc.setUsingExternalTypes(syResourceDetail.isUsingExternalTypes());
                     _resourceConfiguration = dtc;
                 }
-                /* SWITCHYARD-1662
-                else if (ResourceType.SCARD.equals(_resourceType)) {
-                    String inputType = getInputType(syResourceDetail, ScoreCardConfiguration.SCORECARD_INPUT_TYPE.EXCEL.name());
-                    if ("XLS".equals(inputType)) {
-                        inputType = ScoreCardConfiguration.SCORECARD_INPUT_TYPE.EXCEL.name();
-                    }
-                    ScoreCardConfiguration scc = KnowledgeBuilderFactory.newScoreCardConfiguration();
-                    scc.setInputType(ScoreCardConfiguration.SCORECARD_INPUT_TYPE.valueOf(inputType));
-                    scc.setWorksheetName(getWorksheetName(syResourceDetail));
-                    //scc.setUsingExternalTypes(syResourceDetail.isUsingExternalTypes());
-                    _resourceConfiguration = scc;
-                }
-                */
+                /*
+                 * SWITCHYARD-1662
+                 * else if (ResourceType.SCARD.equals(_resourceType)) {
+                 * String inputType = getInputType(syResourceDetail, ScoreCardConfiguration.SCORECARD_INPUT_TYPE.EXCEL.name());
+                 * if ("XLS".equals(inputType)) {
+                 * inputType = ScoreCardConfiguration.SCORECARD_INPUT_TYPE.EXCEL.name();
+                 * }
+                 * ScoreCardConfiguration scc = KnowledgeBuilderFactory.newScoreCardConfiguration();
+                 * scc.setInputType(ScoreCardConfiguration.SCORECARD_INPUT_TYPE.valueOf(inputType));
+                 * scc.setWorksheetName(getWorksheetName(syResourceDetail));
+                 * //scc.setUsingExternalTypes(syResourceDetail.isUsingExternalTypes());
+                 * _resourceConfiguration = scc;
+                 * }
+                 */
             }
         }
     }
 
-    /**
-     * Builds a Resource.
-     * @return a Resource
-     */
+    /** Builds a Resource.
+     * 
+     * @return a Resource */
     public Resource build() {
         Resource resource = null;
         if (_url != null) {
@@ -143,12 +138,11 @@ public class ResourceBuilder extends KnowledgeBuilder {
         return null;
     }
 
-    /**
-     * Creates ResourceBuilders.
+    /** Creates ResourceBuilders.
+     * 
      * @param classLoader classLoader
      * @param implementationModel implementationModel
-     * @return ResourceBuilders
-     */
+     * @return ResourceBuilders */
     public static List<ResourceBuilder> builders(ClassLoader classLoader, KnowledgeComponentImplementationModel implementationModel) {
         List<ResourceBuilder> builders = new ArrayList<ResourceBuilder>();
         if (implementationModel != null) {
@@ -161,12 +155,11 @@ public class ResourceBuilder extends KnowledgeBuilder {
         return builders;
     }
 
-    /**
-     * Creates ResourceBuilders.
+    /** Creates ResourceBuilders.
+     * 
      * @param classLoader classLoader
      * @param resourcesModel resourcesModel
-     * @return ResourceBuilders
-     */
+     * @return ResourceBuilders */
     public static List<ResourceBuilder> builders(ClassLoader classLoader, ResourcesModel resourcesModel) {
         List<ResourceBuilder> builders = new ArrayList<ResourceBuilder>();
         if (resourcesModel != null) {

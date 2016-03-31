@@ -16,11 +16,21 @@
  */
 package org.switchyard.quickstarts.rules.camel.cbr;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Interface GreenService.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 public interface GreenService {
 
+    /**
+     * Handle green.
+     *
+     * @param box the box
+     */
     public void handleGreen(Box box);
 
 }

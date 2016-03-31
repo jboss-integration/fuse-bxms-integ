@@ -16,11 +16,22 @@
  */
 package org.switchyard.quickstarts.rules.interview;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Interface Interview.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 public interface Interview {
 
+    /**
+     * Verify.
+     *
+     * @param applicant the applicant
+     * @return true, if successful
+     */
     public boolean verify(Applicant applicant);
 
 }

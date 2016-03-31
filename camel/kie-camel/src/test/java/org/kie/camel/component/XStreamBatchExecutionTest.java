@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -72,6 +69,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 public class XStreamBatchExecutionTest extends CamelTestSupport {
 
     private static final Logger logger = LoggerFactory.getLogger(XStreamBatchExecutionTest.class);
@@ -82,10 +80,10 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
     @Override
     protected Context createJndiContext() throws Exception {
         Context context = super.createJndiContext();
-        if ( exec != null ) {
+        if (exec != null) {
             context.bind("ksession1", this.exec);
         }
-        if ( exec2 != null ) {
+        if (exec2 != null) {
             context.bind("ksession2", this.exec2);
         }
         return context;
@@ -96,10 +94,10 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from( "direct:exec" ).policy( new KiePolicy() ).unmarshal( "xstream" ).to( "kie://ksession1" ).marshal( "xstream" );
-                from( "direct:execWithLookup" ).policy( new KiePolicy() ).unmarshal( "xstream" ).to( "kie://dynamic" ).marshal( "xstream" );
-                from( "direct:unmarshal" ).policy( new KiePolicy() ).unmarshal( "xstream" );
-                from( "direct:marshal" ).policy( new KiePolicy() ).marshal( "xstream" );
+                from("direct:exec").policy(new KiePolicy()).unmarshal("xstream").to("kie://ksession1").marshal("xstream");
+                from("direct:execWithLookup").policy(new KiePolicy()).unmarshal("xstream").to("kie://dynamic").marshal("xstream");
+                from("direct:unmarshal").policy(new KiePolicy()).unmarshal("xstream");
+                from("direct:marshal").policy(new KiePolicy()).marshal("xstream");
             }
         };
     }
@@ -108,41 +106,38 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         this.exec = exec;
         try {
             super.setUp();
-        } catch ( Exception e ) {
-            throw new RuntimeException( e );
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
+
     public void setExec2(CommandExecutor exec) {
         this.exec2 = exec;
         try {
             super.setUp();
-        } catch ( Exception e ) {
-            throw new RuntimeException( e );
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     @Before
     public void setUp() throws Exception {
-        XMLUnit.setIgnoreComments( true );
-        XMLUnit.setIgnoreWhitespace( true );
-        XMLUnit.setIgnoreAttributeOrder( true );
-        XMLUnit.setNormalizeWhitespace( true );
-        XMLUnit.setNormalize( true );
+        XMLUnit.setIgnoreComments(true);
+        XMLUnit.setIgnoreWhitespace(true);
+        XMLUnit.setIgnoreAttributeOrder(true);
+        XMLUnit.setNormalizeWhitespace(true);
+        XMLUnit.setNormalize(true);
         XStreamXML.SORT_MAPS = true; // allows us to test results easier
     }
 
-    private void assertXMLEqual(String expectedXml,
-                                String resultXml) {
+    private void assertXMLEqual(String expectedXml, String resultXml) {
         try {
-            Diff diff = new Diff( expectedXml,
-                                  resultXml );
-            diff.overrideElementQualifier( new RecursiveElementNameAndTextQualifier() );
-            XMLAssert.assertXMLEqual( diff,
-                                      true );
-        } catch ( Exception e ) {
-            throw new RuntimeException( "XML Assertion failure",
-                                        e );
+            Diff diff = new Diff(expectedXml, resultXml);
+            diff.overrideElementQualifier(new RecursiveElementNameAndTextQualifier());
+            XMLAssert.assertXMLEqual(diff, true);
+        } catch (Exception e) {
+            throw new RuntimeException("XML Assertion failure", e);
         }
     }
 
@@ -210,15 +205,11 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
-        ExecutionResults result = template.requestBody( "direct:unmarshal",
-                                                        outXml,
-                                                        ExecutionResults.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
+        ExecutionResults result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
 
         inXml = "";
         inXml += "<batch-execution>";
@@ -233,11 +224,9 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
 
-        outXml = template.requestBody( "direct:exec",
-                                       inXml,
-                                       String.class );
+        outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        assertTrue( outXml.indexOf( "<changes>" ) > -1 );
+        assertTrue(outXml.indexOf("<changes>") > -1);
 
         inXml = "";
         inXml += "<batch-execution>";
@@ -252,11 +241,9 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
 
-        outXml = template.requestBody( "direct:exec",
-                                       inXml,
-                                       String.class );
+        outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        assertTrue( outXml.indexOf( "<retracted>" ) > -1 );
+        assertTrue(outXml.indexOf("<retracted>") > -1);
 
     }
 
@@ -285,24 +272,18 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
-        ExecutionResults result = template.requestBody( "direct:unmarshal",
-                                                        outXml,
-                                                        ExecutionResults.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
+        ExecutionResults result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
 
-        Cheese stilton = (Cheese) result.getValue( "outStilton" );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        Cheese stilton = (Cheese)result.getValue("outStilton");
+        assertEquals(30, stilton.getPrice());
 
-        FactHandle factHandle = (FactHandle) result.getFactHandle( "outStilton" );
-        stilton = (Cheese) ksession.getObject( factHandle );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        FactHandle factHandle = (FactHandle)result.getFactHandle("outStilton");
+        stilton = (Cheese)ksession.getObject(factHandle);
+        assertEquals(30, stilton.getPrice());
 
         String expectedXml = "";
         expectedXml += "<execution-results>\n";
@@ -313,11 +294,10 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "      <price>30</price>\n";
         expectedXml += "    </org.kie.camel.testdomain.Cheese>\n";
         expectedXml += "  </result>\n";
-        expectedXml += "  <fact-handle identifier=\"outStilton\" external-form=\"" + ((InternalFactHandle) result.getFactHandle( "outStilton" )).toExternalForm() + "\" /> \n";
+        expectedXml += "  <fact-handle identifier=\"outStilton\" external-form=\"" + ((InternalFactHandle)result.getFactHandle("outStilton")).toExternalForm() + "\" /> \n";
         expectedXml += "</execution-results>\n";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
     }
 
     @Test
@@ -345,30 +325,24 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
-        ExecutionResults result = template.requestBody( "direct:unmarshal",
-                                                        outXml,
-                                                        ExecutionResults.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
+        ExecutionResults result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
 
-        assertNull( result.getValue( "outStilton" ) );
+        assertNull(result.getValue("outStilton"));
 
-        FactHandle factHandle = (FactHandle) result.getFactHandle( "outStilton" );
-        Cheese stilton = (Cheese) ksession.getObject( factHandle );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        FactHandle factHandle = (FactHandle)result.getFactHandle("outStilton");
+        Cheese stilton = (Cheese)ksession.getObject(factHandle);
+        assertEquals(30, stilton.getPrice());
 
         String expectedXml = "";
         expectedXml += "<execution-results>\n";
-        expectedXml += "  <fact-handle identifier=\"outStilton\" external-form=\"" + ((InternalFactHandle) result.getFactHandle( "outStilton" )).toExternalForm() + "\" /> \n";
+        expectedXml += "  <fact-handle identifier=\"outStilton\" external-form=\"" + ((InternalFactHandle)result.getFactHandle("outStilton")).toExternalForm() + "\" /> \n";
         expectedXml += "</execution-results>\n";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
     }
 
     @Test
@@ -396,34 +370,24 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
-        ExecutionResults result = template.requestBody( "direct:unmarshal",
-                                                        outXml,
-                                                        ExecutionResults.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
+        ExecutionResults result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
 
-        Cheese stilton = (Cheese) result.getValue( "outStilton" );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        Cheese stilton = (Cheese)result.getValue("outStilton");
+        assertEquals(30, stilton.getPrice());
 
-        FactHandle factHandle = (FactHandle) result.getFactHandle( "outStilton" );
+        FactHandle factHandle = (FactHandle)result.getFactHandle("outStilton");
         inXml = "";
         inXml += "<batch-execution>";
         inXml += "  <get-object out-identifier='outStilton' fact-handle='" + factHandle.toExternalForm() + "' />";
         inXml += "</batch-execution>";
-        outXml = template.requestBody( "direct:exec",
-                                       inXml,
-                                       String.class );
-        result = template.requestBody( "direct:unmarshal",
-                                       outXml,
-                                       ExecutionResults.class );
-        stilton = (Cheese) result.getValue( "outStilton" );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        outXml = template.requestBody("direct:exec", inXml, String.class);
+        result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
+        stilton = (Cheese)result.getValue("outStilton");
+        assertEquals(30, stilton.getPrice());
     }
 
     @Test
@@ -451,41 +415,30 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
-        ExecutionResults result = template.requestBody( "direct:unmarshal",
-                                                        outXml,
-                                                        ExecutionResults.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
+        ExecutionResults result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
 
-        Cheese stilton = (Cheese) result.getValue( "outStilton" );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        Cheese stilton = (Cheese)result.getValue("outStilton");
+        assertEquals(30, stilton.getPrice());
 
-        FactHandle factHandle = (FactHandle) result.getFactHandle( "outStilton" );
+        FactHandle factHandle = (FactHandle)result.getFactHandle("outStilton");
         inXml = "";
         inXml += "<batch-execution>";
         inXml += "  <retract fact-handle='" + factHandle.toExternalForm() + "' />";
         inXml += "</batch-execution>";
-        template.requestBody( "direct:exec",
-                              inXml,
-                              String.class );
+        template.requestBody("direct:exec", inXml, String.class);
 
         inXml = "";
         inXml += "<batch-execution>";
         inXml += "  <get-object out-identifier='outStilton' fact-handle='" + factHandle.toExternalForm() + "' />";
         inXml += "</batch-execution>";
 
-        outXml = template.requestBody( "direct:exec",
-                                       inXml,
-                                       String.class );
-        result = template.requestBody( "direct:unmarshal",
-                                       outXml,
-                                       ExecutionResults.class );
-        assertNull( result.getValue( "outStilton" ) );
+        outXml = template.requestBody("direct:exec", inXml, String.class);
+        result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
+        assertNull(result.getValue("outStilton"));
     }
 
     @Test
@@ -513,20 +466,15 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
-        ExecutionResults result = template.requestBody( "direct:unmarshal",
-                                                        outXml,
-                                                        ExecutionResults.class );
-        Cheese stilton = (Cheese) result.getValue( "outStilton" );
-        assertEquals( 30,
-                      stilton.getPrice() );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
+        ExecutionResults result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
+        Cheese stilton = (Cheese)result.getValue("outStilton");
+        assertEquals(30, stilton.getPrice());
 
-        FactHandle factHandle = ((FactHandle) result.getFactHandle( "outStilton" ));
+        FactHandle factHandle = ((FactHandle)result.getFactHandle("outStilton"));
 
         String expectedXml = "";
         expectedXml += "<execution-results>\n";
@@ -540,52 +488,40 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "  <fact-handle identifier=\"outStilton\" external-form=\"" + factHandle.toExternalForm() + "\" /> \n";
         expectedXml += "</execution-results>\n";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
 
         inXml = "";
         inXml += "<batch-execution>";
         inXml += "  <modify fact-handle='" + factHandle.toExternalForm() + "'> <set accessor='oldPrice' value='42' /><set accessor='price' value='50' /></modify>";
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
-        template.requestBody( "direct:exec",
-                              inXml,
-                              String.class );
+        template.requestBody("direct:exec", inXml, String.class);
 
         inXml = "";
         inXml += "<batch-execution>";
         inXml += "  <get-object out-identifier='outCheddar' fact-handle='" + factHandle.toExternalForm() + "' />";
         inXml += "</batch-execution>";
-        setExec( ksession );
+        setExec(ksession);
 
-        outXml = template.requestBody( "direct:exec",
-                                       inXml,
-                                       String.class );
-        result = template.requestBody( "direct:unmarshal",
-                                       outXml,
-                                       ExecutionResults.class );
+        outXml = template.requestBody("direct:exec", inXml, String.class);
+        result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
 
-        Cheese cheddar = (Cheese) result.getValue( "outCheddar" );
-        assertEquals( 42,
-                      cheddar.getOldPrice() );
-        assertEquals( 55,
-                      cheddar.getPrice() );
+        Cheese cheddar = (Cheese)result.getValue("outCheddar");
+        assertEquals(42, cheddar.getOldPrice());
+        assertEquals(55, cheddar.getPrice());
 
-        //now test for code injection:
+        // now test for code injection:
         inXml = "";
         inXml += "<batch-execution>";
-        inXml += "  <modify fact-handle='" + factHandle.toExternalForm() + " allow-modify-expr=\"false\"'> <set accessor='type' value='44\"; System.exit(1);' /><set accessor='price' value='50' /></modify>";
+        inXml += "  <modify fact-handle='" + factHandle.toExternalForm()
+                 + " allow-modify-expr=\"false\"'> <set accessor='type' value='44\"; System.exit(1);' /><set accessor='price' value='50' /></modify>";
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
 
-        outXml = template.requestBody( "direct:exec",
-                                       inXml,
-                                       String.class );
-        result = template.requestBody( "direct:unmarshal",
-                                       outXml,
-                                       ExecutionResults.class );
+        outXml = template.requestBody("direct:exec", inXml, String.class);
+        result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
 
-        result = (ExecutionResults) BatchExecutionHelper.newXStreamMarshaller().fromXML( outXml );
+        result = (ExecutionResults)BatchExecutionHelper.newXStreamMarshaller().fromXML(outXml);
 
     }
 
@@ -623,12 +559,10 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  </insert-elements>";
         inXml += "</batch-execution>";
 
-        StatelessKieSession ksession = getStatelessKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        StatelessKieSession ksession = getStatelessKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
         String expectedXml = "";
         expectedXml += "<execution-results>\n";
@@ -648,25 +582,19 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "  </result>\n";
         expectedXml += "</execution-results>\n";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
 
-        ExecutionResults result = template.requestBody( "direct:unmarshal",
-                                                        outXml,
-                                                        ExecutionResults.class );
+        ExecutionResults result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
 
-        List list = (List) result.getValue( "list" );
-        Cheese stilton25 = new Cheese( "stilton",
-                                       30 );
-        Cheese stilton30 = new Cheese( "stilton",
-                                       35 );
+        List list = (List)result.getValue("list");
+        Cheese stilton25 = new Cheese("stilton", 30);
+        Cheese stilton30 = new Cheese("stilton", 35);
 
         Set expectedList = new HashSet();
-        expectedList.add( stilton25 );
-        expectedList.add( stilton30 );
+        expectedList.add(stilton25);
+        expectedList.add(stilton30);
 
-        assertEquals( expectedList,
-                      new HashSet( list ) );
+        assertEquals(expectedList, new HashSet(list));
     }
 
     @Test
@@ -688,27 +616,23 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <get-global identifier='list' out-identifier='out-list'/>";
         inXml += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        FactHandle fh = ksession.insert( new Person( "mic",
-                                                     42 ) );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        FactHandle fh = ksession.insert(new Person("mic", 42));
         List<FactHandle> list = new ArrayList<FactHandle>();
-        list.add( fh );
+        list.add(fh);
 
-        ksession.setGlobal( "list",
-                            list );
+        ksession.setGlobal("list", list);
 
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        logger.debug( outXml );
+        logger.debug(outXml);
         String expectedXml = "";
-        expectedXml += "<execution-results>\n" + "  <result identifier=\"out-list\">\n" + "    <list>\n" + "      <fact-handle external-form=\"" + fh.toExternalForm() + "\"/>\n" + "    </list>\n" + "  </result>\n" + "</execution-results>";
+        expectedXml += "<execution-results>\n" + "  <result identifier=\"out-list\">\n" + "    <list>\n" + "      <fact-handle external-form=\"" + fh.toExternalForm() + "\"/>\n"
+                       + "    </list>\n" + "  </result>\n" + "</execution-results>";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
 
     }
 
@@ -747,14 +671,12 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <fire-all-rules/>";
         inXml += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        Collection< ? extends FactHandle> factHandles = ksession.getFactHandles();
+        Collection<? extends FactHandle> factHandles = ksession.getFactHandles();
 
         String expectedXml = "";
         expectedXml += "<execution-results>\n";
@@ -780,14 +702,14 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "  </list>\n";
         expectedXml += "  </result>\n";
         expectedXml += "  <fact-handles identifier=\"myfacts\">\n";
-        for ( FactHandle factHandle : factHandles ) {
-            if ( ((Cheese) ksession.getObject( factHandle )).getPrice() == 30 ) {
+        for (FactHandle factHandle : factHandles) {
+            if (((Cheese)ksession.getObject(factHandle)).getPrice() == 30) {
                 expectedXml += "  <fact-handle external-form=\"" + factHandle.toExternalForm() + "\"/>\n";
             }
         }
 
-        for ( FactHandle factHandle : factHandles ) {
-            if ( ((Cheese) ksession.getObject( factHandle )).getPrice() == 35 ) {
+        for (FactHandle factHandle : factHandles) {
+            if (((Cheese)ksession.getObject(factHandle)).getPrice() == 35) {
                 expectedXml += "  <fact-handle external-form=\"" + factHandle.toExternalForm() + "\"/>\n";
             }
         }
@@ -795,23 +717,19 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
 
         expectedXml += "</execution-results>\n";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
 
-        ExecutionResults result = (ExecutionResults) BatchExecutionHelper.newXStreamMarshaller().fromXML( outXml );
+        ExecutionResults result = (ExecutionResults)BatchExecutionHelper.newXStreamMarshaller().fromXML(outXml);
 
-        List list = (List) result.getValue( "list" );
-        Cheese stilton25 = new Cheese( "stilton",
-                                       30 );
-        Cheese stilton30 = new Cheese( "stilton",
-                                       35 );
+        List list = (List)result.getValue("list");
+        Cheese stilton25 = new Cheese("stilton", 30);
+        Cheese stilton30 = new Cheese("stilton", 35);
 
         Set expectedList = new HashSet();
-        expectedList.add( stilton25 );
-        expectedList.add( stilton30 );
+        expectedList.add(stilton25);
+        expectedList.add(stilton30);
 
-        assertEquals( expectedList,
-                      new HashSet( list ) );
+        assertEquals(expectedList, new HashSet(list));
     }
 
     @Test
@@ -853,12 +771,10 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  </insert>";
         inXml += "</batch-execution>";
 
-        StatelessKieSession ksession = getStatelessKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        StatelessKieSession ksession = getStatelessKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
         String expectedXml = "";
         expectedXml += "<execution-results>\n";
@@ -878,26 +794,20 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "  </result>\n";
         expectedXml += "</execution-results>\n";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
 
-        ExecutionResults result = (ExecutionResults) BatchExecutionHelper.newXStreamMarshaller().fromXML( outXml );
-        Cheese stilton = new Cheese( "stilton",
-                                     30 );
+        ExecutionResults result = (ExecutionResults)BatchExecutionHelper.newXStreamMarshaller().fromXML(outXml);
+        Cheese stilton = new Cheese("stilton", 30);
 
-        assertNull( result.getValue( "list1" ) );
+        assertNull(result.getValue("list1"));
 
-        List list2 = (List) result.getValue( "list2" );
-        assertEquals( 1,
-                      list2.size() );
-        assertEquals( stilton,
-                      list2.get( 0 ) );
+        List list2 = (List)result.getValue("list2");
+        assertEquals(1, list2.size());
+        assertEquals(stilton, list2.get(0));
 
-        List list3 = (List) result.getValue( "outList3" );
-        assertEquals( 1,
-                      list3.size() );
-        assertEquals( stilton,
-                      list3.get( 0 ) );
+        List list3 = (List)result.getValue("outList3");
+        assertEquals(1, list3.size());
+        assertEquals(stilton, list3.get(0));
     }
 
     @Test
@@ -929,12 +839,10 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <get-global identifier='list' out-identifier='out-list'/>";
         inXml += "</batch-execution>";
 
-        StatelessKieSession ksession = getStatelessKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        StatelessKieSession ksession = getStatelessKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
         String expectedXml = "";
         expectedXml += "<execution-results>\n";
@@ -949,8 +857,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "  </result>\n";
         expectedXml += "</execution-results>\n";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
     }
 
     @Ignore("The result XML structure has changed 08-MON-2011 -Rikkola-")
@@ -1005,16 +912,13 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  </query>";
         inXml += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                inXml,
-                String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        Iterator<QueryResultsRow> it1 = ksession.getQueryResults( "cheeses" ).iterator();
-        Iterator<QueryResultsRow> it2 = ksession.getQueryResults( "cheesesWithParams",
-                new String[]{"stilton", "cheddar"} ).iterator();
+        Iterator<QueryResultsRow> it1 = ksession.getQueryResults("cheeses").iterator();
+        Iterator<QueryResultsRow> it2 = ksession.getQueryResults("cheesesWithParams", new String[] {"stilton", "cheddar"}).iterator();
         QueryResultsRow row = null;
 
         String expectedXml = "";
@@ -1032,13 +936,13 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "          <price>1</price>\n";
         expectedXml += "          <oldPrice>0</oldPrice>\n";
         expectedXml += "        </org.kie.camel.testdomain.Cheese>\n";
-        expectedXml += "        <fact-handle external-form='" + row.getFactHandle( "stilton" ).toExternalForm() + "' />";
+        expectedXml += "        <fact-handle external-form='" + row.getFactHandle("stilton").toExternalForm() + "' />";
         expectedXml += "        <org.kie.camel.testdomain.Cheese>\n";
         expectedXml += "          <type>cheddar</type>\n";
         expectedXml += "          <price>1</price>\n";
         expectedXml += "          <oldPrice>0</oldPrice>\n";
         expectedXml += "        </org.kie.camel.testdomain.Cheese>\n";
-        expectedXml += "        <fact-handle external-form='" + row.getFactHandle( "cheddar" ).toExternalForm() + "' />";
+        expectedXml += "        <fact-handle external-form='" + row.getFactHandle("cheddar").toExternalForm() + "' />";
         expectedXml += "      </row>\n";
         expectedXml += "      <row>\n";
         row = it1.next();
@@ -1047,13 +951,13 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "          <price>2</price>\n";
         expectedXml += "          <oldPrice>0</oldPrice>\n";
         expectedXml += "        </org.kie.camel.testdomain.Cheese>\n";
-        expectedXml += "        <fact-handle external-form='" + row.getFactHandle( "stilton" ).toExternalForm() + "' />";
+        expectedXml += "        <fact-handle external-form='" + row.getFactHandle("stilton").toExternalForm() + "' />";
         expectedXml += "        <org.kie.camel.testdomain.Cheese>\n";
         expectedXml += "          <type>cheddar</type>\n";
         expectedXml += "          <price>2</price>\n";
         expectedXml += "          <oldPrice>0</oldPrice>\n";
         expectedXml += "        </org.kie.camel.testdomain.Cheese>\n";
-        expectedXml += "        <fact-handle external-form='" + row.getFactHandle( "cheddar" ).toExternalForm() + "' />";
+        expectedXml += "        <fact-handle external-form='" + row.getFactHandle("cheddar").toExternalForm() + "' />";
         expectedXml += "      </row>\n";
         expectedXml += "    </query-results>\n";
         expectedXml += "  </result>\n";
@@ -1066,60 +970,52 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "      <row>\n";
         row = it2.next();
         expectedXml += "        <org.kie.camel.testdomain.Cheese reference=\"../../../../result/query-results/row/org.kie.camel.testdomain.Cheese\"/>\n";
-        expectedXml += "        <fact-handle external-form='" + row.getFactHandle( "stilton" ).toExternalForm() + "' />";
+        expectedXml += "        <fact-handle external-form='" + row.getFactHandle("stilton").toExternalForm() + "' />";
         expectedXml += "        <org.kie.camel.testdomain.Cheese reference=\"../../../../result/query-results/row/org.kie.camel.testdomain.Cheese[2]\"/>\n";
-        expectedXml += "        <fact-handle external-form='" + row.getFactHandle( "cheddar" ).toExternalForm() + "' />";
+        expectedXml += "        <fact-handle external-form='" + row.getFactHandle("cheddar").toExternalForm() + "' />";
         expectedXml += "      </row>\n";
         expectedXml += "      <row>\n";
         row = it2.next();
         expectedXml += "        <org.kie.camel.testdomain.Cheese reference=\"../../../../result/query-results/row[2]/org.kie.camel.testdomain.Cheese\"/>\n";
-        expectedXml += "        <fact-handle external-form='" + row.getFactHandle( "stilton" ).toExternalForm() + "' />";
+        expectedXml += "        <fact-handle external-form='" + row.getFactHandle("stilton").toExternalForm() + "' />";
         expectedXml += "        <org.kie.camel.testdomain.Cheese reference=\"../../../../result/query-results/row[2]/org.kie.camel.testdomain.Cheese[2]\"/>\n";
-        expectedXml += "        <fact-handle external-form='" + row.getFactHandle( "cheddar" ).toExternalForm() + "' />";
+        expectedXml += "        <fact-handle external-form='" + row.getFactHandle("cheddar").toExternalForm() + "' />";
         expectedXml += "      </row>\n";
         expectedXml += "    </query-results>\n";
         expectedXml += "  </result>\n";
         expectedXml += "</execution-results>\n";
 
-        assertXMLEqual( expectedXml,
-                outXml );
+        assertXMLEqual(expectedXml, outXml);
 
-        ExecutionResults batchResult = (ExecutionResults) BatchExecutionHelper.newXStreamMarshaller().fromXML( outXml );
+        ExecutionResults batchResult = (ExecutionResults)BatchExecutionHelper.newXStreamMarshaller().fromXML(outXml);
 
-        Cheese stilton1 = new Cheese( "stilton",
-                1 );
-        Cheese cheddar1 = new Cheese( "cheddar",
-                1 );
-        Cheese stilton2 = new Cheese( "stilton",
-                2 );
-        Cheese cheddar2 = new Cheese( "cheddar",
-                2 );
+        Cheese stilton1 = new Cheese("stilton", 1);
+        Cheese cheddar1 = new Cheese("cheddar", 1);
+        Cheese stilton2 = new Cheese("stilton", 2);
+        Cheese cheddar2 = new Cheese("cheddar", 2);
 
         Set set = new HashSet();
         List list = new ArrayList();
-        list.add( stilton1 );
-        list.add( cheddar1 );
-        set.add( list );
+        list.add(stilton1);
+        list.add(cheddar1);
+        set.add(list);
 
         list = new ArrayList();
-        list.add( stilton2 );
-        list.add( cheddar2 );
-        set.add( list );
+        list.add(stilton2);
+        list.add(cheddar2);
+        set.add(list);
 
-        org.kie.api.runtime.rule.QueryResults results = (org.kie.api.runtime.rule.QueryResults) batchResult.getValue( "cheeses" );
-        assertEquals( 2,
-                results.size() );
-        assertEquals( 2,
-                results.getIdentifiers().length );
+        org.kie.api.runtime.rule.QueryResults results = (org.kie.api.runtime.rule.QueryResults)batchResult.getValue("cheeses");
+        assertEquals(2, results.size());
+        assertEquals(2, results.getIdentifiers().length);
         Set newSet = new HashSet();
-        for ( QueryResultsRow result : results ) {
+        for (QueryResultsRow result : results) {
             list = new ArrayList();
-            list.add( result.get( "stilton" ) );
-            list.add( result.get( "cheddar" ) );
-            newSet.add( list );
+            list.add(result.get("stilton"));
+            list.add(result.get("cheddar"));
+            newSet.add(list);
         }
-        assertEquals( set,
-                newSet );
+        assertEquals(set, newSet);
     }
 
     @Test
@@ -1152,12 +1048,10 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <get-objects out-identifier='list' />";
         inXml += "</batch-execution>";
 
-        StatelessKieSession ksession = getStatelessKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        StatelessKieSession ksession = getStatelessKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
         String expectedXml = "";
         expectedXml += "<execution-results>";
@@ -1177,22 +1071,18 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "  </result>";
         expectedXml += "</execution-results>";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
 
-        ExecutionResults result = (ExecutionResults) BatchExecutionHelper.newXStreamMarshaller().fromXML( outXml );
-        List list = (List) result.getValue( "list" );
-        Cheese stilton25 = new Cheese( "stilton",
-                                       30 );
-        Cheese stilton30 = new Cheese( "stilton",
-                                       35 );
+        ExecutionResults result = (ExecutionResults)BatchExecutionHelper.newXStreamMarshaller().fromXML(outXml);
+        List list = (List)result.getValue("list");
+        Cheese stilton25 = new Cheese("stilton", 30);
+        Cheese stilton30 = new Cheese("stilton", 35);
 
         Set expectedList = new HashSet();
-        expectedList.add( stilton25 );
-        expectedList.add( stilton30 );
+        expectedList.add(stilton25);
+        expectedList.add(stilton30);
 
-        assertEquals( expectedList,
-                      new HashSet( list ) );
+        assertEquals(expectedList, new HashSet(list));
     }
 
     @Test
@@ -1237,14 +1127,12 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  </insert>";
         inXml += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        FactHandle factHandle = (FactHandle) ((ExecutionResults) BatchExecutionHelper.newXStreamMarshaller().fromXML( outXml )).getFactHandle( "outBrie" );
+        FactHandle factHandle = (FactHandle)((ExecutionResults)BatchExecutionHelper.newXStreamMarshaller().fromXML(outXml)).getFactHandle("outBrie");
 
         String expectedXml = "";
         expectedXml += "<execution-results>\n";
@@ -1271,36 +1159,29 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "  </result>\n";
         expectedXml += "  <fact-handle identifier=\"outBrie\" external-form=\"" + factHandle.toExternalForm() + "\" /> \n";
         expectedXml += "</execution-results>\n";
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
 
-        ExecutionResults result = (ExecutionResults) BatchExecutionHelper.newXStreamMarshaller().fromXML( outXml );
+        ExecutionResults result = (ExecutionResults)BatchExecutionHelper.newXStreamMarshaller().fromXML(outXml);
 
         // brie should not have been added to the list
-        List list = (List) result.getValue( "list" );
-        Cheese stilton25 = new Cheese( "stilton",
-                                       30 );
-        Cheese stilton30 = new Cheese( "stilton",
-                                       35 );
+        List list = (List)result.getValue("list");
+        Cheese stilton25 = new Cheese("stilton", 30);
+        Cheese stilton30 = new Cheese("stilton", 35);
 
         Set expectedList = new HashSet();
-        expectedList.add( stilton25 );
-        expectedList.add( stilton30 );
+        expectedList.add(stilton25);
+        expectedList.add(stilton30);
 
-        assertEquals( expectedList,
-                      new HashSet( list ) );
+        assertEquals(expectedList, new HashSet(list));
 
         // brie should not have changed
-        Cheese brie10 = new Cheese( "brie",
-                                    10 );
-        brie10.setOldPrice( 5 );
-        assertEquals( brie10,
-                      result.getValue( "outBrie" ) );
+        Cheese brie10 = new Cheese("brie", 10);
+        brie10.setOldPrice(5);
+        assertEquals(brie10, result.getValue("outBrie"));
     }
 
     @Test
-    public void testProcess() throws SAXException,
-                             IOException {
+    public void testProcess() throws SAXException, IOException {
         String str = "";
         str += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
         str += "<process xmlns=\"http://drools.org/drools-5.0/process\"\n";
@@ -1338,15 +1219,13 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         str += "  </connections>\n" + "\n";
         str += "</process>";
 
-        StatelessKieSession ksession = getStatelessKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes())
-                                                                                         .setSourcePath("src/main/resources/rule.rf")
-                                                                                         .setResourceType(ResourceType.DRF));
+        StatelessKieSession ksession = getStatelessKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes()).setSourcePath("src/main/resources/rule.rf")
+            .setResourceType(ResourceType.DRF));
 
-        setExec( ksession );
+        setExec(ksession);
         List<String> list = new ArrayList<String>();
-        ksession.setGlobal( "list",
-                            list );
-        TestVariable person = new TestVariable( "John Doe" );
+        ksession.setGlobal("list", list);
+        TestVariable person = new TestVariable("John Doe");
 
         String inXml = "";
         inXml += "<batch-execution>";
@@ -1360,14 +1239,10 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <get-global identifier='list' out-identifier='out-list'/>";
         inXml += "</batch-execution>";
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        assertEquals( 1,
-                      list.size() );
-        assertEquals( "John Doe",
-                      list.get( 0 ) );
+        assertEquals(1, list.size());
+        assertEquals("John Doe", list.get(0));
 
         String expectedXml = "";
         expectedXml += "<execution-results>\n";
@@ -1378,8 +1253,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "  </result>\n";
         expectedXml += "</execution-results>\n";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
     }
 
     @Test
@@ -1419,29 +1293,24 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         str += "\n";
         str += "</process>";
 
-        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes())
-                                                                       .setSourcePath("src/main/resources/rule.rf")
-                                                                       .setResourceType(ResourceType.DRF));
+        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes()).setSourcePath("src/main/resources/rule.rf")
+            .setResourceType(ResourceType.DRF));
 
-        ProcessInstance processInstance = ksession.startProcess( "org.drools.core.event" );
-        assertEquals( ProcessInstance.STATE_ACTIVE,
-                      processInstance.getState() );
+        ProcessInstance processInstance = ksession.startProcess("org.drools.core.event");
+        assertEquals(ProcessInstance.STATE_ACTIVE, processInstance.getState());
 
         String inXml = "";
         inXml += "<signal-event process-instance-id= '" + processInstance.getId() + "' event-type='MyEvent'>";
         inXml += "    <string>MyValue</string>";
         inXml += "</signal-event>";
 
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        assertEquals( ProcessInstance.STATE_COMPLETED,
-                      processInstance.getState() );
-        assertEquals( "MyValue",
-                      ((VariableScopeInstance) ((org.jbpm.process.instance.ProcessInstance) processInstance).getContextInstance( VariableScope.VARIABLE_SCOPE )).getVariable( "MyVar" ) );
+        assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.getState());
+        assertEquals("MyValue",
+                     ((VariableScopeInstance)((org.jbpm.process.instance.ProcessInstance)processInstance).getContextInstance(VariableScope.VARIABLE_SCOPE)).getVariable("MyVar"));
     }
 
     @Test
@@ -1481,29 +1350,24 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         str += "\n";
         str += "</process>";
 
-        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes())
-                                                                       .setSourcePath("src/main/resources/rule.rf")
-                                                                       .setResourceType(ResourceType.DRF));
+        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes()).setSourcePath("src/main/resources/rule.rf")
+            .setResourceType(ResourceType.DRF));
 
-        ProcessInstance processInstance = ksession.startProcess( "org.drools.core.event" );
-        assertEquals( ProcessInstance.STATE_ACTIVE,
-                      processInstance.getState() );
+        ProcessInstance processInstance = ksession.startProcess("org.drools.core.event");
+        assertEquals(ProcessInstance.STATE_ACTIVE, processInstance.getState());
 
         String inXml = "";
         inXml += "<signal-event event-type='MyEvent'>";
         inXml += "    <string>MyValue</string>";
         inXml += "</signal-event>";
 
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        assertEquals( ProcessInstance.STATE_COMPLETED,
-                      processInstance.getState() );
-        assertEquals( "MyValue",
-                      ((VariableScopeInstance) ((org.jbpm.process.instance.ProcessInstance) processInstance).getContextInstance( VariableScope.VARIABLE_SCOPE )).getVariable( "MyVar" ) );
+        assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.getState());
+        assertEquals("MyValue",
+                     ((VariableScopeInstance)((org.jbpm.process.instance.ProcessInstance)processInstance).getContextInstance(VariableScope.VARIABLE_SCOPE)).getVariable("MyVar"));
     }
 
     @Test
@@ -1574,76 +1438,52 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         str += "\n";
         str += "</process>";
 
-        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes())
-                                                                       .setSourcePath("src/main/resources/rule.rf")
-                                                                       .setResourceType(ResourceType.DRF));
+        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes()).setSourcePath("src/main/resources/rule.rf")
+            .setResourceType(ResourceType.DRF));
 
         TestWorkItemHandler handler = new TestWorkItemHandler();
-        ksession.getWorkItemManager().registerWorkItemHandler( "Human Task",
-                                                               handler );
+        ksession.getWorkItemManager().registerWorkItemHandler("Human Task", handler);
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put( "UserName",
-                        "John Doe" );
+        parameters.put("UserName", "John Doe");
         Person person = new Person();
-        person.setName( "John Doe" );
-        parameters.put( "Person",
-                        person );
-        WorkflowProcessInstance processInstance = (WorkflowProcessInstance) ksession.startProcess( "org.drools.actions",
-                                                                                                   parameters );
-        assertEquals( ProcessInstance.STATE_ACTIVE,
-                      processInstance.getState() );
+        person.setName("John Doe");
+        parameters.put("Person", person);
+        WorkflowProcessInstance processInstance = (WorkflowProcessInstance)ksession.startProcess("org.drools.actions", parameters);
+        assertEquals(ProcessInstance.STATE_ACTIVE, processInstance.getState());
         WorkItem workItem = handler.getWorkItem();
-        assertNotNull( workItem );
-        assertEquals( "John Doe",
-                      workItem.getParameter( "ActorId" ) );
-        assertEquals( "John Doe",
-                      workItem.getParameter( "Content" ) );
-        assertEquals( "John Doe",
-                      workItem.getParameter( "Comment" ) );
+        assertNotNull(workItem);
+        assertEquals("John Doe", workItem.getParameter("ActorId"));
+        assertEquals("John Doe", workItem.getParameter("Content"));
+        assertEquals("John Doe", workItem.getParameter("Comment"));
 
-        assertEquals( WorkItem.PENDING,
-                      workItem.getState() );
+        assertEquals(WorkItem.PENDING, workItem.getState());
 
         String inXml = "";
         inXml = "<complete-work-item id='" + workItem.getId() + "' />";
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        assertEquals( WorkItem.COMPLETED,
-                      workItem.getState() );
+        assertEquals(WorkItem.COMPLETED, workItem.getState());
 
-        assertEquals( ProcessInstance.STATE_COMPLETED,
-                      processInstance.getState() );
+        assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.getState());
 
         parameters = new HashMap<String, Object>();
-        parameters.put( "UserName",
-                        "Jane Doe" );
-        parameters.put( "MyObject",
-                        "SomeString" );
+        parameters.put("UserName", "Jane Doe");
+        parameters.put("MyObject", "SomeString");
         person = new Person();
-        person.setName( "Jane Doe" );
-        parameters.put( "Person",
-                        person );
-        processInstance = (WorkflowProcessInstance) ksession.startProcess( "org.drools.actions",
-                                                                           parameters );
-        assertEquals( ProcessInstance.STATE_ACTIVE,
-                      processInstance.getState() );
+        person.setName("Jane Doe");
+        parameters.put("Person", person);
+        processInstance = (WorkflowProcessInstance)ksession.startProcess("org.drools.actions", parameters);
+        assertEquals(ProcessInstance.STATE_ACTIVE, processInstance.getState());
         workItem = handler.getWorkItem();
-        assertNotNull( workItem );
-        assertEquals( "Jane Doe",
-                      workItem.getParameter( "ActorId" ) );
-        assertEquals( "SomeString",
-                      workItem.getParameter( "Attachment" ) );
-        assertEquals( "Jane Doe",
-                      workItem.getParameter( "Content" ) );
-        assertEquals( "Jane Doe",
-                      workItem.getParameter( "Comment" ) );
+        assertNotNull(workItem);
+        assertEquals("Jane Doe", workItem.getParameter("ActorId"));
+        assertEquals("SomeString", workItem.getParameter("Attachment"));
+        assertEquals("Jane Doe", workItem.getParameter("Content"));
+        assertEquals("Jane Doe", workItem.getParameter("Comment"));
 
-        assertEquals( WorkItem.PENDING,
-                      workItem.getState() );
+        assertEquals(WorkItem.PENDING, workItem.getState());
 
         inXml = "";
         inXml += "<complete-work-item id='" + workItem.getId() + "' >";
@@ -1652,19 +1492,13 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "    </result>";
         inXml += "</complete-work-item>";
 
-        outXml = template.requestBody( "direct:exec",
-                                       inXml,
-                                       String.class );
+        outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        assertEquals( WorkItem.COMPLETED,
-                      workItem.getState() );
+        assertEquals(WorkItem.COMPLETED, workItem.getState());
 
-        assertEquals( ProcessInstance.STATE_COMPLETED,
-                      processInstance.getState() );
-        assertEquals( "SomeOtherString",
-                      processInstance.getVariable( "MyObject" ) );
-        assertEquals( 15,
-                      processInstance.getVariable( "Number" ) );
+        assertEquals(ProcessInstance.STATE_COMPLETED, processInstance.getState());
+        assertEquals("SomeOtherString", processInstance.getVariable("MyObject"));
+        assertEquals(15, processInstance.getVariable("Number"));
     }
 
     @Test
@@ -1735,55 +1569,41 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         str += "\n";
         str += "</process>";
 
-        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes())
-                                                                       .setSourcePath("src/main/resources/rule.rf")
-                                                                       .setResourceType(ResourceType.DRF));
+        KieSession ksession = getKieSessionFromResource(ResourceFactory.newByteArrayResource(str.getBytes()).setSourcePath("src/main/resources/rule.rf")
+            .setResourceType(ResourceType.DRF));
 
         TestWorkItemHandler handler = new TestWorkItemHandler();
-        ksession.getWorkItemManager().registerWorkItemHandler( "Human Task",
-                                                               handler );
+        ksession.getWorkItemManager().registerWorkItemHandler("Human Task", handler);
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put( "UserName",
-                        "John Doe" );
+        parameters.put("UserName", "John Doe");
         Person person = new Person();
-        person.setName( "John Doe" );
-        parameters.put( "Person",
-                        person );
-        WorkflowProcessInstance processInstance = (WorkflowProcessInstance) ksession.startProcess( "org.drools.actions",
-                                                                                                   parameters );
-        assertEquals( ProcessInstance.STATE_ACTIVE,
-                      processInstance.getState() );
+        person.setName("John Doe");
+        parameters.put("Person", person);
+        WorkflowProcessInstance processInstance = (WorkflowProcessInstance)ksession.startProcess("org.drools.actions", parameters);
+        assertEquals(ProcessInstance.STATE_ACTIVE, processInstance.getState());
         WorkItem workItem = handler.getWorkItem();
-        assertNotNull( workItem );
+        assertNotNull(workItem);
 
-        assertEquals( WorkItem.PENDING,
-                      workItem.getState() );
+        assertEquals(WorkItem.PENDING, workItem.getState());
 
         String inXml = "<abort-work-item id='" + workItem.getId() + "' />";
-        setExec( ksession );
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        assertEquals( WorkItem.ABORTED,
-                      workItem.getState() );
+        assertEquals(WorkItem.ABORTED, workItem.getState());
     }
 
-    public static class TestWorkItemHandler
-        implements
-        WorkItemHandler {
+    public static class TestWorkItemHandler implements WorkItemHandler {
         private WorkItem workItem;
 
         @Override
-        public void executeWorkItem(WorkItem workItem,
-                                    WorkItemManager manager) {
+        public void executeWorkItem(WorkItem workItem, WorkItemManager manager) {
             this.workItem = workItem;
         }
 
         @Override
-        public void abortWorkItem(WorkItem workItem,
-                                  WorkItemManager manager) {
+        public void abortWorkItem(WorkItem workItem, WorkItemManager manager) {
         }
 
         public WorkItem getWorkItem() {
@@ -1816,17 +1636,15 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  <fire-all-rules />";
         inXml += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
 
-        ClassLoader cl = ((StatefulKnowledgeSessionImpl) ksession).getKnowledgeBase().getRootClassLoader();
+        ClassLoader cl = ((StatefulKnowledgeSessionImpl)ksession).getKnowledgeBase().getRootClassLoader();
         XStream xstream = BatchExecutionHelper.newXStreamMarshaller();
-        xstream.setClassLoader( cl );
-        FactHandle factHandle = (FactHandle) ((ExecutionResults) xstream.fromXML( outXml )).getFactHandle( "outStilton" );
+        xstream.setClassLoader(cl);
+        FactHandle factHandle = (FactHandle)((ExecutionResults)xstream.fromXML(outXml)).getFactHandle("outStilton");
 
         String expectedXml = "";
         expectedXml += "<execution-results>\n";
@@ -1840,8 +1658,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "  <fact-handle identifier=\"outStilton\" external-form=\"" + factHandle.toExternalForm() + "\" /> \n";
         expectedXml += "</execution-results>\n";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
 
     }
 
@@ -1872,49 +1689,34 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml += "  </insert>";
         inXml += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource(str.getBytes()) );
-        setExec( ksession );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        String outXml = template.requestBody( "direct:exec",
-                                              inXml,
-                                              String.class );
-        ExecutionResults result = template.requestBody( "direct:unmarshal",
-                                                        outXml,
-                                                        ExecutionResults.class );
+        String outXml = template.requestBody("direct:exec", inXml, String.class);
+        ExecutionResults result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
 
-        outXml = template.requestBody( "direct:exec",
-                                       "<batch-execution><query out-identifier='matchingthings' name='results'/></batch-execution>",
-                                       String.class );
+        outXml = template.requestBody("direct:exec", "<batch-execution><query out-identifier='matchingthings' name='results'/></batch-execution>", String.class);
 
-        //we have not fired the rules yet
-        assertFalse( outXml.indexOf( "<price>30</price>" ) > -1 );
+        // we have not fired the rules yet
+        assertFalse(outXml.indexOf("<price>30</price>") > -1);
 
-        //lets send a command to execute them then
+        // lets send a command to execute them then
         inXml = "";
         inXml += "<batch-execution>";
         inXml += "  <fire-all-rules max='100'/>";
         inXml += "</batch-execution>";
-        template.requestBody( "direct:exec",
-                              inXml,
-                              String.class );
-        //ksession.fireAllRules();
+        template.requestBody("direct:exec", inXml, String.class);
+        // ksession.fireAllRules();
 
-        //ok lets try that again...
-        outXml = template.requestBody( "direct:exec",
-                                       "<batch-execution><query out-identifier='matchingthings' name='results'/></batch-execution>",
-                                       String.class );
-        assertTrue( outXml.indexOf( "<price>30</price>" ) > -1 );
+        // ok lets try that again...
+        outXml = template.requestBody("direct:exec", "<batch-execution><query out-identifier='matchingthings' name='results'/></batch-execution>", String.class);
+        assertTrue(outXml.indexOf("<price>30</price>") > -1);
     }
 
     @Test
     public void testExecutionNodeLookup() throws Exception {
         String str = "";
-        str += "package org.kie.camel.testdomain \n"
-                + "declare Cheese1\n"
-                + "   type : String\n"
-                + "   price : int\n"
-                + "   oldPrice : int\n"
-                + "end \n";
+        str += "package org.kie.camel.testdomain \n" + "declare Cheese1\n" + "   type : String\n" + "   price : int\n" + "   oldPrice : int\n" + "end \n";
 
         str += "rule rule1 \n";
         str += "  when \n";
@@ -1923,15 +1725,10 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         str += "  then \n";
         str += "    $c.setPrice( $c.getPrice() + 5 ); \n";
         str += "end\n";
-        logger.trace("STR = "+str);
+        logger.trace("STR = " + str);
 
         String str2 = "";
-        str2 += "package org.kie.camel.testdomain \n"
-                + "declare Cheese2\n"
-                + "   type : String\n"
-                + "   price : int\n"
-                + "   oldPrice : int\n"
-                + "end \n";
+        str2 += "package org.kie.camel.testdomain \n" + "declare Cheese2\n" + "   type : String\n" + "   price : int\n" + "   oldPrice : int\n" + "end \n";
         str2 += "rule rule2 \n";
         str2 += "  when \n";
         str2 += "    $c : Cheese2() \n";
@@ -1939,7 +1736,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         str2 += "  then \n";
         str2 += "    $c.setPrice( $c.getPrice() + 10 ); \n";
         str2 += "end\n";
-        logger.trace("STR2 = "+str2);
+        logger.trace("STR2 = " + str2);
 
         String inXml = "";
         inXml += "<batch-execution lookup=\"ksession1\" >";
@@ -1965,59 +1762,48 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         inXml2 += "  <fire-all-rules />";
         inXml2 += "</batch-execution>";
 
-        KieSession ksession = getKieSession( ResourceFactory.newByteArrayResource( str.getBytes() ) );
-        setExec( ksession );
+        KieSession ksession = getKieSession(ResourceFactory.newByteArrayResource(str.getBytes()));
+        setExec(ksession);
 
-        KieSession ksession2 = getKieSession( ResourceFactory.newByteArrayResource( str2.getBytes() ) );
+        KieSession ksession2 = getKieSession(ResourceFactory.newByteArrayResource(str2.getBytes()));
 
-        setExec2( ksession2 );
+        setExec2(ksession2);
 
-        String outXml = template.requestBody( "direct:execWithLookup",
-                                              inXml,
-                                              String.class );
+        String outXml = template.requestBody("direct:execWithLookup", inXml, String.class);
         ClassLoader originalClassLoader = Thread.currentThread().getContextClassLoader();
 
-        Thread.currentThread().setContextClassLoader( getClassLoader(ksession) );
-        ExecutionResults result = template.requestBody( "direct:unmarshal",
-                                                        outXml,
-                                                        ExecutionResults.class );
-        org.kie.api.definition.type.FactType fT = ksession.getKieBase().getFactType("org.kie.camel.testdomain","Cheese1");
+        Thread.currentThread().setContextClassLoader(getClassLoader(ksession));
+        ExecutionResults result = template.requestBody("direct:unmarshal", outXml, ExecutionResults.class);
+        org.kie.api.definition.type.FactType fT = ksession.getKieBase().getFactType("org.kie.camel.testdomain", "Cheese1");
 
-        int price = (Integer)fT.get(result.getValue( "outStilton" ), "price");
-        assertEquals( 30,
-                      price );
+        int price = (Integer)fT.get(result.getValue("outStilton"), "price");
+        assertEquals(30, price);
 
-        FactHandle factHandle = (FactHandle) result.getFactHandle( "outStilton" );
-//        stilton = (Cheese) ksession.getObject( factHandle );
-//        assertEquals( 30,
-//                      stilton.getPrice() );
+        FactHandle factHandle = (FactHandle)result.getFactHandle("outStilton");
+        // stilton = (Cheese) ksession.getObject( factHandle );
+        // assertEquals( 30,
+        // stilton.getPrice() );
 
-        String outXml2 = template.requestBody( "direct:execWithLookup",
-                                              inXml2,
-                                              String.class );
+        String outXml2 = template.requestBody("direct:execWithLookup", inXml2, String.class);
 
+        Thread.currentThread().setContextClassLoader(getClassLoader(ksession2));
+        ExecutionResults result2 = template.requestBody("direct:unmarshal", outXml2, ExecutionResults.class);
 
-        Thread.currentThread().setContextClassLoader( getClassLoader(ksession2) );
-        ExecutionResults result2 = template.requestBody( "direct:unmarshal",
-                                                        outXml2,
-                                                        ExecutionResults.class );
+        org.kie.api.definition.type.FactType fT2 = ksession2.getKieBase().getFactType("org.kie.camel.testdomain", "Cheese2");
 
-        org.kie.api.definition.type.FactType fT2 = ksession2.getKieBase().getFactType("org.kie.camel.testdomain","Cheese2");
+        int price2 = (Integer)fT2.get(result2.getValue("outStilton"), "price");
+        assertEquals(35, price2);
 
-        int price2 = (Integer)fT2.get(result2.getValue( "outStilton" ), "price");
-        assertEquals( 35, price2 );
+        // Cheese2 stilton2 = (Cheese2) result2.getValue( "outStilton" );
+        // assertEquals( 35,
+        // stilton2.getPrice() );
+        //
+        factHandle = (FactHandle)result2.getFactHandle("outStilton");
+        // stilton2 = (Cheese2) ksession2.getObject( factHandle );
+        // assertEquals( 35,
+        // stilton2.getPrice() );
 
-//        Cheese2 stilton2 = (Cheese2) result2.getValue( "outStilton" );
-//        assertEquals( 35,
-//                      stilton2.getPrice() );
-//
-          factHandle = (FactHandle) result2.getFactHandle( "outStilton" );
-//        stilton2 = (Cheese2) ksession2.getObject( factHandle );
-//        assertEquals( 35,
-//                      stilton2.getPrice() );
-
-
-        Thread.currentThread().setContextClassLoader( originalClassLoader );
+        Thread.currentThread().setContextClassLoader(originalClassLoader);
 
         String expectedXml = "";
         expectedXml += "<execution-results>\n";
@@ -2028,7 +1814,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml += "      <price>30</price>\n";
         expectedXml += "    </org.kie.camel.testdomain.Cheese1>\n";
         expectedXml += "  </result>\n";
-        expectedXml += "  <fact-handle identifier=\"outStilton\" external-form=\"" + ((InternalFactHandle) result.getFactHandle( "outStilton" )).toExternalForm() + "\" /> \n";
+        expectedXml += "  <fact-handle identifier=\"outStilton\" external-form=\"" + ((InternalFactHandle)result.getFactHandle("outStilton")).toExternalForm() + "\" /> \n";
         expectedXml += "</execution-results>\n";
 
         String expectedXml2 = "";
@@ -2040,19 +1826,16 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
         expectedXml2 += "      <price>35</price>\n";
         expectedXml2 += "    </org.kie.camel.testdomain.Cheese2>\n";
         expectedXml2 += "  </result>\n";
-        expectedXml2 += "  <fact-handle identifier=\"outStilton\" external-form=\"" + ((InternalFactHandle) result2.getFactHandle( "outStilton" )).toExternalForm() + "\" /> \n";
+        expectedXml2 += "  <fact-handle identifier=\"outStilton\" external-form=\"" + ((InternalFactHandle)result2.getFactHandle("outStilton")).toExternalForm() + "\" /> \n";
         expectedXml2 += "</execution-results>\n";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
 
-        assertXMLEqual( expectedXml2,
-                        outXml2 );
+        assertXMLEqual(expectedXml2, outXml2);
     }
 
     private StatelessKieSession getStatelessKieSession(Resource resource) {
-        return getStatelessKieSessionFromResource(resource.setSourcePath("src/main/resources/rule.drl")
-                                                          .setResourceType(ResourceType.DRL));
+        return getStatelessKieSessionFromResource(resource.setSourcePath("src/main/resources/rule.drl").setResourceType(ResourceType.DRL));
     }
 
     private StatelessKieSession getStatelessKieSessionFromResource(Resource resource) {
@@ -2061,7 +1844,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
 
         kfs.write(resource);
 
-        KieBuilder kieBuilder = ks.newKieBuilder( kfs ).buildAll();
+        KieBuilder kieBuilder = ks.newKieBuilder(kfs).buildAll();
 
         List<Message> errors = kieBuilder.getResults().getMessages(Message.Level.ERROR);
         if (!errors.isEmpty()) {
@@ -2072,8 +1855,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
     }
 
     private KieSession getKieSession(Resource resource) {
-        return getKieSessionFromResource(resource.setSourcePath("src/main/resources/rule.drl")
-                                                 .setResourceType(ResourceType.DRL));
+        return getKieSessionFromResource(resource.setSourcePath("src/main/resources/rule.drl").setResourceType(ResourceType.DRL));
     }
 
     private KieSession getKieSessionFromResource(Resource resource) {
@@ -2082,7 +1864,7 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
 
         kfs.write(resource);
 
-        KieBuilder kieBuilder = ks.newKieBuilder( kfs ).buildAll();
+        KieBuilder kieBuilder = ks.newKieBuilder(kfs).buildAll();
 
         List<Message> errors = kieBuilder.getResults().getMessages(Message.Level.ERROR);
         if (!errors.isEmpty()) {
@@ -2095,12 +1877,12 @@ public class XStreamBatchExecutionTest extends CamelTestSupport {
     public ClassLoader getClassLoader(CommandExecutor exec) {
         ClassLoader cl = null;
 
-        if ( exec instanceof StatefulKnowledgeSessionImpl ) {
-            cl = ((StatefulKnowledgeSessionImpl) exec).getKnowledgeBase().getRootClassLoader();
-        } else if ( exec instanceof StatelessKnowledgeSessionImpl ) {
-            cl = ((StatelessKnowledgeSessionImpl) exec).getKnowledgeBase().getRootClassLoader();
-        } else if ( exec instanceof CommandBasedStatefulKnowledgeSession ) {
-            cl = ((InternalKnowledgeBase) ((CommandBasedStatefulKnowledgeSession) exec).getKieBase()).getRootClassLoader();
+        if (exec instanceof StatefulKnowledgeSessionImpl) {
+            cl = ((StatefulKnowledgeSessionImpl)exec).getKnowledgeBase().getRootClassLoader();
+        } else if (exec instanceof StatelessKnowledgeSessionImpl) {
+            cl = ((StatelessKnowledgeSessionImpl)exec).getKnowledgeBase().getRootClassLoader();
+        } else if (exec instanceof CommandBasedStatefulKnowledgeSession) {
+            cl = ((InternalKnowledgeBase)((CommandBasedStatefulKnowledgeSession)exec).getKieBase()).getRootClassLoader();
         }
 
         return cl;

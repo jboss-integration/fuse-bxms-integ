@@ -21,6 +21,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+
 /**
  * REST interface for OrderService.
  *
@@ -28,11 +29,20 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("/order")
 public interface OrderResource {
+    
+    /**
+     * Gets the order.
+     *
+     * @return the order
+     */
     @GET
     @Path("/bestOption")
     @Produces(MediaType.APPLICATION_XML)
     public Item getOrder();
 
+    /**
+     * Throw error.
+     */
     @GET
     @Path("/error")
     public void throwError();

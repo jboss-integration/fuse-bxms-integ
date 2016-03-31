@@ -24,20 +24,30 @@ import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 import org.switchyard.transform.config.model.TransformSwitchYardScanner;
 
+
+/**
+ * The Class WebServiceTest.
+ */
 @RunWith(SwitchYardRunner.class)
-@SwitchYardTestCaseConfig(
-    mixins = { HTTPMixIn.class },
-    config = SwitchYardTestCaseConfig.SWITCHYARD_XML,
-    scanners = TransformSwitchYardScanner.class)
+@SwitchYardTestCaseConfig(mixins = { HTTPMixIn.class }, config = SwitchYardTestCaseConfig.SWITCHYARD_XML, scanners = TransformSwitchYardScanner.class)
 public class WebServiceTest {
 
+    /** The http mix in. */
     private HTTPMixIn httpMixIn;
 
+    /**
+     * Sets the properties.
+     */
     @BeforeDeploy
     public void setProperties() {
         System.setProperty("org.switchyard.component.http.standalone.port", "18001");
     }
 
+    /**
+     * Test library services.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testLibraryServices() throws Exception {
         LibraryClient client = new LibraryClient(httpMixIn, "18001");

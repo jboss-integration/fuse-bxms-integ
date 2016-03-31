@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,29 +26,25 @@ import org.switchyard.config.Configuration;
 import org.switchyard.config.model.BaseModel;
 import org.switchyard.config.model.Descriptor;
 
-/**
- * A version 1 ListenersModel.
+/** A version 1 ListenersModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class V1ListenersModel extends BaseModel implements ListenersModel {
 
     private List<ListenerModel> _listeners = new ArrayList<ListenerModel>();
 
-    /**
-     * Creates a new ListenersModel in the specified namespace.
-     * @param namespace the specified namespace
-     */
+    /** Creates a new ListenersModel in the specified namespace.
+     * 
+     * @param namespace the specified namespace */
     public V1ListenersModel(String namespace) {
         super(new QName(namespace, LISTENERS));
         setModelChildrenOrder(LISTENER);
     }
 
-    /**
-     * Creates a new ListenersModel with the specified configuration and descriptor.
+    /** Creates a new ListenersModel with the specified configuration and descriptor.
+     * 
      * @param config the configuration
-     * @param desc the descriptor
-     */
+     * @param desc the descriptor */
     public V1ListenersModel(Configuration config, Descriptor desc) {
         super(config, desc);
         for (Configuration listener_config : config.getChildren(LISTENER)) {
@@ -61,17 +56,13 @@ public class V1ListenersModel extends BaseModel implements ListenersModel {
         setModelChildrenOrder(LISTENER);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public synchronized List<ListenerModel> getListeners() {
         return Collections.unmodifiableList(_listeners);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ListenersModel addListener(ListenerModel listener) {
         addChildModel(listener);

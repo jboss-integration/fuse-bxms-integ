@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,64 +17,56 @@ import java.util.Properties;
 import org.switchyard.component.common.knowledge.config.model.KnowledgeComponentImplementationModel;
 import org.switchyard.config.model.property.PropertiesModel;
 
-/**
- * PropertiesBuilder.
+/** PropertiesBuilder.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class PropertiesBuilder extends KnowledgeBuilder {
 
     private Properties _defaultProperties;
     private Properties _modelProperties;
     private Properties _overrideProperties;
 
-    /**
-     * Creates a new PropertiesBuilder.
-     */
-    public PropertiesBuilder() {}
+    /** Creates a new PropertiesBuilder. */
+    public PropertiesBuilder() {
+    }
 
-    /**
-     * Creates a new PropertiesBuilder.
-     * @param propertiesModel sets the model properties
-     */
+    /** Creates a new PropertiesBuilder.
+     * 
+     * @param propertiesModel sets the model properties */
     public PropertiesBuilder(PropertiesModel propertiesModel) {
         setModelProperties(propertiesModel);
     }
 
-    /**
-     * Sets the default properties.
+    /** Sets the default properties.
+     * 
      * @param defaultProperties the default properties
-     * @return this PropertiesBuilder
-     */
+     * @return this PropertiesBuilder */
     public PropertiesBuilder setDefaultProperties(Properties defaultProperties) {
         _defaultProperties = defaultProperties;
         return this;
     }
 
-    /**
-     * Sets the model properties.
+    /** Sets the model properties.
+     * 
      * @param propertiesModel the properties model
-     * @return this PropertiesBuilder
-     */
+     * @return this PropertiesBuilder */
     public PropertiesBuilder setModelProperties(PropertiesModel propertiesModel) {
         _modelProperties = propertiesModel != null ? propertiesModel.toProperties() : null;
         return this;
     }
 
-    /**
-     * Sets the override properties.
+    /** Sets the override properties.
+     * 
      * @param overrideProperties the override properties
-     * @return this PropertisBuilder
-     */
+     * @return this PropertisBuilder */
     public PropertiesBuilder setOverrideProperties(Properties overrideProperties) {
         _overrideProperties = overrideProperties;
         return this;
     }
 
-    /**
-     * Builds a Properties.
-     * @return a Properties
-     */
+    /** Builds a Properties.
+     * 
+     * @return a Properties */
     public Properties build() {
         Properties buildProperties = new Properties();
         merge(_defaultProperties, buildProperties);
@@ -96,11 +87,10 @@ public class PropertiesBuilder extends KnowledgeBuilder {
         }
     }
 
-    /**
-     * Creates a PropertiesBuilder.
+    /** Creates a PropertiesBuilder.
+     * 
      * @param implementationModel implementationModel
-     * @return a PropertiesBuilder
-     */
+     * @return a PropertiesBuilder */
     public static PropertiesBuilder builder(KnowledgeComponentImplementationModel implementationModel) {
         PropertiesModel propertiesModel = null;
         if (implementationModel != null) {

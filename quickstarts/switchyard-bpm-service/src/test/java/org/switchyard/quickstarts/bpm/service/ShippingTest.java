@@ -29,13 +29,21 @@ import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 import org.switchyard.component.test.mixins.cdi.CDIMixIn;
 
+
+/**
+ * The Class ShippingTest.
+ */
 @RunWith(SwitchYardRunner.class)
 @SwitchYardTestCaseConfig(mixins = CDIMixIn.class)
 public class ShippingTest {
 
+    /** The service. */
     @ServiceOperation("Shipping.ship")
     private Invoker service;
 
+    /**
+     * Test ship.
+     */
     @Test
     public void testShip() {
         Order order = new Order();

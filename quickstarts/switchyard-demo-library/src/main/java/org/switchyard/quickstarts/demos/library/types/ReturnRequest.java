@@ -5,7 +5,6 @@
 // Generated on: 2014.09.04 at 12:38:20 PM EDT 
 //
 
-
 package org.switchyard.quickstarts.demos.library.types;
 
 import java.io.Serializable;
@@ -18,9 +17,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -38,22 +40,19 @@ import javax.xml.bind.annotation.XmlType;
  */
 @SuppressWarnings("serial")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "returnRequest", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = {
-    "loan"
-})
+@XmlType(name = "returnRequest", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = { "loan" })
 @XmlRootElement(name = "returnRequest", namespace = "urn:switchyard-quickstart-demo:library:1.0")
 public class ReturnRequest implements Serializable {
 
+    /** The loan. */
     @XmlElement(namespace = "urn:switchyard-quickstart-demo:library:1.0", required = true)
-    protected Loan loan;
+    private Loan loan;
 
     /**
      * Gets the value of the loan property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Loan }
-     *     
+     * @return possible object is {@link Loan }
+     * 
      */
     public Loan getLoan() {
         return loan;
@@ -62,10 +61,8 @@ public class ReturnRequest implements Serializable {
     /**
      * Sets the value of the loan property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Loan }
-     *     
+     * @param value allowed object is {@link Loan }
+     * 
      */
     public void setLoan(Loan value) {
         this.loan = value;

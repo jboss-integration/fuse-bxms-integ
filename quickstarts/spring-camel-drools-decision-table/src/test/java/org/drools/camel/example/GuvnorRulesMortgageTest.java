@@ -1,3 +1,16 @@
+/*
+ * Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,  
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.drools.camel.example;
 
 import org.apache.camel.EndpointInject;
@@ -21,28 +34,42 @@ import java.util.Collection;
 
 import static org.junit.Assert.*;
 
+
+/**
+ * The Class GuvnorRulesMortgageTest.
+ */
 @RunWith(CamelSpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:META-INF/spring/test-mortgage-context.xml"})
+@ContextConfiguration(locations = { "classpath:META-INF/spring/test-mortgage-context.xml" })
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class GuvnorRulesMortgageTest {
 
-	@EndpointInject(uri = "mock:result")
-	protected MockEndpoint resultEndpoint;
+    /** The result endpoint. */
+    @EndpointInject(uri = "mock:result")
+    protected MockEndpoint resultEndpoint;
 
-	@Produce(uri = "direct:insert")
-	protected ProducerTemplate produceFacts;
+    /** The produce facts. */
+    @Produce(uri = "direct:insert")
+    protected ProducerTemplate produceFacts;
 
+    /** The produce execute. */
     @Produce(uri = "direct:execute")
     protected ProducerTemplate produceExecute;
 
+    /** The k base. */
     @Resource(name = "kbase1")
     protected KnowledgeBase kBase;
 
+    /** The ksession. */
     @Resource(name = "ksession1")
     protected StatefulKnowledgeSession ksession;
 
-	@Test
-	public void testDirect() throws Exception {
+    /**
+     * Test direct.
+     *
+     * @throws Exception the exception
+     */
+    @Test
+    public void testDirect() throws Exception {
 
         // Dynamic fact creation as the model was declared in the DRL
         FactType appType = kBase.getFactType("mortgages", "LoanApplication");
@@ -56,13 +83,14 @@ public class GuvnorRulesMortgageTest {
         incomeType.set(income, "type", "Job");
         incomeType.set(income, "amount", 65000);
 
-        //ksession.fireAllRules();
-        //System.out.println(">> Result : " + application);
+        // ksession.fireAllRules();
+        // System.out.println(">> Result : " + application);
 
         // Inject LoanApplication & Income
         produceFacts.sendBody(application);
 
-        // Fire commands and send Application fact that we would like to calculate
+        // Fire commands and send Application fact that we would like to
+        // calculate
         ExecutionResultImpl result = produceExecute.requestBody(application, ExecutionResultImpl.class);
 
         // Expecting single result value of type LoanApplication
@@ -75,7 +103,7 @@ public class GuvnorRulesMortgageTest {
             assertNotNull(value);
 
             Class clazz = value.getClass();
-            assertEquals("mortgages.LoanApplication",clazz.getName());
+            assertEquals("mortgages.LoanApplication", clazz.getName());
 
             Field approved = value.getClass().getDeclaredField("approved");
             approved.setAccessible(true);
@@ -83,11 +111,9 @@ public class GuvnorRulesMortgageTest {
 
             Field approvedRate = value.getClass().getDeclaredField("approvedRate");
             approvedRate.setAccessible(true);
-            assertEquals(0,approvedRate.get(value));
+            assertEquals(0, approvedRate.get(value));
         }
 
-
-
-	}
+    }
 
 }

@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,11 +16,9 @@ import javax.xml.namespace.QName;
 
 import org.kie.api.runtime.Channel;
 
-/**
- * SwitchYardServiceChannel.
+/** SwitchYardServiceChannel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc. */
 public class SwitchYardServiceChannel implements Channel {
 
     /** service. */
@@ -31,62 +28,53 @@ public class SwitchYardServiceChannel implements Channel {
     private String _operationName;
     private SwitchYardServiceInvoker _invoker;
 
-    /**
-     * Constructs a new SwitchYardServiceChannel.
-     */
-    public SwitchYardServiceChannel() {}
+    /** Constructs a new SwitchYardServiceChannel. */
+    public SwitchYardServiceChannel() {
+    }
 
-    /**
-     * Gets the service name.
-     * @return the service name
-     */
+    /** Gets the service name.
+     * 
+     * @return the service name */
     public QName getServiceName() {
         return _serviceName;
     }
 
-    /**
-     * Sets the service name.
-     * @param serviceName the service name
-     */
+    /** Sets the service name.
+     * 
+     * @param serviceName the service name */
     public void setServiceName(QName serviceName) {
         _serviceName = serviceName;
     }
 
-    /**
-     * Gets the operation name.
-     * @return the operation name
-     */
+    /** Gets the operation name.
+     * 
+     * @return the operation name */
     public String getOperationName() {
         return _operationName;
     }
 
-    /**
-     * Sets the operation name.
-     * @param operationName the operation name
-     */
+    /** Sets the operation name.
+     * 
+     * @param operationName the operation name */
     public void setOperationName(String operationName) {
         _operationName = operationName;
     }
 
-    /**
-     * Gets the invoker.
-     * @return the invoker
-     */
+    /** Gets the invoker.
+     * 
+     * @return the invoker */
     public SwitchYardServiceInvoker getInvoker() {
         return _invoker;
     }
 
-    /**
-     * Sets the invoker.
-     * @param invoker the invoker
-     */
+    /** Sets the invoker.
+     * 
+     * @param invoker the invoker */
     public void setInvoker(SwitchYardServiceInvoker invoker) {
         _invoker = invoker;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void send(Object object) {
         SwitchYardServiceRequest request = new SwitchYardServiceRequest(getServiceName(), getOperationName(), object);

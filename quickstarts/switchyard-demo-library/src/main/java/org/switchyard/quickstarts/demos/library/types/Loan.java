@@ -5,7 +5,6 @@
 // Generated on: 2014.09.04 at 12:38:20 PM EDT 
 //
 
-
 package org.switchyard.quickstarts.demos.library.types;
 
 import java.io.Serializable;
@@ -17,9 +16,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for loan complex type.
+ * <p>
+ * Java class for loan complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="loan">
@@ -40,27 +42,27 @@ import javax.xml.bind.annotation.XmlType;
  */
 @SuppressWarnings("serial")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "loan", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = {
-    "id",
-    "approved",
-    "notes",
-    "book"
-})
+@XmlType(name = "loan", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = { "id", "approved", "notes", "book" })
 public class Loan implements Serializable {
 
-    protected String id;
-    protected boolean approved;
-    protected String notes;
+    /** The id. */
+    private String id;
+
+    /** The approved. */
+    private boolean approved;
+
+    /** The notes. */
+    private String notes;
+
+    /** The book. */
     @XmlElement(namespace = "urn:switchyard-quickstart-demo:library:1.0")
-    protected Book book;
+    private Book book;
 
     /**
      * Gets the value of the id property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getId() {
         return id;
@@ -69,10 +71,8 @@ public class Loan implements Serializable {
     /**
      * Sets the value of the id property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setId(String value) {
         this.id = value;
@@ -80,7 +80,8 @@ public class Loan implements Serializable {
 
     /**
      * Gets the value of the approved property.
-     * 
+     *
+     * @return true, if is approved
      */
     public boolean isApproved() {
         return approved;
@@ -88,7 +89,8 @@ public class Loan implements Serializable {
 
     /**
      * Sets the value of the approved property.
-     * 
+     *
+     * @param value the new approved
      */
     public void setApproved(boolean value) {
         this.approved = value;
@@ -97,10 +99,8 @@ public class Loan implements Serializable {
     /**
      * Gets the value of the notes property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getNotes() {
         return notes;
@@ -109,10 +109,8 @@ public class Loan implements Serializable {
     /**
      * Sets the value of the notes property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setNotes(String value) {
         this.notes = value;
@@ -121,10 +119,8 @@ public class Loan implements Serializable {
     /**
      * Gets the value of the book property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Book }
-     *     
+     * @return possible object is {@link Book }
+     * 
      */
     public Book getBook() {
         return book;
@@ -133,10 +129,8 @@ public class Loan implements Serializable {
     /**
      * Sets the value of the book property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Book }
-     *     
+     * @param value allowed object is {@link Book }
+     * 
      */
     public void setBook(Book value) {
         this.book = value;

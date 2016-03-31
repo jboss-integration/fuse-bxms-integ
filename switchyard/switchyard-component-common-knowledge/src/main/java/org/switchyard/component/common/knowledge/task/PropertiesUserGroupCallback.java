@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,35 +29,29 @@ import org.switchyard.common.io.pull.PropertiesPuller;
 import org.switchyard.common.io.pull.PropertiesPuller.PropertiesType;
 import org.switchyard.common.io.pull.Puller.PathType;
 
-/**
- * An implementation of a UserGroupCallback based on org.jbpm.services.task.identity.JBossUserGroupCallbackImpl.
+/** An implementation of a UserGroupCallback based on org.jbpm.services.task.identity.JBossUserGroupCallbackImpl.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc. */
 public class PropertiesUserGroupCallback implements UserGroupCallback {
 
     private Map<String, List<String>> _groupStore = new HashMap<String, List<String>>();
     private Set<String> _allGroups = new HashSet<String>();
 
-    /**
-     * Constructs a new PropertiesUserGroupCallback.
-     */
+    /** Constructs a new PropertiesUserGroupCallback. */
     public PropertiesUserGroupCallback() {
         init(System.getProperty("jbpm.user.group.mapping", System.getProperty("jboss.server.config.dir", "target/classes") + "/roles.properties"));
     }
 
-    /**
-     * Constructs a new PropertiesUserGroupCallback.
-     * @param location the location
-     */
+    /** Constructs a new PropertiesUserGroupCallback.
+     * 
+     * @param location the location */
     public PropertiesUserGroupCallback(String location) {
         init(location);
     }
 
-    /**
-     * Constructs a new PropertiesUserGroupCallback.
-     * @param userGroups the userGroups
-     */
+    /** Constructs a new PropertiesUserGroupCallback.
+     * 
+     * @param userGroups the userGroups */
     public PropertiesUserGroupCallback(Properties userGroups) {
         init(userGroups);
     }
@@ -84,7 +77,7 @@ public class PropertiesUserGroupCallback implements UserGroupCallback {
         List<String> groups = null;
         Iterator<Object> it = userGroups.keySet().iterator();
         while (it.hasNext()) {
-            String userId = (String) it.next();
+            String userId = (String)it.next();
             groups = Arrays.asList(userGroups.getProperty(userId, "").split(","));
             _groupStore.put(userId, groups);
             _allGroups.addAll(groups);
@@ -96,29 +89,23 @@ public class PropertiesUserGroupCallback implements UserGroupCallback {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean existsUser(String userId) {
         return _groupStore.containsKey(userId);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean existsGroup(String groupId) {
         return _allGroups.contains(groupId);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<String> getGroupsForUser(String userId, List<String> groupIds, List<String> allExistingGroupIds) {
         List<String> groups = _groupStore.get(userId);
-        if (groups == null) { 
+        if (groups == null) {
             groups = new ArrayList<String>(0);
         }
         return groups;

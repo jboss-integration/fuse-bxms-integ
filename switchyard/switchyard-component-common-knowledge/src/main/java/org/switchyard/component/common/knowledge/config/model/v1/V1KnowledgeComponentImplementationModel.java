@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,11 +34,9 @@ import org.switchyard.config.model.Descriptor;
 import org.switchyard.config.model.composite.v1.V1ComponentImplementationModel;
 import org.switchyard.config.model.property.PropertiesModel;
 
-/**
- * An abstract "knowledge" implementation of a ComponentImplementationModel.
+/** An abstract "knowledge" implementation of a ComponentImplementationModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public abstract class V1KnowledgeComponentImplementationModel extends V1ComponentImplementationModel implements KnowledgeComponentImplementationModel {
 
     private ChannelsModel _channels;
@@ -51,30 +48,25 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
     private UserGroupCallbackModel _userGroupCallback;
     private WorkItemHandlersModel _workItemHandlers;
 
-
-    /**
-     * Constructs a new V1KnowledgeComponentImplementationModel of the specified "type", and in the specified namespace.
+    /** Constructs a new V1KnowledgeComponentImplementationModel of the specified "type", and in the specified namespace.
+     * 
      * @param type the "type" of KnowledgeComponentImplementationModel
-     * @param namespace the namespace
-     */
+     * @param namespace the namespace */
     public V1KnowledgeComponentImplementationModel(String type, String namespace) {
         super(type, namespace);
         setModelChildrenOrder(CHANNELS, LISTENERS, LOGGERS, MANIFEST, OPERATIONS, PROPERTIES, USER_GROUP_CALLBACK, WORK_ITEM_HANDLERS);
     }
 
-    /**
-     * Constructs a new V1KnowledgeComponentImplementationModel with the specified Configuration and Descriptor.
+    /** Constructs a new V1KnowledgeComponentImplementationModel with the specified Configuration and Descriptor.
+     * 
      * @param config the Configuration
-     * @param desc the Descriptor
-     */
+     * @param desc the Descriptor */
     public V1KnowledgeComponentImplementationModel(Configuration config, Descriptor desc) {
         super(config, desc);
         setModelChildrenOrder(CHANNELS, LISTENERS, LOGGERS, MANIFEST, OPERATIONS, PROPERTIES, USER_GROUP_CALLBACK, WORK_ITEM_HANDLERS);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ChannelsModel getChannels() {
         if (_channels == null) {
@@ -83,9 +75,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return _channels;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public KnowledgeComponentImplementationModel setChannels(ChannelsModel channels) {
         setChildModel(channels);
@@ -93,9 +83,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ListenersModel getListeners() {
         if (_listeners == null) {
@@ -104,9 +92,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return _listeners;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public KnowledgeComponentImplementationModel setListeners(ListenersModel listeners) {
         setChildModel(listeners);
@@ -114,9 +100,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public LoggersModel getLoggers() {
         if (_loggers == null) {
@@ -125,9 +109,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return _loggers;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public KnowledgeComponentImplementationModel setLoggers(LoggersModel loggers) {
         setChildModel(loggers);
@@ -135,9 +117,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ManifestModel getManifest() {
         if (_manifest == null) {
@@ -146,9 +126,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return _manifest;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public KnowledgeComponentImplementationModel setManifest(ManifestModel manifest) {
         setChildModel(manifest);
@@ -156,9 +134,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public OperationsModel getOperations() {
         if (_operations == null) {
@@ -167,9 +143,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return _operations;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public KnowledgeComponentImplementationModel setOperations(OperationsModel operations) {
         setChildModel(operations);
@@ -177,9 +151,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public PropertiesModel getProperties() {
         if (_properties == null) {
@@ -188,9 +160,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return _properties;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public KnowledgeComponentImplementationModel setProperties(PropertiesModel properties) {
         setChildModel(properties);
@@ -198,9 +168,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UserGroupCallbackModel getUserGroupCallback() {
         if (_userGroupCallback == null) {
@@ -209,9 +177,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return _userGroupCallback;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public KnowledgeComponentImplementationModel setUserGroupCallback(UserGroupCallbackModel userGroupCallback) {
         setChildModel(userGroupCallback);
@@ -219,9 +185,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public WorkItemHandlersModel getWorkItemHandlers() {
         if (_workItemHandlers == null) {
@@ -230,9 +194,7 @@ public abstract class V1KnowledgeComponentImplementationModel extends V1Componen
         return _workItemHandlers;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public KnowledgeComponentImplementationModel setWorkItemHandlers(WorkItemHandlersModel workItemHandlers) {
         setChildModel(workItemHandlers);

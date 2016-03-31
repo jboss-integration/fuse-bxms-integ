@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,33 +25,27 @@ import javax.xml.soap.SOAPMessage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-public class PostCxfTransportSoapProcessor
-    implements
-    Processor {
+public class PostCxfTransportSoapProcessor implements Processor {
 
     public void process(Exchange exchange) throws Exception {
 
-        byte[] body2 = (byte[]) exchange.getOut().getBody();
+        byte[] body2 = (byte[])exchange.getOut().getBody();
 
-        if( body2 != null ) {
-            ByteArrayInputStream bais = new ByteArrayInputStream( body2 );
+        if (body2 != null) {
+            ByteArrayInputStream bais = new ByteArrayInputStream(body2);
 
             SOAPMessage soapMessage = MessageFactory.newInstance().createMessage();
             SOAPBody soapBody = soapMessage.getSOAPPart().getEnvelope().getBody();
-            QName payloadName = new QName( "http://soap.jax.drools.org/",
-                                           "executeResponse",
-                                           "ns1" );
-            QName responseName = new QName( "http://soap.jax.drools.org/",
-                                            "return",
-                                            "ns1" );
-            SOAPBodyElement payload = soapBody.addBodyElement( payloadName );
-            SOAPElement response = payload.addChildElement( responseName );
-            response.addTextNode( StringUtils.toString( bais ) );
+            QName payloadName = new QName("http://soap.jax.drools.org/", "executeResponse", "ns1");
+            QName responseName = new QName("http://soap.jax.drools.org/", "return", "ns1");
+            SOAPBodyElement payload = soapBody.addBodyElement(payloadName);
+            SOAPElement response = payload.addChildElement(responseName);
+            response.addTextNode(StringUtils.toString(bais));
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            soapMessage.writeTo( baos );
+            soapMessage.writeTo(baos);
 
-            exchange.getOut().setBody( new String( baos.toByteArray() ) );
+            exchange.getOut().setBody(new String(baos.toByteArray()));
         }
     }
 

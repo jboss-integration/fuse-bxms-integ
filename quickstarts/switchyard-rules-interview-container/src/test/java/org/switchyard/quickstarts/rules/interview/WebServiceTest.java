@@ -25,29 +25,38 @@ import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 import org.switchyard.transform.config.model.TransformSwitchYardScanner;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc.
+ * The Class WebServiceTest.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red
+ *         Hat Inc.
  */
 @RunWith(SwitchYardRunner.class)
-@SwitchYardTestCaseConfig(
-    mixins = { CDIMixIn.class, HTTPMixIn.class },
-    config = SwitchYardTestCaseConfig.SWITCHYARD_XML,
-    scanners = TransformSwitchYardScanner.class)
+@SwitchYardTestCaseConfig(mixins = { CDIMixIn.class, HTTPMixIn.class }, config = SwitchYardTestCaseConfig.SWITCHYARD_XML, scanners = TransformSwitchYardScanner.class)
 public class WebServiceTest {
 
+    /** The http mix in. */
     private HTTPMixIn httpMixIn;
 
+    /**
+     * Sets the properties.
+     */
     @BeforeDeploy
     public void setProperties() {
         System.setProperty("org.switchyard.component.http.standalone.port", "18001");
     }
 
+    /**
+     * Test web service.
+     */
     @Test
     public void testWebService() {
         httpMixIn.postResourceAndTestXML("http://localhost:18001/rules-interview-container/Interview",
-            "/xml/soap-request-pass.xml", "/xml/soap-response-pass.xml");
+                "/xml/soap-request-pass.xml", "/xml/soap-response-pass.xml");
         httpMixIn.postResourceAndTestXML("http://localhost:18001/rules-interview-container/Interview",
-            "/xml/soap-request-fail.xml", "/xml/soap-response-fail.xml");
+                "/xml/soap-request-fail.xml", "/xml/soap-response-fail.xml");
     }
 
 }

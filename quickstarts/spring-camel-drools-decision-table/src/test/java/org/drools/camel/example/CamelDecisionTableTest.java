@@ -25,14 +25,26 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Collection;
 
+
+/**
+ * The Class CamelDecisionTableTest.
+ */
 public class CamelDecisionTableTest extends CamelSpringTestSupport {
 
+    /** The rule on body endpoint. */
     // templates to send to input endpoints
     @Produce(uri = "direct://ruleOnBodyDT")
     protected ProducerTemplate ruleOnBodyEndpoint;
+
+    /** The rule on command endpoint. */
     @Produce(uri = "direct://ruleOnCommandDT")
     protected ProducerTemplate ruleOnCommandEndpoint;
 
+    /**
+     * Test rule on body.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testRuleOnBody() throws Exception {
         Person person = new Person();
@@ -62,8 +74,14 @@ public class CamelDecisionTableTest extends CamelSpringTestSupport {
         assertTrue(person.isCanDrink());
     }
 
+    /**
+     * Test rule on command.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    // TODO drools-camel component should be improved to allow to set Global value on the session
+    // TODO drools-camel component should be improved to allow to set Global
+    // value on the session
     public void testRuleOnCommand() throws Exception {
         Person person = new Person();
         person.setName("Young Scott");

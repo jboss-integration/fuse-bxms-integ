@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -45,20 +44,14 @@ import org.switchyard.component.common.knowledge.service.SwitchYardServiceInvoke
 import org.switchyard.component.common.knowledge.service.SwitchYardServiceTaskHandler;
 import org.switchyard.config.model.composite.ComponentModel;
 
-/**
- * WorkItemHandlerBuilder.
+/** WorkItemHandlerBuilder.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class WorkItemHandlerBuilder extends KnowledgeBuilder {
 
     private static final String HUMAN_TASK = "Human Task";
 
-    private static final Class<?>[][] PARAMETER_TYPES = new Class<?>[][]{
-        new Class<?>[]{ProcessRuntime.class},
-        new Class<?>[]{KieRuntime.class},
-        new Class<?>[0]
-    };
+    private static final Class<?>[][] PARAMETER_TYPES = new Class<?>[][] {new Class<?>[] {ProcessRuntime.class}, new Class<?>[] {KieRuntime.class}, new Class<?>[0]};
 
     private static final Map<String, Class<? extends WorkItemHandler>> DEFAULT_HANDLERS = new HashMap<String, Class<? extends WorkItemHandler>>();
     static {
@@ -71,12 +64,11 @@ public class WorkItemHandlerBuilder extends KnowledgeBuilder {
     private QName _componentName;
     private String _targetNamespace;
 
-    /**
-     * Creates a WorkItemHandlerBuilder.
+    /** Creates a WorkItemHandlerBuilder.
+     * 
      * @param classLoader classLoader
      * @param serviceDomain serviceDomain
-     * @param workItemHandlerModel workItemHandlerModel
-     */
+     * @param workItemHandlerModel workItemHandlerModel */
     @SuppressWarnings("unchecked")
     public WorkItemHandlerBuilder(ClassLoader classLoader, ServiceDomain serviceDomain, WorkItemHandlerModel workItemHandlerModel) {
         super(classLoader, serviceDomain);
@@ -84,8 +76,8 @@ public class WorkItemHandlerBuilder extends KnowledgeBuilder {
             WorkItemHandlersModel workItemHandlersModel = (WorkItemHandlersModel)workItemHandlerModel.getModelParent();
             KnowledgeComponentImplementationModel implementationModel = (KnowledgeComponentImplementationModel)workItemHandlersModel.getModelParent();
             ComponentModel componentModel = implementationModel.getComponent();
-            _componentName =  componentModel.getQName();
-            _targetNamespace =  componentModel.getTargetNamespace();
+            _componentName = componentModel.getQName();
+            _targetNamespace = componentModel.getTargetNamespace();
             _workItemHandlerClass = (Class<? extends WorkItemHandler>)workItemHandlerModel.getClazz(getClassLoader());
             if (_workItemHandlerClass == null) {
                 throw CommonKnowledgeMessages.MESSAGES.couldNotLoadWorkItemHandlerClass(workItemHandlerModel.getModelConfiguration().getAttribute("class"));
@@ -105,34 +97,28 @@ public class WorkItemHandlerBuilder extends KnowledgeBuilder {
         }
     }
 
-    private WorkItemHandlerBuilder(
-            ClassLoader classLoader,
-            ServiceDomain serviceDomain,
-            KnowledgeComponentImplementationModel implementationModel,
-            Class<? extends WorkItemHandler> workItemHandlerClass,
-            String workItemHandlerName) {
+    private WorkItemHandlerBuilder(ClassLoader classLoader, ServiceDomain serviceDomain, KnowledgeComponentImplementationModel implementationModel,
+                                   Class<? extends WorkItemHandler> workItemHandlerClass, String workItemHandlerName) {
         super(classLoader, serviceDomain);
         _workItemHandlerClass = workItemHandlerClass;
         _workItemHandlerName = workItemHandlerName;
         ComponentModel componentModel = implementationModel.getComponent();
-        _componentName =  componentModel.getQName();
-        _targetNamespace =  componentModel.getTargetNamespace();
+        _componentName = componentModel.getQName();
+        _targetNamespace = componentModel.getTargetNamespace();
     }
 
-    /**
-     * Gets the workItemHandlerName.
-     * @return the workItemHandlerName
-     */
+    /** Gets the workItemHandlerName.
+     * 
+     * @return the workItemHandlerName */
     public String getWorkItemHandlerName() {
         return _workItemHandlerName;
     }
 
-    /**
-     * Builds a WorkItemHandler.
+    /** Builds a WorkItemHandler.
+     * 
      * @param processRuntime processRuntime
      * @param runtimeManager runtimeManager
-     * @return a WorkItemHandler
-     */
+     * @return a WorkItemHandler */
     public WorkItemHandler build(ProcessRuntime processRuntime, RuntimeManager runtimeManager) {
         WorkItemHandler workItemHandler = construct(processRuntime, runtimeManager);
         if (workItemHandler instanceof SwitchYardServiceTaskHandler) {
@@ -164,7 +150,7 @@ public class WorkItemHandlerBuilder extends KnowledgeBuilder {
                 if (parameterTypes.length == 0) {
                     handler = Construction.construct(_workItemHandlerClass);
                 } else if (parameterTypes.length == 1) {
-                    handler = Construction.construct(_workItemHandlerClass, parameterTypes, new Object[]{processRuntime});
+                    handler = Construction.construct(_workItemHandlerClass, parameterTypes, new Object[] {processRuntime});
                 }
             } catch (Throwable t) {
                 throw CommonKnowledgeMessages.MESSAGES.couldNotInstantiateWorkItemHandlerClass(_workItemHandlerClass.getName());
@@ -179,13 +165,12 @@ public class WorkItemHandlerBuilder extends KnowledgeBuilder {
         return handler;
     }
 
-    /**
-     * Creates WorkItemHandlerBuilders.
+    /** Creates WorkItemHandlerBuilders.
+     * 
      * @param classLoader classLoader
      * @param serviceDomain serviceDomain
      * @param implementationModel implementationModel
-     * @return WorkItemHandlerBuilders
-     */
+     * @return WorkItemHandlerBuilders */
     public static List<WorkItemHandlerBuilder> builders(ClassLoader classLoader, ServiceDomain serviceDomain, KnowledgeComponentImplementationModel implementationModel) {
         List<WorkItemHandlerBuilder> builders = new ArrayList<WorkItemHandlerBuilder>();
         Set<String> registeredNames = new HashSet<String>();
@@ -207,8 +192,7 @@ public class WorkItemHandlerBuilder extends KnowledgeBuilder {
             for (Entry<String, Class<? extends WorkItemHandler>> entry : DEFAULT_HANDLERS.entrySet()) {
                 String name = entry.getKey();
                 if (!registeredNames.contains(name)) {
-                    WorkItemHandlerBuilder builder = new WorkItemHandlerBuilder(
-                            classLoader, serviceDomain, implementationModel, entry.getValue(), name);
+                    WorkItemHandlerBuilder builder = new WorkItemHandlerBuilder(classLoader, serviceDomain, implementationModel, entry.getValue(), name);
                     builders.add(builder);
                     registeredNames.add(name);
                 }

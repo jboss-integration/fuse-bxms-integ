@@ -18,36 +18,76 @@ package org.switchyard.quickstarts.demos.helpdesk;
 
 import java.io.Serializable;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Class Ticket.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 @SuppressWarnings("serial")
 public class Ticket implements Serializable {
 
+    /** The _id. */
     private String _id;
+    
+    /** The _status. */
     private String _status;
+    
+    /** The _details. */
     private String _details;
 
+    /**
+     * Gets the id.
+     *
+     * @return the id
+     */
     public String getId() {
         return _id;
     }
 
+    /**
+     * Sets the id.
+     *
+     * @param id the new id
+     */
     public void setId(String id) {
         _id = id;
     }
 
+    /**
+     * Gets the status.
+     *
+     * @return the status
+     */
     public String getStatus() {
         return _status;
     }
 
+    /**
+     * Sets the status.
+     *
+     * @param status the new status
+     */
     public void setStatus(String status) {
         _status = status;
     }
 
+    /**
+     * Gets the details.
+     *
+     * @return the details
+     */
     public String getDetails() {
         return _details;
     }
 
+    /**
+     * Sets the details.
+     *
+     * @param details the new details
+     */
     public void setDetails(String details) {
         _details = details;
     }

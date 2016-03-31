@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,9 +29,7 @@ import java.util.List;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-public class ChangeCollector
-    implements
-    RuleRuntimeEventListener {
+public class ChangeCollector implements RuleRuntimeEventListener {
 
     @XmlElement
     @XmlJavaTypeAdapter(JaxbListAdapter.class)
@@ -42,7 +37,7 @@ public class ChangeCollector
 
     @XmlElement
     @XmlJavaTypeAdapter(JaxbListAdapter.class)
-    private List         changes;
+    private List changes;
 
     public List<String> getRetracted() {
         return retracted;
@@ -57,18 +52,20 @@ public class ChangeCollector
     }
 
     public void objectUpdated(ObjectUpdatedEvent event) {
-        if ( changes == null ) changes = new ArrayList();
-        if ( event.getObject() instanceof Cheese ) {
-            Cheese c = (Cheese) event.getObject();
-            changes.add( c );
+        if (changes == null)
+            changes = new ArrayList();
+        if (event.getObject() instanceof Cheese) {
+            Cheese c = (Cheese)event.getObject();
+            changes.add(c);
         }
     }
 
     public void objectDeleted(ObjectDeletedEvent event) {
-        if ( retracted == null ) retracted = new ArrayList<String>();
-        if ( event.getOldObject() instanceof Cheese ) {
-            Cheese c = (Cheese) event.getOldObject();
-            retracted.add( c.getType() );
+        if (retracted == null)
+            retracted = new ArrayList<String>();
+        if (event.getOldObject() instanceof Cheese) {
+            Cheese c = (Cheese)event.getOldObject();
+            retracted.add(c.getType());
         }
     }
 }

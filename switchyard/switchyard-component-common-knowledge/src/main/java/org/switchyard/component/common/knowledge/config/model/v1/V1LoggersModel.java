@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,29 +26,25 @@ import org.switchyard.config.Configuration;
 import org.switchyard.config.model.BaseModel;
 import org.switchyard.config.model.Descriptor;
 
-/**
- * A version 1 LoggersModel.
+/** A version 1 LoggersModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class V1LoggersModel extends BaseModel implements LoggersModel {
 
     private List<LoggerModel> _loggers = new ArrayList<LoggerModel>();
 
-    /**
-     * Creates a new LoggersModel in the specified namespace.
-     * @param namespace the specified namespace
-     */
+    /** Creates a new LoggersModel in the specified namespace.
+     * 
+     * @param namespace the specified namespace */
     public V1LoggersModel(String namespace) {
         super(new QName(namespace, LOGGERS));
         setModelChildrenOrder(LOGGER);
     }
 
-    /**
-     * Creates a new LoggersModel with the specified configuration and descriptor.
+    /** Creates a new LoggersModel with the specified configuration and descriptor.
+     * 
      * @param config the configuration
-     * @param desc the descriptor
-     */
+     * @param desc the descriptor */
     public V1LoggersModel(Configuration config, Descriptor desc) {
         super(config, desc);
         for (Configuration logger_config : config.getChildren(LOGGER)) {
@@ -61,17 +56,13 @@ public class V1LoggersModel extends BaseModel implements LoggersModel {
         setModelChildrenOrder(LOGGER);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public synchronized List<LoggerModel> getLoggers() {
         return Collections.unmodifiableList(_loggers);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public LoggersModel addLogger(LoggerModel logger) {
         addChildModel(logger);

@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,11 +22,9 @@ import org.kie.api.runtime.process.ProcessRuntime;
 import org.kie.api.runtime.process.WorkItem;
 import org.kie.api.runtime.process.WorkItemManager;
 
-/**
- * StandardSwitchYardServiceTaskHandler.
+/** StandardSwitchYardServiceTaskHandler.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc. */
 public class StandardSwitchYardServiceTaskHandler extends SwitchYardServiceTaskHandler {
 
     /** Service Task. */
@@ -45,14 +42,11 @@ public class StandardSwitchYardServiceTaskHandler extends SwitchYardServiceTaskH
     /** operationImplementationRef. */
     public static final String OPERATION_IMPLEMENTATION_REF = "operationImplementationRef";
 
-    /**
-     * Constructs a new StandardSwitchYardServiceTaskHandler.
-     */
-    public StandardSwitchYardServiceTaskHandler() {}
+    /** Constructs a new StandardSwitchYardServiceTaskHandler. */
+    public StandardSwitchYardServiceTaskHandler() {
+    }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void executeWorkItem(WorkItem workItem, WorkItemManager manager) {
         String implementation = getImplementation(workItem.getParameters());
@@ -75,17 +69,13 @@ public class StandardSwitchYardServiceTaskHandler extends SwitchYardServiceTaskH
         return getString(IMPLEMENTATION, parameters, null);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected QName getServiceName(Map<String, Object> parameters) {
         return getQName(INTERFACE, parameters, getQName(INTERFACE_IMPLEMENTATION_REF, parameters, null));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected String getOperationName(Map<String, Object> parameters) {
         return getString(OPERATION, parameters, getString(OPERATION_IMPLEMENTATION_REF, parameters, null));

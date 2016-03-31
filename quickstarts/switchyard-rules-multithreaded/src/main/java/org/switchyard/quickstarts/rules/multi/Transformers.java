@@ -21,6 +21,10 @@ import javax.inject.Named;
 import org.jboss.resteasy.client.core.BaseClientResponse;
 import org.switchyard.annotations.Transformer;
 
+
+/**
+ * The Class Transformers.
+ */
 @Named("Transformers")
 public class Transformers {
 
@@ -28,6 +32,7 @@ public class Transformers {
      * Transform from a RESTEasy Response to an Item instance.
      * <p/>
      * No need to specify the "to" type because Item is a concrete type.
+     * 
      * @param from Response object.
      * @return Item instance.
      */

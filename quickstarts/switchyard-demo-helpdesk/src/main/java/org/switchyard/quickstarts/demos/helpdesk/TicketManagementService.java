@@ -16,19 +16,50 @@
  */
 package org.switchyard.quickstarts.demos.helpdesk;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Interface TicketManagementService.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 public interface TicketManagementService {
 
+    /**
+     * Open ticket.
+     *
+     * @param ticket the ticket
+     * @return the ticket ack
+     */
     public TicketAck openTicket(Ticket ticket);
 
+    /**
+     * Approve ticket.
+     *
+     * @param ticket the ticket
+     */
     public void approveTicket(Ticket ticket);
 
+    /**
+     * Close ticket.
+     *
+     * @param ticket the ticket
+     */
     public void closeTicket(Ticket ticket);
 
+    /**
+     * Request details.
+     *
+     * @param ticket the ticket
+     */
     public void requestDetails(Ticket ticket);
 
+    /**
+     * Reject ticket.
+     *
+     * @param ticket the ticket
+     */
     public void rejectTicket(Ticket ticket);
 
 }

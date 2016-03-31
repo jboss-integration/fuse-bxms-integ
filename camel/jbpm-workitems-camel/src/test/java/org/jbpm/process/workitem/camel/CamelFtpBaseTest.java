@@ -1,3 +1,15 @@
+/*
+ * Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jbpm.process.workitem.camel;
 
 import org.apache.commons.io.FileUtils;
@@ -31,22 +43,19 @@ public abstract class CamelFtpBaseTest extends AbstractBaseTest {
 
     protected FtpServer server;
 
-    /**
-     * Start the FTP server, create & clean home directory
-     * */
+    /** Start the FTP server, create & clean home directory */
     @Before
     public void initialize() throws FtpException, IOException {
         File tempDir = new File(System.getProperty("java.io.tmpdir"));
         ftpRoot = new File(tempDir, "ftp");
 
-        if(ftpRoot.exists()) {
+        if (ftpRoot.exists()) {
             FileUtils.deleteDirectory(ftpRoot);
         }
 
         boolean created = ftpRoot.mkdir();
-        if(! created) {
-            throw new IllegalArgumentException("FTP root directory has not been created, " +
-                    "check system property java.io.tmp");
+        if (!created) {
+            throw new IllegalArgumentException("FTP root directory has not been created, " + "check system property java.io.tmp");
         }
         String fileName = "test_file_" + CamelFtpTest.class.getName() + "_" + UUID.randomUUID().toString();
 
@@ -66,9 +75,7 @@ public abstract class CamelFtpBaseTest extends AbstractBaseTest {
 
     protected abstract FtpServer configureFtpServer(FtpServerBuilder builder) throws FtpException;
 
-    /**
-     * Builder to ease the FTP server configuration.
-     * */
+    /** Builder to ease the FTP server configuration. */
     protected class FtpServerBuilder {
         private FtpServerFactory ftpServerFactory;
 
@@ -85,14 +92,13 @@ public abstract class CamelFtpBaseTest extends AbstractBaseTest {
             return registerListener("default", listener);
         }
 
-        public FtpServerBuilder addUser(final String username, final String password, final File home,
-                                        final boolean write) throws FtpException {
+        public FtpServerBuilder addUser(final String username, final String password, final File home, final boolean write) throws FtpException {
             UserFactory userFactory = new UserFactory();
             userFactory.setHomeDirectory(home.getAbsolutePath());
             userFactory.setName(username);
             userFactory.setPassword(password);
 
-            if(write) {
+            if (write) {
                 List<Authority> authorities = new ArrayList<Authority>();
                 Authority writePermission = new WritePermission();
                 authorities.add(writePermission);

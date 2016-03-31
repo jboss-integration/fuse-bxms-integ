@@ -29,13 +29,21 @@ import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 import org.switchyard.component.test.mixins.cdi.CDIMixIn;
 
+
+/**
+ * The Class BackOrderTest.
+ */
 @RunWith(SwitchYardRunner.class)
 @SwitchYardTestCaseConfig(mixins = CDIMixIn.class)
 public class BackOrderTest {
 
+    /** The service. */
     @ServiceOperation("BackOrder.hold")
     private Invoker service;
 
+    /**
+     * Send message.
+     */
     @Test
     public void sendMessage() {
         Order order = new Order();

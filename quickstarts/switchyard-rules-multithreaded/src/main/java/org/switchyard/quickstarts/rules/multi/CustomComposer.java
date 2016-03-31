@@ -38,7 +38,8 @@ public class CustomComposer extends RESTEasyMessageComposer {
         final Message message = super.compose(source, exchange);
         if (source.getOperationName().equals("addItem") && (source.getParameters().length == 3)) {
             // Wrap the parameters
-            Item item = new Item((Integer) source.getParameters()[0], (String) source.getParameters()[1], (Integer) source.getParameters()[2]);
+            Item item = new Item((Integer) source.getParameters()[0], (String) source.getParameters()[1],
+                    (Integer) source.getParameters()[2]);
             message.setContent(item);
         }
         return message;
@@ -52,15 +53,16 @@ public class CustomComposer extends RESTEasyMessageComposer {
         Object content = exchange.getMessage().getContent();
         String opName = exchange.getContract().getProviderOperation().getName();
         if (opName.equals("getItem") && (content == null)) {
-            exchange.getContext().setProperty(RESTEasyContextMapper.HTTP_RESPONSE_STATUS, 404).addLabels(new String[] { EndpointLabel.HTTP.label() });
+            exchange.getContext().setProperty(RESTEasyContextMapper.HTTP_RESPONSE_STATUS, 404)
+                    .addLabels(new String[] { EndpointLabel.HTTP.label() });
         }
 
         target = super.decompose(exchange, target);
 
-        if (target.getOperationName().equals("addItem")
-            && (content != null) && (content instanceof Item)) {
+        if (target.getOperationName().equals("addItem") && (content != null) && (content instanceof Item)) {
             // Unwrap the parameters
-            target.setParameters(new Object[] { ((Item) content).getItemId(), ((Item) content).getName(), ((Item) content).getPrice()});
+            target.setParameters(new Object[] { ((Item) content).getItemId(), ((Item) content).getName(),
+                    ((Item) content).getPrice() });
         }
 
         return target;

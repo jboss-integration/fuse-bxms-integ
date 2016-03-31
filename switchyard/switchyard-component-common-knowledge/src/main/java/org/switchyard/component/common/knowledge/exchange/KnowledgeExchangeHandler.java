@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -42,14 +41,13 @@ import org.switchyard.deploy.ServiceHandler;
 import org.switchyard.metadata.ExchangeContract;
 import org.switchyard.metadata.ServiceOperation;
 
-/**
- * An abstract "knowledge" implementation of an ExchangeHandler.
+/** An abstract "knowledge" implementation of an ExchangeHandler.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public abstract class KnowledgeExchangeHandler extends BaseServiceHandler implements ServiceHandler {
 
-    protected final KnowledgeComponentImplementationModel _model;
+    private final KnowledgeComponentImplementationModel _model;
+
     private final ServiceDomain _serviceDomain;
     private final QName _serviceName;
     private final Map<String, KnowledgeOperation> _operations = new HashMap<String, KnowledgeOperation>();
@@ -57,12 +55,12 @@ public abstract class KnowledgeExchangeHandler extends BaseServiceHandler implem
     private KnowledgeRuntimeManagerFactory _runtimeManagerFactory;
 
     private static final String PACKAGE_RESOURCES = "/org/switchyard/component/common/knowledge/resource/resourceType.properties";
-    /**
-     * Constructs a new KnowledgeExchangeHandler with the specified model, service domain, and service name.
+
+    /** Constructs a new KnowledgeExchangeHandler with the specified model, service domain, and service name.
+     * 
      * @param model the specified model
      * @param serviceDomain the specified service domain
-     * @param serviceName the specified service name
-     */
+     * @param serviceName the specified service name */
     public KnowledgeExchangeHandler(KnowledgeComponentImplementationModel model, ServiceDomain serviceDomain, QName serviceName) {
         super(serviceDomain);
         _model = model;
@@ -70,33 +68,28 @@ public abstract class KnowledgeExchangeHandler extends BaseServiceHandler implem
         _serviceName = serviceName;
     }
 
-    /**
-     * Gets the service domain.
-     * @return the service domain
-     */
+    /** Gets the service domain.
+     * 
+     * @return the service domain */
     public ServiceDomain getServiceDomain() {
         return _serviceDomain;
     }
 
-    /**
-     * Gets the service name.
-     * @return the service name
-     */
+    /** Gets the service name.
+     * 
+     * @return the service name */
     public QName getServiceName() {
         return _serviceName;
     }
 
-    /**
-     * Gets the class loader.
-     * @return the class loader
-     */
+    /** Gets the class loader.
+     * 
+     * @return the class loader */
     protected ClassLoader getLoader() {
         return _loader;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected void doStart() {
         _loader = Classes.getClassLoader(getDeploymentClassLoader(), getClass().getClassLoader());
@@ -105,43 +98,37 @@ public abstract class KnowledgeExchangeHandler extends BaseServiceHandler implem
         _runtimeManagerFactory = new KnowledgeRuntimeManagerFactory(_loader, _serviceDomain, _serviceName, _model);
     }
 
-    /**
-     * Creates a new Singleton KnowledgeRuntimeManager.
-     * @return the Singleton KnowledgeRuntimeManager
-     */
+    /** Creates a new Singleton KnowledgeRuntimeManager.
+     * 
+     * @return the Singleton KnowledgeRuntimeManager */
     protected KnowledgeRuntimeManager newSingletonRuntimeManager() {
         return _runtimeManagerFactory.newRuntimeManager(KnowledgeRuntimeManagerType.SINGLETON);
     }
 
-    /**
-     * Creates a new PerRequest KnowledgeRuntimeManager.
-     * @return the PerRequest KnowledgeRuntimeManager
-     */
+    /** Creates a new PerRequest KnowledgeRuntimeManager.
+     * 
+     * @return the PerRequest KnowledgeRuntimeManager */
     protected KnowledgeRuntimeManager newPerRequestRuntimeManager() {
         return _runtimeManagerFactory.newRuntimeManager(KnowledgeRuntimeManagerType.PER_REQUEST);
     }
 
-    /**
-     * Creates a new PerProcessInstance KnowledgeRuntimeManager.
-     * @return the PerProcessInstance KnowledgeRuntimeManager
-     */
+    /** Creates a new PerProcessInstance KnowledgeRuntimeManager.
+     * 
+     * @return the PerProcessInstance KnowledgeRuntimeManager */
     protected KnowledgeRuntimeManager newPerProcessInstanceRuntimeManager() {
         return _runtimeManagerFactory.newRuntimeManager(KnowledgeRuntimeManagerType.PER_PROCESS_INSTANCE);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected void doStop() {
         _loader = null;
         _operations.clear();
     }
 
-    /**
-     * Gets the default knowledge operation.
-     * @return the default knowledge operation
-     */
+    /** Gets the default knowledge operation.
+     * 
+     * @return the default knowledge operation */
     public abstract KnowledgeOperation getDefaultOperation();
 
     private KnowledgeOperation getOperation(ServiceOperation serviceOperation) {
@@ -154,9 +141,7 @@ public abstract class KnowledgeExchangeHandler extends BaseServiceHandler implem
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public final void handleMessage(Exchange exchange) throws HandlerException {
         if (ExchangePhase.IN.equals(exchange.getPhase())) {
@@ -174,33 +159,30 @@ public abstract class KnowledgeExchangeHandler extends BaseServiceHandler implem
         }
     }
 
-    /**
-     * Handles a knowledge operation.
+    /** Handles a knowledge operation.
+     * 
      * @param exchange the exchange
      * @param operation the operation
-     * @throws HandlerException oops
-     */
+     * @throws HandlerException oops */
     public abstract void handleOperation(Exchange exchange, KnowledgeOperation operation) throws HandlerException;
 
-    /**
-     * Gets a primitive boolean context property.
+    /** Gets a primitive boolean context property.
+     * 
      * @param exchange the exchange
      * @param message the message
      * @param name the name
-     * @return the property
-     */
+     * @return the property */
     protected boolean isBoolean(Exchange exchange, Message message, String name) {
         Boolean b = getBoolean(exchange, message, name);
         return b != null && b.booleanValue();
     }
 
-    /**
-     * Gets a Boolean context property.
+    /** Gets a Boolean context property.
+     * 
      * @param exchange the exchange
      * @param message the message
      * @param name the name
-     * @return the property
-     */
+     * @return the property */
     protected Boolean getBoolean(Exchange exchange, Message message, String name) {
         Object value = getObject(exchange, message, name);
         if (value instanceof Boolean) {
@@ -211,13 +193,12 @@ public abstract class KnowledgeExchangeHandler extends BaseServiceHandler implem
         return false;
     }
 
-    /**
-     * Gets an Integer context property.
+    /** Gets an Integer context property.
+     * 
      * @param exchange the exchange
      * @param message the message
      * @param name the name
-     * @return the property
-     */
+     * @return the property */
     protected Integer getInteger(Exchange exchange, Message message, String name) {
         Object value = getObject(exchange, message, name);
         if (value instanceof Integer) {
@@ -230,13 +211,12 @@ public abstract class KnowledgeExchangeHandler extends BaseServiceHandler implem
         return null;
     }
 
-    /**
-     * Gets a Long context property.
+    /** Gets a Long context property.
+     * 
      * @param exchange the exchange
      * @param message the message
      * @param name the name
-     * @return the property
-     */
+     * @return the property */
     protected Long getLong(Exchange exchange, Message message, String name) {
         Object value = getObject(exchange, message, name);
         if (value instanceof Long) {
@@ -249,13 +229,12 @@ public abstract class KnowledgeExchangeHandler extends BaseServiceHandler implem
         return null;
     }
 
-    /**
-     * Gets a String context property.
+    /** Gets a String context property.
+     * 
      * @param exchange the exchange
      * @param message the message
      * @param name the name
-     * @return the property
-     */
+     * @return the property */
     protected String getString(Exchange exchange, Message message, String name) {
         Object value = getObject(exchange, message, name);
         if (value instanceof String) {
@@ -266,23 +245,21 @@ public abstract class KnowledgeExchangeHandler extends BaseServiceHandler implem
         return null;
     }
 
-    /**
-     * Gets an Object context property.
+    /** Gets an Object context property.
+     * 
      * @param exchange the exchange
      * @param message the message
      * @param name the name
-     * @return the property
-     */
+     * @return the property */
     protected Object getObject(Exchange exchange, Message message, String name) {
         Context context = message != null ? exchange.getContext(message) : exchange.getContext();
         return context.getPropertyValue(name);
     }
 
-    /**
-     * Gets the global variables from the knowledge runtime engine.
+    /** Gets the global variables from the knowledge runtime engine.
+     * 
      * @param runtimeEngine the knowledge runtime engine
-     * @return the global variables
-     */
+     * @return the global variables */
     protected Map<String, Object> getGlobalVariables(KnowledgeRuntimeEngine runtimeEngine) {
         Map<String, Object> globalVariables = new HashMap<String, Object>();
         if (runtimeEngine != null) {
@@ -295,6 +272,10 @@ public abstract class KnowledgeExchangeHandler extends BaseServiceHandler implem
             }
         }
         return globalVariables;
+    }
+
+    public KnowledgeComponentImplementationModel getModel() {
+        return _model;
     }
 
 }

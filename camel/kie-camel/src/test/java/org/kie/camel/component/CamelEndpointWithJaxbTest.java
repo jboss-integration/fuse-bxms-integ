@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -58,7 +55,7 @@ import java.util.List;
 
 public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
 
-    private String      handle;
+    private String handle;
 
     public void setUp() throws Exception {
         super.setUp();
@@ -67,74 +64,59 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
     @Test
     public void testSessionInsert() throws Exception {
 
-         BatchExecutionCommandImpl cmd = new BatchExecutionCommandImpl();
-        cmd.setLookup( "ksession1" );
-        cmd.getCommands().add( new InsertObjectCommand( new Person( "lucaz",
-                                                                    25 ),
-                                                        "person1" ) );
-        cmd.getCommands().add( new InsertObjectCommand( new Person( "hadrian",
-                                                                    25 ),
-                                                        "person2" ) );
-        cmd.getCommands().add( new InsertObjectCommand( new Person( "baunax",
-                                                                    21 ),
-                                                        "person3" ) );
-        cmd.getCommands().add( new FireAllRulesCommand() );
+        BatchExecutionCommandImpl cmd = new BatchExecutionCommandImpl();
+        cmd.setLookup("ksession1");
+        cmd.getCommands().add(new InsertObjectCommand(new Person("lucaz", 25), "person1"));
+        cmd.getCommands().add(new InsertObjectCommand(new Person("hadrian", 25), "person2"));
+        cmd.getCommands().add(new InsertObjectCommand(new Person("baunax", 21), "person3"));
+        cmd.getCommands().add(new FireAllRulesCommand());
 
         StringWriter xmlReq = new StringWriter();
         Marshaller marshaller = getJaxbContext().createMarshaller();
-        marshaller.setProperty( "jaxb.formatted.output",
-                                true );
-        marshaller.marshal( cmd,
-                            xmlReq );
+        marshaller.setProperty("jaxb.formatted.output", true);
+        marshaller.marshal(cmd, xmlReq);
 
-        logger.debug( xmlReq.toString() );
+        logger.debug(xmlReq.toString());
 
-        byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
-                                                        xmlReq.toString() );
-        assertNotNull( xmlResp );
-        logger.debug( new String( xmlResp ) );
+        byte[] xmlResp = (byte[])template.requestBody("direct:test-with-session", xmlReq.toString());
+        assertNotNull(xmlResp);
+        logger.debug(new String(xmlResp));
 
-        ExecutionResults resp = (ExecutionResults) getJaxbContext().createUnmarshaller().unmarshal( new ByteArrayInputStream( xmlResp ) );
-        assertNotNull( resp );
+        ExecutionResults resp = (ExecutionResults)getJaxbContext().createUnmarshaller().unmarshal(new ByteArrayInputStream(xmlResp));
+        assertNotNull(resp);
 
-        assertEquals( 3,
-                      resp.getIdentifiers().size() );
-        assertNotNull( resp.getValue( "person1" ) );
-        assertNotNull( resp.getValue( "person2" ) );
-        assertNotNull( resp.getValue( "person3" ) );
+        assertEquals(3, resp.getIdentifiers().size());
+        assertNotNull(resp.getValue("person1"));
+        assertNotNull(resp.getValue("person2"));
+        assertNotNull(resp.getValue("person3"));
 
-        assertNotNull( resp.getFactHandle( "person1" ) );
-        assertNotNull( resp.getFactHandle( "person2" ) );
-        assertNotNull( resp.getFactHandle( "person3" ) );
+        assertNotNull(resp.getFactHandle("person1"));
+        assertNotNull(resp.getFactHandle("person2"));
+        assertNotNull(resp.getFactHandle("person3"));
     }
 
     @Test
     public void testSessionGetObject() throws Exception {
 
         BatchExecutionCommandImpl cmd = new BatchExecutionCommandImpl();
-        cmd.setLookup( "ksession1" );
-        cmd.getCommands().add( new GetObjectCommand( DefaultFactHandle.createFromExternalFormat( handle ),
-                                                     "hadrian" ) );
+        cmd.setLookup("ksession1");
+        cmd.getCommands().add(new GetObjectCommand(DefaultFactHandle.createFromExternalFormat(handle), "hadrian"));
 
         StringWriter xmlReq = new StringWriter();
         Marshaller marshaller = getJaxbContext().createMarshaller();
-        marshaller.setProperty( "jaxb.formatted.output",
-                                true );
-        marshaller.marshal( cmd,
-                            xmlReq );
+        marshaller.setProperty("jaxb.formatted.output", true);
+        marshaller.marshal(cmd, xmlReq);
 
-        logger.debug( xmlReq.toString() );
+        logger.debug(xmlReq.toString());
 
-        byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
-                                                        xmlReq.toString() );
+        byte[] xmlResp = (byte[])template.requestBody("direct:test-with-session", xmlReq.toString());
 
-        ExecutionResults resp = (ExecutionResults) getJaxbContext().createUnmarshaller().unmarshal( new ByteArrayInputStream( xmlResp ) );
-        assertNotNull( resp );
+        ExecutionResults resp = (ExecutionResults)getJaxbContext().createUnmarshaller().unmarshal(new ByteArrayInputStream(xmlResp));
+        assertNotNull(resp);
 
-        assertEquals( 1,
-                      resp.getIdentifiers().size() );
+        assertEquals(1, resp.getIdentifiers().size());
 
-        assertNotNull( resp.getValue( "hadrian" ) );
+        assertNotNull(resp.getValue("hadrian"));
     }
 
     @Test
@@ -142,13 +124,12 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         String cmd = "";
         cmd += "<batch-execution lookup='ksession1'>\n";
         cmd += "   <modify>\n";
-        cmd += "      <fact-handle>"+ handle + "</fact-handle>\n";
+        cmd += "      <fact-handle>" + handle + "</fact-handle>\n";
         cmd += "      <setters accessor='name' value='salaboy' />\n";
         cmd += "   </modify>\n";
         cmd += "</batch-execution>\n";
 
-        String outXml = new String( (byte[]) template.requestBody( "direct:test-with-session",
-                                                                   cmd ) );
+        String outXml = new String((byte[])template.requestBody("direct:test-with-session", cmd));
 
         String expectedXml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
         expectedXml += "<execution-results xmlns:ns2=\"http://drools.org/model\">\n";
@@ -156,8 +137,7 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         expectedXml += "    <facts/>\n";
         expectedXml += "</execution-results>\n";
 
-        assertXMLEqual( expectedXml,
-                        outXml );
+        assertXMLEqual(expectedXml, outXml);
 
         cmd = "<batch-execution lookup='ksession1'>\n";
         cmd += "   <get-object out-identifier='rider'>\n";
@@ -165,17 +145,15 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         cmd += "   </get-object>\n";
         cmd += "</batch-execution>\n";
 
-        byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
-                                                        cmd.toString() );
-        assertNotNull( xmlResp );
+        byte[] xmlResp = (byte[])template.requestBody("direct:test-with-session", cmd.toString());
+        assertNotNull(xmlResp);
 
-        ExecutionResults resp = (ExecutionResults) getJaxbContext().createUnmarshaller().unmarshal( new ByteArrayInputStream( xmlResp ) );
-        assertNotNull( resp );
+        ExecutionResults resp = (ExecutionResults)getJaxbContext().createUnmarshaller().unmarshal(new ByteArrayInputStream(xmlResp));
+        assertNotNull(resp);
 
-        Person person = (Person) resp.getValue( "rider" );
+        Person person = (Person)resp.getValue("rider");
 
-        assertEquals( "salaboy",
-                      person.getName() );
+        assertEquals("salaboy", person.getName());
 
     }
 
@@ -185,16 +163,15 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         String cmd = "";
         cmd += "<batch-execution lookup='ksession1'>\n";
         cmd += "   <retract>\n";
-        cmd += "     <fact-handle>"+ handle + "</fact-handle>\n";
+        cmd += "     <fact-handle>" + handle + "</fact-handle>\n";
         cmd += "   </retract>\n";
         cmd += "</batch-execution>";
 
-        String outXml = new String( (byte[]) template.requestBody( "direct:test-with-session",
-                                                                   cmd ) );
+        String outXml = new String((byte[])template.requestBody("direct:test-with-session", cmd));
 
-        logger.debug( outXml );
+        logger.debug(outXml);
 
-        assertNotNull( outXml );
+        assertNotNull(outXml);
 
     }
 
@@ -202,129 +179,98 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
     public void testInsertElements() throws Exception {
 
         BatchExecutionCommandImpl cmd = new BatchExecutionCommandImpl();
-        cmd.setLookup( "ksession1" );
-        InsertElementsCommand elems = new InsertElementsCommand( "elems" );
-        elems.getObjects().add( new Person( "lucaz",
-                                            25 ) );
-        elems.getObjects().add( new Person( "hadrian",
-                                            25 ) );
-        elems.getObjects().add( new Person( "baunax",
-                                            21 ) );
-        elems.getObjects().add( "xxx" );
+        cmd.setLookup("ksession1");
+        InsertElementsCommand elems = new InsertElementsCommand("elems");
+        elems.getObjects().add(new Person("lucaz", 25));
+        elems.getObjects().add(new Person("hadrian", 25));
+        elems.getObjects().add(new Person("baunax", 21));
+        elems.getObjects().add("xxx");
 
-        cmd.getCommands().add( elems );
-        cmd.getCommands().add( new FireAllRulesCommand() );
+        cmd.getCommands().add(elems);
+        cmd.getCommands().add(new FireAllRulesCommand());
 
         StringWriter xmlReq = new StringWriter();
         Marshaller marshaller = getJaxbContext().createMarshaller();
-        marshaller.setProperty( "jaxb.formatted.output",
-                                true );
-        marshaller.marshal( cmd,
-                            xmlReq );
+        marshaller.setProperty("jaxb.formatted.output", true);
+        marshaller.marshal(cmd, xmlReq);
 
-        byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
-                                                        xmlReq.toString() );
-        assertNotNull( xmlResp );
+        byte[] xmlResp = (byte[])template.requestBody("direct:test-with-session", xmlReq.toString());
+        assertNotNull(xmlResp);
 
-        ExecutionResults resp = (ExecutionResults) getJaxbContext().createUnmarshaller().unmarshal( new ByteArrayInputStream( xmlResp ) );
-        assertNotNull( resp );
+        ExecutionResults resp = (ExecutionResults)getJaxbContext().createUnmarshaller().unmarshal(new ByteArrayInputStream(xmlResp));
+        assertNotNull(resp);
 
-        assertEquals( 1,
-                      resp.getIdentifiers().size() );
-        List<Person> list = (List<Person>) resp.getValue( "elems" );
-        assertEquals( "lucaz",
-                      list.get( 0 ).getName() );
-        assertEquals( "hadrian",
-                      list.get( 1 ).getName() );
-        assertEquals( "baunax",
-                      list.get( 2 ).getName() );
+        assertEquals(1, resp.getIdentifiers().size());
+        List<Person> list = (List<Person>)resp.getValue("elems");
+        assertEquals("lucaz", list.get(0).getName());
+        assertEquals("hadrian", list.get(1).getName());
+        assertEquals("baunax", list.get(2).getName());
 
     }
 
     @Test
     public void testQuery() throws Exception {
         BatchExecutionCommandImpl cmd = new BatchExecutionCommandImpl();
-        cmd.setLookup( "ksession1" );
-        cmd.getCommands().add( new InsertObjectCommand( new Person( "lucaz" ) ) );
-        cmd.getCommands().add( new InsertObjectCommand( new Person( "hadrian" ) ) );
-        cmd.getCommands().add( new InsertObjectCommand( new Person( "baunax",
-                                                                    43 ) ) );
-        cmd.getCommands().add( new InsertObjectCommand( new Person( "baunax",
-                                                                    21 ) ) );
-        cmd.getCommands().add( new QueryCommand( "persons",
-                                                 "persons",
-                                                 null ) );
-        cmd.getCommands().add( new QueryCommand( "person",
-                                                 "personWithName",
-                                                 new String[]{"baunax"} ) );
+        cmd.setLookup("ksession1");
+        cmd.getCommands().add(new InsertObjectCommand(new Person("lucaz")));
+        cmd.getCommands().add(new InsertObjectCommand(new Person("hadrian")));
+        cmd.getCommands().add(new InsertObjectCommand(new Person("baunax", 43)));
+        cmd.getCommands().add(new InsertObjectCommand(new Person("baunax", 21)));
+        cmd.getCommands().add(new QueryCommand("persons", "persons", null));
+        cmd.getCommands().add(new QueryCommand("person", "personWithName", new String[] {"baunax"}));
 
         StringWriter xmlReq = new StringWriter();
         Marshaller marshaller = getJaxbContext().createMarshaller();
-        marshaller.setProperty( "jaxb.formatted.output",
-                                true );
-        marshaller.marshal( cmd,
-                            xmlReq );
+        marshaller.setProperty("jaxb.formatted.output", true);
+        marshaller.marshal(cmd, xmlReq);
 
-        logger.debug( xmlReq.toString() );
+        logger.debug(xmlReq.toString());
 
-        byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
-                                                        xmlReq.toString() );
-        assertNotNull( xmlResp );
-        logger.debug( new String( xmlResp ) );
+        byte[] xmlResp = (byte[])template.requestBody("direct:test-with-session", xmlReq.toString());
+        assertNotNull(xmlResp);
+        logger.debug(new String(xmlResp));
 
-        ExecutionResults resp = (ExecutionResults) getJaxbContext().createUnmarshaller().unmarshal( new ByteArrayInputStream( xmlResp ) );
-        assertNotNull( resp );
+        ExecutionResults resp = (ExecutionResults)getJaxbContext().createUnmarshaller().unmarshal(new ByteArrayInputStream(xmlResp));
+        assertNotNull(resp);
 
-        FlatQueryResults personQuery = (FlatQueryResults) resp.getValue( "person" );
-        assertEquals( 2,
-                      personQuery.size() );
-        FlatQueryResults personsQuery = (FlatQueryResults) resp.getValue( "persons" );
-        assertEquals( 5,
-                      personsQuery.size() );
+        FlatQueryResults personQuery = (FlatQueryResults)resp.getValue("person");
+        assertEquals(2, personQuery.size());
+        FlatQueryResults personsQuery = (FlatQueryResults)resp.getValue("persons");
+        assertEquals(5, personsQuery.size());
 
         Iterator<QueryResultsRow> iterator = personQuery.iterator();
         QueryResultsRow row = iterator.next();
-        Person person = (Person) row.get( "$p" );
+        Person person = (Person)row.get("$p");
 
-        assertEquals( "baunax",
-                      person.getName() );
+        assertEquals("baunax", person.getName());
     }
 
     @Test
     public void testProcess() throws Exception {
 
         BatchExecutionCommandImpl cmd = new BatchExecutionCommandImpl();
-        cmd.setLookup( "ksession1" );
+        cmd.setLookup("ksession1");
 
-        StartProcessCommand start = new StartProcessCommand( "org.drools.actions" , "process-instance-id" );
-        start.putParameter( "person",
-                            new Person( "lucaz",
-                                        25 ) );
-        start.putParameter( "person2",
-                            new Person( "hadrian",
-                                        25 ) );
-        start.putParameter( "person3",
-                            new Person( "baunax",
-                                        21 ) );
+        StartProcessCommand start = new StartProcessCommand("org.drools.actions", "process-instance-id");
+        start.putParameter("person", new Person("lucaz", 25));
+        start.putParameter("person2", new Person("hadrian", 25));
+        start.putParameter("person3", new Person("baunax", 21));
 
-        cmd.getCommands().add( start );
+        cmd.getCommands().add(start);
 
         StringWriter xmlReq = new StringWriter();
         Marshaller marshaller = getJaxbContext().createMarshaller();
-        marshaller.setProperty( "jaxb.formatted.output",
-                                true );
-        marshaller.marshal( cmd,
-                            xmlReq );
+        marshaller.setProperty("jaxb.formatted.output", true);
+        marshaller.marshal(cmd, xmlReq);
 
-        logger.debug( xmlReq.toString() );
+        logger.debug(xmlReq.toString());
 
-        byte[] xmlResp = (byte[]) template.requestBody( "direct:test-with-session",
-                                                        xmlReq.toString() );
-        assertNotNull( xmlResp );
-        logger.debug( new String( xmlResp ) );
-        ExecutionResults resp = (ExecutionResults) getJaxbContext().createUnmarshaller().unmarshal( new ByteArrayInputStream( xmlResp ) );
-        assertNotNull( resp );
-        assertNotNull( resp.getValue( "process-instance-id" ) );
+        byte[] xmlResp = (byte[])template.requestBody("direct:test-with-session", xmlReq.toString());
+        assertNotNull(xmlResp);
+        logger.debug(new String(xmlResp));
+        ExecutionResults resp = (ExecutionResults)getJaxbContext().createUnmarshaller().unmarshal(new ByteArrayInputStream(xmlResp));
+        assertNotNull(resp);
+        assertNotNull(resp.getValue("process-instance-id"));
     }
 
     @Test
@@ -338,12 +284,11 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         cmd += "  </start-process>\n";
         cmd += "</batch-execution>\n";
 
-        logger.debug( cmd );
+        logger.debug(cmd);
 
-        String outXml = new String( (byte[]) template.requestBody( "direct:test-with-session",
-                                                                   cmd ) );
+        String outXml = new String((byte[])template.requestBody("direct:test-with-session", cmd));
 
-        assertNotNull( outXml );
+        assertNotNull(outXml);
 
         int processInstanceId = 1;
 
@@ -354,10 +299,9 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         cmd += "   </signal-event>";
         cmd += "</batch-execution>\n";
 
-        outXml = new String( (byte[]) template.requestBody( "direct:test-with-session",
-                                                            cmd ) );
+        outXml = new String((byte[])template.requestBody("direct:test-with-session", cmd));
 
-        logger.debug( outXml );
+        logger.debug(outXml);
     }
 
     @Override
@@ -379,7 +323,7 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
     @Override
     protected void configureDroolsContext(javax.naming.Context jndiContext) {
         Person me = new Person();
-        me.setName( "Hadrian" );
+        me.setName("Hadrian");
 
         String rule = "";
         rule += "package org.kie.pipeline.camel \n";
@@ -399,15 +343,14 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         rule += "    System.out.println(\"executed\"); \n";
         rule += "end\n";
 
-        KieSession ksession = registerKnowledgeRuntime( "ksession1",
-                                                        rule );
-        InsertObjectCommand cmd = new InsertObjectCommand( me );
-        cmd.setOutIdentifier( "camel-rider" );
-        cmd.setReturnObject( false );
-        BatchExecutionCommandImpl script = new BatchExecutionCommandImpl( Arrays.asList( new GenericCommand< ? >[]{cmd} ) );
+        KieSession ksession = registerKnowledgeRuntime("ksession1", rule);
+        InsertObjectCommand cmd = new InsertObjectCommand(me);
+        cmd.setOutIdentifier("camel-rider");
+        cmd.setReturnObject(false);
+        BatchExecutionCommandImpl script = new BatchExecutionCommandImpl(Arrays.asList(new GenericCommand<?>[] {cmd}));
 
-        ExecutionResults results = ksession.execute( script );
-        handle = ((FactHandle) results.getFactHandle( "camel-rider" )).toExternalForm();
+        ExecutionResults results = ksession.execute(script);
+        handle = ((FactHandle)results.getFactHandle("camel-rider")).toExternalForm();
     }
 
     @Override
@@ -417,16 +360,14 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         KieResources kieResources = ks.getResources();
 
         Options xjcOpts = new Options();
-        xjcOpts.setSchemaLanguage( Language.XMLSCHEMA );
+        xjcOpts.setSchemaLanguage(Language.XMLSCHEMA);
 
-        JaxbConfiguration jaxbConfiguration = KnowledgeBuilderFactory.newJaxbConfiguration( xjcOpts, "xsd" );
+        JaxbConfiguration jaxbConfiguration = KnowledgeBuilderFactory.newJaxbConfiguration(xjcOpts, "xsd");
 
-        kfs.write(kieResources.newClassPathResource("person.xsd", getClass())
-                              .setResourceType(ResourceType.XSD)
-                              .setConfiguration(jaxbConfiguration));
+        kfs.write(kieResources.newClassPathResource("person.xsd", getClass()).setResourceType(ResourceType.XSD).setConfiguration(jaxbConfiguration));
 
-        if ( rule != null && rule.length() > 0 ) {
-            kfs.write( "src/main/resources/rule.drl", rule );
+        if (rule != null && rule.length() > 0) {
+            kfs.write("src/main/resources/rule.drl", rule);
         }
 
         String process1 = "";
@@ -454,7 +395,7 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         process1 += "    <start id=\"1\" name=\"Start\" />\n";
         process1 += "    <actionNode id=\"2\" name=\"MyActionNode\" >\n";
         process1 += "      <action type=\"expression\" dialect=\"mvel\" >System.out.println(\"Triggered\");\n";
-        //        process1 += "list.add(person.name);\n";
+        // process1 += "list.add(person.name);\n";
         process1 += "</action>\n";
         process1 += "    </actionNode>\n";
         process1 += "    <end id=\"3\" name=\"End\" />\n";
@@ -466,7 +407,7 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         process1 += "  </connections>\n" + "\n";
         process1 += "</process>";
 
-        kfs.write( "src/main/resources/process1.rf", process1 );
+        kfs.write("src/main/resources/process1.rf", process1);
 
         String process2 = "";
         process2 += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
@@ -503,9 +444,9 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         process2 += "\n";
         process2 += "</process>";
 
-        kfs.write( "src/main/resources/process2.rf", process2 );
+        kfs.write("src/main/resources/process2.rf", process2);
 
-        KieBuilder kieBuilder = ks.newKieBuilder( kfs ).buildAll();
+        KieBuilder kieBuilder = ks.newKieBuilder(kfs).buildAll();
 
         List<Message> errors = kieBuilder.getResults().getMessages(Message.Level.ERROR);
         if (!errors.isEmpty()) {
@@ -515,7 +456,7 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         KieSession ksession = ks.newKieContainer(ks.getRepository().getDefaultReleaseId()).newKieSession();
 
         try {
-            jndiContext.bind( identifier, ksession );
+            jndiContext.bind(identifier, ksession);
         } catch (NamingException e) {
             throw new RuntimeException(e);
         }
