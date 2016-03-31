@@ -1,10 +1,11 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:switchyard-quickstart:bpm-service:1.0">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <urn:submitOrderResponse>
-          <orderId>test1</orderId>
-          <accepted>true</accepted>
-          <status>Thanks for your order, it has been shipped!</status>
-      </urn:submitOrderResponse>
-   </soapenv:Body>
-</soapenv:Envelope>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"/>
+  <soap:Body>
+    <submitOrderResponse xmlns:ns2="urn:switchyard-quickstart:bpm-service:1.0">
+      <orderId>test1</orderId>
+      <accepted>true</accepted>
+      <status>Thanks for your order, it has been shipped!</status>
+    </submitOrderResponse>
+  </soap:Body>
+</soap:Envelope>
+
