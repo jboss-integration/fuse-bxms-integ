@@ -179,7 +179,7 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.switchyard.components</groupId>
+            <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>switchyard-component-bpm</artifactId>
             <scope>provided</scope>
         </dependency>
