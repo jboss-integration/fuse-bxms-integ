@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,29 +26,25 @@ import org.switchyard.config.Configuration;
 import org.switchyard.config.model.BaseModel;
 import org.switchyard.config.model.Descriptor;
 
-/**
- * A version 1 OperationModel.
+/** A version 1 OperationModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class V1OperationsModel extends BaseModel implements OperationsModel {
 
     private List<OperationModel> _operations = new ArrayList<OperationModel>();
 
-    /**
-     * Creates a new V1OperationsModel in the specified namespace.
-     * @param namespace the specified namespace
-     */
+    /** Creates a new V1OperationsModel in the specified namespace.
+     * 
+     * @param namespace the specified namespace */
     public V1OperationsModel(String namespace) {
         super(new QName(namespace, OPERATIONS));
         setModelChildrenOrder(OPERATION);
     }
 
-    /**
-     * Creates a new V1OperationsModel with the specified configuration and descriptor.
+    /** Creates a new V1OperationsModel with the specified configuration and descriptor.
+     * 
      * @param config the configuration
-     * @param desc the descriptor
-     */
+     * @param desc the descriptor */
     public V1OperationsModel(Configuration config, Descriptor desc) {
         super(config, desc);
         for (Configuration operation_config : config.getChildren(OPERATION)) {
@@ -61,17 +56,13 @@ public class V1OperationsModel extends BaseModel implements OperationsModel {
         setModelChildrenOrder(OPERATION);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public synchronized List<OperationModel> getOperations() {
         return Collections.unmodifiableList(_operations);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public OperationsModel addOperation(OperationModel operation) {
         addChildModel(operation);

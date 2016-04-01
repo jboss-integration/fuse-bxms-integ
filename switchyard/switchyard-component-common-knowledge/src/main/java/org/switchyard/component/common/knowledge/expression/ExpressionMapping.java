@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,26 +18,24 @@ import org.switchyard.common.property.SystemAndTestPropertyResolver;
 import org.switchyard.component.common.knowledge.config.model.InputModel;
 import org.switchyard.component.common.knowledge.config.model.MappingModel;
 
-/**
- * An expression mapping.
+/** An expression mapping.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class ExpressionMapping {
 
-    protected PropertyResolver _propertyResolver;
-    protected String _from;
-    protected String _to;
-    protected String _output;
-    protected Expression _fromExpression = null;
-    protected Expression _toExpression = null;
+    private PropertyResolver _propertyResolver;
+    private String _from;
+    private String _to;
+    private String _output;
+    private Expression _fromExpression = null;
+    private Expression _toExpression = null;
 
     public ExpressionMapping() {
     }
-    /**
-     * Constructs an expression mapping from a mapping model.
-     * @param mappingModel the mapping model
-     */
+
+    /** Constructs an expression mapping from a mapping model.
+     * 
+     * @param mappingModel the mapping model */
     public ExpressionMapping(MappingModel mappingModel) {
         PropertyResolver propertyResolver = mappingModel.getModelConfiguration().getPropertyResolver();
         _propertyResolver = propertyResolver != null ? propertyResolver : SystemAndTestPropertyResolver.INSTANCE;
@@ -49,26 +46,23 @@ public class ExpressionMapping {
         _output = mappingModel instanceof InputModel ? Strings.trimToNull(((InputModel)mappingModel).getOutput()) : null;
     }
 
-    /**
-     * Gets the property resolver.
-     * @return the property resolver
-     */
+    /** Gets the property resolver.
+     * 
+     * @return the property resolver */
     public PropertyResolver getPropertyResolver() {
         return _propertyResolver;
     }
 
-    /**
-     * Gets the from.
-     * @return the from
-     */
+    /** Gets the from.
+     * 
+     * @return the from */
     public String getFrom() {
         return _from;
     }
 
-    /**
-     * Gets the from expression.
-     * @return the from expression
-     */
+    /** Gets the from expression.
+     * 
+     * @return the from expression */
     public Expression getFromExpression() {
         if (_fromExpression == null && _from != null) {
             _fromExpression = ExpressionFactory.INSTANCE.create(_from, null, _propertyResolver);
@@ -76,18 +70,16 @@ public class ExpressionMapping {
         return _fromExpression;
     }
 
-    /**
-     * Gets the to.
-     * @return the to
-     */
+    /** Gets the to.
+     * 
+     * @return the to */
     public String getTo() {
         return _to;
     }
 
-    /**
-     * Gets the to expression.
-     * @return the to expression
-     */
+    /** Gets the to expression.
+     * 
+     * @return the to expression */
     public Expression getToExpression() {
         if (_toExpression == null && _to != null) {
             _toExpression = ExpressionFactory.INSTANCE.create(_to, null, _propertyResolver);
@@ -95,13 +87,11 @@ public class ExpressionMapping {
         return _toExpression;
     }
 
-    /**
-     * Gets the output.
-     * @return the output
-     */
+    /** Gets the output.
+     * 
+     * @return the output */
     public String getOutput() {
         return _output;
     }
-
 
 }

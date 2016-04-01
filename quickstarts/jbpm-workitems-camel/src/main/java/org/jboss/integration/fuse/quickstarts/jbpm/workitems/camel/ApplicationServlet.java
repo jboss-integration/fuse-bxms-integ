@@ -1,3 +1,16 @@
+/*
+ * Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,  
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jboss.integration.fuse.quickstarts.jbpm.workitems.camel;
 
 import java.io.BufferedReader;
@@ -23,23 +36,39 @@ import org.kie.api.runtime.KieSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+/**
+ * The Class ApplicationServlet.
+ */
 public class ApplicationServlet extends HttpServlet {
 
-    private static final Logger logger = LoggerFactory.getLogger(ApplicationServlet.class);
+    /** The Constant logger. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationServlet.class);
 
+    /** The Constant MORTGAGE_MIN. */
     /* Range for mortgage ammount */
     private static final int MORTGAGE_MIN = 100000;
+    
+    /** The Constant MORTGAGE_MAX. */
     private static final int MORTGAGE_MAX = 1000000;
 
+    /** The Constant INCOME_MIN. */
     /* The range for applicant income */
     private static final int INCOME_MIN = 20000;
+    
+    /** The Constant INCOME_MAX. */
     private static final int INCOME_MAX = 200000;
 
+    /** The kie session. */
     private KieSession kieSession;
 
+    /** The temp dir. */
     private File tempDir;
 
+    /** The Constant ACCEPTED_APPS_FILENAME. */
     private static final String ACCEPTED_APPS_FILENAME = "acceptedApplications.txt";
+    
+    /** The Constant REJECTED_APPS_FILENAME. */
     private static final String REJECTED_APPS_FILENAME = "rejectedApplications.txt";
 
     @Override
@@ -61,7 +90,10 @@ public class ApplicationServlet extends HttpServlet {
 
         Random random = new Random();
 
-        /* Create 10 applications. Each application is evaluated by "camelFileProcess" */
+        /*
+         * Create 10 applications. Each application is evaluated by
+         * "camelFileProcess"
+         */
         for (int i = 1; i <= 10; i++) {
             /* Create application */
             MortgageApplication mortgageApplication = new MortgageApplication();
@@ -78,16 +110,17 @@ public class ApplicationServlet extends HttpServlet {
 
             kieSession.startProcess("camelFileProcess", params); // run process
         }
-        
+
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
-            logger.error("Error Sleeping:", e);
+            LOGGER.error("Error Sleeping:", e);
         }
         PrintWriter out = resp.getWriter();
         out.println("<h1>Accepted Applications</h1>");
         out.println("<ul>");
-        BufferedReader reader = new BufferedReader(new FileReader(new File(tempDir.getAbsolutePath() + File.separatorChar + ACCEPTED_APPS_FILENAME)));
+        BufferedReader reader = new BufferedReader(new FileReader(new File(tempDir.getAbsolutePath() + File.separatorChar
+                + ACCEPTED_APPS_FILENAME)));
         String line;
         while ((line = reader.readLine()) != null) {
             out.println("<li>" + line + "</li>");
@@ -96,7 +129,8 @@ public class ApplicationServlet extends HttpServlet {
         out.println("</ul>");
         out.println("<br>");
         out.println("<h1>Rejected Applications</h1>");
-        reader = new BufferedReader(new FileReader(new File(tempDir.getAbsolutePath() + File.separatorChar + REJECTED_APPS_FILENAME)));
+        reader = new BufferedReader(new FileReader(new File(tempDir.getAbsolutePath() + File.separatorChar
+                + REJECTED_APPS_FILENAME)));
         while ((line = reader.readLine()) != null) {
             out.println("<li>" + line + "</li>");
         }

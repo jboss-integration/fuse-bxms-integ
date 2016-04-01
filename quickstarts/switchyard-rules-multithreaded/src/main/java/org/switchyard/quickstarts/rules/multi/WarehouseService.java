@@ -16,7 +16,6 @@
  */
 package org.switchyard.quickstarts.rules.multi;
 
-
 /**
  * Interface for WarehouseService.
  *
@@ -38,6 +37,5 @@ public interface WarehouseService extends Warehouse {
 
     @Override
     Integer getItemCount();
-
 
 }

@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,29 +26,25 @@ import org.switchyard.config.Configuration;
 import org.switchyard.config.model.BaseModel;
 import org.switchyard.config.model.Descriptor;
 
-/**
- * A version 2 ExtraJaxbClassesModel.
+/** A version 2 ExtraJaxbClassesModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class V2ExtraJaxbClassesModel extends BaseModel implements ExtraJaxbClassesModel {
 
     private List<ExtraJaxbClassModel> _extraJaxbClasses = new ArrayList<ExtraJaxbClassModel>();
 
-    /**
-     * Creates a new ExtraJaxbClassesModel in the specified namespace.
-     * @param namespace the specified namespace
-     */
+    /** Creates a new ExtraJaxbClassesModel in the specified namespace.
+     * 
+     * @param namespace the specified namespace */
     public V2ExtraJaxbClassesModel(String namespace) {
         super(new QName(namespace, EXTRA_JAXB_CLASSES));
         setModelChildrenOrder(EXTRA_JAXB_CLASS);
     }
 
-    /**
-     * Creates a new ExtraJaxbClassesModel with the specified configuration and descriptor.
+    /** Creates a new ExtraJaxbClassesModel with the specified configuration and descriptor.
+     * 
      * @param config the configuration
-     * @param desc the descriptor
-     */
+     * @param desc the descriptor */
     public V2ExtraJaxbClassesModel(Configuration config, Descriptor desc) {
         super(config, desc);
         for (Configuration extraJaxbClass_config : config.getChildren(EXTRA_JAXB_CLASS)) {
@@ -61,17 +56,13 @@ public class V2ExtraJaxbClassesModel extends BaseModel implements ExtraJaxbClass
         setModelChildrenOrder(EXTRA_JAXB_CLASS);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public synchronized List<ExtraJaxbClassModel> getExtraJaxbClasses() {
         return Collections.unmodifiableList(_extraJaxbClasses);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ExtraJaxbClassesModel addExtraJaxbClass(ExtraJaxbClassModel extraJaxbClass) {
         addChildModel(extraJaxbClass);

@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,42 +18,34 @@ import org.switchyard.config.Configuration;
 import org.switchyard.config.model.BaseModel;
 import org.switchyard.config.model.Descriptor;
 
-/**
- * The 2nd version ExtraJaxbClassModel.
+/** The 2nd version ExtraJaxbClassModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class V2ExtraJaxbClassModel extends BaseModel implements ExtraJaxbClassModel {
 
-    /**
-     * Creates a new ExtraJaxbClassModel in the specified namespace.
-     * @param namespace the namespace
-     */
+    /** Creates a new ExtraJaxbClassModel in the specified namespace.
+     * 
+     * @param namespace the namespace */
     public V2ExtraJaxbClassModel(String namespace) {
         super(namespace, EXTRA_JAXB_CLASS);
     }
 
-    /**
-     * Creates a new ExtraJaxbClassModel with the specified configuration and descriptor.
+    /** Creates a new ExtraJaxbClassModel with the specified configuration and descriptor.
+     * 
      * @param config the configuration
-     * @param desc the descriptor
-     */
+     * @param desc the descriptor */
     public V2ExtraJaxbClassModel(Configuration config, Descriptor desc) {
         super(config, desc);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Class<?> getClazz(ClassLoader loader) {
         String c = getModelValue();
         return c != null ? Classes.forName(c, loader) : null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ExtraJaxbClassModel setClazz(Class<?> clazz) {
         String c = clazz != null ? clazz.getName() : null;

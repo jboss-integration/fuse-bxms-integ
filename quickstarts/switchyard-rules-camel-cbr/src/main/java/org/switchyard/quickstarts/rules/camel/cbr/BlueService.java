@@ -16,11 +16,21 @@
  */
 package org.switchyard.quickstarts.rules.camel.cbr;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Interface BlueService.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 public interface BlueService {
 
+    /**
+     * Handle blue.
+     *
+     * @param box the box
+     */
     public void handleBlue(Box box);
 
 }

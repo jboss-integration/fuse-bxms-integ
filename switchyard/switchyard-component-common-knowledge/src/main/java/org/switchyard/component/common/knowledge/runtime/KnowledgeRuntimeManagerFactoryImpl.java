@@ -16,7 +16,7 @@ public class KnowledgeRuntimeManagerFactoryImpl extends RuntimeManagerFactoryImp
 
         RuntimeManager manager = new KnowledgePerRequestRuntimeManager(environment, factory, taskServiceFactory, identifier);
         initTimerService(environment, manager);
-        ((AbstractRuntimeManager) manager).init();
+        ((AbstractRuntimeManager)manager).init();
         return manager;
     }
 }

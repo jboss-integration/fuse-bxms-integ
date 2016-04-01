@@ -1,12 +1,11 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -54,11 +53,9 @@ import org.switchyard.config.model.switchyard.v1.V1SwitchYardModel;
 import org.switchyard.extensions.java.JavaService;
 import org.switchyard.metadata.ServiceOperation;
 
-/**
- * RulesSwitchYardScanner.
+/** RulesSwitchYardScanner.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class RulesSwitchYardScanner extends KnowledgeSwitchYardScanner {
 
     private static final IsAnnotationPresentFilter EXECUTE_FILTER = new IsAnnotationPresentFilter(Execute.class);
@@ -68,9 +65,7 @@ public class RulesSwitchYardScanner extends KnowledgeSwitchYardScanner {
 
     private final IsAnnotationPresentFilter _rulesFilter = new IsAnnotationPresentFilter(Rules.class);
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ScannerOutput<SwitchYardModel> scan(ScannerInput<SwitchYardModel> input) throws IOException {
         SwitchYardNamespace switchyardNamespace = input.getSwitchyardNamespace();
@@ -91,23 +86,21 @@ public class RulesSwitchYardScanner extends KnowledgeSwitchYardScanner {
         return new ScannerOutput<SwitchYardModel>().setModel(switchyardModel);
     }
 
-    /**
-     * Scans a class using the default switchyard namespace.
+    /** Scans a class using the default switchyard namespace.
+     * 
      * @param rulesClass the class
      * @return the component model
-     * @throws IOException oops
-     */
+     * @throws IOException oops */
     public ComponentModel scan(Class<?> rulesClass) throws IOException {
         return scan(rulesClass, null);
     }
 
-    /**
-     * Scans a class using the specified switchyard namespace.
+    /** Scans a class using the specified switchyard namespace.
+     * 
      * @param rulesClass the class
      * @param switchyardNamespace the switchyard namespace
      * @return the component model
-     * @throws IOException oops
-     */
+     * @throws IOException oops */
     public ComponentModel scan(Class<?> rulesClass, SwitchYardNamespace switchyardNamespace) throws IOException {
         if (switchyardNamespace == null) {
             switchyardNamespace = SwitchYardNamespace.DEFAULT;

@@ -1,3 +1,15 @@
+/*
+ * Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jbpm.process.workitem.camel;
 
 import bitronix.tm.resource.jdbc.PoolingDataSource;
@@ -29,9 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * SQL endpoint test.
- * */
+/** SQL endpoint test. */
 public class CamelSqlTest extends AbstractBaseTest {
 
     private static final String DB_USER = "sa";
@@ -43,13 +53,11 @@ public class CamelSqlTest extends AbstractBaseTest {
     private static Server h2Server;
     private static CamelHandler handler;
 
-    /**
-     * Prepares Db and data source, which must be added to Camel registry.
-     * */
+    /** Prepares Db and data source, which must be added to Camel registry. */
     @BeforeClass
     public static void setup() throws Exception {
         DeleteDbFiles.execute("~", "jbpm-db-test", true);
-        
+
         h2Server = Server.createTcpServer(new String[0]);
         h2Server.start();
 
@@ -60,13 +68,10 @@ public class CamelSqlTest extends AbstractBaseTest {
         SimpleRegistry simpleRegistry = new SimpleRegistry();
         simpleRegistry.put("myDs", ds);
 
-        handler = new CamelHandler(new SQLURIMapper(), new RequestPayloadMapper("payload"),
-                new ResponsePayloadMapper("queryResult"), new DefaultCamelContext(simpleRegistry));
+        handler = new CamelHandler(new SQLURIMapper(), new RequestPayloadMapper("payload"), new ResponsePayloadMapper("queryResult"), new DefaultCamelContext(simpleRegistry));
     }
 
-    /**
-     * Prepares test table containing a single data row.
-     * */
+    /** Prepares test table containing a single data row. */
     private static void setupDb() throws SQLException, URISyntaxException {
         File script = new File(CamelSqlTest.class.getResource("/init-db.sql").toURI());
         RunScript.execute(DB_URL, DB_USER, DB_PASSWD, script.getAbsolutePath(), "utf-8", false);
@@ -100,16 +105,15 @@ public class CamelSqlTest extends AbstractBaseTest {
         params.put("Query", sqlQuery);
         params.put("DataSource", "myDs");
 
-        WorkflowProcessInstance wpi =  (WorkflowProcessInstance)kieSession.startProcess("camelSqlProcess", params);
-        List<Map<String, Object>> result = (List<Map<String, Object>>) wpi.getVariable("QueryResult");
+        WorkflowProcessInstance wpi = (WorkflowProcessInstance)kieSession.startProcess("camelSqlProcess", params);
+        List<Map<String, Object>> result = (List<Map<String, Object>>)wpi.getVariable("QueryResult");
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
         int id = (Integer)result.get(0).get("ID");
-        String name = (String) result.get(0).get("NAME");
+        String name = (String)result.get(0).get("NAME");
         Assert.assertEquals(1, id);
         Assert.assertEquals("test", name);
     }
-
 
     @AfterClass
     public static void tearDown() {

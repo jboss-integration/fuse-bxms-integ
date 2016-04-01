@@ -5,7 +5,6 @@
 // Generated on: 2014.09.04 at 12:38:20 PM EDT 
 //
 
-
 package org.switchyard.quickstarts.demos.library.types;
 
 import java.io.Serializable;
@@ -18,9 +17,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -38,22 +40,19 @@ import javax.xml.bind.annotation.XmlType;
  */
 @SuppressWarnings("serial")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "suggestionRequest", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = {
-    "keyword"
-})
+@XmlType(name = "suggestionRequest", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = { "keyword" })
 @XmlRootElement(name = "suggestionRequest", namespace = "urn:switchyard-quickstart-demo:library:1.0")
 public class SuggestionRequest implements Serializable {
 
+    /** The keyword. */
     @XmlElement(required = true)
-    protected String keyword;
+    private String keyword;
 
     /**
      * Gets the value of the keyword property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getKeyword() {
         return keyword;
@@ -62,10 +61,8 @@ public class SuggestionRequest implements Serializable {
     /**
      * Sets the value of the keyword property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setKeyword(String value) {
         this.keyword = value;

@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,41 +41,40 @@ import org.drools.core.runtime.help.impl.XStreamXML.StartProcessConvert;
 public class XStreamXml {
 
     public static XStreamDataFormat newXStreamMarshaller(XStreamDataFormat xstreamDataFormat) {
-        XStreamHelper.setAliases( xstreamDataFormat );
+        XStreamHelper.setAliases(xstreamDataFormat);
 
-        //xstream.processAnnotations( BatchExecutionCommand.class );
+        // xstream.processAnnotations( BatchExecutionCommand.class );
 
         Map<String, String[]> map = xstreamDataFormat.getImplicitCollections();
-        if ( map == null ) {
+        if (map == null) {
             map = new HashMap<String, String[]>();
         }
-        map.put( BatchExecutionCommandImpl.class.getName(),
-                 new String[]{"commands"} );
-        xstreamDataFormat.setImplicitCollections( map );
+        map.put(BatchExecutionCommandImpl.class.getName(), new String[] {"commands"});
+        xstreamDataFormat.setImplicitCollections(map);
 
         List<String> converters = xstreamDataFormat.getConverters();
-        if ( converters == null ) {
+        if (converters == null) {
             converters = new ArrayList<String>();
         }
 
-        converters.add( InsertConverter.class.getName() );
-        converters.add( DeleteConverter.class.getName() );
-        converters.add( ModifyConverter.class.getName() );
-        converters.add( GetObjectConverter.class.getName() );
-        converters.add( InsertElementsConverter.class.getName() );
-        converters.add( FireAllRulesConverter.class.getName() );
-        converters.add( StartProcessConvert.class.getName() );
-        converters.add( SignalEventConverter.class.getName() );
-        converters.add( CompleteWorkItemConverter.class.getName() );
-        converters.add( AbortWorkItemConverter.class.getName() );
-        converters.add( QueryConverter.class.getName() );
-        converters.add( SetGlobalConverter.class.getName() );
-        converters.add( GetGlobalConverter.class.getName() );
-        converters.add( GetObjectsConverter.class.getName() );
-        converters.add( BatchExecutionResultConverter.class.getName() );
-        converters.add( QueryResultsConverter.class.getName() );
-        converters.add( FactHandleConverter.class.getName() );
-        xstreamDataFormat.setConverters( converters );
+        converters.add(InsertConverter.class.getName());
+        converters.add(DeleteConverter.class.getName());
+        converters.add(ModifyConverter.class.getName());
+        converters.add(GetObjectConverter.class.getName());
+        converters.add(InsertElementsConverter.class.getName());
+        converters.add(FireAllRulesConverter.class.getName());
+        converters.add(StartProcessConvert.class.getName());
+        converters.add(SignalEventConverter.class.getName());
+        converters.add(CompleteWorkItemConverter.class.getName());
+        converters.add(AbortWorkItemConverter.class.getName());
+        converters.add(QueryConverter.class.getName());
+        converters.add(SetGlobalConverter.class.getName());
+        converters.add(GetGlobalConverter.class.getName());
+        converters.add(GetObjectsConverter.class.getName());
+        converters.add(BatchExecutionResultConverter.class.getName());
+        converters.add(QueryResultsConverter.class.getName());
+        converters.add(FactHandleConverter.class.getName());
+        xstreamDataFormat.setConverters(converters);
 
         return xstreamDataFormat;
     }

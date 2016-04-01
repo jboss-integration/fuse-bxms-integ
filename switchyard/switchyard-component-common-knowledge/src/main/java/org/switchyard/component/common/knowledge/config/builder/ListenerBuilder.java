@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,27 +26,20 @@ import org.switchyard.component.common.knowledge.config.model.KnowledgeComponent
 import org.switchyard.component.common.knowledge.config.model.ListenerModel;
 import org.switchyard.component.common.knowledge.config.model.ListenersModel;
 
-/**
- * ListenerBuilder.
+/** ListenerBuilder.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class ListenerBuilder extends KnowledgeBuilder {
 
-    private static final Class<?>[][] PARMAMETER_TYPES = new Class<?>[][]{
-        new Class<?>[]{KieRuntimeEventManager.class},
-        new Class<?>[]{KieRuntime.class},
-        new Class<?>[0]
-    };
+    private static final Class<?>[][] PARMAMETER_TYPES = new Class<?>[][] {new Class<?>[] {KieRuntimeEventManager.class}, new Class<?>[] {KieRuntime.class}, new Class<?>[0]};
 
     private Class<? extends EventListener> _listenerClass;
     private boolean _automaticRegistration;
 
-    /**
-     * Creates a new ListenerBuilder.
+    /** Creates a new ListenerBuilder.
+     * 
      * @param classLoader classLoader
-     * @param listenerModel listenerModel
-     */
+     * @param listenerModel listenerModel */
     @SuppressWarnings("unchecked")
     public ListenerBuilder(ClassLoader classLoader, ListenerModel listenerModel) {
         super(classLoader);
@@ -59,23 +51,21 @@ public class ListenerBuilder extends KnowledgeBuilder {
         }
     }
 
-    /**
-     * If automatic registration was performed.
-     * <br/><br/>
+    /** If automatic registration was performed. <br/>
+     * <br/>
      * <i><b>Note:</b> This method only returns a reliable result after {@link #build()} has been called.</i>
-     * @return if automatic registration has been performed
-     */
+     * 
+     * @return if automatic registration has been performed */
     public boolean wasAutomaticRegistration() {
         return _automaticRegistration;
     }
 
-    /**
-     * Builds an EventListener.
+    /** Builds an EventListener.
+     * 
      * @param runtimeEventManager runtimeEventManager
-     * @return an EventListener
-     */
+     * @return an EventListener */
     public EventListener build(KieRuntimeEventManager runtimeEventManager) {
-       return construct(runtimeEventManager);
+        return construct(runtimeEventManager);
     }
 
     private EventListener construct(KieRuntimeEventManager runtimeEventManager) {
@@ -101,7 +91,7 @@ public class ListenerBuilder extends KnowledgeBuilder {
                     _automaticRegistration = false;
                 } else if (parameterTypes.length == 1) {
                     // automatic registration
-                    listener = Construction.construct(_listenerClass, parameterTypes, new Object[]{runtimeEventManager});
+                    listener = Construction.construct(_listenerClass, parameterTypes, new Object[] {runtimeEventManager});
                     if (listener == null) {
                         CommonKnowledgeLogger.ROOT_LOGGER.attemptToRegisterListenerReturnedNull();
                     }
@@ -114,12 +104,11 @@ public class ListenerBuilder extends KnowledgeBuilder {
         return listener;
     }
 
-    /**
-     * Creates ListenerBuilders. 
+    /** Creates ListenerBuilders.
+     * 
      * @param classLoader classLoader
      * @param implementationModel implementationModel
-     * @return ListenerBuilders
-     */
+     * @return ListenerBuilders */
     public static List<ListenerBuilder> builders(ClassLoader classLoader, KnowledgeComponentImplementationModel implementationModel) {
         List<ListenerBuilder> builders = new ArrayList<ListenerBuilder>();
         if (implementationModel != null) {

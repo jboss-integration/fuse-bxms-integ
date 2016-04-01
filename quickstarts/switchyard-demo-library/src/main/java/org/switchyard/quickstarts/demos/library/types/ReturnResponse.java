@@ -5,7 +5,6 @@
 // Generated on: 2014.09.04 at 12:38:20 PM EDT 
 //
 
-
 package org.switchyard.quickstarts.demos.library.types;
 
 import java.io.Serializable;
@@ -17,9 +16,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -37,17 +39,17 @@ import javax.xml.bind.annotation.XmlType;
  */
 @SuppressWarnings("serial")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "returnResponse", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = {
-    "acknowledged"
-})
+@XmlType(name = "returnResponse", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = { "acknowledged" })
 @XmlRootElement(name = "returnResponse", namespace = "urn:switchyard-quickstart-demo:library:1.0")
 public class ReturnResponse implements Serializable {
 
-    protected boolean acknowledged;
+    /** The acknowledged. */
+    private boolean acknowledged;
 
     /**
      * Gets the value of the acknowledged property.
-     * 
+     *
+     * @return true, if is acknowledged
      */
     public boolean isAcknowledged() {
         return acknowledged;
@@ -55,7 +57,8 @@ public class ReturnResponse implements Serializable {
 
     /**
      * Sets the value of the acknowledged property.
-     * 
+     *
+     * @param value the new acknowledged
      */
     public void setAcknowledged(boolean value) {
         this.acknowledged = value;

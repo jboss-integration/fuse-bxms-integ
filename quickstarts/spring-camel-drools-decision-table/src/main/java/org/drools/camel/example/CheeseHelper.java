@@ -18,10 +18,20 @@ package org.drools.camel.example;
 
 import java.util.Random;
 
+
+/**
+ * The Class CheeseHelper.
+ */
 public class CheeseHelper {
 
+    /** The random. */
     private final Random random = new Random();
 
+    /**
+     * Creates the test cheese.
+     *
+     * @return the cheese
+     */
     public Cheese createTestCheese() {
         Cheese cheese = new Cheese();
         if (random.nextBoolean()) {

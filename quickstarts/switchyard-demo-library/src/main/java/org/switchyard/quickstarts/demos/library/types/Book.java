@@ -5,7 +5,6 @@
 // Generated on: 2014.09.04 at 12:38:20 PM EDT 
 //
 
-
 package org.switchyard.quickstarts.demos.library.types;
 
 import java.io.Serializable;
@@ -16,9 +15,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for book complex type.
+ * <p>
+ * Java class for book complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="book">
@@ -38,24 +40,23 @@ import javax.xml.bind.annotation.XmlType;
  */
 @SuppressWarnings("serial")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "book", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = {
-    "isbn",
-    "title",
-    "synopsis"
-})
+@XmlType(name = "book", namespace = "urn:switchyard-quickstart-demo:library:1.0", propOrder = { "isbn", "title", "synopsis" })
 public class Book implements Serializable {
 
-    protected String isbn;
-    protected String title;
-    protected String synopsis;
+    /** The isbn. */
+    private String isbn;
+
+    /** The title. */
+    private String title;
+
+    /** The synopsis. */
+    private String synopsis;
 
     /**
      * Gets the value of the isbn property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getIsbn() {
         return isbn;
@@ -64,10 +65,8 @@ public class Book implements Serializable {
     /**
      * Sets the value of the isbn property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setIsbn(String value) {
         this.isbn = value;
@@ -76,10 +75,8 @@ public class Book implements Serializable {
     /**
      * Gets the value of the title property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getTitle() {
         return title;
@@ -88,10 +85,8 @@ public class Book implements Serializable {
     /**
      * Sets the value of the title property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setTitle(String value) {
         this.title = value;
@@ -100,10 +95,8 @@ public class Book implements Serializable {
     /**
      * Gets the value of the synopsis property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getSynopsis() {
         return synopsis;
@@ -112,10 +105,8 @@ public class Book implements Serializable {
     /**
      * Sets the value of the synopsis property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value allowed object is {@link String }
+     * 
      */
     public void setSynopsis(String value) {
         this.synopsis = value;

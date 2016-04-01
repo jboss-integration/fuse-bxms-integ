@@ -27,11 +27,22 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Class Transformers.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 public class Transformers {
 
+    /**
+     * Transform.
+     *
+     * @param from the from
+     * @return the ticket
+     */
     @Transformer(from = "{urn:switchyard-quickstart-demo:helpdesk:1.0}openTicket")
     public Ticket transform(Element from) {
         Ticket ticket = new Ticket();
@@ -39,18 +50,28 @@ public class Transformers {
         return ticket;
     }
 
+    /**
+     * Transform to element.
+     *
+     * @param ticketAck the ticket ack
+     * @return the element
+     */
     @Transformer(to = "{urn:switchyard-quickstart-demo:helpdesk:1.0}openTicketResponse")
     public Element transformToElement(TicketAck ticketAck) {
         StringBuilder ackXml = new StringBuilder()
-            .append("<helpdesk:openTicketResponse xmlns:helpdesk=\"urn:switchyard-quickstart-demo:helpdesk:1.0\">")
-            .append("<ticketAck>")
-            .append("<id>" + ticketAck.getId() + "</id>")
-            .append("<received>" + ticketAck.isReceived() + "</received>")
-            .append("</ticketAck>")
-            .append("</helpdesk:openTicketResponse>");
+                .append("<helpdesk:openTicketResponse xmlns:helpdesk=\"urn:switchyard-quickstart-demo:helpdesk:1.0\">")
+                .append("<ticketAck>").append("<id>" + ticketAck.getId() + "</id>")
+                .append("<received>" + ticketAck.isReceived() + "</received>").append("</ticketAck>")
+                .append("</helpdesk:openTicketResponse>");
         return toElement(ackXml.toString());
     }
 
+    /**
+     * Transform to ticket.
+     *
+     * @param ticketAck the ticket ack
+     * @return the ticket
+     */
     @Transformer
     public Ticket transformToTicket(TicketAck ticketAck) {
         Ticket ticket = new Ticket();
@@ -58,6 +79,13 @@ public class Transformers {
         return ticket;
     }
 
+    /**
+     * Gets the element value.
+     *
+     * @param parent the parent
+     * @param elementName the element name
+     * @return the element value
+     */
     private String getElementValue(Element parent, String elementName) {
         String value = null;
         NodeList nodes = parent.getElementsByTagName(elementName);
@@ -67,6 +95,12 @@ public class Transformers {
         return value;
     }
 
+    /**
+     * To element.
+     *
+     * @param xml the xml
+     * @return the element
+     */
     private Element toElement(String xml) {
         DOMResult dom = new DOMResult();
         try {

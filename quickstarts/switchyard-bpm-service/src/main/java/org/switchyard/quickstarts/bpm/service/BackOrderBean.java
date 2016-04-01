@@ -20,11 +20,15 @@ import org.switchyard.component.bean.Service;
 import org.switchyard.quickstarts.bpm.service.data.Order;
 import org.switchyard.quickstarts.bpm.service.data.OrderAck;
 
+
+/**
+ * The Class BackOrderBean.
+ */
 @Service(BackOrder.class)
 public class BackOrderBean implements org.switchyard.quickstarts.bpm.service.BackOrder {
 
-    public static final String HOLD_STATUS =
-        "Insufficient quantity on hand - order has been placed on hold.";
+    /** The Constant HOLD_STATUS. */
+    public static final String HOLD_STATUS = "Insufficient quantity on hand - order has been placed on hold.";
 
     @Override
     public OrderAck hold(Order order) {

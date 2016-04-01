@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,42 +18,34 @@ import org.switchyard.config.Configuration;
 import org.switchyard.config.model.BaseNamedModel;
 import org.switchyard.config.model.Descriptor;
 
-/**
- * The 1st version ChannelModel.
+/** The 1st version ChannelModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class V1LoggerModel extends BaseNamedModel implements LoggerModel {
 
-    /**
-     * Creates a new MappingModel in the specified namespace.
-     * @param namespace the namespace
-     */
+    /** Creates a new MappingModel in the specified namespace.
+     * 
+     * @param namespace the namespace */
     public V1LoggerModel(String namespace) {
         super(namespace, LOGGER);
     }
 
-    /**
-     * Creates a new MappingModel with the specified configuration and descriptor.
+    /** Creates a new MappingModel with the specified configuration and descriptor.
+     * 
      * @param config the configuration
-     * @param desc the descriptor
-     */
+     * @param desc the descriptor */
     public V1LoggerModel(Configuration config, Descriptor desc) {
         super(config, desc);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Integer getInterval() {
         String i = getModelAttribute("interval");
         return i != null ? Integer.valueOf(i) : null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public LoggerModel setInterval(Integer interval) {
         String i = interval != null ? interval.toString() : null;
@@ -62,35 +53,27 @@ public class V1LoggerModel extends BaseNamedModel implements LoggerModel {
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getLog() {
         return getModelAttribute("log");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public LoggerModel setLog(String log) {
         setModelAttribute("log", log);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public LoggerType getType() {
         String t = getModelAttribute("type");
         return t != null ? LoggerType.valueOf(t) : null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public LoggerModel setType(LoggerType type) {
         String t = type != null ? type.name() : null;

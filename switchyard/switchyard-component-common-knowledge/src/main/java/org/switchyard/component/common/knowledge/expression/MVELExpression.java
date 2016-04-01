@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,39 +25,32 @@ import org.mvel2.integration.impl.MapVariableResolverFactory;
 import org.mvel2.integration.impl.SimpleValueResolver;
 import org.switchyard.common.property.PropertyResolver;
 
-/**
- * MVELExpression.
+/** MVELExpression.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class MVELExpression implements Expression {
 
     private final String _expression;
     private final PropertyResolverFactory _propertyResolverFactory;
     private Serializable _compiled;
 
-    /**
-     * Creates a new MVELExpression with the specified expression and {@link PropertyResolver}.
+    /** Creates a new MVELExpression with the specified expression and {@link PropertyResolver}.
+     * 
      * @param expression the specified expression
-     * @param propertyResolver the specified {@link PropertyResolver}
-     */
+     * @param propertyResolver the specified {@link PropertyResolver} */
     public MVELExpression(String expression, PropertyResolver propertyResolver) {
         _expression = expression;
         _propertyResolverFactory = new PropertyResolverFactory(propertyResolver);
         compile();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getExpression() {
         return _expression;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ExpressionType getType() {
         return ExpressionType.MVEL;
@@ -71,25 +63,19 @@ public class MVELExpression implements Expression {
         _compiled = MVEL.compileExpression(_expression, pc);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isCompiled() {
         return _compiled != null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Object run() {
         return run(null);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Object run(Map<String, Object> variables) {
         if (variables == null) {
@@ -108,17 +94,13 @@ public class MVELExpression implements Expression {
             _propertyResolver = propertyResolver;
         }
 
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         @Override
         public boolean isResolveable(String name) {
             return name != null && _propertyResolver.resolveProperty(name) != null;
         }
 
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         @Override
         public VariableResolver getVariableResolver(String name) {
             Object value = name != null ? _propertyResolver.resolveProperty(name) : null;

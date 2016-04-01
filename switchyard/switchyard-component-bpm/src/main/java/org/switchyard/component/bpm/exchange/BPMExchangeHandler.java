@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -51,11 +50,9 @@ import org.switchyard.component.common.knowledge.runtime.KnowledgeRuntimeManager
 import org.switchyard.component.common.knowledge.runtime.KnowledgeRuntimeManagerRegistry;
 import org.switchyard.component.common.knowledge.transaction.TransactionHelper;
 
-/**
- * A "bpm" implementation of a KnowledgeExchangeHandler.
+/** A "bpm" implementation of a KnowledgeExchangeHandler.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class BPMExchangeHandler extends KnowledgeExchangeHandler {
 
     private static final KnowledgeOperation DEFAULT_OPERATION = new KnowledgeOperation(BPMOperationType.START_PROCESS);
@@ -65,12 +62,11 @@ public class BPMExchangeHandler extends KnowledgeExchangeHandler {
     private final CorrelationKeyFactory _correlationKeyFactory;
     private KnowledgeRuntimeManager _runtimeManager;
 
-    /**
-     * Constructs a new BPMExchangeHandler with the specified model, service domain, and service name.
+    /** Constructs a new BPMExchangeHandler with the specified model, service domain, and service name.
+     * 
      * @param model the specified model
      * @param serviceDomain the specified service domain
-     * @param serviceName the specified service name
-     */
+     * @param serviceName the specified service name */
     public BPMExchangeHandler(BPMComponentImplementationModel model, ServiceDomain serviceDomain, QName serviceName) {
         super(model, serviceDomain, serviceName);
         _persistent = model.isPersistent();
@@ -78,22 +74,18 @@ public class BPMExchangeHandler extends KnowledgeExchangeHandler {
         _correlationKeyFactory = KieInternalServices.Factory.get().newCorrelationKeyFactory();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected void doStart() {
         super.doStart();
         _runtimeManager = newSingletonRuntimeManager();
         // TODO: SWITCHYARD-1584
-        //_runtimeManager = newPerProcessInstanceRuntimeManager();
-        //_runtimeManager = _persistent ? newPerProcessInstanceRuntimeManager() : newSingletonRuntimeManager();
+        // _runtimeManager = newPerProcessInstanceRuntimeManager();
+        // _runtimeManager = _persistent ? newPerProcessInstanceRuntimeManager() : newSingletonRuntimeManager();
         KnowledgeRuntimeManagerRegistry.putRuntimeManager(getServiceDomain().getName(), getServiceName(), _runtimeManager);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected void doStop() {
         KnowledgeRuntimeManagerRegistry.removeRuntimeManager(getServiceDomain().getName(), getServiceName());
@@ -105,20 +97,16 @@ public class BPMExchangeHandler extends KnowledgeExchangeHandler {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public KnowledgeOperation getDefaultOperation() {
         return DEFAULT_OPERATION;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void handleOperation(Exchange exchange, KnowledgeOperation operation) throws HandlerException {
-        //Long sessionIdentifier = null;
+        // Long sessionIdentifier = null;
         Long processInstanceId = null;
         Message inputMessage = exchange.getMessage();
         ExchangePattern exchangePattern = exchange.getContract().getProviderOperation().getExchangePattern();
@@ -126,115 +114,115 @@ public class BPMExchangeHandler extends KnowledgeExchangeHandler {
         TransactionHelper txh = new TransactionHelper(_persistent);
         BPMOperationType operationType = (BPMOperationType)operation.getType();
         switch (operationType) {
-            case START_PROCESS: {
-                try {
-                    txh.begin();
-                    KnowledgeRuntimeEngine runtime = getRuntimeEngine();
-                    //sessionIdentifier = runtime.getSessionIdentifier();
-                    setGlobals(inputMessage, operation, runtime, true);
-                    Map<String, Object> inputMap = getInputMap(inputMessage, operation, runtime);
-                    ProcessInstance processInstance;
-                    CorrelationKey correlationKey = getCorrelationKey(exchange, inputMessage);
-                    if (correlationKey != null) {
-                        processInstance = ((CorrelationAwareProcessRuntime)runtime.getKieSession()).startProcess(_processId, correlationKey, inputMap);
-                    } else {
-                        processInstance = runtime.getKieSession().startProcess(_processId, inputMap);
-                    }
-                    processInstanceId = Long.valueOf(processInstance.getId());
-                    if (ExchangePattern.IN_OUT.equals(exchangePattern)) {
-                        expressionVariables.putAll(getGlobalVariables(runtime));
-                        expressionVariables.putAll(getProcessInstanceVariables(processInstance));
-                    }
-                    if (!_persistent) {
-                        _runtimeManager.disposeRuntimeEngine(runtime);
-                    }
-                    txh.commit();
-                } catch (RuntimeException re) {
-                    txh.rollback();
-                    throw re;
+        case START_PROCESS: {
+            try {
+                txh.begin();
+                KnowledgeRuntimeEngine runtime = getRuntimeEngine();
+                // sessionIdentifier = runtime.getSessionIdentifier();
+                setGlobals(inputMessage, operation, runtime, true);
+                Map<String, Object> inputMap = getInputMap(inputMessage, operation, runtime);
+                ProcessInstance processInstance;
+                CorrelationKey correlationKey = getCorrelationKey(exchange, inputMessage);
+                if (correlationKey != null) {
+                    processInstance = ((CorrelationAwareProcessRuntime)runtime.getKieSession()).startProcess(_processId, correlationKey, inputMap);
+                } else {
+                    processInstance = runtime.getKieSession().startProcess(_processId, inputMap);
                 }
-                break;
-            }
-            case SIGNAL_EVENT:
-            case SIGNAL_EVENT_ALL: {
-                try {
-                    txh.begin();
-                    KnowledgeRuntimeEngine runtime;
-                    if (BPMOperationType.SIGNAL_EVENT.equals(operationType)) {
-                        runtime = getRuntimeEngine(exchange, inputMessage);
-                    } else { //BPMOperationType.SIGNAL_EVENT_ALL
-                        runtime = getRuntimeEngine();
-                    }
-                    //sessionIdentifier = runtime.getSessionIdentifier();
-                    setGlobals(inputMessage, operation, runtime, true);
-                    Object eventObject = getInput(inputMessage, operation, runtime);
-                    String eventId = operation.getEventId();
-                    if (BPMOperationType.SIGNAL_EVENT.equals(operationType)) {
-                        processInstanceId = getProcessInstanceId(exchange, inputMessage, runtime);
-                        if (processInstanceId == null) {
-                            throw BPMMessages.MESSAGES.cannotSignalEventUnknownProcessInstanceIdOrUnknownunmatchedCorrelationKey();
-                        }
-                        if (ExchangePattern.IN_OUT.equals(exchangePattern)) {
-                            ProcessInstance processInstance = runtime.getKieSession().getProcessInstance(processInstanceId);
-                            processInstance.signalEvent(eventId, eventObject);
-                            expressionVariables.putAll(getGlobalVariables(runtime));
-                            expressionVariables.putAll(getProcessInstanceVariables(processInstance));
-                        } else {
-                            runtime.getKieSession().signalEvent(eventId, eventObject, processInstanceId);
-                        }
-                    } else { //BPMOperationType.SIGNAL_EVENT_ALL
-                        runtime.getKieSession().signalEvent(eventId, eventObject);
-                        if (ExchangePattern.IN_OUT.equals(exchangePattern)) {
-                            expressionVariables.putAll(getGlobalVariables(runtime));
-                        }
-                    }
-                    if (!_persistent) {
-                        _runtimeManager.disposeRuntimeEngine(runtime);
-                    }
-                    txh.commit();
-                } catch (RuntimeException re) {
-                    txh.rollback();
-                    throw re;
+                processInstanceId = Long.valueOf(processInstance.getId());
+                if (ExchangePattern.IN_OUT.equals(exchangePattern)) {
+                    expressionVariables.putAll(getGlobalVariables(runtime));
+                    expressionVariables.putAll(getProcessInstanceVariables(processInstance));
                 }
-                break;
+                if (!_persistent) {
+                    _runtimeManager.disposeRuntimeEngine(runtime);
+                }
+                txh.commit();
+            } catch (RuntimeException re) {
+                txh.rollback();
+                throw re;
             }
-            case ABORT_PROCESS_INSTANCE: {
-                try {
-                    txh.begin();
-                    KnowledgeRuntimeEngine runtime = getRuntimeEngine(exchange, inputMessage);
-                    //sessionIdentifier = runtime.getSessionIdentifier();
+            break;
+        }
+        case SIGNAL_EVENT:
+        case SIGNAL_EVENT_ALL: {
+            try {
+                txh.begin();
+                KnowledgeRuntimeEngine runtime;
+                if (BPMOperationType.SIGNAL_EVENT.equals(operationType)) {
+                    runtime = getRuntimeEngine(exchange, inputMessage);
+                } else { // BPMOperationType.SIGNAL_EVENT_ALL
+                    runtime = getRuntimeEngine();
+                }
+                // sessionIdentifier = runtime.getSessionIdentifier();
+                setGlobals(inputMessage, operation, runtime, true);
+                Object eventObject = getInput(inputMessage, operation, runtime);
+                String eventId = operation.getEventId();
+                if (BPMOperationType.SIGNAL_EVENT.equals(operationType)) {
                     processInstanceId = getProcessInstanceId(exchange, inputMessage, runtime);
                     if (processInstanceId == null) {
-                        throw BPMMessages.MESSAGES.cannotAbortProcessInstance();
+                        throw BPMMessages.MESSAGES.cannotSignalEventUnknownProcessInstanceIdOrUnknownunmatchedCorrelationKey();
                     }
                     if (ExchangePattern.IN_OUT.equals(exchangePattern)) {
-                        expressionVariables.putAll(getGlobalVariables(runtime));
                         ProcessInstance processInstance = runtime.getKieSession().getProcessInstance(processInstanceId);
+                        processInstance.signalEvent(eventId, eventObject);
+                        expressionVariables.putAll(getGlobalVariables(runtime));
                         expressionVariables.putAll(getProcessInstanceVariables(processInstance));
+                    } else {
+                        runtime.getKieSession().signalEvent(eventId, eventObject, processInstanceId);
                     }
-                    runtime.getKieSession().abortProcessInstance(processInstanceId);
-                    if (!_persistent) {
-                        _runtimeManager.disposeRuntimeEngine(runtime);
+                } else { // BPMOperationType.SIGNAL_EVENT_ALL
+                    runtime.getKieSession().signalEvent(eventId, eventObject);
+                    if (ExchangePattern.IN_OUT.equals(exchangePattern)) {
+                        expressionVariables.putAll(getGlobalVariables(runtime));
                     }
-                    txh.commit();
-                } catch (RuntimeException re) {
-                    txh.rollback();
-                    throw re;
                 }
-                break;
+                if (!_persistent) {
+                    _runtimeManager.disposeRuntimeEngine(runtime);
+                }
+                txh.commit();
+            } catch (RuntimeException re) {
+                txh.rollback();
+                throw re;
             }
-            default: {
-                throw BPMMessages.MESSAGES.unsupportedOperationType(operationType);
+            break;
+        }
+        case ABORT_PROCESS_INSTANCE: {
+            try {
+                txh.begin();
+                KnowledgeRuntimeEngine runtime = getRuntimeEngine(exchange, inputMessage);
+                // sessionIdentifier = runtime.getSessionIdentifier();
+                processInstanceId = getProcessInstanceId(exchange, inputMessage, runtime);
+                if (processInstanceId == null) {
+                    throw BPMMessages.MESSAGES.cannotAbortProcessInstance();
+                }
+                if (ExchangePattern.IN_OUT.equals(exchangePattern)) {
+                    expressionVariables.putAll(getGlobalVariables(runtime));
+                    ProcessInstance processInstance = runtime.getKieSession().getProcessInstance(processInstanceId);
+                    expressionVariables.putAll(getProcessInstanceVariables(processInstance));
+                }
+                runtime.getKieSession().abortProcessInstance(processInstanceId);
+                if (!_persistent) {
+                    _runtimeManager.disposeRuntimeEngine(runtime);
+                }
+                txh.commit();
+            } catch (RuntimeException re) {
+                txh.rollback();
+                throw re;
             }
+            break;
+        }
+        default: {
+            throw BPMMessages.MESSAGES.unsupportedOperationType(operationType);
+        }
         }
         if (ExchangePattern.IN_OUT.equals(exchangePattern)) {
             Message outputMessage = exchange.createMessage();
             Context outputContext = exchange.getContext(outputMessage);
             /*
-            if (sessionIdentifier != null) {
-                outputContext.setProperty(BPMConstants.SESSION_ID_PROPERTY, sessionIdentifier);
-            }
-            */
+             * if (sessionIdentifier != null) {
+             * outputContext.setProperty(BPMConstants.SESSION_ID_PROPERTY, sessionIdentifier);
+             * }
+             */
             if (processInstanceId != null) {
                 outputContext.setProperty(BPMConstants.PROCESSS_INSTANCE_ID_PROPERTY, processInstanceId);
             }
@@ -252,6 +240,7 @@ public class BPMExchangeHandler extends KnowledgeExchangeHandler {
     private KnowledgeRuntimeEngine getRuntimeEngine() {
         return (KnowledgeRuntimeEngine)_runtimeManager.getRuntimeEngine();
     }
+
     private void addFaultToExpressionVariables(Map<String, Object> expressionVars, List<ExpressionMapping> faultExpressions) {
         if (faultExpressions != null && !faultExpressions.isEmpty()) {
             for (ExpressionMapping expression : faultExpressions) {

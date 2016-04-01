@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,96 +21,76 @@ import org.switchyard.config.Configuration;
 import org.switchyard.config.model.BaseModel;
 import org.switchyard.config.model.Descriptor;
 
-/**
- * The 2nd version RemoteModel.
+/** The 2nd version RemoteModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public abstract class V2RemoteModel extends BaseModel implements RemoteModel {
 
     private ExtraJaxbClassesModel _extraJaxbClasses = null;
 
-    /**
-     * Constructs a new V2RemoteModel of the specified namespace and name.
+    /** Constructs a new V2RemoteModel of the specified namespace and name.
+     * 
      * @param namespace the namespace
-     * @param name the name
-     */
+     * @param name the name */
     public V2RemoteModel(String namespace, String name) {
         super(XMLHelper.createQName(namespace, name));
     }
 
-    /**
-     * Constructs a new V2RemoteJmsModel with the specified Configuration and Descriptor.
+    /** Constructs a new V2RemoteJmsModel with the specified Configuration and Descriptor.
+     * 
      * @param config the Configuration
-     * @param desc the Descriptor
-     */
+     * @param desc the Descriptor */
     public V2RemoteModel(Configuration config, Descriptor desc) {
         super(config, desc);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDeploymentId() {
         return getModelAttribute("deploymentId");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteModel setDeploymentId(String deploymentId) {
         setModelAttribute("deploymentId", deploymentId);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getUserName() {
         return getModelAttribute("userName");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteModel setUserName(String userName) {
         setModelAttribute("userName", userName);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getPassword() {
         return getModelAttribute("password");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteModel setPassword(String password) {
         setModelAttribute("password", password);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Integer getTimeout() {
         String timeout = getModelAttribute("timeout");
         return timeout != null ? Integer.valueOf(timeout) : null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteModel setTimeout(Integer timeout) {
         String t = timeout != null ? timeout.toString() : null;
@@ -119,9 +98,7 @@ public abstract class V2RemoteModel extends BaseModel implements RemoteModel {
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ExtraJaxbClassesModel getExtraJaxbClasses() {
         if (_extraJaxbClasses == null) {
@@ -130,9 +107,7 @@ public abstract class V2RemoteModel extends BaseModel implements RemoteModel {
         return _extraJaxbClasses;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public RemoteModel setExtraJaxbClasses(ExtraJaxbClassesModel extraJaxbClasses) {
         setChildModel(extraJaxbClasses);

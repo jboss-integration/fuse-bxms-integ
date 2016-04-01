@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,29 +26,23 @@ import org.switchyard.config.model.Descriptor;
 import org.switchyard.config.model.Model;
 import org.switchyard.config.model.property.v2.V2PropertiesModel;
 
-/**
- * A CompositeMarshaller which can also create knowledge models.
+/** A CompositeMarshaller which can also create knowledge models.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2014 Red Hat Inc. */
 public class V2KnowledgeMarshaller extends V1KnowledgeMarshaller {
 
-    /**
-     * Required constructor called via reflection.
+    /** Required constructor called via reflection.
      *
-     * @param desc the Descriptor
-     */
+     * @param desc the Descriptor */
     public V2KnowledgeMarshaller(Descriptor desc) {
         super(desc);
     }
 
-    /**
-     * Reads in the Configuration, looking for various knowledge models.
+    /** Reads in the Configuration, looking for various knowledge models.
      * If not found, it falls back to the super class (V1KnowledgeMarshaller).
      *
      * @param config the Configuration
-     * @return the Model
-     */
+     * @return the Model */
     @Override
     public Model read(Configuration config) {
         String name = config.getName();

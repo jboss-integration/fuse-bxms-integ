@@ -20,15 +20,25 @@ import org.apache.log4j.Logger;
 import org.switchyard.common.io.pull.StringPuller;
 import org.switchyard.component.test.mixins.http.HTTPMixIn;
 
+
 /**
  * HelpDeskMain.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 public final class HelpDeskMain {
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = Logger.getLogger(HelpDeskMain.class);
 
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     * @throws Exception the exception
+     */
     public static void main(String... args) throws Exception {
         final String ticketId = "TCKT-" + System.currentTimeMillis();
         final String soapRequest = new StringPuller().pull("/xml/soap-request.xml").replaceAll("TICKET_ID", ticketId);

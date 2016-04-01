@@ -1,12 +1,11 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -17,34 +16,28 @@ import java.util.Properties;
 
 import org.switchyard.component.common.knowledge.task.PropertiesUserGroupCallback;
 
-/**
- * BPMUserGroupCallback is <b>DEPRECATED</b>.
+/** BPMUserGroupCallback is <b>DEPRECATED</b>.
  *
  * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc.
- * @deprecated Use {@link PropertiesUserGroupCallback} instead.
- */
+ * @deprecated Use {@link PropertiesUserGroupCallback} instead. */
 @Deprecated
 public class BPMUserGroupCallback extends PropertiesUserGroupCallback {
 
-    /**
-     * Constructs a new BPMUserGroupCallback.
-     */
+    /** Constructs a new BPMUserGroupCallback. */
     public BPMUserGroupCallback() {
         super();
     }
 
-    /**
-     * Constructs a new BPMUserGroupCallback.
-     * @param location the location
-     */
+    /** Constructs a new BPMUserGroupCallback.
+     * 
+     * @param location the location */
     public BPMUserGroupCallback(String location) {
         super(location);
     }
 
-    /**
-     * Constructs a new BPMUserGroupCallback.
-     * @param userGroups the userGroups
-     */
+    /** Constructs a new BPMUserGroupCallback.
+     * 
+     * @param userGroups the userGroups */
     public BPMUserGroupCallback(Properties userGroups) {
         super(userGroups);
     }

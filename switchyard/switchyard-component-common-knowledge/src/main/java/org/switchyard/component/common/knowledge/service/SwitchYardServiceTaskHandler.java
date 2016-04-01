@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,11 +31,9 @@ import org.switchyard.common.xml.XMLHelper;
 import org.switchyard.component.common.knowledge.CommonKnowledgeLogger;
 import org.switchyard.deploy.ComponentNames;
 
-/**
- * SwitchYardServiceTaskHandler.
+/** SwitchYardServiceTaskHandler.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2013 Red Hat Inc. */
 public class SwitchYardServiceTaskHandler implements WorkItemHandler {
 
     /** SwitchYard Service Task. */
@@ -63,62 +60,53 @@ public class SwitchYardServiceTaskHandler implements WorkItemHandler {
     private SwitchYardServiceInvoker _invoker;
     private ProcessRuntime _processRuntime;
 
-    /**
-     * Constructs a new SwitchYardServiceTaskHandler.
-     */
-    public SwitchYardServiceTaskHandler() {}
+    /** Constructs a new SwitchYardServiceTaskHandler. */
+    public SwitchYardServiceTaskHandler() {
+    }
 
-    /**
-     * Gets the component name.
-     * @return the component name
-     */
+    /** Gets the component name.
+     * 
+     * @return the component name */
     public QName getComponentName() {
         return _componentName;
     }
 
-    /**
-     * Set the component name.
-     * @param componentName the component name
-     */
+    /** Set the component name.
+     * 
+     * @param componentName the component name */
     public void setComponentName(QName componentName) {
         _componentName = componentName;
     }
 
-    /**
-     * Gets the invoker.
-     * @return the invoker
-     */
+    /** Gets the invoker.
+     * 
+     * @return the invoker */
     public SwitchYardServiceInvoker getInvoker() {
         return _invoker;
     }
 
-    /**
-     * Sets the invoker.
-     * @param invoker the invoker
-     */
+    /** Sets the invoker.
+     * 
+     * @param invoker the invoker */
     public void setInvoker(SwitchYardServiceInvoker invoker) {
         _invoker = invoker;
     }
 
-    /**
-     * Gets the ProcessRuntime.
-     * @return the ProcessRuntime
-     */
+    /** Gets the ProcessRuntime.
+     * 
+     * @return the ProcessRuntime */
     public ProcessRuntime getProcessRuntime() {
         return _processRuntime;
     }
 
-    /**
-     * Sets the ProcessRuntime.
-     * @param processRuntime the ProcessRuntime
-     */
+    /** Sets the ProcessRuntime.
+     * 
+     * @param processRuntime the ProcessRuntime */
     public void setProcessRuntime(ProcessRuntime processRuntime) {
         _processRuntime = processRuntime;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void executeWorkItem(WorkItem workItem, WorkItemManager manager) {
         // parameters (input)
@@ -161,50 +149,48 @@ public class SwitchYardServiceTaskHandler implements WorkItemHandler {
             }
             FaultAction faultAction = getFaultAction(parameters);
             switch (faultAction) {
-                case ABORT: {
-                    manager.abortWorkItem(workItem.getId());
-                    break;
-                }
-                case COMPLETE: {
-                    manager.completeWorkItem(workItem.getId(), results);
-                    break;
-                }
-                case SKIP: {
-                    break;
-                }
-                case THROW: {
-                    final RuntimeException runtimeException;
-                    if (fault instanceof RuntimeException) {
-                        runtimeException = (RuntimeException)fault;
+            case ABORT: {
+                manager.abortWorkItem(workItem.getId());
+                break;
+            }
+            case COMPLETE: {
+                manager.completeWorkItem(workItem.getId(), results);
+                break;
+            }
+            case SKIP: {
+                break;
+            }
+            case THROW: {
+                final RuntimeException runtimeException;
+                if (fault instanceof RuntimeException) {
+                    runtimeException = (RuntimeException)fault;
+                } else {
+                    final Throwable cause;
+                    if (fault instanceof Throwable) {
+                        cause = (Throwable)fault;
                     } else {
-                        final Throwable cause;
-                        if (fault instanceof Throwable) {
-                            cause = (Throwable)fault;
-                        } else {
-                            cause = new SwitchYardException(fmsg);
-                            cause.fillInStackTrace();
-                        }
-                        WorkItemHandlerRuntimeException wihre = new WorkItemHandlerRuntimeException(cause, fmsg);
-                        wihre.setStackTrace(cause.getStackTrace());
-                        wihre.setInformation(SERVICE_NAME, serviceName != null ? serviceName.toString() : null);
-                        wihre.setInformation(OPERATION_NAME, operationName);
-                        wihre.setInformation(PARAMETER_NAME, parameterName);
-                        wihre.setInformation(RESULT_NAME, resultName);
-                        wihre.setInformation(FAULT_NAME, faultName);
-                        wihre.setInformation(FAULT_EVENT_ID, faultEventId);
-                        wihre.setInformation(FAULT_ACTION, faultAction.name());
-                        wihre.setInformation(WorkItemHandlerRuntimeException.WORKITEMHANDLERTYPE, getClass().getSimpleName());
-                        runtimeException = wihre;
+                        cause = new SwitchYardException(fmsg);
+                        cause.fillInStackTrace();
                     }
-                    throw runtimeException;
+                    WorkItemHandlerRuntimeException wihre = new WorkItemHandlerRuntimeException(cause, fmsg);
+                    wihre.setStackTrace(cause.getStackTrace());
+                    wihre.setInformation(SERVICE_NAME, serviceName != null ? serviceName.toString() : null);
+                    wihre.setInformation(OPERATION_NAME, operationName);
+                    wihre.setInformation(PARAMETER_NAME, parameterName);
+                    wihre.setInformation(RESULT_NAME, resultName);
+                    wihre.setInformation(FAULT_NAME, faultName);
+                    wihre.setInformation(FAULT_EVENT_ID, faultEventId);
+                    wihre.setInformation(FAULT_ACTION, faultAction.name());
+                    wihre.setInformation(WorkItemHandlerRuntimeException.WORKITEMHANDLERTYPE, getClass().getSimpleName());
+                    runtimeException = wihre;
                 }
+                throw runtimeException;
+            }
             }
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void abortWorkItem(WorkItem workItem, WorkItemManager manager) {
         // noop
@@ -249,7 +235,7 @@ public class SwitchYardServiceTaskHandler implements WorkItemHandler {
     protected QName getQName(String parameterName, Map<String, Object> parameters, QName defaultValue) {
         Object serviceName = parameters.get(parameterName);
         if (serviceName instanceof QName) {
-           return (QName)serviceName;
+            return (QName)serviceName;
         } else if (serviceName instanceof String) {
             return XMLHelper.createQName((String)serviceName);
         }
@@ -269,10 +255,7 @@ public class SwitchYardServiceTaskHandler implements WorkItemHandler {
     }
 
     private static enum FaultAction {
-        ABORT,
-        COMPLETE,
-        SKIP,
-        THROW;
+        ABORT, COMPLETE, SKIP, THROW;
         private static final FaultAction DEFAULT = THROW;
     }
 

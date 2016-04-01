@@ -25,21 +25,33 @@ import org.switchyard.test.ServiceOperation;
 import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 
+
 /**
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
+ * The Class RulesInterviewTest.
+ *
+ * @author David Ward &lt;<a
+ *         href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red
+ *         Hat Inc.
  */
 @RunWith(SwitchYardRunner.class)
 @SwitchYardTestCaseConfig(config = SwitchYardTestCaseConfig.SWITCHYARD_XML)
 public class RulesInterviewTest {
 
+    /** The verify. */
     @ServiceOperation("Interview.verify")
     private Invoker verify;
 
+    /**
+     * Sets the properties.
+     */
     @BeforeDeploy
     public void setProperties() {
         System.setProperty("org.switchyard.component.http.standalone.port", "18001");
     }
 
+    /**
+     * Test rules interview.
+     */
     @Test
     public void testRulesInterview() {
         Assert.assertEquals(Boolean.TRUE, verify.sendInOut(new Applicant("Twenty", 20)).getContent());

@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,18 +12,16 @@
  */
 
 /*
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- * 
- *       http://www.apache.org/licenses/LICENSE-2.0
- * 
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *  under the License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * under the License.
  */
 
 package org.kie.camel.component;
@@ -59,63 +54,63 @@ public class CamelEndpointActionInsertTest extends KieCamelTestSupport {
     @Test
     public void testSessionInsert() throws Exception {
         Person person = new Person();
-        person.setName( "Bob" );
+        person.setName("Bob");
 
-        template.sendBody( "direct:test-no-ep", person );
-        
-        ArgumentCaptor<ObjectInsertedEvent> oie = ArgumentCaptor.forClass( ObjectInsertedEvent.class );
+        template.sendBody("direct:test-no-ep", person);
 
-        verify( wmel ).objectInserted( oie.capture() );
-        assertThat( (Person) oie.getValue().getObject(), is( person ) );
+        ArgumentCaptor<ObjectInsertedEvent> oie = ArgumentCaptor.forClass(ObjectInsertedEvent.class);
+
+        verify(wmel).objectInserted(oie.capture());
+        assertThat((Person)oie.getValue().getObject(), is(person));
     }
 
     @Test
     public void testSessionInsertEntryPoint() throws Exception {
         Person person = new Person();
-        person.setName( "Bob" );
+        person.setName("Bob");
 
-        template.sendBody( "direct:test-with-ep", person );
-        
-        ArgumentCaptor<ObjectInsertedEvent> oie = ArgumentCaptor.forClass( ObjectInsertedEvent.class );
+        template.sendBody("direct:test-with-ep", person);
 
-        verify( wmel ).objectInserted( oie.capture() );
-        assertThat( (Person) oie.getValue().getObject(), is( person ) );
+        ArgumentCaptor<ObjectInsertedEvent> oie = ArgumentCaptor.forClass(ObjectInsertedEvent.class);
+
+        verify(wmel).objectInserted(oie.capture());
+        assertThat((Person)oie.getValue().getObject(), is(person));
     }
 
     @Test
     public void testSessionInsertMessage() throws Exception {
         Person person = new Person();
-        person.setName( "Bob" );
+        person.setName("Bob");
 
-        template.sendBody( "direct:test-message", person );
-        
-        ArgumentCaptor<ObjectInsertedEvent> oie = ArgumentCaptor.forClass( ObjectInsertedEvent.class );
+        template.sendBody("direct:test-message", person);
 
-        verify( wmel ).objectInserted( oie.capture() );
-        assertThat( (Person) ((Message) oie.getValue().getObject()).getBody(), is( person ) );
+        ArgumentCaptor<ObjectInsertedEvent> oie = ArgumentCaptor.forClass(ObjectInsertedEvent.class);
+
+        verify(wmel).objectInserted(oie.capture());
+        assertThat((Person)((Message)oie.getValue().getObject()).getBody(), is(person));
     }
 
     @Test
     public void testSessionInsertExchange() throws Exception {
         Person person = new Person();
-        person.setName( "Bob" );
+        person.setName("Bob");
 
-        template.sendBody( "direct:test-exchange", person );
-        
-        ArgumentCaptor<ObjectInsertedEvent> oie = ArgumentCaptor.forClass( ObjectInsertedEvent.class );
+        template.sendBody("direct:test-exchange", person);
 
-        verify( wmel ).objectInserted( oie.capture() );
-        assertThat( (Person) ((Exchange) oie.getValue().getObject()).getIn().getBody(), is( person ) );
+        ArgumentCaptor<ObjectInsertedEvent> oie = ArgumentCaptor.forClass(ObjectInsertedEvent.class);
+
+        verify(wmel).objectInserted(oie.capture());
+        assertThat((Person)((Exchange)oie.getValue().getObject()).getIn().getBody(), is(person));
     }
 
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
         return new RouteBuilder() {
             public void configure() throws Exception {
-                from( "direct:test-no-ep" ).to( "kie://ksession1?action=insertBody" );
-                from( "direct:test-with-ep" ).to( "kie://ksession1?action=insertBody&entryPoint=ep1" );
-                from( "direct:test-message" ).to( "kie://ksession1?action=insertMessage" );
-                from( "direct:test-exchange" ).to( "kie://ksession1?action=insertExchange" );
+                from("direct:test-no-ep").to("kie://ksession1?action=insertBody");
+                from("direct:test-with-ep").to("kie://ksession1?action=insertBody&entryPoint=ep1");
+                from("direct:test-message").to("kie://ksession1?action=insertMessage");
+                from("direct:test-exchange").to("kie://ksession1?action=insertExchange");
             }
         };
     }
@@ -151,11 +146,10 @@ public class CamelEndpointActionInsertTest extends KieCamelTestSupport {
         rule += "    // no-op \n";
         rule += "end\n";
 
-        ksession = registerKnowledgeRuntime( "ksession1",
-                                             rule );
-        ael = mock( AgendaEventListener.class );
-        wmel = mock( RuleRuntimeEventListener.class );
-        ksession.addEventListener( ael );
-        ksession.addEventListener( wmel );
+        ksession = registerKnowledgeRuntime("ksession1", rule);
+        ael = mock(AgendaEventListener.class);
+        wmel = mock(RuleRuntimeEventListener.class);
+        ksession.addEventListener(ael);
+        ksession.addEventListener(wmel);
     }
 }

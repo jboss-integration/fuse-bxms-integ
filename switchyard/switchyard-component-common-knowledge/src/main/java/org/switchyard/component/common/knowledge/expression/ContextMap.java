@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,115 +23,90 @@ import org.switchyard.Context;
 import org.switchyard.Property;
 import org.switchyard.Scope;
 
-/**
- * A Context that is also a Map.
+/** A Context that is also a Map.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class ContextMap implements Context, Map<String, Object> {
 
     private final Context _context;
     private final Scope _scope;
 
-    /**
-     * Wraps a context and scope for map operations.
+    /** Wraps a context and scope for map operations.
+     * 
      * @param context the context
-     * @param scope the scope for map operations
-     */
+     * @param scope the scope for map operations */
     public ContextMap(Context context, Scope scope) {
         _context = context;
         _scope = scope;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Property getProperty(String name) {
         return _context.getProperty(name);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Property getProperty(String name, Scope scope) {
         return _context.getProperty(name, scope);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public <T> T getPropertyValue(String name) {
         return _context.getPropertyValue(name);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Set<Property> getProperties() {
         return _context.getProperties();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Set<Property> getProperties(Scope scope) {
         return _context.getProperties(scope);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void removeProperty(Property property) {
         _context.removeProperty(property);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void removeProperties() {
         _context.removeProperties();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void removeProperties(Scope scope) {
         _context.removeProperties(scope);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Property setProperty(String name, Object val) {
         return _context.setProperty(name, val);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Property setProperty(String name, Object val, Scope scope) {
         return _context.setProperty(name, val, scope);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Context setProperties(Set<Property> properties) {
         _context.setProperties(properties);
         return this;
     }
-    
+
     @Override
     public void mergeInto(Context context) {
         _context.mergeInto(context);
@@ -148,33 +122,25 @@ public class ContextMap implements Context, Map<String, Object> {
         _context.removeProperties(label);
     }
 
-    /**
-     * {@inheritDoc}
-     */   
+    /** {@inheritDoc} */
     @Override
     public int size() {
         return getProperties(_scope).size();
     }
 
-    /**
-     * {@inheritDoc}
-     */   
+    /** {@inheritDoc} */
     @Override
     public boolean isEmpty() {
         return getProperties(_scope).isEmpty();
     }
 
-    /**
-     * {@inheritDoc}
-     */   
+    /** {@inheritDoc} */
     @Override
     public boolean containsKey(Object key) {
         return key != null ? getProperty(key.toString(), _scope) != null : false;
     }
 
-    /**
-     * {@inheritDoc}
-     */   
+    /** {@inheritDoc} */
     @Override
     public boolean containsValue(Object value) {
         if (value != null) {
@@ -187,9 +153,7 @@ public class ContextMap implements Context, Map<String, Object> {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */   
+    /** {@inheritDoc} */
     @Override
     public Object get(Object key) {
         if (key != null) {
@@ -201,17 +165,13 @@ public class ContextMap implements Context, Map<String, Object> {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */   
+    /** {@inheritDoc} */
     @Override
     public Object put(String key, Object value) {
         return setProperty(key, value, _scope);
     }
 
-    /**
-     * {@inheritDoc}
-     */   
+    /** {@inheritDoc} */
     @Override
     public Object remove(Object key) {
         if (key != null) {
@@ -224,9 +184,7 @@ public class ContextMap implements Context, Map<String, Object> {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */   
+    /** {@inheritDoc} */
     @Override
     public void putAll(Map<? extends String, ? extends Object> m) {
         for (Entry<? extends String, ? extends Object> entry : m.entrySet()) {
@@ -234,17 +192,13 @@ public class ContextMap implements Context, Map<String, Object> {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */   
+    /** {@inheritDoc} */
     @Override
     public void clear() {
         removeProperties(_scope);
     }
 
-    /**
-     * {@inheritDoc}
-     */   
+    /** {@inheritDoc} */
     @Override
     public Set<String> keySet() {
         Set<String> keySet = new HashSet<String>();
@@ -254,9 +208,7 @@ public class ContextMap implements Context, Map<String, Object> {
         return keySet;
     }
 
-    /**
-     * {@inheritDoc}
-     */   
+    /** {@inheritDoc} */
     @Override
     public Collection<Object> values() {
         Collection<Object> values = new ArrayList<Object>();
@@ -266,9 +218,7 @@ public class ContextMap implements Context, Map<String, Object> {
         return values;
     }
 
-    /**
-     * {@inheritDoc}
-     */   
+    /** {@inheritDoc} */
     @Override
     public Set<Entry<String, Object>> entrySet() {
         Map<String, Object> entries = new HashMap<String, Object>();

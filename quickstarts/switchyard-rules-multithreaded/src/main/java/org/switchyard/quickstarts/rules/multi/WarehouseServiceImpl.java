@@ -29,6 +29,7 @@ import org.switchyard.component.bean.Reference;
 //import org.switchyard.Context;
 import org.switchyard.component.bean.Service;
 
+
 /**
  * A WarehouseService implementation.
  *
@@ -37,22 +38,31 @@ import org.switchyard.component.bean.Service;
 @Service(WarehouseService.class)
 public class WarehouseServiceImpl implements WarehouseService {
 
+    /** The order decision. */
     @Inject
     @Reference
     private OrderDecision orderDecision;
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = Logger.getLogger(WarehouseService.class);
+    
+    /** The Constant SUCCESS. */
     private static final String SUCCESS = "SUCCESS";
+    
+    /** The items. */
     private final ConcurrentMap<Integer, Item> items = new ConcurrentHashMap<Integer, Item>();
 
     @Override
     public Item getItem(Integer itemId) {
         System.out.println("++++++ getItem " + itemId);
         Item item = this.items.get(itemId);
-        // TODO: Currently not possible to set property on return path for CDI Beans
-        /*if (item == null) {
-            context.setProperty(RESTEasyContextMapper.HTTP_RESPONSE_STATUS, 404).addLabels(new String[]{EndpointLabel.HTTP.label()});
-        }*/
+        // TODO: Currently not possible to set property on return path for CDI
+        // Beans
+        /*
+         * if (item == null) {
+         * context.setProperty(RESTEasyContextMapper.HTTP_RESPONSE_STATUS,
+         * 404).addLabels(new String[]{EndpointLabel.HTTP.label()}); }
+         */
         return item;
     }
 

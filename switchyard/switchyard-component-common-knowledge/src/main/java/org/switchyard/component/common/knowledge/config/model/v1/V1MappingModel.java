@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,59 +18,47 @@ import org.switchyard.config.Configuration;
 import org.switchyard.config.model.BaseModel;
 import org.switchyard.config.model.Descriptor;
 
-/**
- * The 1st version MappingModel.
+/** The 1st version MappingModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public abstract class V1MappingModel extends BaseModel implements MappingModel {
 
-    /**
-     * Creates a new V1MappingModel in the specified namespace and localName.
+    /** Creates a new V1MappingModel in the specified namespace and localName.
+     * 
      * @param namespace the specified namespace
-     * @param localName the specified localName
-     */
+     * @param localName the specified localName */
     public V1MappingModel(String namespace, String localName) {
         super(XMLHelper.createQName(namespace, localName));
     }
 
-    /**
-     * Creates a new V1MappingModel with the specified configuration and descriptor.
+    /** Creates a new V1MappingModel with the specified configuration and descriptor.
+     * 
      * @param config the configuration
-     * @param desc the descriptor
-     */
+     * @param desc the descriptor */
     public V1MappingModel(Configuration config, Descriptor desc) {
         super(config, desc);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getFrom() {
         return getModelAttribute("from");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public MappingModel setFrom(String from) {
         setModelAttribute("from", from);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getTo() {
         return getModelAttribute("to");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public MappingModel setTo(String to) {
         setModelAttribute("to", to);

@@ -1,3 +1,15 @@
+/*
+ * Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.jbpm.process.workitem.camel;
 
 import org.apache.commons.io.FileUtils;
@@ -19,9 +31,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-/**
- * Uploading a file to FTPS endpoint. Uses prepared key/trust stores for SSL.
- * */
+/** Uploading a file to FTPS endpoint. Uses prepared key/trust stores for SSL. */
 public class CamelFtpsTest extends CamelFtpBaseTest {
 
     private static final String CLIENT_SSL_STORE_PASSWD = "passwd";
@@ -55,19 +65,19 @@ public class CamelFtpsTest extends CamelFtpBaseTest {
         workItem.setParameter("isImplicit", "true");
         workItem.setParameter("securityProtocol", "TLS");
 
-        //needed for SSL
+        // needed for SSL
         workItem.setParameter("ftpClient.trustStore.file", CLIENT_SSL_KEY_TRUST_STORE.getAbsolutePath());
         workItem.setParameter("ftpClient.trustStore.password", CLIENT_SSL_STORE_PASSWD);
         workItem.setParameter("ftpClient.trustStore.keyPassword", CLIENT_SSL_KEY_PASSWD);
 
         workItem.setParameter("ftpClient.keyStore.file", CLIENT_SSL_KEY_TRUST_STORE.getAbsolutePath());
         workItem.setParameter("ftpClient.keyStore.password", CLIENT_SSL_STORE_PASSWD);
-        workItem.setParameter("ftpClient.keyStore.keyPassword",  CLIENT_SSL_KEY_PASSWD);
+        workItem.setParameter("ftpClient.keyStore.keyPassword", CLIENT_SSL_KEY_PASSWD);
 
         WorkItemManager manager = new DefaultWorkItemManager(null);
         handler.executeWorkItem(workItem, manager);
 
-        //assertions
+        // assertions
         Assert.assertTrue("Expected file does not exist.", testFile.exists());
 
         String resultText = FileUtils.readFileToString(testFile);
@@ -78,9 +88,7 @@ public class CamelFtpsTest extends CamelFtpBaseTest {
     protected FtpServer configureFtpServer(CamelFtpBaseTest.FtpServerBuilder builder) throws FtpException {
         ListenerFactory listenerFactory = configureSSL();
 
-        return builder.addUser(USER, PASSWD, ftpRoot, true)
-                .registerDefaultListener(listenerFactory.createListener())
-                .build();
+        return builder.addUser(USER, PASSWD, ftpRoot, true).registerDefaultListener(listenerFactory.createListener()).build();
     }
 
     private ListenerFactory configureSSL() {

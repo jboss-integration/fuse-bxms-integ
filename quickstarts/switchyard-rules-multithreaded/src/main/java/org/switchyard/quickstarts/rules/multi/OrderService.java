@@ -24,7 +24,15 @@ package org.switchyard.quickstarts.rules.multi;
  */
 public interface OrderService {
 
+    /**
+     * Gets the order.
+     *
+     * @return the order
+     */
     public Item getOrder();
 
+    /**
+     * Throw error.
+     */
     public void throwError();
 }

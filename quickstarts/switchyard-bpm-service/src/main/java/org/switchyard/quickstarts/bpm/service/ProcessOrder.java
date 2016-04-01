@@ -19,6 +19,17 @@ package org.switchyard.quickstarts.bpm.service;
 import org.switchyard.quickstarts.bpm.service.data.Order;
 import org.switchyard.quickstarts.bpm.service.data.OrderAck;
 
+
+/**
+ * The Interface ProcessOrder.
+ */
 public interface ProcessOrder {
+
+    /**
+     * Submit order.
+     *
+     * @param order the order
+     * @return the order ack
+     */
     OrderAck submitOrder(Order order);
 }

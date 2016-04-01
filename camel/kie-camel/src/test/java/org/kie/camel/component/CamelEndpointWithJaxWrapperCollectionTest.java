@@ -1,12 +1,9 @@
 /*
  * Copyright 2010 JBoss Inc
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -62,7 +59,7 @@ import java.util.List;
 
 public class CamelEndpointWithJaxWrapperCollectionTest extends KieCamelTestSupport {
 
-    private String      handle;
+    private String handle;
 
     @Test
     public void testWorkingSetGlobalTestSessionSetAndGetGlobal() throws Exception {
@@ -70,46 +67,39 @@ public class CamelEndpointWithJaxWrapperCollectionTest extends KieCamelTestSuppo
         BatchExecutionCommandImpl cmd = new BatchExecutionCommandImpl();
         cmd.setLookup("ksession1");
 
-        SetGlobalCommand setGlobal = new SetGlobalCommand( "list",
-                                                           new WrappedList() );
-        setGlobal.setOutIdentifier( "list" );
+        SetGlobalCommand setGlobal = new SetGlobalCommand("list", new WrappedList());
+        setGlobal.setOutIdentifier("list");
 
-        cmd.getCommands().add( setGlobal );
-        cmd.getCommands().add( new InsertObjectCommand( new Person( "baunax" ) ) );
-        cmd.getCommands().add( new FireAllRulesCommand() );
-        cmd.getCommands().add( new GetGlobalCommand( "list" ) );
+        cmd.getCommands().add(setGlobal);
+        cmd.getCommands().add(new InsertObjectCommand(new Person("baunax")));
+        cmd.getCommands().add(new FireAllRulesCommand());
+        cmd.getCommands().add(new GetGlobalCommand("list"));
 
         Marshaller marshaller = getJaxbContext().createMarshaller();
-        marshaller.setProperty( "jaxb.formatted.output",
-                                true );
+        marshaller.setProperty("jaxb.formatted.output", true);
         StringWriter xml = new StringWriter();
-        marshaller.marshal( cmd,
-                            xml );
+        marshaller.marshal(cmd, xml);
 
-        logger.debug( xml.toString() );
+        logger.debug(xml.toString());
 
-        byte[] response = (byte[]) template.requestBody( "direct:test-with-session",
-                                                         xml.toString() );
-        assertNotNull( response );
-        logger.debug( "response:\n" + new String( response ) );
+        byte[] response = (byte[])template.requestBody("direct:test-with-session", xml.toString());
+        assertNotNull(response);
+        logger.debug("response:\n" + new String(response));
         Unmarshaller unmarshaller = getJaxbContext().createUnmarshaller();
-        ExecutionResults res = (ExecutionResults) unmarshaller.unmarshal( new ByteArrayInputStream( response ) );
-        WrappedList resp = (WrappedList) res.getValue( "list" );
-        assertNotNull( resp );
+        ExecutionResults res = (ExecutionResults)unmarshaller.unmarshal(new ByteArrayInputStream(response));
+        WrappedList resp = (WrappedList)res.getValue("list");
+        assertNotNull(resp);
 
-        assertEquals( resp.size(),
-                      2 );
-        assertEquals( "baunax",
-                      resp.get( 0 ).getName() );
-        assertEquals( "Hadrian",
-                      resp.get( 1 ).getName() );
+        assertEquals(resp.size(), 2);
+        assertEquals("baunax", resp.get(0).getName());
+        assertEquals("Hadrian", resp.get(1).getName());
 
     }
 
     @Override
     protected void configureDroolsContext(Context jndiContext) {
         Person me = new Person();
-        me.setName( "Hadrian" );
+        me.setName("Hadrian");
 
         String rule = "";
         rule += "package org.kie.pipeline.camel \n";
@@ -125,14 +115,14 @@ public class CamelEndpointWithJaxWrapperCollectionTest extends KieCamelTestSuppo
         rule += "    list.add($p); \n";
         rule += "end\n";
 
-        KieSession ksession = registerKnowledgeRuntime( "ksession1", rule );
-        InsertObjectCommand cmd = new InsertObjectCommand( me );
-        cmd.setOutIdentifier( "camel-rider" );
-        cmd.setReturnObject( false );
-        BatchExecutionCommandImpl script = new BatchExecutionCommandImpl( Arrays.asList( new GenericCommand< ? >[]{cmd} ) );
+        KieSession ksession = registerKnowledgeRuntime("ksession1", rule);
+        InsertObjectCommand cmd = new InsertObjectCommand(me);
+        cmd.setOutIdentifier("camel-rider");
+        cmd.setReturnObject(false);
+        BatchExecutionCommandImpl script = new BatchExecutionCommandImpl(Arrays.asList(new GenericCommand<?>[] {cmd}));
 
-        ExecutionResults results = ksession.execute( script );
-        handle = ((FactHandle) results.getFactHandle( "camel-rider" )).toExternalForm();
+        ExecutionResults results = ksession.execute(script);
+        handle = ((FactHandle)results.getFactHandle("camel-rider")).toExternalForm();
     }
 
     @Override
@@ -146,15 +136,13 @@ public class CamelEndpointWithJaxWrapperCollectionTest extends KieCamelTestSuppo
 
         JaxbConfiguration jaxbConfiguration = KnowledgeBuilderFactory.newJaxbConfiguration(xjcOpts, "xsd");
 
-        kfs.write(kieResources.newClassPathResource("person.xsd", getClass())
-                              .setResourceType(ResourceType.XSD)
-                              .setConfiguration(jaxbConfiguration));
+        kfs.write(kieResources.newClassPathResource("person.xsd", getClass()).setResourceType(ResourceType.XSD).setConfiguration(jaxbConfiguration));
 
-        if ( rule != null && rule.length() > 0 ) {
-            kfs.write( "src/main/resources/rule.drl", rule );
+        if (rule != null && rule.length() > 0) {
+            kfs.write("src/main/resources/rule.drl", rule);
         }
 
-        KieBuilder kieBuilder = ks.newKieBuilder( kfs ).buildAll();
+        KieBuilder kieBuilder = ks.newKieBuilder(kfs).buildAll();
 
         List<Message> errors = kieBuilder.getResults().getMessages(Message.Level.ERROR);
         if (!errors.isEmpty()) {
@@ -164,7 +152,7 @@ public class CamelEndpointWithJaxWrapperCollectionTest extends KieCamelTestSuppo
         KieSession ksession = ks.newKieContainer(ks.getRepository().getDefaultReleaseId()).newKieSession();
 
         try {
-            jndiContext.bind( identifier, ksession );
+            jndiContext.bind(identifier, ksession);
         } catch (NamingException e) {
             throw new RuntimeException(e);
         }
@@ -181,8 +169,7 @@ public class CamelEndpointWithJaxWrapperCollectionTest extends KieCamelTestSuppo
                 // TODO does not work: def.setContextPath( "org.drools.camel.testdomain:org.drools.pipeline.camel" );
                 def.setContextPath("org.kie.pipeline.camel");
 
-                from("direct:test-with-session").policy(new KiePolicy()).
-                        unmarshal(def).to("kie:ksession1").marshal(def);
+                from("direct:test-with-session").policy(new KiePolicy()).unmarshal(def).to("kie:ksession1").marshal(def);
             }
         };
         return routeBuilder;

@@ -39,29 +39,57 @@ import org.switchyard.quickstarts.demos.library.types.Suggestion;
 import org.switchyard.quickstarts.demos.library.types.SuggestionRequest;
 import org.switchyard.quickstarts.demos.library.types.SuggestionResponse;
 
+
+/**
+ * The Class LibraryClient.
+ */
 public final class LibraryClient {
 
+    /** The Constant SOAP_REQUEST_PREFIX. */
     private static final String SOAP_REQUEST_PREFIX = "<SOAP-ENV:Envelope xmlns:SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/'><SOAP-ENV:Header>PID</SOAP-ENV:Header><SOAP-ENV:Body>";
+
+    /** The Constant SOAP_REQUEST_SUFFIX. */
     private static final String SOAP_REQUEST_SUFFIX = "</SOAP-ENV:Body></SOAP-ENV:Envelope>";
 
-    private static final QName _SuggestionRequest_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "suggestionRequest");
+    /** The Constant _SuggestionRequest_QNAME. */
+    private static final QName _SuggestionRequest_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0",
+            "suggestionRequest");
+
+    /** The Constant _LoanRequest_QNAME. */
     private static final QName _LoanRequest_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "loanRequest");
+
+    /** The Constant _ReturnRequest_QNAME. */
     private static final QName _ReturnRequest_QNAME = new QName("urn:switchyard-quickstart-demo:library:1.0", "returnRequest");
 
+    /** The _http mix in. */
     private final HTTPMixIn _httpMixIn;
+
+    /** The _port. */
     private final String _port;
 
+    /**
+     * Instantiates a new library client.
+     *
+     * @param httpMixIn the http mix in
+     * @param port the port
+     */
     public LibraryClient(HTTPMixIn httpMixIn, String port) {
         _httpMixIn = httpMixIn;
         _port = port;
     }
 
+    /**
+     * Test library services.
+     *
+     * @throws Exception the exception
+     */
     public void testLibraryServices() throws Exception {
         System.out.println();
         // get 1st suggestion
         Suggestion suggestion1_Zombie = getSuggestion("Zombie");
         Book book1_WorldWarZ = suggestion1_Zombie.getBook();
-        System.out.println("Received suggestion for book: " + book1_WorldWarZ.getTitle() + " (isbn: " + book1_WorldWarZ.getIsbn() + ")");
+        System.out.println("Received suggestion for book: " + book1_WorldWarZ.getTitle() + " (isbn: " + book1_WorldWarZ.getIsbn()
+                + ")");
         Assert.assertEquals("World War Z", book1_WorldWarZ.getTitle());
         // take out 1st loan
         System.out.println("Attempting 1st loan for isbn: " + book1_WorldWarZ.getIsbn());
@@ -83,10 +111,12 @@ public final class LibraryClient {
         loan2_WorldWarZ = attemptLoan(book1_WorldWarZ.getIsbn());
         System.out.println("Re-attempt of 2nd loan approved? " + loan2_WorldWarZ.isApproved());
         Assert.assertTrue(loan2_WorldWarZ.isApproved());
-        // get 2nd suggestion, and since 1st book not available (again), 2nd match will return
+        // get 2nd suggestion, and since 1st book not available (again), 2nd
+        // match will return
         Suggestion suggestion2_TheZombieSurvivalGuide = getSuggestion("Zombie");
         Book book2_TheZombieSurvivalGuide = suggestion2_TheZombieSurvivalGuide.getBook();
-        System.out.println("Received suggestion for book: " + book2_TheZombieSurvivalGuide.getTitle() + " (isbn: " + book2_TheZombieSurvivalGuide.getIsbn() + ")");
+        System.out.println("Received suggestion for book: " + book2_TheZombieSurvivalGuide.getTitle() + " (isbn: "
+                + book2_TheZombieSurvivalGuide.getIsbn() + ")");
         Assert.assertEquals("The Zombie Survival Guide", book2_TheZombieSurvivalGuide.getTitle());
         // take out 3rd loan
         System.out.println("Attempting 3rd loan for isbn: " + book2_TheZombieSurvivalGuide.getIsbn());
@@ -106,6 +136,13 @@ public final class LibraryClient {
         System.out.println();
     }
 
+    /**
+     * Gets the suggestion.
+     *
+     * @param keyword the keyword
+     * @return the suggestion
+     * @throws Exception the exception
+     */
     private Suggestion getSuggestion(String keyword) throws Exception {
         SuggestionRequest suggestionRequest = new SuggestionRequest();
         suggestionRequest.setKeyword(keyword);
@@ -115,6 +152,13 @@ public final class LibraryClient {
         return suggestionResponse.getSuggestion();
     }
 
+    /**
+     * Attempt loan.
+     *
+     * @param isbn the isbn
+     * @return the loan
+     * @throws Exception the exception
+     */
     private Loan attemptLoan(String isbn) throws Exception {
         LoanRequest loanRequest = new LoanRequest();
         loanRequest.setIsbn(isbn);
@@ -124,6 +168,13 @@ public final class LibraryClient {
         return loanResponse.getLoan();
     }
 
+    /**
+     * Return loan.
+     *
+     * @param loan the loan
+     * @return true, if successful
+     * @throws Exception the exception
+     */
     private boolean returnLoan(Loan loan) throws Exception {
         ReturnRequest returnRequest = new ReturnRequest();
         returnRequest.setLoan(loan);
@@ -133,6 +184,17 @@ public final class LibraryClient {
         return returnResponse.isAcknowledged();
     }
 
+    /**
+     * Wrap request.
+     *
+     * @param <T> the generic type
+     * @param name the name
+     * @param declaredType the declared type
+     * @param value the value
+     * @param pid the pid
+     * @return the string
+     * @throws Exception the exception
+     */
     private <T> String wrapRequest(QName name, Class<T> declaredType, T value, String pid) throws Exception {
         JAXBElement<T> e = new JAXBElement<T>(name, declaredType, null, value);
         JAXBContext ctx = JAXBContext.newInstance("org.switchyard.quickstarts.demos.library.types");
@@ -140,17 +202,28 @@ public final class LibraryClient {
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         m.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
         StringWriter sw = new StringWriter();
-        String processInstanceId = pid != null ? "<bpm:processInstanceId xmlns:bpm='urn:switchyard-component-bpm:bpm:1.0'>" + pid + "</bpm:processInstanceId>" : "";
+        String processInstanceId = pid != null ? "<bpm:processInstanceId xmlns:bpm='urn:switchyard-component-bpm:bpm:1.0'>" + pid
+                + "</bpm:processInstanceId>" : "";
         sw.write(SOAP_REQUEST_PREFIX.replaceFirst("PID", processInstanceId));
         m.marshal(e, sw);
         sw.write(SOAP_REQUEST_SUFFIX);
         return sw.toString();
     }
 
+    /**
+     * Unwrap response.
+     *
+     * @param <T> the generic type
+     * @param declaredType the declared type
+     * @param envelope the envelope
+     * @return the t
+     * @throws Exception the exception
+     */
     @SuppressWarnings("unchecked")
     private <T> T unwrapResponse(Class<T> declaredType, String envelope) throws Exception {
         // TODO: replace with generic DOM code vs. using config helper code
-        Configuration body = new ConfigurationPuller().pull(new StringReader(envelope)).getFirstChild("Body").getChildren().iterator().next();
+        Configuration body = new ConfigurationPuller().pull(new StringReader(envelope)).getFirstChild("Body").getChildren()
+                .iterator().next();
         String content = body.toString();
         if (body.getName().equals("Fault")) {
             throw new Exception("Fault returned: " + content);
@@ -159,12 +232,18 @@ public final class LibraryClient {
             Unmarshaller u = ctx.createUnmarshaller();
             Object o = u.unmarshal(new StringReader(content));
             if (o instanceof JAXBElement) {
-                o = ((JAXBElement<T>)o).getValue();
+                o = ((JAXBElement<T>) o).getValue();
             }
             return declaredType.cast(o);
         }
     }
 
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     * @throws Exception the exception
+     */
     public static void main(String... args) throws Exception {
         HTTPMixIn httpMixIn = new HTTPMixIn();
         httpMixIn.initialize();

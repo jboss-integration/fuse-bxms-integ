@@ -1,6 +1,5 @@
 /*
  * Copyright 2013 Red Hat Inc. and/or its affiliates and other contributors.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,29 +25,25 @@ import org.switchyard.config.Configuration;
 import org.switchyard.config.model.BaseModel;
 import org.switchyard.config.model.Descriptor;
 
-/**
- * A version 1 OutputsModel.
+/** A version 1 OutputsModel.
  *
- * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc.
- */
+ * @author David Ward &lt;<a href="mailto:dward@jboss.org">dward@jboss.org</a>&gt; &copy; 2012 Red Hat Inc. */
 public class V1OutputsModel extends BaseModel implements OutputsModel {
 
     private List<OutputModel> _outputs = new ArrayList<OutputModel>();
 
-    /**
-     * Creates a new V1OutputsModel in the specified namespace.
-     * @param namespace the specified namespace
-     */
+    /** Creates a new V1OutputsModel in the specified namespace.
+     * 
+     * @param namespace the specified namespace */
     public V1OutputsModel(String namespace) {
         super(XMLHelper.createQName(namespace, OUTPUTS));
         setModelChildrenOrder(OUTPUT);
     }
 
-    /**
-     * Creates a new V1OutputsModel with the specified configuration and descriptor.
+    /** Creates a new V1OutputsModel with the specified configuration and descriptor.
+     * 
      * @param config the configuration
-     * @param desc the descriptor
-     */
+     * @param desc the descriptor */
     public V1OutputsModel(Configuration config, Descriptor desc) {
         super(config, desc);
         for (Configuration output_config : config.getChildren(OUTPUT)) {
@@ -60,17 +55,13 @@ public class V1OutputsModel extends BaseModel implements OutputsModel {
         setModelChildrenOrder(OUTPUT);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public synchronized List<OutputModel> getOutputs() {
         return Collections.unmodifiableList(_outputs);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public OutputsModel addOutput(OutputModel output) {
         addChildModel(output);
