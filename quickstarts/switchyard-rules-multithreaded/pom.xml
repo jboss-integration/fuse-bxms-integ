@@ -194,7 +194,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.switchyard.components</groupId>
+            <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>switchyard-component-rules</artifactId>
         </dependency>
         <dependency>

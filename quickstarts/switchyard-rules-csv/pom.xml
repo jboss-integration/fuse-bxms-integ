@@ -141,7 +141,7 @@
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>org.switchyard.components</groupId>
+            <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>switchyard-component-rules</artifactId>
         </dependency>
         <dependency>
