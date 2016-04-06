@@ -23,7 +23,6 @@ import org.switchyard.karaf.test.quickstarts.AbstractQuickstartTest;
  * Requires some fixes in jBPM to get the basic bpm stuff working. Needs more
  * work to get the webapp stuff working.
  */
-@Ignore
 public class HelpdeskDemoQuickstartTest extends AbstractQuickstartTest {
     private static String bundleName = "org.jboss.integration.fuse.quickstarts.switchyard.demo.helpdesk";
     private static String featureName = "fuse-bxms-quickstart-switchyard-helpdesk";

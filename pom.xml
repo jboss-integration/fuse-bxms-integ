@@ -102,7 +102,7 @@
         <version.org.apache.cxf.features>[2.7,4)</version.org.apache.cxf.features>
         <version.org.hibernate.features>[4.2,4.4)</version.org.hibernate.features>
         <version.org.apache.geronimo.specs.geronimo-validation_1.0_spec>1.1</version.org.apache.geronimo.specs.geronimo-validation_1.0_spec>
-        <version.org.apache.myfaces.core.myfaces-bundle>2.1.15</version.org.apache.myfaces.core.myfaces-bundle>
+        <version.org.apache.myfaces.core.myfaces-bundle>2.2.9</version.org.apache.myfaces.core.myfaces-bundle>
         <version.commons-beanutils>1.9.2</version.commons-beanutils>
         <version.pax.cdi.feature>1.0.0.RC1-redhat-001</version.pax.cdi.feature>
         <version.commons-digester>1.8.1</version.commons-digester>
