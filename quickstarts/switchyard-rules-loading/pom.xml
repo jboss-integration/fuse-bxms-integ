@@ -54,7 +54,7 @@
         <enforcer.skip>true</enforcer.skip>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <version.org.kie>6.4.0-SNAPSHOT</version.org.kie>
-        <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>
+        <version.switchyard>2.1.0-redhat-SNAPSHOT</version.switchyard>		  
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -109,7 +109,7 @@
             <artifactId>switchyard-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.switchyard.components</groupId>
+            <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>switchyard-component-rules</artifactId>
         </dependency>
         <dependency>
@@ -257,24 +257,39 @@
         </plugins>
     </build>
     <repositories>
+        <!-- Early access to fuse-eap -->
         <repository>
-            <id>redhat-product-ga-repository</id>
-            <name>Red Hat Product Repository</name>
-            <url>https://maven.repository.redhat.com/ga/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+            <id>fuse-eap-staging-repository</id>
+            <url>https://repository.jboss.org/nexus/content/repositories/jboss_thirdparty_releases_staging_profile-1352</url>
+        </repository>
+        <!-- General early access -->
+        <repository>
+            <id>fuse-early-access-repository</id>
+            <url>https://repository.jboss.org/nexus/content/groups/ea</url>
         </repository>
         <repository>
             <id>redhat-product-ga</id>
             <name>Red Hat Product GA</name>
             <url>https://maven.repository.redhat.com/ga</url>
+        </repository>		
+        <!-- Note: repo.fusesource.com is the correct repo for JBoss Fuse and it is not a mistake -->
+        <repository>
+            <id>fusesource.ea</id>
+            <name>JBoss Community Early Access Release Repository</name>
+            <url>https://repo.fusesource.com/nexus/content/groups/ea</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
         </repository>
+        <repository>
+           <id>redhat-m2-proxy</id>
+           <name>Red Hat M2 Proxy</name>
+           <url>http://repository.jboss.org/nexus/content/repositories/m2-proxy/</url>
+        </repository>        
     </repositories>
     <pluginRepositories>
         <pluginRepository>

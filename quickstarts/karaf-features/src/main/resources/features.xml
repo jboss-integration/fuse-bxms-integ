@@ -78,7 +78,7 @@
          -->
 
         <!-- cdi web support -->
-        <feature version="${version.org.ops4j.pax.cdi}">pax-cdi-1.2-web-weld</feature>
+        <feature version="${pax.cdi.feature.version}">pax-cdi-web-weld</feature>
 
 
         <!-- JSF Dependencies -->

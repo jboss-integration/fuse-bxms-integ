@@ -84,7 +84,7 @@
         <enforcer.skip>true</enforcer.skip>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <version.org.kie>6.4.0-SNAPSHOT</version.org.kie>
-        <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>
+        <version.switchyard>2.1.0-redhat-SNAPSHOT</version.switchyard>	
     </properties>
     <dependencyManagement>
         <dependencies>
