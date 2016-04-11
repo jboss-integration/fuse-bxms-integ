@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<kmodule xmlns="http://www.drools.org/xsd/kmodule">
-    <kbase name="camel-workitem-kbase" packages="org.jboss.integration.fuse.karaf.itest.workitem" default="true">
-        <ksession name="camel-workitem-ksession" default="true"/>
-    </kbase>
-</kmodule>
