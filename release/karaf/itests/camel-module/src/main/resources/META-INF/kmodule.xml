@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<kmodule xmlns="http://www.drools.org/xsd/kmodule">
-  <kbase name="kieModuleKieBaseDrinkGav" packages="org.jboss.integration.fuse.karaf.itest.kiecamel.module.drl" default="true">
-    <ksession name="kieModuleKieSessionDrinkGav" type="stateless"/>
-  </kbase>
-</kmodule>
