@@ -25,22 +25,39 @@ Running the quickstart
 
 EAP
 ----------
-1. Start JBoss AS 7 in standalone mode:
+If installers have been previously installed on EAP skips the steps 1-4
+
+1.  Download Jboss EAP 6.4 or upper
+
+
+2.  Install them over your EAP instance:
+
+           java -jar fuse-eap-installer.jar ${eap.home}
+
+3.  Install the kie eap installer:
+
+        java -jar kie-eap-installer.jar ${eap.home}
+
+4.  Install the fuse-integration installer:
+
+        java -jar fuse-integration-eap-installer-${version.fuse.bxms-integration}.jar ${eap.home}
+
+5. Start JBoss AS 7 in standalone mode:
 
         ${AS}/bin/standalone.sh
 
-2. Build and deploy the Quickstart :
+6. Build and deploy the Quickstart :
 
         mvn install -Pdeploy
 
-3. Use the RulesCamelCBRClient class to send a request message to the Dealer service.  The client can be
+7. Use the RulesCamelCBRClient class to send a request message to the Dealer service.  The client can be
    run from the command-line using:
 
         mvn exec:java
 
 See the "Expected Output" section for the expected results.
 
-4. Undeploy the quickstart:
+8. Undeploy the quickstart:
 
         mvn clean -Pdeploy
 
