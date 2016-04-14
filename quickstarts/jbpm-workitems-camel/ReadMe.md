@@ -43,22 +43,39 @@ JBossFuse:karaf@root> features:uninstall jbpm-workitems-camel-quickstart
 
 EAP
 ----------
-1. Start EAP in standalone mode:
+If installers have been previously installed on EAP skips the steps 1-4
+
+1.  Download Jboss EAP 6.4 or upper
+
+
+2.  Install them over your EAP instance:
+
+           java -jar fuse-eap-installer.jar ${eap.home}
+
+3.  Install the kie eap installer:
+
+        java -jar kie-eap-installer.jar ${eap.home}
+
+4.  Install the fuse-integration installer:
+
+        java -jar fuse-integration-eap-installer-${version.fuse.bxms-integration}.jar ${eap.home}
+
+5. Start EAP in standalone mode:
 
         ${AS}/bin/standalone.sh
 
-2. Build and deploy the Quickstart : 
+6. Build and deploy the Quickstart : 
 
         mvn install -Pdeploy
 
-3. Make an Http Get Request:
+7. Make an Http Get Request:
 
         mvn exec:java -Peap 
 
-4. Check the output. See output at the end of the document. The output is placed on /tmp directory and also is 
+8. Check the output. See output at the end of the document. The output is placed on /tmp directory and also is 
 displayed as the output of the previous maven command;
 
-5. Undeploy the quickstart:
+9. Undeploy the quickstart:
 
         mvn clean -Pdeploy
  

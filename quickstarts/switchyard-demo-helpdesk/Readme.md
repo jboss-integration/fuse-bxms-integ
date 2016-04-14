@@ -27,25 +27,42 @@ Maven
 Running the quickstart
 ======================
 
-JBoss AS 7
+EAP
 ----------
-1. Start the application server:
+If installers have been previously installed on EAP skips the steps 1-4
+
+1.  Download Jboss EAP 6.4 or upper
+
+
+2.  Install them over your EAP instance:
+
+           java -jar fuse-eap-installer.jar ${eap.home}
+
+3.  Install the kie eap installer:
+
+        java -jar kie-eap-installer.jar ${eap.home}
+
+4.  Install the fuse-integration installer:
+
+        java -jar fuse-integration-eap-installer-${version.fuse.bxms-integration}.jar ${eap.home}
+
+5. Start the application server:
     ${AS}/bin/standalone.sh
 
-2. Build and deploy the web application:
+6. Build and deploy the web application:
    mvn install -Pdeploy
 
-3. In a web browser window, use the web application:
+7. In a web browser window, use the web application:
     Browse to http://localhost:8080/helpdesk/
     Select the User you want to act as.
     Note that you can toggle back and forth between users. (This would normally be automatically chosen based on the logged on user.)
     So far there are no processes started, so there are no tasks.
 
-4. In a different console window, start a process (this will use the SOAP gateway):
+8. In a different console window, start a process (this will use the SOAP gateway):
     mvn exec:java
     You can do this as many times as you wish, starting as many processes as you wish.
 
-5. Going back to your web browser window:
+9. Going back to your web browser window:
     As krisv (a developer), click the Submit button to get the list of tasks.
     As krisv, review the tasks you want to perform and click the Submit button again.
     As david (a user), click the Submit button to get the list of tasks. He will only have tasks if more details were required.
@@ -55,7 +72,7 @@ JBoss AS 7
 
    Check the expected output below.
 
-6. Undeploy the quickstart:
+10. Undeploy the quickstart:
         mvn clean -Pdeploy
 
 
@@ -63,27 +80,27 @@ FUSE
 ----------
 1. Start FUSE:
 
-${FUSE_HOME}/bin/karaf
+        ${FUSE_HOME}/bin/karaf
 
 
 2. Ensure that the drools and switchyard compatible features URL files have been added to your Fuse instance. 
    In case they are not added then:
 
-    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/${drools.karaf.features.classifier}
+        features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/${drools.karaf.features.classifier}
 
 3. Add the features URL for the respective version of BXMS.
 
-JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features
+        JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features
 
 
 4. Install the feature for the Switchyard HelpDesk Demo quickstart :
 
-JBossFuse:karaf@root> features:install fuse-bxms-quickstart-switchyard-helpdesk
+        JBossFuse:karaf@root> features:install fuse-bxms-quickstart-switchyard-helpdesk
 
 5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
 <br/>
-```
-mvn exec:java -Pkaraf
+
+        mvn exec:java -Pkaraf
 
 
     You can do this as many times as you wish, starting as many processes as you wish.
@@ -104,7 +121,7 @@ mvn exec:java -Pkaraf
 
 7. Undeploy the quickstart:
 
-JBossFuse:karaf@root> features:uninstall fuse-bxms-quickstart-switchyard-helpdesk
+        JBossFuse:karaf@root> features:uninstall fuse-bxms-quickstart-switchyard-helpdesk
 
 
 

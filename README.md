@@ -32,10 +32,13 @@ EAP 6.4 Installation
 
 3.  Install them over your EAP instance:
 
-
            java -jar fuse-eap-installer.jar ${eap.home}
 
-4.  Install the fuse-integration installer:
+4.  Install the kie eap installer:
+
+        java -jar kie-eap-installer.jar ${eap.home}
+
+5.  Install the fuse-integration installer:
 
         java -jar ${FUSE_BXMS_INTEG}/release/eap/installer/target/fuse-integration-eap-installer-${version.fuse.bxms-integration}.jar ${eap.home}
 

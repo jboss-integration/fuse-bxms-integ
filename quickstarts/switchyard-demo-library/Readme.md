@@ -19,24 +19,41 @@ Running the quickstart
 
 JBoss AS 7
 ----------
-1. Start JBoss AS 7 in standalone mode:
+If installers have been previously installed on EAP skips the steps 1-4
+
+1.  Download Jboss EAP 6.4 or upper
+
+
+2.  Install them over your EAP instance:
+
+           java -jar fuse-eap-installer.jar ${eap.home}
+
+3.  Install the kie eap installer:
+
+        java -jar kie-eap-installer.jar ${eap.home}
+
+4.  Install the fuse-integration installer:
+
+        java -jar fuse-integration-eap-installer-${version.fuse.bxms-integration}.jar ${eap.home}
+
+5. Start JBoss AS 7 in standalone mode:
 ```
         ${AS}/bin/standalone.sh
 ```
 
-2. Build and deploy the Quickstart : 
+6. Build and deploy the Quickstart : 
 ```
         mvn install -Pdeploy
 ```
 
-3. Submit multiple webservice requests to invoke the SOAP gateways by using the bundled client.
+7. Submit multiple webservice requests to invoke the SOAP gateways by using the bundled client.
 ```
         mvn exec:java
 ```
   Check the expected output (below)
 
 
-4. Undeploy the quickstart:
+8. Undeploy the quickstart:
 ```
         mvn clean -Pdeploy
 ```

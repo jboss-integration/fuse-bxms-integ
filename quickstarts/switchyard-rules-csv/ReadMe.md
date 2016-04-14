@@ -14,21 +14,38 @@ Running the quickstart
 
 EAP
 ----------
-1. Start EAP in standalone mode:
+If installers have been previously installed on EAP skips the steps 1-4
+
+1.  Download Jboss EAP 6.4 or upper
+
+
+2.  Install them over your EAP instance:
+
+           java -jar fuse-eap-installer.jar ${eap.home}
+
+3.  Install the kie eap installer:
+
+        java -jar kie-eap-installer.jar ${eap.home}
+
+4.  Install the fuse-integration installer:
+
+        java -jar fuse-integration-eap-installer-${version.fuse.bxms-integration}.jar ${eap.home}
+
+5. Start EAP in standalone mode:
 
         ${AS}/bin/standalone.sh
 
-2. Build and deploy the quickstart: 
+6. Build and deploy the quickstart: 
 
         mvn install -Pdeploy
 
-3. Submit a webservice request to invoke the Client<br/>
+7. Submit a webservice request to invoke the Client<br/>
 ```
         mvn exec:java
 ```
 <br/>
 
-4. Undeploy the quickstart:
+8. Undeploy the quickstart:
 
         mvn clean -Pdeploy
 
