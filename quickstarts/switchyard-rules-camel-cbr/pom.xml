@@ -203,6 +203,7 @@
             <plugin>
                 <groupId>org.switchyard</groupId>
                 <artifactId>switchyard-plugin</artifactId>
+                <version>${version.switchyard}</version>
                 <executions>
                     <execution>
                         <goals>
