@@ -16,7 +16,7 @@
     xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-    <version>1.4.0-SNAPSHOT</version>
+    <version>1.4.0.redhat-621007</version>
     <artifactId>switchyard-rules-csv</artifactId>
     <packaging>bundle</packaging>
     <name>Fuse Integration: Quickstarts: SwitchYard: Rules CSV</name>
@@ -62,8 +62,8 @@
         <version.felix.maven>2.4.0</version.felix.maven>
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
-        <version.org.kie>6.4.0-SNAPSHOT</version.org.kie>
-        <version.switchyard>2.1.0-redhat-SNAPSHOT</version.switchyard>			
+        <version.org.kie>6.4.1.20160419-productized</version.org.kie>
+        <version.switchyard>2.0.1.redhat-621084</version.switchyard>			
     </properties>
     <dependencyManagement>
         <dependencies>
