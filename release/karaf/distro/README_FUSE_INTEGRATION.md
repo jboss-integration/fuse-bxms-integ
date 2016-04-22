@@ -21,7 +21,7 @@ Compatible Drools Version: ${version.org.kie}
      `
 3.  If the Drools features URL has not been added, it should be:
 ```
-JBossFuse:karaf@root> features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/${drools.karaf.features.classifier}
+JBossFuse:karaf@root> features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/${drools.karaf.features.classifier}
 ```
 
 
