@@ -52,7 +52,7 @@
         <!-- Perfectus managed versions -->
         <version.fuse>6.3.0.redhat-045</version.fuse>
         <version.fuse.eap>${version.fuse}</version.fuse.eap>
-        <version.fuse.patch>1.6.2</version.fuse.patch>
+        <version.fuse.patch>2.3.0</version.fuse.patch>
         <version.org.apache.karaf>2.4.0.redhat-630045</version.org.apache.karaf>
         <version.camelsap>${version.fuse}</version.camelsap>
         <version.switchyard>2.1.0-redhat-SNAPSHOT</version.switchyard>
