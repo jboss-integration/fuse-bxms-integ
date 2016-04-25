@@ -32,9 +32,5 @@
             <groupId>org.wildfly.extras.patch</groupId>
             <artifactId>fuse-patch-config</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.wildfly.camel</groupId>
-            <artifactId>wildfly-camel-config</artifactId>
-        </dependency>
     </dependencies>
 </project>
