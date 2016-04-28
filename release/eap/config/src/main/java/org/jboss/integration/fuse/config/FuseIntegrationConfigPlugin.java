@@ -15,9 +15,9 @@
  */
 package org.jboss.integration.fuse.config;
 
-import static org.wildfly.extension.camel.config.WildFlyCamelConfigPlugin.NS_DOMAIN;
 import static org.wildfly.extras.config.LayerConfig.Type.INSTALLING;
 import static org.wildfly.extras.config.LayerConfig.Type.REQUIRED;
+import static org.wildfly.extras.config.NamespaceConstants.NS_DOMAIN;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,13 +30,22 @@ import org.wildfly.extras.config.ConfigContext;
 import org.wildfly.extras.config.ConfigPlugin;
 import org.wildfly.extras.config.ConfigSupport;
 import org.wildfly.extras.config.LayerConfig;
+import org.wildfly.extras.config.NamespaceRegistry;
 
-/**
- */
 public class FuseIntegrationConfigPlugin implements ConfigPlugin {
 
-    private static final Namespace NS_SWITCHYARD = Namespace.getNamespace("urn:jboss:domain:switchyard:1.0");
-    
+    public static final String NS_SWITCHYARD = "urn:jboss:domain:switchyard";
+
+    private NamespaceRegistry registry;
+
+    public FuseIntegrationConfigPlugin() {
+        registerNamespaceVersions(new NamespaceRegistry());
+    }
+
+    public FuseIntegrationConfigPlugin(NamespaceRegistry registry) {
+        registerNamespaceVersions(registry);
+    }
+
     @Override
     public String getConfigName() {
         return "fuse-integration";
@@ -58,13 +67,16 @@ public class FuseIntegrationConfigPlugin implements ConfigPlugin {
         updateSwitchyardModules(enable, context);
     }
 
-    public static void updateSwitchyardModules(boolean enable, ConfigContext context) {
+    private void updateSwitchyardModules(boolean enable, ConfigContext context) {
         Document doc = context.getDocument();
-        List<Element> profiles = ConfigSupport.findProfileElements(doc, NS_DOMAIN);
+        Namespace[] domainNamespaces = registry.getNamespaces(NS_DOMAIN);
+        Namespace[] switchYardNamespaces = registry.getNamespaces(NS_SWITCHYARD);
+
+        List<Element> profiles = ConfigSupport.findProfileElements(doc, domainNamespaces);
         for (Element profile : profiles) {
-            Element switchyard = profile.getChild("subsystem", NS_SWITCHYARD);
+            Element switchyard = ConfigSupport.findChildElement(profile, "subsystem", switchYardNamespaces);
             ConfigSupport.assertExists(switchyard, "Did not find the switchyard subsystem");
-            Element modules = switchyard.getChild("modules", NS_SWITCHYARD);
+            Element modules = ConfigSupport.findChildElement(switchyard, "modules", switchYardNamespaces);
             ConfigSupport.assertExists(modules, "Did not find the <modules> element");
 
             updateSwitchyardModule(enable, modules, "org.fuse.integration.switchyard.component.bpm", "org.switchyard.component.bpm.deploy.BPMComponent");
@@ -72,15 +84,23 @@ public class FuseIntegrationConfigPlugin implements ConfigPlugin {
         }
     }
 
-    private static void updateSwitchyardModule(boolean enable, Element modules, String id, String className) {
-        Element module = ConfigSupport.findElementWithAttributeValue(modules, "module", NS_SWITCHYARD, "identifier", id);
+    private void updateSwitchyardModule(boolean enable, Element modules, String id, String className) {
+        Namespace[] switchYardNamespaces = registry.getNamespaces(NS_SWITCHYARD);
+        Element module = ConfigSupport.findElementWithAttributeValue(modules, "module", "identifier", id, switchYardNamespaces);
         if (enable && module == null) {
             modules.addContent(new Text("    "));
-            modules.addContent(new Element("module", NS_SWITCHYARD).setAttribute("identifier", id).setAttribute("implClass", className));
-            modules.addContent(new Text("    "));
+            modules.addContent(new Element("module", modules.getNamespace()).setAttribute("identifier", id).setAttribute("implClass", className));
+            modules.addContent(new Text("\n    "));
         }
         if (!enable && module != null) {
             module.getParentElement().removeContent(module);
         }
+    }
+
+    private void registerNamespaceVersions(NamespaceRegistry registry) {
+        this.registry = registry;
+        registry.registerNamespace(NS_DOMAIN, "1.8");
+        registry.registerNamespace(NS_DOMAIN, "1.7");
+        registry.registerNamespace(NS_SWITCHYARD, "1.0");
     }
 }
