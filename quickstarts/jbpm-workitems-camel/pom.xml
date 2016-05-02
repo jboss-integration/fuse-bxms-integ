@@ -88,6 +88,7 @@
         <wildfly.port>9999</wildfly.port>
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <bundle.symbolic.name>${project.groupId}.camel.jbpm.workitems</bundle.symbolic.name>
+        <version.apache.camel>2.17.0.redhat-630067</version.apache.camel>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -130,6 +131,13 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>org.osgi.core</artifactId>
                 <version>1.4.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                 <artifactId>camel-parent</artifactId>
+                <version>${version.apache.camel}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
