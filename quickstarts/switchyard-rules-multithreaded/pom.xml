@@ -168,8 +168,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-        	<groupId>org.switchyard.components</groupId>
-        	<artifactId>switchyard-component-rules</artifactId>
+            <groupId>org.jboss.integration.fuse</groupId>
+            <artifactId>switchyard-component-rules</artifactId>
         </dependency>
         <dependency>
         	<groupId>org.switchyard</groupId>
