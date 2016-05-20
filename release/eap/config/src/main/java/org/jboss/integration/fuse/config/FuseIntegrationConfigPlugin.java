@@ -15,7 +15,6 @@
  */
 package org.jboss.integration.fuse.config;
 
-import static org.wildfly.extension.camel.config.WildFlyCamelConfigPlugin.NS_DOMAIN;
 import static org.wildfly.extras.config.LayerConfig.Type.INSTALLING;
 import static org.wildfly.extras.config.LayerConfig.Type.REQUIRED;
 
@@ -36,6 +35,8 @@ import org.wildfly.extras.config.LayerConfig;
 public class FuseIntegrationConfigPlugin implements ConfigPlugin {
 
     private static final Namespace NS_SWITCHYARD = Namespace.getNamespace("urn:jboss:domain:switchyard:1.0");
+    private static final Namespace NS_DOMAIN = Namespace.getNamespace("urn:jboss:domain");
+
     
     @Override
     public String getConfigName() {
