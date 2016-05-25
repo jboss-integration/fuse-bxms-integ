@@ -18,6 +18,7 @@
     </resources>
     <dependencies>
         <module name="com.google.protobuf"/>
+        <module name="org.osgi.core"/>
         <module name="javax.api"/>
         <module name="javax.enterprise.api"/>
         <module name="javax.persistence.api"/>
