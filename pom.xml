@@ -53,11 +53,11 @@
         <version.fuse>6.3.0.redhat-067</version.fuse>
         <version.fuse.eap>${version.fuse}</version.fuse.eap>
         <version.fuse.patch>2.3.0</version.fuse.patch>
-        <version.org.apache.karaf>2.4.0.redhat-630067</version.org.apache.karaf>
+        <version.org.apache.karaf>2.4.0.redhat-630073</version.org.apache.karaf>
         <version.camelsap>${version.fuse}</version.camelsap>
         <version.switchyard>2.1.0-redhat-SNAPSHOT</version.switchyard>
-        <version.wildfly.camel>2.4.0.redhat-630067</version.wildfly.camel>
-        <version.apache.camel>2.17.0.redhat-630067</version.apache.camel>
+        <version.wildfly.camel>2.4.0.redhat-630073</version.wildfly.camel>
+        <version.apache.camel>2.17.0.redhat-630073</version.apache.camel>
         
         <!-- Internal dependencies -->
         <version.org.kie>6.4.0-SNAPSHOT</version.org.kie>
