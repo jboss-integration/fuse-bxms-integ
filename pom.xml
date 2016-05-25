@@ -50,7 +50,7 @@
         <!-- EAP 6.4.x -->
         <version.eap>7.5.7.Final-redhat-3</version.eap>
         <!-- Perfectus managed versions -->
-        <version.fuse>6.3.0.redhat-067</version.fuse>
+        <version.fuse>6.3.0.redhat-073</version.fuse>
         <version.fuse.eap>${version.fuse}</version.fuse.eap>
         <version.fuse.patch>2.3.0</version.fuse.patch>
         <version.org.apache.karaf>2.4.0.redhat-630073</version.org.apache.karaf>
