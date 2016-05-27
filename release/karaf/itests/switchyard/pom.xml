@@ -211,6 +211,7 @@
                     </includes>
                     <excludes>
                         <exclude>**/Abstract*.java</exclude>
+                        <exclude>**/HelpdeskDemoQuickstartTest.java</exclude>
                         <exclude>**/*$*</exclude>
                     </excludes>
                 </configuration>

@@ -151,6 +151,7 @@ abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
                             "    http://repository.springsource.com/maven/bundles/release@id=springsource.release," +
                             "    http://repository.springsource.com/maven/bundles/external@id=springsource.external," +
                             "    https://oss.sonatype.org/content/repositories/releases/@id=sonatype, " +
+                            "    http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven@id=fuse62brew, " +
                             "    https://repository.jboss.org/nexus/content/groups/ea@id=ea"
             ));
 
