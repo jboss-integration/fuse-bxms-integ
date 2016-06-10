@@ -20,8 +20,7 @@ EAP
 ----------
 If installers have been previously installed on EAP skips the steps 1-4
 
-1.  Download Jboss EAP 6.4 or upper
-
+1.  Download JBoss EAP 6.4 series EAP.
 
 2.  Install them over your EAP instance:
 
@@ -58,7 +57,7 @@ Expected output:
 service: Channel, payload: message
 service: WorkerABean, payload: message.A
 service: WorkerB, payload: message.B
-
+* (you may see other debugging info in the console)
 
 8. Undeploy the quickstart:
 
