@@ -51,6 +51,9 @@
             osgi.extender; filter:="(osgi.extender=pax.cdi)" </switchyard.osgi.require.capability> <switchyard.osgi.dynamic> 
             org.switchyard,org.switchyard.* </switchyard.osgi.dynamic> <version.enforcer.maven>1.3.1</version.enforcer.maven> 
             <version.felix.maven>2.4.0</version.felix.maven> <version.wildfly.maven>1.0.2.Final</version.wildfly.maven -->
+        <deploy.skip>true</deploy.skip>
+        <wildfly.port>9999</wildfly.port>
+        <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <enforcer.skip>true</enforcer.skip>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <version.org.kie>6.4.0-SNAPSHOT</version.org.kie>
@@ -160,6 +163,43 @@
         </pluginManagement>
         <plugins>
             <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven}</version>
+                <executions>
+                    <execution>
+                        <id>deploy</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>deploy-only</goal>
+                        </goals>
+                        <configuration>
+                            <filename>${project.build.finalName}.jar</filename>
+                            <skip>${deploy.skip}</skip>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>undeploy</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>undeploy</goal>
+                        </goals>
+                        <configuration>
+                            <filename>${project.build.finalName}.jar</filename>
+                            <skip>${deploy.skip}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <configuration>
+                    <classpathScope>test</classpathScope>
+                    <mainClass>org.switchyard.quickstarts.rules.loading.HttpClient</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.switchyard</groupId>
                 <artifactId>switchyard-plugin</artifactId>
                 <executions>
@@ -256,6 +296,39 @@
             </plugin>  
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>deploy</id>
+            <properties>
+                <deploy.skip>false</deploy.skip>
+            </properties>
+        </profile>
+        <profile>
+            <id>karaf</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <systemProperties>
+                                <systemProperty>
+                                    <key>org.switchyard.component.sca.client.port</key>
+                                    <value>8181</value>
+                                </systemProperty>
+                            </systemProperties>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>wildfly</id>
+            <properties>
+                <wildfly.port>9990</wildfly.port>
+            </properties>
+        </profile>
+    </profiles>
     <repositories>
         <!-- Early access to fuse-eap -->
         <repository>
