@@ -983,10 +983,10 @@
             <id>fuse-6.2.1</id>
             <properties>
                 <version.switchyard>2.0.1-redhat-SNAPSHOT</version.switchyard>
-                <version.wildfly.camel>2.3.0.redhat-621084</version.wildfly.camel>
-                <version.fuse>6.2.1.redhat-084</version.fuse>
-                <version.org.apache.karaf>2.4.0.redhat-621084</version.org.apache.karaf>
-                <version.apache.camel>2.15.1.redhat-621084</version.apache.camel>
+                <version.wildfly.camel>2.3.0.redhat-621107</version.wildfly.camel>
+                <version.fuse>6.2.1.redhat-107</version.fuse>
+                <version.org.apache.karaf>2.4.0.redhat-621107</version.org.apache.karaf>
+                <version.apache.camel>2.15.1.redhat-621107</version.apache.camel>
                 <version.org.eclipse.jetty>8.1.14.v20131031</version.org.eclipse.jetty>
                 <drools.karaf.features.classifier>features</drools.karaf.features.classifier>
                 <org.apache.cxf.eap.slot>3.0</org.apache.cxf.eap.slot>
