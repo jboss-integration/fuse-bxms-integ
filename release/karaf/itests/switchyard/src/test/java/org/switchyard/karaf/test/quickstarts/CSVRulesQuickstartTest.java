@@ -6,6 +6,7 @@ import javax.xml.namespace.QName;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.switchyard.quickstart.rules.csv.Person;
 import org.switchyard.remote.RemoteInvoker;
@@ -23,6 +24,7 @@ public class CSVRulesQuickstartTest extends AbstractQuickstartTest {
     }
 
     @Override
+    @Ignore
     @Test
     public void testDeployment() throws IOException {
         String port = "8181";

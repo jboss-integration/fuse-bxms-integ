@@ -8,6 +8,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.switchyard.quickstart.rules.csv.Person;
@@ -26,6 +27,7 @@ public class CSVRulesQuickstartTest {
         return BRMSArquillianUtil.createJarQSDeployment("switchyard-rules-csv");
     }
 
+    @Ignore
     @Test
     public void testDeployment() throws IOException {
         RemoteInvoker invoker = new HttpInvoker("http://localhost:8080/switchyard-remote");
