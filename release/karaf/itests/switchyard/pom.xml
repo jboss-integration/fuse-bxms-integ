@@ -18,7 +18,7 @@
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>fuse-integration-karaf-tests</artifactId>
-        <version>1.4.0-SNAPSHOT</version>
+        <version>1.5.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
     <artifactId>fuse-integration-karaf-tests-switchyard</artifactId>
@@ -302,28 +302,4 @@
             </plugin>
         </plugins>
     </build>
-
-  <profiles>
-        <profile>
-            <id>fuse-6.2.1</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <includes>
-                                <include>**/*Test*.java</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/Abstract*.java</exclude>
-                                <exclude>**/HelpdeskDemoQuickstartTest.java</exclude>
-                                <exclude>**/*$*</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
