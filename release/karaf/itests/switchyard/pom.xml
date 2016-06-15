@@ -195,11 +195,10 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <!-- 2.18.1 is failing with "When writing xml report stdout/stderr: /tmp/stdout (No such 
-                    file or directory)" -->
                 <version>2.16</version>
                 <configuration>
                     <systemPropertyVariables>
@@ -216,6 +215,22 @@
                     </excludes>
                 </configuration>
             </plugin>
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*Test*.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/Abstract*.java</exclude>
+                        <exclude>**/HelpdeskDemoQuickstartTest.java</exclude>
+                        <exclude>**/*$*</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            
             <plugin>
                 <groupId>org.apache.karaf.tooling</groupId>
                 <artifactId>features-maven-plugin</artifactId>
@@ -302,28 +317,4 @@
             </plugin>
         </plugins>
     </build>
-
-  <profiles>
-        <profile>
-            <id>fuse-6.2.1</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <includes>
-                                <include>**/*Test*.java</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/Abstract*.java</exclude>
-                                <exclude>**/HelpdeskDemoQuickstartTest.java</exclude>
-                                <exclude>**/*$*</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
