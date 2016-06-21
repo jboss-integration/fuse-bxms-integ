@@ -27,7 +27,7 @@ JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts
 
 4. Install the feature for the Blueprint camel drools decision table quickstart :
 
-JBossFuse:karaf@root> features:install jbpm-workitems-camel-quickstart
+JBossFuse:karaf@root> features:install fuse-bxms-quickstart-camel-jbpm-workitems
 
 5. Make an Http Get Request:
 
@@ -38,7 +38,7 @@ displayed as the output of the previous maven command;
 
 6. Undeploy the quickstart:
 
-JBossFuse:karaf@root> features:uninstall jbpm-workitems-camel-quickstart
+JBossFuse:karaf@root> features:uninstall fuse-bxms-quickstart-camel-jbpm-workitems
 
 
 EAP
