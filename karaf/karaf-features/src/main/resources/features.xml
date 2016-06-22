@@ -11,6 +11,7 @@
         <feature version="${karaf.version.org.kie}">kie-ci</feature>
         <feature version="${karaf.version.org.kie}">jbpm-executor</feature>
         <feature version="${karaf.version.org.kie}">kie-remote-client</feature>
+        <bundle>mvn:org.switchyard.components/switchyard-component-common/${version.switchyard}</bundle>
         <bundle>mvn:org.jboss.integration.fuse/switchyard-component-common-knowledge/${project.version}</bundle>
         <bundle>mvn:org.jboss.integration.fuse/switchyard-component-common-knowledge-osgi/${project.version}</bundle>
     </feature>
