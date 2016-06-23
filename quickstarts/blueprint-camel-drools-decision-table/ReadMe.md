@@ -5,6 +5,8 @@ This quickstart shows integration between Blueprint, Camel and Drools. Decision 
 which are used to create knowledge session via Blueprint configuration file. Camel routes, defined via Blueprint
 as well, are then used to e.g. pass (insert) the Body of the message as a POJO to Drools engine for execution.
 
+If you are adapting this example to use CXF, please see the notes in the Integration Package documentation regarding the use of kie-camel along with CXF.
+
 FUSE
 ----------
 1. Start FUSE:

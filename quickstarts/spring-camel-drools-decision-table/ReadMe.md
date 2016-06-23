@@ -8,6 +8,9 @@ passing (inserting) the Body of the message as a POJO to Drools engine or creati
 of the message with the help of the custom DroolsCommandHelperBean (included in this project), and passing this Drools
 Command to the ruleset for execution.
 
+If you are adapting this example to use CXF, please see the notes in the Integration Package documentation regarding the use of kie-camel along with CXF.
+
+
 FUSE
 ----------
 1. Start FUSE:
