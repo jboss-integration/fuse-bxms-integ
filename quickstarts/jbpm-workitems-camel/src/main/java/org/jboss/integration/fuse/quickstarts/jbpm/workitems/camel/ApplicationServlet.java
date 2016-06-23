@@ -119,8 +119,9 @@ public class ApplicationServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.println("<h1>Accepted Applications</h1>");
         out.println("<ul>");
-        BufferedReader reader = new BufferedReader(new FileReader(new File(tempDir.getAbsolutePath() + File.separatorChar
-                + ACCEPTED_APPS_FILENAME)));
+        File acceptedAppsFile = new File(tempDir.getAbsolutePath() + File.separatorChar + ACCEPTED_APPS_FILENAME);
+        acceptedAppsFile.createNewFile();
+        BufferedReader reader = new BufferedReader(new FileReader(acceptedAppsFile));
         String line;
         while ((line = reader.readLine()) != null) {
             out.println("<li>" + line + "</li>");
@@ -129,8 +130,9 @@ public class ApplicationServlet extends HttpServlet {
         out.println("</ul>");
         out.println("<br>");
         out.println("<h1>Rejected Applications</h1>");
-        reader = new BufferedReader(new FileReader(new File(tempDir.getAbsolutePath() + File.separatorChar
-                + REJECTED_APPS_FILENAME)));
+        File rejectedAppsFile = new File(tempDir.getAbsolutePath() + File.separatorChar + REJECTED_APPS_FILENAME);
+        rejectedAppsFile.createNewFile();
+        reader = new BufferedReader(new FileReader(rejectedAppsFile));
         while ((line = reader.readLine()) != null) {
             out.println("<li>" + line + "</li>");
         }

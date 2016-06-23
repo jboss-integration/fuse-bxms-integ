@@ -268,7 +268,8 @@
                             org.kie.api.runtime.rule;version="[6.0,7)",
                             org.kie.api.runtime.process;version="[6.0,7)",
                             org.kie.internal;version="[6.0,7)", javax.servlet, javax.servlet.http,
-                            org.jbpm.process.workitem.camel 
+                            org.jbpm.process.workitem.camel,
+                            org.slf4j
                         </Import-Package>
                         <Private-Package>
                             org.jboss.integration.fuse.quickstarts.jbpm.workitems.camel 
