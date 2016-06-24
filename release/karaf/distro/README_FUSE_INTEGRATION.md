@@ -1,6 +1,6 @@
 Description
 ============
-The Fuse Integration pack is an optional package that can be added to an existing Fuse 6.2 installation.  The integration package contains libraries/components that can interact with other integration modules that have not been added into the default Fuse 6.2 release. 
+The Fuse Integration pack is an optional package that can be added to an existing Fuse 6.3 installation.  The integration package contains libraries/components that can interact with other integration modules that have not been added into the default Fuse 6.3 release. 
 
 The purpose of the integration package is to provide the glue between Fuse and BRMS components/libraries.  The Fuse Integration Package gives the ability to install the components/libraries that have not been included in Fuse (Drools, BPM, etc).
 
