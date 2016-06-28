@@ -29,7 +29,7 @@
         <version.distro>2.0</version.distro>
     </properties>
     <modules>
-        <!--<module>eap</module>-->
+        <module>eap</module>
         <module>karaf</module>
     </modules>
 </project>
