@@ -18,7 +18,7 @@
     <artifactId>switchyard-rules-interview</artifactId>
     <packaging>bundle</packaging>
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-    <version>1.5.0-SNAPSHOT</version>
+    <version>1.5.0.redhat-630003</version>
     <name>Fuse Integration: Quickstarts: SwitchYard: rules-interview</name>
     <description>Fuse Integration: Quickstarts: Switchyard Quickstart : Rules Interview</description>
     <url>https://github.com/jboss-integration/fuse-bxms-integ</url>
@@ -62,8 +62,8 @@
         <version.felix.maven>2.4.0</version.felix.maven>
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
-        <version.org.kie>6.4.1-SNAPSHOT</version.org.kie>
-        <version.switchyard>2.1.0-redhat-SNAPSHOT</version.switchyard>
+        <version.org.kie>6.4.1.20160707-productized</version.org.kie>
+        <version.switchyard>2.1.0.redhat-630133</version.switchyard>
     </properties>
     <dependencies>
         <dependency>
