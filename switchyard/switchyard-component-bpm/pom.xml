@@ -18,7 +18,7 @@
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>switchyard-parent</artifactId>
-        <version>1.4.0-SNAPSHOT</version>
+        <version>1.4.0.redhat-621041</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>switchyard-component-bpm</artifactId>
