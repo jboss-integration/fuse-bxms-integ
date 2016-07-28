@@ -39,6 +39,14 @@ ${AS}/bin/standalone.sh
 
 6. Build and deploy the quickstart:
 
+mvn package
+
+7. Install the kie module needed :
+
+mvn exec:java -Dinstall-kiemodule=true
+
+8. Install the deployables :
+
 mvn install -Pdeploy
 
 7. Submit a webservice request to invoke the Client<br/>
