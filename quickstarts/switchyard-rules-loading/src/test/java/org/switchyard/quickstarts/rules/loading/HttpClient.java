@@ -109,6 +109,11 @@ public class HttpClient {
             ioe.printStackTrace();
         }
 
+        String value = System.getProperty("install-kiemodule");
+        if ((value !=null) && ("true".equals(value))) {
+            return;
+        }
+
         final HTTPMixIn http = new HTTPMixIn();
         http.initialize();
         String response = http.sendString(HELLO_SERVICE_ADDRESS, "first", HTTPMixIn.HTTP_POST);
