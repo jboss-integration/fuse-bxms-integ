@@ -22,7 +22,7 @@
         <relativePath>../</relativePath>
     </parent>
     <artifactId>fuse-integration-quickstarts-karaf</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>Fuse Integration: Quickstarts: Karaf: Assembly Distro</name>
     <description>Fuse Integration: Quickstarts: Karaf: Assembly Distro</description>
     <build>
