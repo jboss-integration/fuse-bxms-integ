@@ -30,6 +30,7 @@
         <module>distro</module>
         <module>installer</module>
         <module>itests</module>
+        <module>installer-zip</module>
     </modules>
     <dependencies>
         <dependency>
