@@ -49,6 +49,7 @@
         <bundle.symbolic.name>${project.groupId}.switchyard.rules.multithreaded</bundle.symbolic.name>
         <deploy.skip>true</deploy.skip>
         <wildfly.port>9999</wildfly.port>
+        <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.source>1.6</maven.compiler.source>
         <switchyard.osgi.import>*</switchyard.osgi.import>
@@ -255,6 +256,7 @@
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven}</version>
                 <executions>
                     <execution>
                         <id>deploy</id>
