@@ -24,7 +24,7 @@
     <groupId>org.switchyard.components</groupId>
     <artifactId>backwards-compat-parent</artifactId>
     <packaging>pom</packaging>
-    <version>2.1.0-redhat-SNAPSHOT</version>
+    <version>2.1.0.redhat-630167</version>
 
     <name>Fuse Integration: Backwards Compat: Parent</name>
     <description>Fuse BXMS Integration Backwards Compat Parent</description>

@@ -54,7 +54,7 @@
         <wildfly.port>9999</wildfly.port>
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <bundle.symbolic.name>${project.groupId}.spring.camel.drools.decision.table</bundle.symbolic.name>
-        <version.apache.camel>2.17.0.redhat-630159</version.apache.camel>
+        <version.apache.camel>2.17.0.redhat-630167</version.apache.camel>
     </properties>
     <dependencyManagement>
         <dependencies>
