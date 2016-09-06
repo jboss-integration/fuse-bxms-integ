@@ -25,7 +25,7 @@
         <file>
             <source>${project.build.directory}/README_FUSE_INTEGRATION.md</source>
             <outputDirectory>/</outputDirectory>
-            <destName>README</destName>
+            <destName>README.md</destName>
         </file>
     </files>
 
