@@ -58,7 +58,8 @@
         <version.switchyard>2.1.0.redhat-630167</version.switchyard>
         <version.wildfly.camel>2.4.0.redhat-630167</version.wildfly.camel>
         <version.apache.camel>2.17.0.redhat-630167</version.apache.camel>
-        
+        <version.net.sourceforge.saxon>9.2.1.5</version.net.sourceforge.saxon>
+
         <!-- Internal dependencies -->
         <version.org.kie>6.4.1-SNAPSHOT</version.org.kie>
         <version.org.jboss.integration-platform>6.0.6.Final</version.org.jboss.integration-platform>
@@ -985,7 +986,6 @@
         <module>fuse-integration-bom</module>
         <module>camel</module>
         <module>switchyard</module>
-        <!--module>backward-compat</module -->
         <module>quickstarts</module>
         <module>karaf</module>
         <module>release</module>

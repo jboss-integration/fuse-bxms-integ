@@ -33,6 +33,7 @@
         <dependencySet>
             <useTransitiveDependencies>false</useTransitiveDependencies>
             <includes>
+                <include>com.redhat.fuse.eap:fuse-eap-installer</include>
                 <include>org.kie:kie-eap-installer</include>
                 <include>org.jboss.integration.fuse:fuse-integration-eap-installer</include>
             </includes>
