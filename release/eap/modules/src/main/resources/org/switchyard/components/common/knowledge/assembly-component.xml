@@ -25,7 +25,7 @@
         <dependencySet>
             <useTransitiveDependencies>false</useTransitiveDependencies>
             <includes>
-                <include>org.switchyard.components:switchyard-component-common-knowledge</include>
+                <include>org.jboss.integration.fuse:switchyard-component-common-knowledge</include>
             </includes>
             <outputDirectory>/modules/system/layers/fuse-integration/org/switchyard/component/common/knowledge/main</outputDirectory>
             <outputFileNameMapping>${artifact.artifactId}-${version.switchyard}.${artifact.extension}</outputFileNameMapping>

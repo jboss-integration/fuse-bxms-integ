@@ -68,5 +68,30 @@
             <directoryMode>755</directoryMode>
         </fileSet>
     </fileSets>
-
+    <dependencySets>
+        <dependencySet>
+            <useTransitiveDependencies>false</useTransitiveDependencies>
+            <includes>
+                <include>org.jboss.integration.fuse:switchyard-component-bpm</include>
+            </includes>
+            <outputDirectory>system/org/switchyard/components/switchyard-component-bpm/${version.switchyard}</outputDirectory>
+            <outputFileNameMapping>${artifact.artifactId}-${version.switchyard}.${artifact.extension}</outputFileNameMapping>
+        </dependencySet>
+        <dependencySet>
+            <useTransitiveDependencies>false</useTransitiveDependencies>
+            <includes>
+                <include>org.jboss.integration.fuse:switchyard-component-rules</include>
+            </includes>
+            <outputDirectory>system/org/switchyard/components/switchyard-component-rules/${version.switchyard}</outputDirectory>
+            <outputFileNameMapping>${artifact.artifactId}-${version.switchyard}.${artifact.extension}</outputFileNameMapping>
+        </dependencySet>
+        <dependencySet>
+            <useTransitiveDependencies>false</useTransitiveDependencies>
+            <includes>
+                <include>org.jboss.integration.fuse:switchyard-component-common-knowledge</include>
+            </includes>
+            <outputDirectory>system/org/switchyard/components/switchyard-component-common-knowledge/${version.switchyard}</outputDirectory>
+            <outputFileNameMapping>${artifact.artifactId}-${version.switchyard}.${artifact.extension}</outputFileNameMapping>
+        </dependencySet>
+    </dependencySets>
 </assembly>
