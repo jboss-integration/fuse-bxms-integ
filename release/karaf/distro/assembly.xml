@@ -68,6 +68,7 @@
             <directoryMode>755</directoryMode>
         </fileSet>
     </fileSets>
+<!--
     <dependencySets>
         <dependencySet>
             <useTransitiveDependencies>false</useTransitiveDependencies>
@@ -94,4 +95,5 @@
             <outputFileNameMapping>${artifact.artifactId}-${version.switchyard}.${artifact.extension}</outputFileNameMapping>
         </dependencySet>
     </dependencySets>
+-->
 </assembly>
