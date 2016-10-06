@@ -27,6 +27,7 @@ import org.drools.core.command.runtime.rule.InsertObjectCommand;
 import org.drools.core.command.runtime.rule.QueryCommand;
 import org.drools.core.common.DefaultFactHandle;
 import org.drools.core.runtime.rule.impl.FlatQueryResults;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
@@ -119,6 +120,7 @@ public class CamelEndpointWithJaxbTest extends KieCamelTestSupport {
         assertNotNull(resp.getValue("hadrian"));
     }
 
+    @Ignore
     @Test
     public void testSessionModify() throws Exception {
         String cmd = "";
