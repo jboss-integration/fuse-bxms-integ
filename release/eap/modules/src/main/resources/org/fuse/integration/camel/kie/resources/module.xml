@@ -21,8 +21,8 @@
         <module name="org.jboss.logging"/>
         <module name="org.apache.cxf" slot="${org.apache.cxf.eap.slot}"/>
         <module name="org.apache.camel"/>
-        <module name="org.springframework.core" slot="3.x"/>
-        <module name="org.springframework.aop" slot="3.x"/>
+        <module name="org.springframework.core" slot="4.x"/>
+        <module name="org.springframework.aop" slot="4.x"/>
         <module name="org.kie.spring"/>
         <module name="org.apache.camel.spring" export="true" slot="3.0">
            <exports>

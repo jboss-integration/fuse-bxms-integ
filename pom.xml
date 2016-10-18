@@ -60,8 +60,8 @@
         <version.apache.camel>2.17.0.redhat-630187</version.apache.camel>
         
         <!-- Internal dependencies -->
-        <version.org.kie>6.5.0.CR2-redhat-1</version.org.kie>
-        <version.org.jboss.integration-platform>6.0.8.Final</version.org.jboss.integration-platform>
+        <version.org.kie>6.5.0.20161014-productized</version.org.kie>
+        <version.org.jboss.integration-platform>6.0.8.Final-redhat-2</version.org.jboss.integration-platform>
         <version.org.apache.geronimo.specs>1.0</version.org.apache.geronimo.specs>
         <version.org.ops4j.pax.url>2.2.0</version.org.ops4j.pax.url>
         <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>

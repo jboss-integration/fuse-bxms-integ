@@ -7,7 +7,7 @@
     <module name="javax.api" />
     <module name="javax.xml.bind.api" />
     <module name="org.apache.camel.core" />
-    <module name="org.springframework.beans" export="true" slot="3.x">
+    <module name="org.springframework.beans" export="true" slot="4.x">
       <exports>
         <exclude path="org/springframework/beans/annotation**" />
         <exclude path="org/springframework/beans/propertyeditors**" />
@@ -15,9 +15,9 @@
         <exclude path="org/springframework/beans/factory/**" />
       </exports>
     </module>
-    <module name="org.springframework.context" slot="3.x"/>
-    <module name="org.springframework.core" slot="3.x"/>
-    <module name="org.springframework.tx" slot="3.x" export="true">
+    <module name="org.springframework.context" slot="4.x"/>
+    <module name="org.springframework.core" slot="4.x"/>
+    <module name="org.springframework.tx" slot="4.x" export="true">
       <exports>
         <exclude path="org/springframework/dao**" />
         <exclude path="org/springframework/jca**" />

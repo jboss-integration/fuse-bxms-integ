@@ -19,7 +19,7 @@
     <deployment>
         <dependencies>
             <module name="org.fuse.integration.camel.kie" meta-inf="import"/>
-            <module name="org.springframework.web" slot="3.x" meta-inf="import"/>
+            <module name="org.springframework.web" slot="4.x" meta-inf="import"/>
             <module name="org.kie.spring" meta-inf="import"/>
             <module name="org.apache.camel" meta-inf="import"/>
         </dependencies>
