@@ -117,6 +117,7 @@ public class KarafConfigUtil {
                 localMavenRepoOption(),
                 editConfigurationFilePut("etc/org.ops4j.pax.url.mvn.cfg", "org.ops4j.pax.url.mvn.repositories",
                         "http://repo1.maven.org/maven2@id=central,"
+                        + "https://origin-repository.jboss.org/nexus/content/repositories/kie@id=kie,"
                         + "https://repository.jboss.org/nexus/content/groups/ea@id=jboss-ea,"
                         + "https://repository.jboss.org/nexus/content/groups/public@id=jboss-public,"
                         + "http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven@id=fuse-brew,"
