@@ -79,7 +79,7 @@
         <switchyard.osgi.import.switchyard.version>
             version="[$(version;==;${switchyard.osgi.version}),$(version;==;${version.switchyard.osgi}))" 
         </switchyard.osgi.import.switchyard.version>
-        <switchyard.osgi.import.default.version>[$(version;==;$(@)),$(version;+;$(@)))</switchyard.osgi.import.default.version>
+              <switchyard.osgi.import.default.version>[$(version;==;$(@)),$(version;+;$(@)))</switchyard.osgi.import.default.version>
         <switchyard.osgi.activator />
         <switchyard.osgi.failok>true</switchyard.osgi.failok>
         <switchyard.osgi.import> org.switchyard.*;${switchyard.osgi.import.switchyard.version}, * 
@@ -110,6 +110,10 @@
         <drools.karaf.features.classifier>features-fuse-6_3</drools.karaf.features.classifier>
         <org.apache.cxf.eap.slot>3.1</org.apache.cxf.eap.slot>
         <feature.pax.cdi.web.weld>pax-cdi-web-weld</feature.pax.cdi.web.weld>
+
+		<!-- versions required by ENTESB-6190 -->
+		<version.org.mvel>2.2.8.Final-redhat-1</version.org.mvel>
+		<version.com.thoughtworks.xstream>1.4.9.redhat-2</version.com.thoughtworks.xstream>
     </properties>
     <repositories>
         <repository>
@@ -203,6 +207,16 @@
     </distributionManagement>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.mvel</groupId>
+                <artifactId>mvel2</artifactId>
+                <version>${version.org.mvel}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.thoughtworks.xstream</groupId>
+                <artifactId>xstream</artifactId>
+                <version>${version.com.thoughtworks.xstream}</version>
+            </dependency>
             <dependency>
                 <groupId>org.jboss.fuse.bom</groupId>
                 <artifactId>jboss-fuse-parent</artifactId>
