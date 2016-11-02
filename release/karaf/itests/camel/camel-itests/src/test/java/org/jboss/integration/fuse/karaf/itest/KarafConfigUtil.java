@@ -119,6 +119,7 @@ public class KarafConfigUtil {
                         "http://repo1.maven.org/maven2@id=central,"
                         + "https://repository.jboss.org/nexus/content/groups/ea@id=jboss-ea,"
                         + "https://repository.jboss.org/nexus/content/groups/public@id=jboss-public,"
+                        + "https://origin-repository.jboss.org/nexus/content/repositories/kie@id=kie-productized,"
                         + "http://download.eng.bos.redhat.com/brewroot/repos/jb-bxms-6.3-build/latest/maven@id=fuse-brew"
                 ));
     }
