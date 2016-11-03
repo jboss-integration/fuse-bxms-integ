@@ -88,7 +88,7 @@
         <wildfly.port>9999</wildfly.port>
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <bundle.symbolic.name>${project.groupId}.camel.jbpm.workitems</bundle.symbolic.name>
-        <version.apache.camel>2.15.1.redhat-621117</version.apache.camel>
+        <version.apache.camel>2.15.1.redhat-621159</version.apache.camel>
     </properties>
     <dependencyManagement>
         <dependencies>
