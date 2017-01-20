@@ -18,7 +18,7 @@
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>eap-release-parent</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>1.6.0.redhat-621016</version>
     </parent>
     <artifactId>fuse-integration-eap-itests</artifactId>
     <packaging>jar</packaging>
