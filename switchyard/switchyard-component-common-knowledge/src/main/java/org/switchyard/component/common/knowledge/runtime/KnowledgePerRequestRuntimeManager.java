@@ -100,6 +100,11 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
         if (isClosed()) {
             throw new IllegalStateException("Runtime manager " + identifier + " is already closed");
         }
+        ThreadLocal<RuntimeEngine> loc = local.get(getIdentifier());
+        if(loc != null) {
+            // remove the object from the Threadlocal
+            loc.remove();
+        }
         local.remove(getIdentifier());
         try {
             if (canDestroy(runtime)) {
@@ -109,6 +114,8 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
                     ((Disposable)runtime).dispose();
                 }
             }
+            // clear InMemorySessionFactory sessions hashmap
+            getFactory().close();
         } catch (Exception e) {
             // do nothing
             if (runtime instanceof Disposable) {
