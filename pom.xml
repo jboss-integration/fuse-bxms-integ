@@ -24,7 +24,7 @@
     </parent>
     <groupId>org.jboss.integration.fuse</groupId>
     <artifactId>fuse-integration-project</artifactId>
-    <version>1.7.0-SNAPSHOT</version>
+    <version>1.7.0.redhat-630018</version>
     <packaging>pom</packaging>
     <name>Fuse Integration Project</name>
     <description>
@@ -46,21 +46,21 @@
         </license>
     </licenses>
     <properties>
-        <version.jboss.integration>1.7.0-SNAPSHOT</version.jboss.integration>
+        <version.jboss.integration>1.7.0.redhat-630018</version.jboss.integration>
         <!-- EAP 6.4.x -->
         <version.eap>7.5.7.Final-redhat-3</version.eap>
         <!-- Perfectus managed versions -->
-        <version.fuse>6.3.0.redhat-187</version.fuse>
+        <version.fuse>6.3.0.redhat-224</version.fuse>
         <version.fuse.eap>${version.fuse}</version.fuse.eap>
         <version.fuse.patch>2.3.0</version.fuse.patch>
-        <version.org.apache.karaf>2.4.0.redhat-630187</version.org.apache.karaf>
+        <version.org.apache.karaf>2.4.0.redhat-630224</version.org.apache.karaf>
         <version.camelsap>${version.fuse}</version.camelsap>
-        <version.switchyard>2.1.0.redhat-630187</version.switchyard>
-        <version.wildfly.camel>2.4.0.redhat-630187</version.wildfly.camel>
-        <version.apache.camel>2.17.0.redhat-630187</version.apache.camel>
+        <version.switchyard>2.1.0.redhat-630224</version.switchyard>
+        <version.wildfly.camel>2.4.0.redhat-630224</version.wildfly.camel>
+        <version.apache.camel>2.17.0.redhat-630224</version.apache.camel>
         
         <!-- Internal dependencies -->
-        <version.org.kie>6.5.0.20161014-productized</version.org.kie>
+        <version.org.kie>6.5.1.20170120-productized</version.org.kie>
         <version.org.jboss.integration-platform>6.0.8.Final-redhat-3</version.org.jboss.integration-platform>
         <version.org.apache.geronimo.specs>1.0</version.org.apache.geronimo.specs>
         <version.org.ops4j.pax.url>2.2.0</version.org.ops4j.pax.url>
