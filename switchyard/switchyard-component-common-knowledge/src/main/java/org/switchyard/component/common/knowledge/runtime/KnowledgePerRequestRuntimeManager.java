@@ -92,6 +92,7 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
                     ((Disposable)runtime).dispose();
                 }
             }
+            getFactory().close();
         } catch (Exception e) {
             // do nothing
             if (runtime instanceof Disposable) {
