@@ -21,8 +21,6 @@ import org.kie.internal.task.api.InternalTaskService;
 
 public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager {
 
-    private static Map<String, ThreadLocal<RuntimeEngine>> local = new HashMap<String, ThreadLocal<RuntimeEngine>>();
-
     public KnowledgePerRequestRuntimeManager(RuntimeEnvironment environment, SessionFactory factory, TaskServiceFactory taskServiceFactory, String identifier) {
         super(environment, factory, taskServiceFactory, identifier);
     }
@@ -34,9 +32,6 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
         }
         checkPermission();
         RuntimeEngine runtime = null;
-        if (local.get(getIdentifier()) != null) {
-            return local.get(getIdentifier()).get();
-        }
         if (engineInitEager) {
             InternalTaskService internalTaskService = (InternalTaskService)getTaskServiceFactory().newTaskService();
             runtime = new RuntimeEngineImpl(getFactory().newKieSession(), internalTaskService);
@@ -51,9 +46,6 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
             runtime = new RuntimeEngineImpl(context, new PerRequestInitializer());
             ((RuntimeEngineImpl)runtime).setManager(this);
         }
-        ThreadLocal<RuntimeEngine> loc = new ThreadLocal<RuntimeEngine>();
-        loc.set(runtime);
-        local.put(getIdentifier(), loc);
         return runtime;
     }
 
@@ -61,10 +53,6 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
 
         @Override
         public KieSession initKieSession(Context<?> context, InternalRuntimeManager manager, RuntimeEngine engine) {
-            RuntimeEngine inUse = local.get(getIdentifier()).get();
-            if (inUse != null && ((RuntimeEngineImpl)inUse).internalGetKieSession() != null) {
-                return inUse.getKieSession();
-            }
             KieSession ksession = getFactory().newKieSession();
             ((RuntimeEngineImpl)engine).internalSetKieSession(ksession);
             registerDisposeCallback(engine, new DisposeSessionTransactionSynchronization(manager, engine));
@@ -89,10 +77,6 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
         if (isClosed()) {
             throw new IllegalStateException("Runtime manager " + identifier + " is already closed");
         }
-        RuntimeEngine runtimeInUse = local.get(getIdentifier()).get();
-        if (runtimeInUse == null || runtimeInUse.getKieSession().getIdentifier() != ksession.getIdentifier()) {
-            throw new IllegalStateException("Invalid session was used for this context " + context);
-        }
     }
 
     @Override
@@ -100,7 +84,6 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
         if (isClosed()) {
             throw new IllegalStateException("Runtime manager " + identifier + " is already closed");
         }
-        local.remove(getIdentifier());
         try {
             if (canDestroy(runtime)) {
                 runtime.getKieSession().destroy();
