@@ -18,7 +18,7 @@
     <artifactId>switchyard-demo-helpdesk</artifactId>
     <packaging>war</packaging>
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-    <version>1.5.0-SNAPSHOT</version>
+    <version>1.5.0.redhat-630028</version>
     <name>Fuse Integration: Quickstarts: Switchyard Quickstart Demo : Help Desk</name>
     <description>Fuse Integration: Quickstarts: Switchyard Quickstart Demo : Help Desk</description>
     <url>https://github.com/jboss-integration/fuse-bxms-integ</url>
@@ -82,8 +82,8 @@
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <enforcer.skip>true</enforcer.skip>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
-        <version.org.kie>6.4.1-SNAPSHOT</version.org.kie>
-        <version.switchyard>2.1.0-redhat-SNAPSHOT</version.switchyard>	
+        <version.org.kie>6.4.1.20161130-productized</version.org.kie>
+        <version.switchyard>2.1.0.redhat-630254</version.switchyard>	
     </properties>
     <dependencyManagement>
         <dependencies>
