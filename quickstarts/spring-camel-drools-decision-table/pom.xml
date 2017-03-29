@@ -16,7 +16,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-    <version>1.4.0-SNAPSHOT</version>
+    <version>1.4.0.redhat-621065</version>
     <artifactId>spring-camel-drools-decision-table</artifactId>
     <packaging>war</packaging>
     <name>Fuse Integration: Quickstarts: Drools &amp; Decision Table using Kie Spring</name>
@@ -48,13 +48,13 @@
     <properties>
         <version.felix.maven>2.4.0</version.felix.maven>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
-        <version.org.kie>6.4.1-SNAPSHOT</version.org.kie>
+        <version.org.kie>6.4.1.20161130-productized</version.org.kie>
         <deploy.skip>true</deploy.skip>
         <version.org.jboss.integration-platform>6.0.6.Final</version.org.jboss.integration-platform>
         <wildfly.port>9999</wildfly.port>
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <bundle.symbolic.name>${project.groupId}.spring.camel.drools.decision.table</bundle.symbolic.name>
-        <version.apache.camel>2.15.1.redhat-621159</version.apache.camel>
+        <version.apache.camel>2.15.1.redhat-621186</version.apache.camel>
     </properties>
     <dependencyManagement>
         <dependencies>
