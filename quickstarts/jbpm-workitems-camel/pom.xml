@@ -16,7 +16,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
-    <version>1.6.0-SNAPSHOT</version>
+    <version>1.6.0.redhat-621020</version>
     <artifactId>jbpm-workitems-camel-quickstart</artifactId>
     <packaging>war</packaging>
     <name>Fuse Integration: Quickstarts: jBPM : Work-items camel example</name>
@@ -82,13 +82,13 @@
         <version.felix.maven>2.4.0</version.felix.maven>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <version.felix.maven>2.4.0</version.felix.maven>
-        <version.org.kie>6.5.0-SNAPSHOT</version.org.kie>
+        <version.org.kie>6.5.1.20170309-productized</version.org.kie>
         <version.org.jboss.integration-platform>6.0.0.Final</version.org.jboss.integration-platform>
         <deploy.skip>true</deploy.skip>
         <wildfly.port>9999</wildfly.port>
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <bundle.symbolic.name>${project.groupId}.camel.jbpm.workitems</bundle.symbolic.name>
-        <version.apache.camel>2.15.1.redhat-621159</version.apache.camel>
+        <version.apache.camel>2.15.1.redhat-621186</version.apache.camel>
     </properties>
     <dependencyManagement>
         <dependencies>
