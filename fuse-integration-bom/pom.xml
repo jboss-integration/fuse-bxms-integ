@@ -24,12 +24,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jboss.integration.fuse</groupId>
     <artifactId>fuse-integration-bom</artifactId>
-    <version>1.5.0-SNAPSHOT</version>
+    <version>1.5.0.redhat-630029</version>
     <packaging>pom</packaging>
     <name>Fuse Integration: BOM</name>
     <description>The BOM for Fuse BXMS Integration Repository</description>
     <properties>
-        <version.switchyard>2.1.0-redhat-630187</version.switchyard>
+        <version.switchyard>2.1.0.redhat-630262</version.switchyard>
     </properties>
     <dependencyManagement>
         <dependencies>
