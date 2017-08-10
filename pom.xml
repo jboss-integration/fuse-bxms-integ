@@ -60,7 +60,7 @@
         <version.apache.camel>2.17.0.redhat-630187</version.apache.camel>
         
         <!-- Internal dependencies -->
-        <version.org.kie>6.5.0.20161014-productized</version.org.kie>
+        <version.org.kie>6.5.0.Final-redhat-14</version.org.kie>
         <version.org.jboss.integration-platform>6.0.8.Final-redhat-3</version.org.jboss.integration-platform>
         <version.org.apache.geronimo.specs>1.0</version.org.apache.geronimo.specs>
         <version.org.ops4j.pax.url>2.2.0</version.org.ops4j.pax.url>
@@ -107,7 +107,7 @@
         <version.pax.cdi.feature>1.0.0.RC1-redhat-001</version.pax.cdi.feature>
         <version.commons-digester>1.8.1</version.commons-digester>
         <version.javax.servlet-api>3.1.0</version.javax.servlet-api>
-        <drools.karaf.features.classifier>features-fuse-6_3</drools.karaf.features.classifier>
+        <drools.karaf.features.classifier>features-fuse</drools.karaf.features.classifier>
         <org.apache.cxf.eap.slot>3.1</org.apache.cxf.eap.slot>
         <feature.pax.cdi.web.weld>pax-cdi-web-weld</feature.pax.cdi.web.weld>
 
