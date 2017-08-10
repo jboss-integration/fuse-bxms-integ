@@ -18,7 +18,7 @@
     <parent>
         <groupId>org.jboss.integration.fuse</groupId>
         <artifactId>kie-camel-karaf-itests-parent</artifactId>
-        <version>1.7.0-SNAPSHOT</version>
+        <version>1.7.0.redhat-630029</version>
         <relativePath>../</relativePath>
     </parent>
     <artifactId>kie-camel-karaf-itest</artifactId>
