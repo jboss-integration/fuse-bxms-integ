@@ -29,7 +29,7 @@
     <name>Fuse Integration: BOM</name>
     <description>The BOM for Fuse BXMS Integration Repository</description>
     <properties>
-        <version.switchyard>2.1.0-redhat-630187</version.switchyard>
+        <version.switchyard>2.1.0-redhat-630283</version.switchyard>
     </properties>
     <dependencyManagement>
         <dependencies>

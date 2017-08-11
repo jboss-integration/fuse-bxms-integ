@@ -103,6 +103,7 @@
                                 <descriptor>mvn:org.jboss.integration.fuse/karaf-features/${project.version}/xml/features</descriptor>
                                 <descriptor>mvn:org.apache.karaf.assemblies.features/spring/${version.org.apache.karaf}/xml/features</descriptor>
                                 <descriptor>mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features</descriptor>
+                                <descriptor>mvn:org.apache.karaf.assemblies.features/brms-features/${version.org.apache.karaf}/xml/features</descriptor>
                                 <descriptor>mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/${drools.karaf.features.classifier}</descriptor>
                                 <descriptor>mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features</descriptor>
                             </descriptors>
