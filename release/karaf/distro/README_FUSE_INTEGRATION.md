@@ -34,7 +34,7 @@ Installation
 
 2.  If Drools have not been added, it should. 
 
-           features:addurl mvn:org.drools/drools-karaf-features/${version.drools}/xml/features
+           features:addurl mvn:org.drools/drools-karaf-features/${version.drools}/xml/features-fuse
 
 3.  Add the fuse-integration features file:  
 
