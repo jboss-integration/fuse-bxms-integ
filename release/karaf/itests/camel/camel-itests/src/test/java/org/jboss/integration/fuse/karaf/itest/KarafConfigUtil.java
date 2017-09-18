@@ -170,12 +170,15 @@ public class KarafConfigUtil {
         options.add(logLevel(LogLevelOption.LogLevel.INFO));
         
         String droolsClassifier = System.getProperty(DROOLS_KARAF_FEATURES_CLASSIFIER) != null ? System.getProperty(DROOLS_KARAF_FEATURES_CLASSIFIER) : "features";
-        
         options.add(features(maven().groupId(DROOLS_FEATURE_GROUP_ID).artifactId(DROOLS_FEATURE_ARTIFACT_ID)
                                         .versionAsInProject().type("xml").classifier(droolsClassifier),
                                 JNDI_FEATURE_NAME, H2_FEATURE_NAME, HIBERNATE_FEATURE_NAME, KIE_CI_FEATURE_NAME,
                                 JBPM_FEATURE_NAME, DROOLS_DT_FEATURE_NAME, KIE_SPRING_FEATURE_NAME,
                                 KIE_ARIES_BLUEPRINT_FEATURE_NAME));
+        options.add(features(maven().groupId("org.apache.karaf.assemblies.features").artifactId("brms-features")
+                                        .versionAsInProject().type("xml").classifier("features"),
+                                "drools-dependencies", "jbpm-dependencies", "optaplanner-dependencies", "kie-remote-dependencies",
+                                "db-dependencies", "hibernate-dependencies", "hibernate-validator-dependencies", "servlet-api-dependencies"));
         options.add(features(maven().groupId(INTEG_PACK_FEATURE_GROUP_ID).artifactId(INTEG_PACK_FEATURE_ARTIFACT_ID)
                                         .versionAsInProject().type("xml").classifier("features"),
                                 KIE_CAMEL_FEATURE_NAME, CAMEL_WORKITEM_FEATURE_NAME));

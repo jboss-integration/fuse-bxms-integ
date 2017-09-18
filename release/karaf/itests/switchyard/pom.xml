@@ -111,6 +111,13 @@
             <classifier>features</classifier>
             <scope>test</scope>
         </dependency>
+         <dependency>
+            <groupId>org.apache.karaf.assemblies.features</groupId>
+            <artifactId>brms-features</artifactId>
+            <type>xml</type>
+            <classifier>features</classifier>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>karaf-features</artifactId>
@@ -213,6 +220,14 @@
                         <exclude>**/Abstract*.java</exclude>
                         <exclude>**/HelpdeskDemoQuickstartTest.java</exclude>
                         <exclude>**/*$*</exclude>
+
+                        <exclude>**/BPMServiceQuickstartTest.java</exclude>
+                        <exclude>**/CSVRulesQuickstartTest.java</exclude>
+                        <exclude>**/LibraryDemoQuickstartTest.java</exclude>
+                        <exclude>**/RulesCamelCBRQuickstartTest.java</exclude>
+                        <exclude>**/RulesInterviewContainerQuickstartTest.java</exclude>
+                        <exclude>**/RulesInterviewDTableQuickstartTest.java</exclude>
+                        <exclude>**/RulesInterviewQuickstartTest.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>

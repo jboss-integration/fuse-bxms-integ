@@ -36,11 +36,15 @@ Installation
 
            features:addurl mvn:org.drools/drools-karaf-features/${version.drools}/xml/features-fuse
 
-3.  Add the fuse-integration features file:  
+3.  Add the Karaf BRMS assemblies as well :
+
+           features:addurl mvn:org.apache.karaf.assemblies.features/brms-features/${version.org.apache.karaf}/xml/features
+
+4.  Add the fuse-integration features file:  
 
            features:addurl mvn:org.jboss.integration.fuse/karaf-features/${version.fuse.bxms-integration}/xml/features
            
-4.  Install the core features. You can install:  
+5.  Install the core features. You can install:  
 
            features:install 
             fuse-bxms-quickstart-camel-jbpm-workitems
@@ -48,7 +52,7 @@ Installation
             fuse-bxms-switchyard-bpm
             fuse-bxms-switchyard-rules
             
-5.  Try our quickstarts:
+6.  Try our quickstarts:
 
            features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${version.fuse.bxms-integration}/xml/features
            

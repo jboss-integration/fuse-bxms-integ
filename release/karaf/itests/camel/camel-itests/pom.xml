@@ -49,6 +49,13 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.karaf.assemblies.features</groupId>
+            <artifactId>brms-features</artifactId>
+            <type>xml</type>
+            <classifier>features</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.jboss.integration.fuse</groupId>
             <artifactId>karaf-features</artifactId>
             <type>xml</type>

@@ -107,6 +107,15 @@ abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
         return features(getCamelKarafFeatureUrl(), result.toArray(new String[result.size()]));
     }
 
+    public static Option loadBrmsFeatures(String... features) {
+        List<String> result = new ArrayList<String>();
+        result.add("drools-module");
+        for (String feature : features) {
+            result.add(feature);
+        }
+        return features(getFeatureUrl("org.apache.karaf.assemblies.features", "brms-features").type("xml").classifier("features").versionAsInProject(), result.toArray(new String[4 + features.length]));
+    }
+
     public static Option loadDroolsFeatures(String... features) {
         List<String> result = new ArrayList<String>();
         result.add("drools-module");
@@ -114,6 +123,10 @@ abstract public class KarafIntegrationTestSupport extends CamelTestSupport {
             result.add(feature);
         }
         return features(getFeatureUrl("org.jboss.integration.fuse", "karaf-features").type("xml").classifier("features").versionAsInProject(), result.toArray(new String[4 + features.length]));
+    }
+
+    public static Option loadBrmsRepo() {
+        return features(maven().groupId("org.apache.karaf.assemblies.features").artifactId("brms-features").type("xml").classifier("features").versionAsInProject().getURL());
     }
 
     public static Option loadDroolsRepo() {
