@@ -3,11 +3,17 @@ package org.switchyard.component.common.knowledge.runtime;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.drools.persistence.TransactionManager;
+import org.drools.persistence.TransactionManagerFactory;
+import org.drools.persistence.TransactionSynchronization;
+
 import org.jbpm.runtime.manager.impl.PerRequestRuntimeManager;
 import org.jbpm.runtime.manager.impl.RuntimeEngineImpl;
 import org.jbpm.runtime.manager.impl.RuntimeEngineInitlializer;
 import org.jbpm.runtime.manager.impl.tx.DestroySessionTransactionSynchronization;
 import org.jbpm.runtime.manager.impl.tx.DisposeSessionTransactionSynchronization;
+import org.kie.api.runtime.Environment;
+import org.kie.api.runtime.EnvironmentName;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.manager.Context;
 import org.kie.api.runtime.manager.RuntimeEngine;
@@ -23,6 +29,43 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
 
     public KnowledgePerRequestRuntimeManager(RuntimeEnvironment environment, SessionFactory factory, TaskServiceFactory taskServiceFactory, String identifier) {
         super(environment, factory, taskServiceFactory, identifier);
+    }
+
+    @Override
+    protected TransactionManager getTransactionManager(Environment env) {
+        return new TransactionManager() {
+                        @Override
+                        public void rollback(boolean transactionOwner) {
+                        }
+
+                        @Override
+                        public void registerTransactionSynchronization(TransactionSynchronization ts) {
+                        }
+
+                        @Override
+                        public void putResource(Object key, Object resource) {
+                        }
+
+                        @Override
+                        public int getStatus() {
+                            return STATUS_NO_TRANSACTION;
+                        }
+
+                        @Override
+                        public Object getResource(Object key) {
+                            return null;
+                        }
+
+                        @Override
+                        public void commit(boolean transactionOwner) {
+
+                        }
+
+                        @Override
+                        public boolean begin() {
+                            return false;
+                        }
+                    };
     }
 
     @Override
@@ -69,7 +112,6 @@ public class KnowledgePerRequestRuntimeManager extends PerRequestRuntimeManager 
 
             return internalTaskService;
         }
-
     }
 
     @Override

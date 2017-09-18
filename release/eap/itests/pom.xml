@@ -445,6 +445,10 @@
                     </systemProperties>
                     <trimStackTrace>false</trimStackTrace>
                     <printSummary>true</printSummary>
+                    <excludes>
+                        <exclude>**/Abstract*.java</exclude>
+                        <exclude>**/HelpDeskDemoQuickstartTest.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
         </plugins>

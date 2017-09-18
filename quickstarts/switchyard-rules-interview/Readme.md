@@ -78,9 +78,13 @@ ${FUSE_HOME}/bin/karaf
 2. Ensure that the drools and switchyard compatible features URL files have been added to your Fuse Karaf instance. 
    In case they are not added then:
 
-    features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/${drools.karaf.features.classifier}
+JBossFuse:karaf@root> features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/${drools.karaf.features.classifier}
 
-3. Add the features URL for the respective version of BXMS.
+1. Add the Karaf BRMS assemblies as well :
+
+JBossFuse:karaf@root> features:addurl mvn:org.apache.karaf.assemblies.features/brms-features/${version.org.apache.karaf}/xml/features
+
+4. Add the features URL for the respective version of BXMS.
 
 JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features
 
@@ -114,6 +118,7 @@ ${KARAF_HOME}/bin/karaf
 
     features:addurl mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
     features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/${drools.karaf.features.classifier}
+    features:addurl mvn:org.apache.karaf.assemblies.features/brms-features/${version.org.apache.karaf}/xml/features
 
 3. Add the features URL for the respective version of BXMS.
 

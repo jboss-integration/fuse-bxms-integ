@@ -86,18 +86,22 @@ FUSE
 2. Ensure that the drools and switchyard compatible features URL files have been added to your Fuse instance. 
    In case they are not added then:
 
-        features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/${drools.karaf.features.classifier}
+JBossFuse:karaf@root> features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/${drools.karaf.features.classifier}
 
-3. Add the features URL for the respective version of BXMS.
+3. Add the Karaf BRMS assemblies as well :
 
-        JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features
+JBossFuse:karaf@root> features:addurl mvn:org.apache.karaf.assemblies.features/brms-features/${version.org.apache.karaf}/xml/features
+
+4. Add the features URL for the respective version of BXMS.
+
+JBossFuse:karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features
 
 
-4. Install the feature for the Switchyard HelpDesk Demo quickstart :
+5. Install the feature for the Switchyard HelpDesk Demo quickstart :
 
-        JBossFuse:karaf@root> features:install fuse-bxms-quickstart-switchyard-helpdesk
+JBossFuse:karaf@root> features:install fuse-bxms-quickstart-switchyard-helpdesk
 
-5. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
+6. To submit a webservice request to invoke the SOAP gateway, run the quickstart client :
 <br/>
 
         mvn exec:java -Pkaraf
@@ -107,7 +111,7 @@ FUSE
 
 <br/>
 
-6. Going back to your web browser window:
+7. Going back to your web browser window:
     Browse to http://localhost:8181/helpdesk/index.html
 
     As krisv (a developer), click the Submit button to get the list of tasks.
@@ -119,7 +123,7 @@ FUSE
 
    Check the expected output below.
 
-7. Undeploy the quickstart:
+8. Undeploy the quickstart:
 
         JBossFuse:karaf@root> features:uninstall fuse-bxms-quickstart-switchyard-helpdesk
 
@@ -137,6 +141,7 @@ ${KARAF_HOME}/bin/karaf
 
     features:addurl mvn:org.switchyard.karaf/switchyard/${version.switchyard}/xml/features
     features:addurl mvn:org.drools/drools-karaf-features/${version.org.kie}/xml/${drools.karaf.features.classifier}
+    features:addurl mvn:org.apache.karaf.assemblies.features/brms-features/${version.org.apache.karaf}/xml/features
 
 3. Add the features URL for the respective version of BXMS.
 karaf@root> features:addurl mvn:org.jboss.integration.fuse.quickstarts/karaf-features/${project.version}/xml/features
