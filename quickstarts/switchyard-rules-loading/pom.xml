@@ -17,7 +17,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jboss.integration.fuse.quickstarts</groupId>
     <artifactId>switchyard-rules-loading</artifactId>
-    <version>1.7.0-SNAPSHOT</version>
+    <version>1.7.0.redhat-630033</version>
     <name>Switchyard Rules Loading</name>
     <description>Fuse Integration: Quickstarts: Switchyard Rules Loading</description>
     <url>https://github.com/jboss-integration/fuse-bxms-integ</url>
@@ -56,8 +56,8 @@
         <version.wildfly.maven>1.0.2.Final</version.wildfly.maven>
         <enforcer.skip>true</enforcer.skip>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
-        <version.org.kie>6.5.0-SNAPSHOT</version.org.kie>
-        <version.switchyard>2.1.0-redhat-SNAPSHOT</version.switchyard>		  
+        <version.org.kie>6.5.0.Final-redhat-14</version.org.kie>
+        <version.switchyard>2.1.0.redhat-630283</version.switchyard>		  
     </properties>
     <dependencyManagement>
         <dependencies>
