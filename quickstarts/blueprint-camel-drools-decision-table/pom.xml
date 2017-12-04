@@ -47,7 +47,7 @@
         <version.felix.maven>2.4.0</version.felix.maven>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
         <version.org.kie>6.5.0-SNAPSHOT</version.org.kie>
-        <version.apache.camel>2.17.0.redhat-630283</version.apache.camel>
+        <version.apache.camel>2.17.0.redhat-630310</version.apache.camel>
         <version.org.jboss.integration-platform>6.0.8.Final</version.org.jboss.integration-platform>
     </properties>
     <dependencyManagement>
